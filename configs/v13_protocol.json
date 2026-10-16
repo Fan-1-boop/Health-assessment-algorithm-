@@ -1,0 +1,21 @@
+{
+  "version": "1.3.0",
+  "data_source": "ESA-ADB / ESA Mission1 official preprocessed CSV",
+  "target_semantics": {
+    "0": "nominal",
+    "1": "true_anomaly_positive",
+    "2": "rare_nominal_negative_and_separate_fpr",
+    "3": "gap_excluded",
+    "4": "invalid_excluded"
+  },
+  "event_splits": "chronological; at least two independent true anomalies in train, val and test; no window crosses partition",
+  "lookback": 64,
+  "stride": 8,
+  "false_alarm_budget_validation_nominal": 0.02,
+  "model_selection": "validation point AP only, three fixed baselines",
+  "test_policy": "once-only confirmatory holdout; diagnostic scores cannot change selection",
+  "state_policy": "same labels Proxy-V1 in archived V1.2; no real faults; grouped MSF + calibration tools only until sufficient independent state events",
+  "telemanom_esa": "not implemented in v1.3; official Docker needed",
+  "fusion": "disabled",
+  "incremental_learning": "disabled"
+}

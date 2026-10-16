@@ -1,0 +1,22 @@
+name: V1.3 independent branch unit tests and P-1 adequacy gate
+on:
+  push:
+    paths:
+      - 'src/v13_*.py'
+      - 'scripts/run_v13_anomaly.py'
+      - 'scripts/v13_preflight.py'
+      - 'tests/test_v13.py'
+      - '.github/workflows/experiment_v13.yml'
+  workflow_dispatch:
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install numpy scipy pandas scikit-learn pytest
+      - run: python -m pytest tests/test_v13.py -q
+      - run: python scripts/v13_preflight.py data/raw/labeled_anomalies.csv
+        # BLOCKED is an expected research outcome, not a test failure.
