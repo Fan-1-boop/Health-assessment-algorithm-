@@ -10,6 +10,7 @@ jobs:
     timeout-minutes: 50
     permissions:
       contents: write
+      actions: read
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -21,9 +22,43 @@ jobs:
       - name: Test chronological global ID splitting and alert onset
         run: |
           python -m pytest -q tests/test_v15.py tests/test_v14.py tests/test_v14_context.py
-      - name: Acquire only preregistered three ESA Mission1 telemetry channels
+      - name: Reuse exact source-data artifact from preceding failed timestamp-parse run
+        uses: actions/download-artifact@v4
+        with:
+          name: esa-v15-3channel-global-ID-research
+          run-id: 38886820282
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path: data/v15_previous_artifact
+      - name: Verify reused raw data and restore only small official event catalog
         run: |
-          python scripts/fetch_esa_multichannel_v15.py --out data/esa_v15_multichannel
+          mkdir -p data/esa_v15_multichannel
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib,json
+          artifacts=Path('data/v15_previous_artifact')
+          sources=list(artifacts.rglob('three_channels.csv.gz'))
+          manifests=list(artifacts.rglob('extraction_manifest.json'))
+          if len(sources)!=1 or len(manifests)!=1:
+              raise ValueError(f'Unexpected dataset artifact: {sources} {manifests}')
+          target=Path('data/esa_v15_multichannel')
+          (target/'three_channels.csv.gz').write_bytes(sources[0].read_bytes())
+          (target/'extraction_manifest.json').write_bytes(manifests[0].read_bytes())
+          audit=json.loads((target/'extraction_manifest.json').read_text())
+          observed=hashlib.sha256((target/'three_channels.csv.gz').read_bytes()).hexdigest()
+          if observed!=audit['csv_gzip_sha256']:
+              raise ValueError('Reused data checksum mismatch')
+          print('VERIFIED_SHA256',observed)
+          PY
+          python - <<'PY'
+          from remotezip import RemoteZip
+          import sys
+          sys.path.insert(0,'scripts')
+          from fetch_esa_remote_subset import source_metadata,ESA_URL
+          with RemoteZip(ESA_URL,timeout=105,initial_buffer_size=1024*512) as z:
+              meta=source_metadata(z)
+              meta.sort_values(['StartTime','ID','Channel']).to_csv(
+                'data/esa_v15_multichannel/mission1_event_catalog.csv',index=False)
+          PY
       - name: Train frozen anomaly baselines and independently evaluate
         run: |
           python scripts/run_v15_multichannel.py \
