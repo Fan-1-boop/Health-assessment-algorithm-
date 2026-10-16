@@ -61,3 +61,22 @@ Only the test **binary anomaly detection** numbers are evaluated against actual 
 - Hundman et al., [*Detecting Spacecraft Anomalies Using LSTMs and Nonparametric Dynamic Thresholding*](https://arxiv.org/abs/1802.04431), KDD 2018.
 - Kim et al., [*When Model Meets New Normals*](https://ojs.aaai.org/index.php/AAAI/article/view/29210), AAAI 2024.
 - [AnDri code](https://github.com/mac-dsl/AnDri) (candidate for V2, **not** reproduced in V1).
+
+## V1.1：冻结代理标签与高维多尺度特征（新增）
+
+标签规则在实现与测试前独立提交：[configs/proxy_label_rules_v1.json](configs/proxy_label_rules_v1.json)（冻结提交 `861c46bf12a6acd1002c5b88cf8119297d44c3ea`）。沿用 V1 代理标签定义：未标注异常区间为“健康代理”；异常区间的前 20% 为“退化代理”；剩余 80% 为“故障代理”。**这些标签不是维修确认的物理故障状态**。规则独立于观测幅值与模型结果；任何性能数字都是这套冻结规则的代理标签预测结果。
+
+- `src/highdim_features.py`：在单通道原始 64 点因果窗口上，构造 **510 个候选特征**（多个长度和滞后位置的统计量/变化率/高阶矩/自相关，以及 FFT 分量等），并导出对应特征名称。**不是**卫星多通道特征。
+- `src/msf_mofs.py`：训练数据上执行单次 Fisher 排序 + 3 个多尺度初始化染色体，使用基于逻辑回归分类性能和特征稀疏度的预算受限 NSGA-II 搜索。本项目版本是对论文方法的工程适配，**并非 5-NN 原文基准的严格复现**。
+- `scripts/run_v11.py`：对比原 25 维特征、新 510 维全部特征、MSF-MOFS 选择特征各自的静态分层逻辑回归与时序滤波，并测试最终异常证据融合。异常分支暂时沿用 V1 原始时序随机森林，避免一次改变多个实验因素。
+- `configs/proxy_label_rules_v1.json`：冻结规则与禁止将模拟标签解释为真实物理状态的限制；在 `results/v11/metrics.json` 中记录其 SHA-256。
+- `results/v11/`：自动生成特征名称、选择索引、时间保留测试结果、三状态代理标签消融、真实异常区间指标与模拟评分反馈。
+
+运行（需先按上文获取 data/raw/ 原始 CSV）：
+
+```bash
+pytest -q
+python scripts/run_v11.py --generations 5 --population 12
+```
+
+查看 V1.1 结果：[results/v11/RESULTS.md](results/v11/RESULTS.md)，[results/v11/metrics.json](results/v11/metrics.json)。V1 与 V1.1 保留相同的 P-1 数据和时间段边界，方便对照；单通道、单测试异常事件下的结论仅为探索性结果。
