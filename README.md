@@ -1,3 +1,12 @@
+# 双版本交付：完整模拟 MVP + 真实 OPS-SAT 卫星异常检测
+
+- **真实卫星数据版**：[OPS-SAT-AD 实验源码](real_mvp/README.md) · [真实测试指标](docs/OPS_SAT_REAL_MVP_RESULTS.md) · [真实预测 CSV](results/real_ops_sat/test_predictions.csv) · [训练好的模型](results/real_ops_sat/model_bundle.joblib)。官方片段级正常/异常二分类：F1 **0.9083**、Precision **0.9429**、Recall **0.8761**、AP **0.9648**。不是三级物理故障诊断。
+- **模拟完整算法 MVP（冻结）**：[固定交付版本](https://github.com/Fan-1-boop/Health-assessment-algorithm-/tree/release/mvp-v1.0-synthetic-frozen) · [完整两分支代码](mvp/README.md) · [模拟实验指标](results/mvp/metrics.json)。包含两级 MSF-MOFS、两级分类、HMM、异常检测、简易融合和模拟评分校正；指标只代表模拟数据。
+
+**模型更新政策：只有人工上传并审查通过的高质量有标签数据，才能进入人工审批的候选训练流程；绝不在实时运行中自行增量更新。**
+
+---
+
 # 卫星设备健康度算法 — 交付版 MVP（单模拟数据集）
 
 **先看交付版：** [MVP 使用说明](mvp/README.md) · [MVP 实验结果](results/mvp/RESULTS.md) · [实验数据](results/mvp/synthetic_satellite_telemetry.csv) · [逐窗口演示预测](results/mvp/demo_predictions.csv) · [保存的模型](results/mvp/model_bundle.joblib)。
