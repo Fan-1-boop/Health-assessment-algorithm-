@@ -198,7 +198,7 @@
         ]
       ]
     },
-    "dual_stage_search_seconds": 5.21
+    "dual_stage_search_seconds": 5.05
   },
   "state_branch": {
     "transition_matrix": [
@@ -554,7 +554,7 @@
       "rbf_svm_raw": {
         "validation_ap": 0.733438,
         "validation_auc": 0.849087,
-        "validation_threshold": -0.040608054687885975,
+        "validation_threshold": -0.0406080546878862,
         "validation_f1": 0.693069
       },
       "hgb_raw": {
@@ -657,7 +657,7 @@
       }
     }
   },
-  "runtime_seconds": 27.91,
+  "runtime_seconds": 24.69,
   "limitations": [
     "Only one spacecraft telemetry target channel; no physical spacecraft operation-mode labels.",
     "Labels degraded_proxy/fault_proxy based solely on frozen anomaly interval position, NOT real faults.",

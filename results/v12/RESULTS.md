@@ -18,7 +18,7 @@
 
 ## 二、异常检测分支（真实公开异常标签；测试集）
 
-**模型选择只依据验证集 AP**：`{best_name}`，测试 AP={anomaly_evaluation["average_precision"]}，测试异常基线发生率={anomaly_evaluation["base_rate"]}。
+**模型选择只依据验证集 AP**：`rbf_svm_raw`，测试 AP=0.052886，测试异常基线发生率=0.06859。
 
 | 模型 | 验证 AP | 测试 AP | 测试 ROC-AUC | 测试 F1 | 误报数 |
 |---|---:|---:|---:|---:|---:|
