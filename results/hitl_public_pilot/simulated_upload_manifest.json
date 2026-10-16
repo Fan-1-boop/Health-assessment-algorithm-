@@ -1,0 +1,13 @@
+{
+  "batch_id": "DEMO_OPSSAT_BATCH_001",
+  "target_task": "anomaly_binary",
+  "label_source": "official_public_labels_simulated_operator_upload",
+  "review_status": "simulated_review",
+  "reviewer_id": "DEMO_REVIEWER_NOT_AUTHENTICATED",
+  "reviewed_at": "2026-10-16T00:00:00Z",
+  "parent_model_version": "real-opssat-mvp-v1",
+  "data_sha256": "5d39a5309bf09c563883f72d601a9c567ef67d7dded598ef3b0eb8aba65315bd",
+  "approval_status": "pending",
+  "data_unit": "annotated_segment",
+  "demo_only": true
+}

@@ -1,0 +1,140 @@
+{
+  "experiment": "PUBLIC PILOT / NOT NOVEL IP / NOT PRODUCTION",
+  "dataset": "Real OPS-SAT-AD official preannotated 18-feature satellite segments",
+  "important_caveat": "Update review/upload is SIMULATED. No newly supplied authentic human labels, no real production approval.",
+  "split_source": "Original official train=1 only. Historical official test=0 completely untouched.",
+  "counts": {
+    "old": 876,
+    "batch": 319,
+    "validation": 239,
+    "audit": 160,
+    "official_test_excluded": 529
+  },
+  "ids_sha256": {
+    "old": "91419c196070a80579f577e2d2b501a8e83218a0ece42455816b2e53c8d15fd5",
+    "batch": "ef3a53a2041f6289c0f4cbe0bbc45e109a17bf3016d9b5f62261c50af1a8dea8",
+    "validation": "d0627d56667e7969c680c3e5c8cbdb58b92a414db51128f5e874cc16d2002f4a",
+    "audit": "9c353f5c4e67911fc14f5e03ae1972139e73fee7874089e775a831a0d6ea8cbb"
+  },
+  "upload_review": {
+    "digest": "5d39a5309bf09c563883f72d601a9c567ef67d7dded598ef3b0eb8aba65315bd",
+    "task": "anomaly_binary",
+    "route": "anomaly_detector_candidate",
+    "demo_only": true,
+    "candidate_allowed": true,
+    "release_allowed": false,
+    "rows": 319,
+    "anomaly_labels": 64,
+    "missing_fraction": 0.0,
+    "warnings": [
+      "Manifest is not cryptographic reviewer authentication.",
+      "Candidate is not approved or deployed."
+    ]
+  },
+  "validation_comparison": {
+    "A_frozen": {
+      "samples": 239,
+      "positives": 48,
+      "f1": 0.9473684210526315,
+      "precision": 0.9574468085106383,
+      "recall": 0.9375,
+      "accuracy": 0.9790794979079498,
+      "ap": 0.9815562654010813,
+      "roc_auc": 0.993346422338569,
+      "normal_fpr": 0.010471204188481676,
+      "false_positive": 2,
+      "false_negative": 3,
+      "threshold": 0.8592994727928265
+    },
+    "B_ordinary_retrain": {
+      "samples": 239,
+      "positives": 48,
+      "f1": 0.9473684210526315,
+      "precision": 0.9574468085106383,
+      "recall": 0.9375,
+      "accuracy": 0.9790794979079498,
+      "ap": 0.9747912260861766,
+      "roc_auc": 0.9864746945898778,
+      "normal_fpr": 0.010471204188481676,
+      "false_positive": 2,
+      "false_negative": 3,
+      "threshold": 0.8897892256276855
+    },
+    "C_controlled_candidate": {
+      "samples": 239,
+      "positives": 48,
+      "f1": 0.9473684210526315,
+      "precision": 0.9574468085106383,
+      "recall": 0.9375,
+      "accuracy": 0.9790794979079498,
+      "ap": 0.9747912260861766,
+      "roc_auc": 0.9864746945898778,
+      "normal_fpr": 0.010471204188481676,
+      "false_positive": 2,
+      "false_negative": 3,
+      "threshold": 0.8897892256276855
+    }
+  },
+  "C_ordinary_acceptance_checks": {
+    "validation_f1": true,
+    "validation_recall": true,
+    "validation_nominal_fpr": true
+  },
+  "C_candidate_accepted_for_staging": true,
+  "audit_no_tuning": {
+    "A_frozen": {
+      "samples": 160,
+      "positives": 32,
+      "f1": 0.8070175438596491,
+      "precision": 0.92,
+      "recall": 0.71875,
+      "accuracy": 0.93125,
+      "ap": 0.9489764694579803,
+      "roc_auc": 0.987060546875,
+      "normal_fpr": 0.015625,
+      "false_positive": 2,
+      "false_negative": 9,
+      "threshold": 0.8592994727928265
+    },
+    "B_ordinary_retrain": {
+      "samples": 160,
+      "positives": 32,
+      "f1": 0.8524590163934426,
+      "precision": 0.896551724137931,
+      "recall": 0.8125,
+      "accuracy": 0.94375,
+      "ap": 0.955869013787997,
+      "roc_auc": 0.986572265625,
+      "normal_fpr": 0.0234375,
+      "false_positive": 3,
+      "false_negative": 6,
+      "threshold": 0.8897892256276855
+    },
+    "C_controlled_candidate": {
+      "samples": 160,
+      "positives": 32,
+      "f1": 0.8524590163934426,
+      "precision": 0.896551724137931,
+      "recall": 0.8125,
+      "accuracy": 0.94375,
+      "ap": 0.955869013787997,
+      "roc_auc": 0.986572265625,
+      "normal_fpr": 0.0234375,
+      "false_positive": 3,
+      "false_negative": 6,
+      "threshold": 0.8897892256276855
+    }
+  },
+  "new_model_deployed": false,
+  "interpretation": "C chooses B or A; C cannot intrinsically outperform both on every held-out set. This pilot tests gating and rollback, not patent-level algorithmic novelty.",
+  "config_sha256": "d606417259f554e8180b6d25fcb92694199360e86826167107f0eed587949b84",
+  "source_sha256": "da20bc4bd3f30a3302ce06fe6a073bea6f036b297a92e83311d3f83b9c5e619b",
+  "limitations": [
+    "No new operator-labeled satellite samples: archived labels repackaged in simulated reviewed batch",
+    "No actual satellite mode-change episode was supplied, so mode-vs-fault distinction is not established",
+    "OPS-SAT-AD labels are binary anomaly, no real physical health/degradation/fault states",
+    "C uses ordinary staged validation/rollback rules only; not a novel mathematical mechanism",
+    "No autonomous learning, live model replacement, or release approval",
+    "No original official test=0 examples were used in the pilot"
+  ]
+}
