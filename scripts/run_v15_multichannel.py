@@ -32,7 +32,7 @@ def run(source,catalog_path,out,protocol_path):
     df=pd.read_csv(source)
     required={'timestamp','eval_label',*(list(CHANNELS)),*(f'label_{c}' for c in CHANNELS)}
     if not required.issubset(df.columns):raise ValueError('Missing ESA source columns: '+str(required-set(df.columns)))
-    times=pd.to_datetime(df.timestamp,utc=True)
+    times=pd.to_datetime(df.timestamp,utc=True,format='mixed')
     if times.isna().any() or not times.is_monotonic_increasing or times.duplicated().any():
         raise ValueError('Invalid chronological source')
     codes=df.eval_label.to_numpy(int)
