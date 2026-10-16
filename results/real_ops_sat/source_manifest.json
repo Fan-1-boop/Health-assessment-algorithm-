@@ -1,0 +1,33 @@
+{
+  "source_doi": "10.5281/zenodo.12588359",
+  "source_url": "https://zenodo.org/api/records/12588359/files/dataset.csv/content",
+  "source_csv_sha256": "da20bc4bd3f30a3302ce06fe6a073bea6f036b297a92e83311d3f83b9c5e619b",
+  "dataset_origin": "Genuine ESA OPS-SAT satellite telemetry segments with official labels",
+  "official_train_test_preserved": true,
+  "rows": 2123,
+  "feature_count": 18,
+  "split_counts": [
+    {
+      "train": 0,
+      "anomaly": 0,
+      "count": 416
+    },
+    {
+      "train": 0,
+      "anomaly": 1,
+      "count": 113
+    },
+    {
+      "train": 1,
+      "anomaly": 0,
+      "count": 1273
+    },
+    {
+      "train": 1,
+      "anomaly": 1,
+      "count": 321
+    }
+  ],
+  "source_repo": "https://github.com/kplabs-pl/OPS-SAT-AD",
+  "important_note": "Real binary anomaly labels; no true physical degradation/fault severity labels"
+}

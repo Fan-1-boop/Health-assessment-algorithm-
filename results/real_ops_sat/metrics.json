@@ -1,0 +1,355 @@
+{
+  "study": "Real ESA OPS-SAT-AD satellite telemetry anomaly detection",
+  "not_simulated_data": true,
+  "label_semantics": "Official segment-level 0=normal,1=anomaly; no verified 3-class physical health state",
+  "dataset": {
+    "source_doi": "10.5281/zenodo.12588359",
+    "source_url": "https://zenodo.org/api/records/12588359/files/dataset.csv/content",
+    "source_csv_sha256": "da20bc4bd3f30a3302ce06fe6a073bea6f036b297a92e83311d3f83b9c5e619b",
+    "dataset_origin": "Genuine ESA OPS-SAT satellite telemetry segments with official labels",
+    "official_train_test_preserved": true,
+    "rows": 2123,
+    "feature_count": 18,
+    "split_counts": [
+      {
+        "train": 0,
+        "anomaly": 0,
+        "count": 416
+      },
+      {
+        "train": 0,
+        "anomaly": 1,
+        "count": 113
+      },
+      {
+        "train": 1,
+        "anomaly": 0,
+        "count": 1273
+      },
+      {
+        "train": 1,
+        "anomaly": 1,
+        "count": 321
+      }
+    ],
+    "source_repo": "https://github.com/kplabs-pl/OPS-SAT-AD",
+    "important_note": "Real binary anomaly labels; no true physical degradation/fault severity labels"
+  },
+  "split": {
+    "fit_segments": 1195,
+    "validation_segments": 399,
+    "official_heldout_test_segments": 529,
+    "fit_anomalies": 241,
+    "validation_anomalies": 80,
+    "test_anomalies": 113
+  },
+  "feature_selection": {
+    "method": "MSF-MOFS (project implementation)",
+    "candidate_feature_count": 18,
+    "selected_feature_count": 3,
+    "selected_feature_names": [
+      "n_peaks",
+      "var_div_len",
+      "diff2_var"
+    ],
+    "inner_search": {
+      "candidate_dim": 18,
+      "selected_dim": 3,
+      "guided_sizes": [
+        1,
+        2,
+        4
+      ],
+      "unique_wrapper_evaluations": 55,
+      "selection_cv_gmean": 0.85711,
+      "pareto_objectives": [
+        [
+          0.36447,
+          0.05556
+        ],
+        [
+          0.12351,
+          0.33333
+        ],
+        [
+          0.36447,
+          0.05556
+        ],
+        [
+          0.25917,
+          0.11111
+        ],
+        [
+          0.25917,
+          0.11111
+        ],
+        [
+          0.36447,
+          0.05556
+        ],
+        [
+          0.36447,
+          0.05556
+        ],
+        [
+          0.25917,
+          0.11111
+        ],
+        [
+          0.14289,
+          0.16667
+        ],
+        [
+          0.12302,
+          0.44444
+        ]
+      ]
+    }
+  },
+  "model_selection": "best validation F1 with frozen candidate set and validation-only threshold",
+  "chosen_by_validation": "all_18__hist_gb",
+  "validation_candidates": {
+    "msf__rf": {
+      "features": 3,
+      "n": 399,
+      "positives": 80,
+      "prevalence": 0.20050125313283207,
+      "accuracy": 0.9172932330827067,
+      "precision": 0.821917808219178,
+      "recall": 0.75,
+      "f1": 0.7843137254901961,
+      "average_precision": 0.7029259915378643,
+      "roc_auc": 0.8687304075235109,
+      "mcc": 0.7344597656585774,
+      "false_positives": 13,
+      "false_negatives": 20,
+      "confusion_matrix_TN_FP_FN_TP": [
+        [
+          306,
+          13
+        ],
+        [
+          20,
+          60
+        ]
+      ],
+      "threshold": 0.33032687379164605
+    },
+    "msf__extra_trees": {
+      "features": 3,
+      "n": 399,
+      "positives": 80,
+      "prevalence": 0.20050125313283207,
+      "accuracy": 0.9172932330827067,
+      "precision": 0.8507462686567164,
+      "recall": 0.7125,
+      "f1": 0.7755102040816326,
+      "average_precision": 0.6870387971152795,
+      "roc_auc": 0.8757641065830721,
+      "mcc": 0.7295884530481299,
+      "false_positives": 10,
+      "false_negatives": 23,
+      "confusion_matrix_TN_FP_FN_TP": [
+        [
+          309,
+          10
+        ],
+        [
+          23,
+          57
+        ]
+      ],
+      "threshold": 0.5108234563922607
+    },
+    "msf__rbf_svm": {
+      "features": 3,
+      "n": 399,
+      "positives": 80,
+      "prevalence": 0.20050125313283207,
+      "accuracy": 0.9022556390977443,
+      "precision": 0.7971014492753623,
+      "recall": 0.6875,
+      "f1": 0.738255033557047,
+      "average_precision": 0.7549338668649453,
+      "roc_auc": 0.911050156739812,
+      "mcc": 0.6813708154792795,
+      "false_positives": 14,
+      "false_negatives": 25,
+      "confusion_matrix_TN_FP_FN_TP": [
+        [
+          305,
+          14
+        ],
+        [
+          25,
+          55
+        ]
+      ],
+      "threshold": 0.7383646472898838
+    },
+    "msf__hist_gb": {
+      "features": 3,
+      "n": 399,
+      "positives": 80,
+      "prevalence": 0.20050125313283207,
+      "accuracy": 0.9172932330827067,
+      "precision": 0.8133333333333334,
+      "recall": 0.7625,
+      "f1": 0.7870967741935484,
+      "average_precision": 0.8541077391937613,
+      "roc_auc": 0.9371277429467085,
+      "mcc": 0.736431198192626,
+      "false_positives": 14,
+      "false_negatives": 19,
+      "confusion_matrix_TN_FP_FN_TP": [
+        [
+          305,
+          14
+        ],
+        [
+          19,
+          61
+        ]
+      ],
+      "threshold": 0.5312663487723671
+    },
+    "all_18__rf": {
+      "features": 18,
+      "n": 399,
+      "positives": 80,
+      "prevalence": 0.20050125313283207,
+      "accuracy": 0.9624060150375939,
+      "precision": 0.9577464788732394,
+      "recall": 0.85,
+      "f1": 0.9006622516556292,
+      "average_precision": 0.9563524527743466,
+      "roc_auc": 0.9806622257053291,
+      "mcc": 0.8799568108100028,
+      "false_positives": 3,
+      "false_negatives": 12,
+      "confusion_matrix_TN_FP_FN_TP": [
+        [
+          316,
+          3
+        ],
+        [
+          12,
+          68
+        ]
+      ],
+      "threshold": 0.508695652173913
+    },
+    "all_18__extra_trees": {
+      "features": 18,
+      "n": 399,
+      "positives": 80,
+      "prevalence": 0.20050125313283207,
+      "accuracy": 0.9699248120300752,
+      "precision": 0.9594594594594594,
+      "recall": 0.8875,
+      "f1": 0.922077922077922,
+      "average_precision": 0.9599543205917127,
+      "roc_auc": 0.9806818181818182,
+      "mcc": 0.904533386175717,
+      "false_positives": 3,
+      "false_negatives": 9,
+      "confusion_matrix_TN_FP_FN_TP": [
+        [
+          316,
+          3
+        ],
+        [
+          9,
+          71
+        ]
+      ],
+      "threshold": 0.562962962962963
+    },
+    "all_18__rbf_svm": {
+      "features": 18,
+      "n": 399,
+      "positives": 80,
+      "prevalence": 0.20050125313283207,
+      "accuracy": 0.9473684210526315,
+      "precision": 0.8470588235294118,
+      "recall": 0.9,
+      "f1": 0.8727272727272727,
+      "average_precision": 0.918189657660219,
+      "roc_auc": 0.9777037617554859,
+      "mcc": 0.840203334172972,
+      "false_positives": 13,
+      "false_negatives": 8,
+      "confusion_matrix_TN_FP_FN_TP": [
+        [
+          306,
+          13
+        ],
+        [
+          8,
+          72
+        ]
+      ],
+      "threshold": 0.4168914793058017
+    },
+    "all_18__hist_gb": {
+      "features": 18,
+      "n": 399,
+      "positives": 80,
+      "prevalence": 0.20050125313283207,
+      "accuracy": 0.9724310776942355,
+      "precision": 0.948051948051948,
+      "recall": 0.9125,
+      "f1": 0.9299363057324841,
+      "average_precision": 0.9635211951453506,
+      "roc_auc": 0.9791927899686522,
+      "mcc": 0.913041750595912,
+      "false_positives": 4,
+      "false_negatives": 7,
+      "confusion_matrix_TN_FP_FN_TP": [
+        [
+          315,
+          4
+        ],
+        [
+          7,
+          73
+        ]
+      ],
+      "threshold": 0.4674859460099592
+    }
+  },
+  "final_official_heldout_test": {
+    "n": 529,
+    "positives": 113,
+    "prevalence": 0.21361058601134217,
+    "accuracy": 0.9621928166351607,
+    "precision": 0.9428571428571428,
+    "recall": 0.8761061946902655,
+    "f1": 0.908256880733945,
+    "average_precision": 0.9648411428447848,
+    "roc_auc": 0.9850025527569776,
+    "mcc": 0.8854333862057924,
+    "false_positives": 6,
+    "false_negatives": 14,
+    "confusion_matrix_TN_FP_FN_TP": [
+      [
+        410,
+        6
+      ],
+      [
+        14,
+        99
+      ]
+    ],
+    "threshold": 0.4674859460099592
+  },
+  "source_protocol_sha256": "aa016bf110a0a1d8e98892edb163ef3d01e601fb424a8024915f3457dbeb1d7d",
+  "limitations": [
+    "Real binary spacecraft telemetry anomaly task, NOT real healthy/degraded/fault detection",
+    "Official precomputed statistical features describe entire labeled segments; this is retrospective segment classification, NOT causal early anomaly onset detection",
+    "MSF-MOFS feature selection uses its internal wrapper CV for optimization, but only the official train subset; reported final test is untouched until model selection",
+    "No HMM across independent segments; never interpret independent segment order as time series",
+    "No artificial relabeling, no autonomous online model update, no cross-dataset generalization claim",
+    "The normality index is a visualization based on binary score, NOT a physically calibrated device health score"
+  ]
+}
