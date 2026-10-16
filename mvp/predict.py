@@ -29,9 +29,10 @@ def infer(input_csv,model_file,output_csv,mission=None):
     # this online causal prediction path.
     if frame[['mission_id','cycle_id']].isna().any().any():
         raise ValueError('Missing sequence identity')
-    if any(np.diff(p.sample_in_mission.to_numpy())<0
-           for _,p in frame.groupby('mission_id',sort=False)) if 'sample_in_mission' in frame else False:
-        raise ValueError('Mission records must be chronological')
+    if 'sample_in_mission' in frame:
+        if any(np.any(np.diff(part.sample_in_mission.to_numpy()) < 0)
+               for _,part in frame.groupby('mission_id',sort=False)):
+            raise ValueError('Mission records must be chronological')
     pack=joblib.load(model_file)
     if tuple(pack['raw_sensor_channels'])!=CHANNELS:
         raise ValueError('Model expects a different telemetry schema')
