@@ -38,6 +38,7 @@ jobs:
           name: esa-v15-3channel-global-ID-research
           path: |
             data/esa_v15_multichannel/extraction_manifest.json
+            data/esa_v15_multichannel/three_channels.csv.gz
             results/v15/
           if-no-files-found: warn
       - name: Commit derived compressed data and true experiment metrics
