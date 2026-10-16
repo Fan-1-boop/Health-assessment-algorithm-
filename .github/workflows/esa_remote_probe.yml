@@ -1,0 +1,60 @@
+name: ESA Mission1 remote-archive preflight
+on:
+  push:
+    paths:
+      - '.github/workflows/esa_remote_probe.yml'
+  workflow_dispatch:
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - name: Inspect ESA Mission1 archive with HTTP ranges
+        shell: bash
+        run: |
+          python -m pip install --quiet remotezip pandas requests
+          mkdir -p results/v13/esa_probe
+          python - <<'PY'
+          import json, os, io, traceback
+          import pandas as pd
+          from remotezip import RemoteZip
+          urls = [
+            "https://zenodo.org/records/15237121/files/ESA-Mission1.zip?download=1",
+            "https://zenodo.org/api/records/15237121/files/ESA-Mission1.zip/content"
+          ]
+          summary={'dataset':'ESA-ADB Mission1 v2, Zenodo 15237121','results':[]}
+          for url in urls:
+            x={'url':url}
+            try:
+              with RemoteZip(url,timeout=45,initial_buffer_size=1024*256) as rz:
+                members=rz.namelist()
+                x['entry_count']=len(members)
+                x['first_members']=members[:14]
+                x['metadata']={}
+                for bn in ['labels.csv','anomaly_types.csv','channels.csv']:
+                  found=[n for n in members if n.endswith('/'+bn)]
+                  if not found: continue
+                  data=rz.read(found[0])
+                  frame=pd.read_csv(io.BytesIO(data))
+                  x['metadata'][bn]={'path':found[0], 'shape':list(frame.shape), 'columns':list(frame.columns),
+                                     'first_rows':frame.head(3).astype(str).to_dict('records')}
+                  if bn=='labels.csv':
+                    x['events_per_channel_top10']=frame.groupby('Channel').size().sort_values(ascending=False).head(10).to_dict()
+                summary['results'].append(x)
+                break
+            except Exception as e:
+              x['error']=repr(e);x['traceback']=traceback.format_exc()[-1800:];summary['results'].append(x)
+          path='results/v13/esa_probe/preflight.json'
+          with open(path,'w') as f:json.dump(summary,f,ensure_ascii=False,indent=2)
+          print(json.dumps(summary,ensure_ascii=False,indent=2)[:9000])
+          if not any('entry_count' in r for r in summary['results']):
+            raise SystemExit('ESA archive remote range access unavailable; see artifact')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: esa-remote-range-preflight
+          path: results/v13/esa_probe/
