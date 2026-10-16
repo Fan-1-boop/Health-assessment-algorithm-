@@ -1,0 +1,78 @@
+{
+  "study": "ESA Mission1 single-channel command-context exploratory ablation",
+  "source_url": "https://zenodo.org/records/15237121/files/ESA-Mission1.zip?download=1",
+  "target_channel": "channel_21",
+  "selection": "Priority >=3 then largest 8 archives <=250000 compressed bytes, deterministic, no labels",
+  "lookback_for_pulses": "10min",
+  "n_grid_points": 736415,
+  "commands": [
+    {
+      "Telecommand": "telecommand_36",
+      "Priority": 3,
+      "compressed_size": 1262,
+      "source_sha256": "70d5195809a986e0598f879423fb4cacebd40a16424f6e3c31db24cc92879665",
+      "observed_positive_events": 66,
+      "context_positive_grid_rows": 66
+    },
+    {
+      "Telecommand": "telecommand_350",
+      "Priority": 3,
+      "compressed_size": 1129,
+      "source_sha256": "3651d9dc1059c7d6ecf5d47868b31544b553a35ca94bbe98e443547b0d775475",
+      "observed_positive_events": 57,
+      "context_positive_grid_rows": 49
+    },
+    {
+      "Telecommand": "telecommand_39",
+      "Priority": 3,
+      "compressed_size": 1052,
+      "source_sha256": "eeda8a8380dd16c59059e54d3fbcb8bbd288afbcbc474a0c6da01a63290d15fe",
+      "observed_positive_events": 38,
+      "context_positive_grid_rows": 38
+    },
+    {
+      "Telecommand": "telecommand_40",
+      "Priority": 3,
+      "compressed_size": 1050,
+      "source_sha256": "0ea77c5203dd023c155a0af03b2d7f3db5941b32856578b5e81226e3bc0171c4",
+      "observed_positive_events": 38,
+      "context_positive_grid_rows": 38
+    },
+    {
+      "Telecommand": "telecommand_354",
+      "Priority": 3,
+      "compressed_size": 1040,
+      "source_sha256": "93082818ab1dbf26ca52bd40f55c188f7381c52833acb1940ab02e51948597a1",
+      "observed_positive_events": 47,
+      "context_positive_grid_rows": 23
+    },
+    {
+      "Telecommand": "telecommand_353",
+      "Priority": 3,
+      "compressed_size": 1036,
+      "source_sha256": "46fb50a1886a20ba42c31d6cadb9aab807b84cc007f7b2daed1b5504957ac049",
+      "observed_positive_events": 46,
+      "context_positive_grid_rows": 23
+    },
+    {
+      "Telecommand": "telecommand_352",
+      "Priority": 3,
+      "compressed_size": 1031,
+      "source_sha256": "f769c93c967233b83f4fc2648db274a4dab8bc8ccbd138129e8f9fde3a972bc4",
+      "observed_positive_events": 44,
+      "context_positive_grid_rows": 20
+    },
+    {
+      "Telecommand": "telecommand_38",
+      "Priority": 3,
+      "compressed_size": 1022,
+      "source_sha256": "c62aeeac8650d2d28ddd5896300ffb954a8e60362c728473859f75af7961e9bc",
+      "observed_positive_events": 35,
+      "context_positive_grid_rows": 35
+    }
+  ],
+  "context_csv_sha256": "70e1aafd0f4806d116fc6b37cb1d93fa0172c747ba315cd4eade05df1be15080",
+  "label_usage_in_command_selection": false,
+  "not_official_esa_preprocessing": true,
+  "warning": "Command streams are anonymized; no claim of physical relevance to target sensor."
+}

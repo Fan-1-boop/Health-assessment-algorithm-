@@ -1,0 +1,322 @@
+{
+  "study": "command context diagnostic on previously exposed ESA channel_21 holdout",
+  "status": "EXPLORATORY_ONLY; NO CONFIRMATORY TEST CLAIM",
+  "telemetry": "data/esa_v14_channel21/channel_21.csv",
+  "channel": "channel_21",
+  "lookback": 16,
+  "stride": 4,
+  "context_columns": [
+    "telecommand_36",
+    "telecommand_350",
+    "telecommand_39",
+    "telecommand_40",
+    "telecommand_354",
+    "telecommand_353",
+    "telecommand_352",
+    "telecommand_38"
+  ],
+  "validation": {
+    "ridge_target_only": {
+      "point_ap": 0.05466495537098641,
+      "point_roc_auc": 0.5439749539898724,
+      "anomaly_prevalence": 0.04678232502965599
+    },
+    "ridge_target_plus_commands": {
+      "point_ap": 0.05493219142224315,
+      "point_roc_auc": 0.5450362784156544,
+      "anomaly_prevalence": 0.04678232502965599
+    }
+  },
+  "validation_preferred": "ridge_target_plus_commands",
+  "exposed_test_diagnostic": {
+    "ridge_target_only": {
+      "point_ap": 0.017803294035191368,
+      "point_roc_auc": 0.6017402341374527,
+      "anomaly_prevalence": 0.009865846841811068,
+      "normal_evaluated": 33038,
+      "normal_alert_windows": 0,
+      "normal_alert_rate": 0.0,
+      "rare_nominal_evaluated": 2389,
+      "rare_nominal_alert_windows": 0,
+      "rare_nominal_alert_rate": 0.0,
+      "true_anomaly_evaluated": 353,
+      "true_anomaly_alert_windows": 0,
+      "false_alarm_episodes": 0,
+      "false_alarm_episodes_per_1000_evaluated_windows": 0.0,
+      "metric_denominator": "sampled evaluation windows, not hours or raw timestamps",
+      "official_event_ids_in_partition": 10,
+      "official_event_ids_evaluable": 10,
+      "official_event_ids_detected": 0,
+      "official_id_event_recall": 0.0,
+      "mean_first_detection_delay_grid_steps": null,
+      "per_id": [
+        {
+          "id": "id_156",
+          "evaluable_at_selected_stride": true,
+          "n_evaluation_windows": 3,
+          "detected": false
+        },
+        {
+          "id": "id_161",
+          "evaluable_at_selected_stride": true,
+          "n_evaluation_windows": 8,
+          "detected": false
+        },
+        {
+          "id": "id_162",
+          "evaluable_at_selected_stride": true,
+          "n_evaluation_windows": 2,
+          "detected": false
+        },
+        {
+          "id": "id_171",
+          "evaluable_at_selected_stride": true,
+          "n_evaluation_windows": 64,
+          "detected": false
+        },
+        {
+          "id": "id_46",
+          "evaluable_at_selected_stride": true,
+          "n_evaluation_windows": 125,
+          "detected": false
+        },
+        {
+          "id": "id_178",
+          "evaluable_at_selected_stride": true,
+          "n_evaluation_windows": 4,
+          "detected": false
+        },
+        {
+          "id": "id_179",
+          "evaluable_at_selected_stride": true,
+          "n_evaluation_windows": 7,
+          "detected": false
+        },
+        {
+          "id": "id_181",
+          "evaluable_at_selected_stride": true,
+          "n_evaluation_windows": 80,
+          "detected": false
+        },
+        {
+          "id": "id_188",
+          "evaluable_at_selected_stride": true,
+          "n_evaluation_windows": 5,
+          "detected": false
+        },
+        {
+          "id": "id_189",
+          "evaluable_at_selected_stride": true,
+          "n_evaluation_windows": 55,
+          "detected": false
+        }
+      ]
+    },
+    "ridge_target_plus_commands": {
+      "point_ap": 0.017797255727411008,
+      "point_roc_auc": 0.6015895832078908,
+      "anomaly_prevalence": 0.009865846841811068,
+      "normal_evaluated": 33038,
+      "normal_alert_windows": 0,
+      "normal_alert_rate": 0.0,
+      "rare_nominal_evaluated": 2389,
+      "rare_nominal_alert_windows": 0,
+      "rare_nominal_alert_rate": 0.0,
+      "true_anomaly_evaluated": 353,
+      "true_anomaly_alert_windows": 0,
+      "false_alarm_episodes": 0,
+      "false_alarm_episodes_per_1000_evaluated_windows": 0.0,
+      "metric_denominator": "sampled evaluation windows, not hours or raw timestamps",
+      "official_event_ids_in_partition": 10,
+      "official_event_ids_evaluable": 10,
+      "official_event_ids_detected": 0,
+      "official_id_event_recall": 0.0,
+      "mean_first_detection_delay_grid_steps": null,
+      "per_id": [
+        {
+          "id": "id_156",
+          "evaluable_at_selected_stride": true,
+          "n_evaluation_windows": 3,
+          "detected": false
+        },
+        {
+          "id": "id_161",
+          "evaluable_at_selected_stride": true,
+          "n_evaluation_windows": 8,
+          "detected": false
+        },
+        {
+          "id": "id_162",
+          "evaluable_at_selected_stride": true,
+          "n_evaluation_windows": 2,
+          "detected": false
+        },
+        {
+          "id": "id_171",
+          "evaluable_at_selected_stride": true,
+          "n_evaluation_windows": 64,
+          "detected": false
+        },
+        {
+          "id": "id_46",
+          "evaluable_at_selected_stride": true,
+          "n_evaluation_windows": 125,
+          "detected": false
+        },
+        {
+          "id": "id_178",
+          "evaluable_at_selected_stride": true,
+          "n_evaluation_windows": 4,
+          "detected": false
+        },
+        {
+          "id": "id_179",
+          "evaluable_at_selected_stride": true,
+          "n_evaluation_windows": 7,
+          "detected": false
+        },
+        {
+          "id": "id_181",
+          "evaluable_at_selected_stride": true,
+          "n_evaluation_windows": 80,
+          "detected": false
+        },
+        {
+          "id": "id_188",
+          "evaluable_at_selected_stride": true,
+          "n_evaluation_windows": 5,
+          "detected": false
+        },
+        {
+          "id": "id_189",
+          "evaluable_at_selected_stride": true,
+          "n_evaluation_windows": 55,
+          "detected": false
+        }
+      ]
+    }
+  },
+  "split_id_audit": {
+    "channel": "channel_21",
+    "split_indices": {
+      "train_end": 431304,
+      "validation_end": 593283
+    },
+    "official_anomaly_event_ids": {
+      "train": [
+        "id_30",
+        "id_4",
+        "id_36",
+        "id_45",
+        "id_56",
+        "id_58",
+        "id_5",
+        "id_2",
+        "id_3",
+        "id_6",
+        "id_82",
+        "id_7",
+        "id_8",
+        "id_9",
+        "id_92",
+        "id_94",
+        "id_97",
+        "id_99",
+        "id_101",
+        "id_105",
+        "id_108",
+        "id_111",
+        "id_113",
+        "id_115",
+        "id_116",
+        "id_119",
+        "id_120",
+        "id_126",
+        "id_127"
+      ],
+      "validation": [
+        "id_131",
+        "id_134",
+        "id_135",
+        "id_137",
+        "id_143",
+        "id_145",
+        "id_146",
+        "id_148",
+        "id_152"
+      ],
+      "test": [
+        "id_156",
+        "id_161",
+        "id_162",
+        "id_171",
+        "id_46",
+        "id_178",
+        "id_179",
+        "id_181",
+        "id_188",
+        "id_189"
+      ]
+    },
+    "official_rare_event_ids": {
+      "train": [
+        "id_151",
+        "id_59",
+        "id_35",
+        "id_77",
+        "id_80",
+        "id_81",
+        "id_88",
+        "id_95",
+        "id_1",
+        "id_17",
+        "id_98",
+        "id_100",
+        "id_104",
+        "id_106",
+        "id_112",
+        "id_117",
+        "id_123",
+        "id_27",
+        "id_28",
+        "id_125"
+      ],
+      "validation": [
+        "id_128",
+        "id_29",
+        "id_31",
+        "id_32",
+        "id_33",
+        "id_133",
+        "id_136",
+        "id_139",
+        "id_147",
+        "id_154"
+      ],
+      "test": [
+        "id_155",
+        "id_159",
+        "id_51",
+        "id_164",
+        "id_169",
+        "id_175",
+        "id_14",
+        "id_180",
+        "id_182"
+      ]
+    },
+    "non_evaluable_ids": [
+      "id_34"
+    ],
+    "split_semantics": "No target-channel official ID spans a cut; no adjacent partitions share source observations."
+  },
+  "command_file_sha256": "70e1aafd0f4806d116fc6b37cb1d93fa0172c747ba315cd4eade05df1be15080",
+  "anomaly_definition": "official Anomaly=positive, Rare Event=negative, Gap=excluded",
+  "limitations": [
+    "Event IDs may share one physical cause",
+    "Anonymized command channels not proven relevant to this sensor",
+    "10-minute sampled command pulses may miss short command sequences",
+    "Already-exposed channel_21 test results invalidate confirmatory claims",
+    "No physical three-state fault labels and no late fusion"
+  ]
+}
