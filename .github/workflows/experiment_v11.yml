@@ -1,14 +1,5 @@
-name: V1.1 frozen-label high-dimensional SMAP experiment
+name: V1.1 frozen-proxy high-dimensional study (manual / legacy)
 on:
-  push:
-    branches: [main]
-    paths:
-      - 'src/**'
-      - 'scripts/**'
-      - 'configs/**'
-      - 'data/raw/**'
-      - 'tests/**'
-      - '.github/workflows/experiment_v11.yml'
   workflow_dispatch:
 permissions:
   contents: write
@@ -26,14 +17,7 @@ jobs:
       - run: pytest -q
       - run: python scripts/export_proxy_labels.py
       - run: python scripts/run_v11.py --generations 5 --population 12
-      - name: Upload raw reproducibility artifact
-        uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v4
         with:
-          name: smap-p1-v11-frozen-proxy-highdim-results
+          name: smap-p1-v11-results
           path: results/v11/
-      - name: Commit experiment results
-        run: |
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add results/v11/ data/derived/P-1_proxy_labels_v1.csv
-          git diff --cached --quiet || (git commit -m 'results: SMAP P-1 V1.1 high-dimensional frozen proxy experiment' && git push)
