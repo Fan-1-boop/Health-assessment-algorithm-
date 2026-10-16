@@ -182,7 +182,7 @@ def main():
       '','## 一、基础动态贝叶斯分支（三级代理状态；测试集）','','| 模型 | Macro-F1 | Balanced accuracy | Brier |','|---|---:|---:|---:|']
     for k,v in state_tests.items():lines.append(f'| {k} | {v["macro_f1"]} | {v["balanced_accuracy"]} | {v["multi_brier"]} |')
     lines+=['','## 二、异常检测分支（真实公开异常标签；测试集）',
-      f'','**模型选择只依据验证集 AP**：`{best_name}`，测试 AP={anomaly_evaluation["average_precision"]}，测试异常基线发生率={anomaly_evaluation["base_rate"]}。',
+      '',f'**模型选择只依据验证集 AP**：`{best_name}`，测试 AP={anomaly_evaluation["average_precision"]}，测试异常基线发生率={anomaly_evaluation["base_rate"]}。',
       '','| 模型 | 验证 AP | 测试 AP | 测试 ROC-AUC | 测试 F1 | 误报数 |',
       '|---|---:|---:|---:|---:|---:|']
     for k,v in all_diagnostics.items():
