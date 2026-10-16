@@ -80,3 +80,5 @@ python scripts/run_v11.py --generations 5 --population 12
 ```
 
 查看 V1.1 结果：[results/v11/RESULTS.md](results/v11/RESULTS.md)，[results/v11/metrics.json](results/v11/metrics.json)。V1 与 V1.1 保留相同的 P-1 数据和时间段边界，方便对照；单通道、单测试异常事件下的结论仅为探索性结果。
+
+完整逐时间点代理标签 CSV：[data/derived/P-1_proxy_labels_v1.csv](data/derived/P-1_proxy_labels_v1.csv)；可重复生成工具 `python scripts/export_proxy_labels.py`；详见 [docs/FROZEN_PROXY_LABELS.md](docs/FROZEN_PROXY_LABELS.md)。每一行明确标注 `physical_fault_confirmed=False`。
