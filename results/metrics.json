@@ -248,7 +248,7 @@
     "default_mae_vs_synthetic_user": 22.874,
     "adapted_mae_vs_synthetic_user": 21.83
   },
-  "runtime_seconds": 1.83,
+  "runtime_seconds": 1.66,
   "limits": [
     "Single satellite channel P-1; no multichannel command context in extracted CSV.",
     "Temporal split has one anomalous interval per train/val/test, not independent device-level replication.",
