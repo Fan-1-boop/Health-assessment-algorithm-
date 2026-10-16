@@ -1,3 +1,11 @@
+# 卫星设备健康度算法 — 交付版 MVP（单模拟数据集）
+
+**先看交付版：** [MVP 使用说明](mvp/README.md) · [MVP 实验结果](results/mvp/RESULTS.md) · [实验数据](results/mvp/synthetic_satellite_telemetry.csv) · [逐窗口演示预测](results/mvp/demo_predictions.csv) · [保存的模型](results/mvp/model_bundle.joblib)。
+
+该版本可一键训练并离线推理，包含 400 维特征工程、两级 MSF-MOFS、两级状态分类与 HMM、原始时序异常检测、简易概率融合和模拟评分校正。**所有状态与异常都是模拟标签，不能解释为真实卫星故障验证。** 原来的 V1–V1.5 研究记录完整保留。
+
+---
+
 # 卫星健康度算法 V1：双分支异常证据融合与概率健康映射
 
 
