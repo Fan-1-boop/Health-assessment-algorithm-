@@ -55,9 +55,9 @@ B and C must use **identical available supervised batches and identical reserved
 
 - `[x]` Freeze full delivery snapshot and initialize independent research branch.
 - `[x]` Record task semantics and high-level A/B/C experiment protocol.
-- `[ ]` Implement basic supervised upload-data validator with tests.
-- `[ ]` Produce small labeled-batch controlled-update A/B/C results (synthetic results marked synthetic).
-- `[ ]` Screen candidate differentiation against prior art; identify a measurable mechanism absent from baseline.
+- `[x]` Implement basic supervised upload-data validator with tests (public infrastructure, 2026-10-16).
+- `[x]` Produce real OPS-SAT existing-label A/B/C pilot with **simulated** manual upload, explicit limitations, and frozen audit (2026-10-16; see PILOT_RESULTS.md).
+- `[ ]` Obtain independent labels separating newly confirmed nominal modes from actual faults; then test a differentiating model-compatibility mechanism on the **same** input batches and evaluation sets. Screen prior art before publishing novel details.
 - `[ ]` Prepare a private patent-sensitive technical specification before any public disclosure.
 
 ## Publication guardrail
