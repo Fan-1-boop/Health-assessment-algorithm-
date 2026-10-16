@@ -1,0 +1,42 @@
+name: V1.5 channel compatibility preflight
+on:
+  push:
+    paths:
+      - '.github/workflows/v15_channel_preflight.yml'
+  workflow_dispatch:
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install --quiet remotezip pandas zipfile64
+      - name: Inspect labels and subsystems, no telemetry downloaded
+        shell: bash
+        run: |
+          python - <<'PY'
+          import zipfile64.zipfile,io,pandas as pd
+          from remotezip import RemoteZip
+          url='https://zenodo.org/records/15237121/files/ESA-Mission1.zip?download=1'
+          with RemoteZip(url,timeout=90,initial_buffer_size=1024*512) as z:
+            c=pd.read_csv(io.BytesIO(z.read('ESA-Mission1/channels.csv')))
+            labs=pd.read_csv(io.BytesIO(z.read('ESA-Mission1/labels.csv')))
+            typ=pd.read_csv(io.BytesIO(z.read('ESA-Mission1/anomaly_types.csv')))
+            m=labs.merge(typ[['ID','Category']],on='ID')
+            ids=m[m.Category=='Anomaly'].groupby('Channel').ID.nunique()
+            sizes={a.split('/')[-1].removesuffix('.zip'):z.getinfo(a).compress_size
+                   for a in z.namelist() if a.startswith('ESA-Mission1/channels/') and a.endswith('.zip')}
+            c['anomaly_ids']=c.Channel.map(ids).fillna(0).astype(int)
+            c['archive_MB']=c.Channel.map(sizes).fillna(0)/1e6
+            print('CHANNEL_GROUP_20_TO_36')
+            print(c[c.Channel.isin([f'channel_{i}' for i in range(20,37)])].to_string(index=False))
+            print('SAME_SUBSYSTEM_AS_CHANNEL29')
+            ss=c.loc[c.Channel=='channel_29','Subsystem'].iloc[0]
+            print(c[(c.Subsystem==ss)&(c.anomaly_ids>=8)].to_string(index=False))
+            selected=['channel_29','channel_30','channel_31']
+            for a in selected:
+              print('OVERLAP',a,'vs channel29',len(set(m[(m.Channel=='channel_29') & (m.Category=='Anomaly')].ID)&set(m[(m.Channel==a)&(m.Category=='Anomaly')].ID)))
+          PY
