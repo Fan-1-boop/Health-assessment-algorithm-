@@ -62,4 +62,11 @@ jobs:
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add data/esa_v14_channel21/channel_21.csv data/esa_v14_channel21/mission1_event_catalog.csv data/esa_v14_channel21/extraction_manifest.json results/v14/esa_channel_21/metrics.json
           git commit -m 'data(results): V1.4 new ESA channel21 official-ID test and frozen alarm policy' || exit 0
-          git push origin HEAD:main
+          git fetch origin main
+          git rebase origin/main
+          for attempt in 1 2 3; do
+            if git push origin HEAD:main; then exit 0; fi
+            git fetch origin main
+            git rebase origin/main
+          done
+          exit 1
