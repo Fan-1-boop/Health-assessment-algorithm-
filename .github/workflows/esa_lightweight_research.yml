@@ -1,0 +1,68 @@
+name: ESA Mission1 lightweight real-telemetry research
+on:
+  push:
+    paths:
+      - '.github/workflows/esa_lightweight_research.yml'
+  workflow_dispatch:
+jobs:
+  run_esa_subset:
+    runs-on: ubuntu-latest
+    timeout-minutes: 50
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install research dependencies
+        run: python -m pip install -q numpy scipy pandas scikit-learn remotezip pytest
+      - name: Run adapter and V1.3 core tests
+        run: python -m pytest tests/test_esa_remote_subset.py tests/test_v13.py -q
+      - name: Fetch selected official ESA raw telemetry channel by HTTP range
+        run: |
+          python scripts/fetch_esa_remote_subset.py \
+            --channel channel_41 --resample 10min --min-events 6 \
+            --out data/esa_lightweight
+      - name: Evaluate anomaly branch independently
+        run: |
+          python scripts/run_v13_anomaly.py \
+            --esa-preprocessed-csv data/esa_lightweight/channel_41.csv \
+            --channel channel_41 \
+            --lookback 16 --stride 4 --min-events-per-split 2 \
+            --out results/v13/esa_mission1
+      - name: Record source provenance and experimental limitations
+        run: |
+          cp data/esa_lightweight/extraction_manifest.json results/v13/esa_mission1/extraction_manifest.json
+          python - <<'PY'
+          import json,pathlib
+          p=pathlib.Path('results/v13/esa_mission1/metrics.json')
+          x=json.loads(p.read_text())
+          x['esa_real_data_research_note']={
+             'target':'channel_41',
+             'resampling':'Fixed 10-minute previous-observation grid; NOT official ESA 30-second resampling',
+             'labels':'Official anomaly vs rare nominal events; no verified physical faults',
+             'commands':'No telecommands in input; no physical regime-change claim',
+             'status':'Exploratory test, not official ESA-ADB benchmark or confirmatory result'}
+          p.write_text(json.dumps(x,ensure_ascii=False,indent=2)+'\n')
+          PY
+      - name: Preserve metrics as workflow artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: esa-channel41-v13-exploratory
+          path: |
+            results/v13/esa_mission1/
+            data/esa_lightweight/extraction_manifest.json
+          if-no-files-found: warn
+      - name: Commit public resampled data and experiment metrics
+        if: success()
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/esa_lightweight/channel_41.csv data/esa_lightweight/extraction_manifest.json results/v13/esa_mission1/metrics.json results/v13/esa_mission1/extraction_manifest.json
+          git commit -m 'data(results): ESA Mission1 channel_41 exploratory benchmark' || exit 0
+          git push origin HEAD:main
