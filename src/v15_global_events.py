@@ -16,8 +16,8 @@ def get_global_event_records(catalog,timestamps,eval_codes,channels=CHANNELS,tar
     if len(codes)!=len(ts):raise ValueError('Label length mismatch')
     cat=catalog[catalog['Channel'].isin(channels)].copy()
     if cat.empty:raise ValueError('No official annotations for selected channels')
-    cat['StartTime']=pd.to_datetime(cat.StartTime,utc=True)
-    cat['EndTime']=pd.to_datetime(cat.EndTime,utc=True)
+    cat['StartTime']=pd.to_datetime(cat.StartTime,utc=True,format='mixed')
+    cat['EndTime']=pd.to_datetime(cat.EndTime,utc=True,format='mixed')
     if cat.ID.isna().any() or cat.Category.isna().any():raise ValueError('Missing official category/ID')
     records=[]
     for ident,g in cat.groupby('ID',sort=False):
