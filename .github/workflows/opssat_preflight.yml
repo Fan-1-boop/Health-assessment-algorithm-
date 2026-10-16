@@ -1,0 +1,39 @@
+name: OPS-SAT-AD official dataset preflight
+on:
+  push:
+    paths:
+      - '.github/workflows/opssat_preflight.yml'
+  workflow_dispatch:
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Query primary DOI metadata and inspect official CSV schemas
+        shell: bash
+        run: |
+          python -m pip install --quiet pandas requests
+          python - <<'PY'
+          import requests,io,pandas as pd
+          for rec in ('12588359','15108715'):
+            try:
+              response=requests.get('https://zenodo.org/api/records/'+rec,timeout=30)
+              print('RECORD',rec,'HTTP',response.status_code,flush=True)
+              response.raise_for_status()
+              record=response.json()
+              print('TITLE',record.get('metadata',{}).get('title'),flush=True)
+              for f in record.get('files',[]):
+                print('FILE',f.get('key'),'SIZE',f.get('size'),'LINK',f.get('links',{}).get('self'),flush=True)
+                if 'dataset.csv' in f.get('key','').lower() and f.get('size',0)<20000000:
+                  r=requests.get(f['links']['self'],timeout=90)
+                  print('DOWNLOAD',r.status_code,len(r.content),flush=True)
+                  df=pd.read_csv(io.BytesIO(r.content))
+                  print('SHAPE',df.shape,'COLS',df.columns.tolist(),'LABEL_COUNTS',
+                        df.groupby(['train','anomaly']).size().to_dict(),flush=True)
+                  print('FIRST3',df.head(3).to_string(index=False),flush=True)
+            except Exception as e:print('RECORD_FAILED',rec,repr(e),flush=True)
+          PY
