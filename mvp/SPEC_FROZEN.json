@@ -1,0 +1,60 @@
+{
+  "version": "MVP-1.0",
+  "frozen_on": "2026-10-16",
+  "type": "fully_synthetic_satellite_telemetry",
+  "random_seed": 20261016,
+  "data": {
+    "missions": 4,
+    "cycles_per_mission": 4,
+    "samples_per_cycle": 300,
+    "raw_sensor_channels": 8,
+    "window_length": 32,
+    "window_stride": 4,
+    "feature_dimensions": 400
+  },
+  "labels": {
+    "state": {
+      "0": "Healthy_simulated",
+      "1": "Degraded_simulated",
+      "2": "Fault_simulated"
+    },
+    "anomaly": "fault intervals OR simulated 10-point transient sensor excursion",
+    "score_truth": "state anchors [96,68,16] + independent Gaussian noise sd 2.2, clipped 0..100"
+  },
+  "split": {
+    "train_missions": [
+      0,
+      1
+    ],
+    "calibration_and_fusion_mission": [
+      2
+    ],
+    "final_demo_test_mission": [
+      3
+    ]
+  },
+  "models": {
+    "selector": "project MSF-MOFS grouped Fisher-seeded NSGA-II adaptation, population=8, generations=3 each for stages 1,2",
+    "classifier": "hierarchical logistic regression with separate calibration",
+    "filter": "discriminative HMM filter gamma=0.6 memory=0.5",
+    "anomaly": "supervised RandomForest on raw 32x8 windows; 120 trees",
+    "fusion": "validation-trained three-class multinomial logistic stacking",
+    "mapping": "ordered constrained least-squares fit to simulated operator scores"
+  },
+  "threshold": "F1-selected from mission 2 only",
+  "prohibited": [
+    "No real-satellite or physical-fault claims",
+    "No test data in model fit or parameter tuning",
+    "Do not alter simulator/seed for favourable reported scores after test",
+    "Models are not a verified safety-critical satellite diagnostic tool"
+  ],
+  "deliverables": [
+    "full simulation CSV",
+    "test window predictions CSV",
+    "metrics.json",
+    "model_bundle.joblib",
+    "simulated_feedback.jsonl",
+    "Chinese MVP report",
+    "run/test scripts"
+  ]
+}
