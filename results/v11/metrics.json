@@ -1,0 +1,374 @@
+{
+  "experiment": "SMAP_P1_V1.1_frozen_proxy_highdim_MSF_MOFS",
+  "data_source": "NASA Telemanom SMAP P-1, ICC2023 CSV reformat",
+  "ground_truth": "Only published binary anomaly intervals are real annotation; 3-state classes and health score are synthetic.",
+  "labels": {
+    "rule_id": "smap_p1_interval_position_proxy_v1_frozen",
+    "frozen_rule_sha256": "e7a39583833537becc3410cd61f76bc6ba5699d091c8553216bcec7710b7c390",
+    "frozen_rule_committed_before_experiments": "861c46bf12a6acd1002c5b88cf8119297d44c3ea",
+    "intervals": [
+      [
+        2149,
+        2349
+      ],
+      [
+        4536,
+        4844
+      ],
+      [
+        3539,
+        3779
+      ]
+    ],
+    "proxy_class_counts": {
+      "train": [
+        2336,
+        40,
+        161
+      ],
+      "validation": [
+        1159,
+        48,
+        193
+      ],
+      "test": [
+        4196,
+        61,
+        248
+      ]
+    }
+  },
+  "data": {
+    "lookback": 64,
+    "pretrain_normal_points": 2872,
+    "n_annotated_points": 8505,
+    "temporal_boundaries": {
+      "train_lt": 2600,
+      "validation_lt": 4000,
+      "test_gte": 4000
+    },
+    "window_counts": {
+      "train": 2537,
+      "validation": 1400,
+      "test": 4505
+    }
+  },
+  "feature_engineering": {
+    "method": "causal multiscale statistical + derivative + spectrum + autocorrelation features",
+    "base_candidate_count": 25,
+    "highdim_candidate_count": 510,
+    "selected_feature_names": [
+      "len16_lag16_range",
+      "len48_lag0_mean",
+      "len48_lag0_min",
+      "len48_lag0_median",
+      "len48_lag8_mean",
+      "len48_lag8_median",
+      "len48_lag16_mean",
+      "len64_lag0_mean",
+      "len64_lag0_min",
+      "len64_lag0_median",
+      "len64_lag0_diff_abs_mean",
+      "len64_lag0_range",
+      "global_fft_power_05",
+      "global_fft_power_06",
+      "global_fft_power_09",
+      "global_fft_power_13",
+      "global_fft_power_18",
+      "global_fft_power_26",
+      "global_fft_power_31",
+      "global_acf_12",
+      "global_acf_16"
+    ],
+    "selected_feature_count": 21,
+    "feature_reduction_ratio": 0.95882
+  },
+  "msf_mofs": {
+    "candidate_dim": 510,
+    "selected_dim": 21,
+    "guided_sizes": [
+      10,
+      26,
+      51
+    ],
+    "unique_wrapper_evaluations": 65,
+    "selection_cv_gmean": 0.95744,
+    "pareto_objectives": [
+      [
+        0.09518,
+        0.01961
+      ],
+      [
+        0.0151,
+        0.17843
+      ],
+      [
+        0.09518,
+        0.01961
+      ],
+      [
+        0.0151,
+        0.17843
+      ],
+      [
+        0.04833,
+        0.03725
+      ],
+      [
+        0.09169,
+        0.02157
+      ],
+      [
+        0.01924,
+        0.07451
+      ],
+      [
+        0.01619,
+        0.15882
+      ],
+      [
+        0.02542,
+        0.05882
+      ],
+      [
+        0.03773,
+        0.04902
+      ],
+      [
+        0.04256,
+        0.04118
+      ],
+      [
+        0.01606,
+        0.16078
+      ]
+    ]
+  },
+  "anomaly_detector": {
+    "algorithm": "supervised RandomForest on raw 64-lag window",
+    "test": {
+      "n": 4505,
+      "positive_n": 309,
+      "average_precision": 0.0568,
+      "roc_auc": 0.3668,
+      "precision": 0.0686,
+      "recall": 1.0,
+      "f1": 0.1284
+    },
+    "validation_threshold": 0.0
+  },
+  "state_proxy_test": {
+    "baseline_25d_static": {
+      "n": 4505,
+      "accuracy": 0.8251,
+      "macro_f1": 0.3242,
+      "balanced_accuracy": 0.3143,
+      "multi_brier": 0.28039,
+      "confusion_matrix": [
+        [
+          3702,
+          333,
+          161
+        ],
+        [
+          10,
+          0,
+          51
+        ],
+        [
+          233,
+          0,
+          15
+        ]
+      ]
+    },
+    "baseline_25d_hmm": {
+      "n": 4505,
+      "accuracy": 0.7032,
+      "macro_f1": 0.3054,
+      "balanced_accuracy": 0.282,
+      "multi_brier": 0.54589,
+      "confusion_matrix": [
+        [
+          3144,
+          816,
+          236
+        ],
+        [
+          10,
+          0,
+          51
+        ],
+        [
+          224,
+          0,
+          24
+        ]
+      ]
+    },
+    "all_highdim_static": {
+      "n": 4505,
+      "accuracy": 0.9077,
+      "macro_f1": 0.3886,
+      "balanced_accuracy": 0.3817,
+      "multi_brier": 0.16409,
+      "confusion_matrix": [
+        [
+          4044,
+          73,
+          79
+        ],
+        [
+          0,
+          0,
+          61
+        ],
+        [
+          203,
+          0,
+          45
+        ]
+      ]
+    },
+    "all_highdim_hmm": {
+      "n": 4505,
+      "accuracy": 0.8815,
+      "macro_f1": 0.3943,
+      "balanced_accuracy": 0.3787,
+      "multi_brier": 0.21912,
+      "confusion_matrix": [
+        [
+          3921,
+          217,
+          58
+        ],
+        [
+          0,
+          0,
+          61
+        ],
+        [
+          198,
+          0,
+          50
+        ]
+      ]
+    },
+    "msf_selected_static": {
+      "n": 4505,
+      "accuracy": 0.8484,
+      "macro_f1": 0.3466,
+      "balanced_accuracy": 0.3511,
+      "multi_brier": 0.26237,
+      "confusion_matrix": [
+        [
+          3791,
+          134,
+          271
+        ],
+        [
+          1,
+          2,
+          58
+        ],
+        [
+          219,
+          0,
+          29
+        ]
+      ]
+    },
+    "msf_selected_hmm": {
+      "n": 4505,
+      "accuracy": 0.7947,
+      "macro_f1": 0.3352,
+      "balanced_accuracy": 0.3337,
+      "multi_brier": 0.38433,
+      "confusion_matrix": [
+        [
+          3541,
+          321,
+          334
+        ],
+        [
+          0,
+          0,
+          61
+        ],
+        [
+          209,
+          0,
+          39
+        ]
+      ]
+    },
+    "msf_hmm_plus_anomaly_fusion": {
+      "n": 4505,
+      "accuracy": 0.7549,
+      "macro_f1": 0.3144,
+      "balanced_accuracy": 0.2917,
+      "multi_brier": 0.38965,
+      "confusion_matrix": [
+        [
+          3384,
+          659,
+          153
+        ],
+        [
+          5,
+          0,
+          56
+        ],
+        [
+          181,
+          50,
+          17
+        ]
+      ]
+    }
+  },
+  "user_mapping_simulated": {
+    "default_mae": 20.4488,
+    "adapted_mae": 18.0804,
+    "selected_calibration_n": 168,
+    "user_weights": [
+      98.7368,
+      69.5979,
+      8.528
+    ],
+    "simulated_target_weights": [
+      96.0,
+      74.0,
+      12.0
+    ],
+    "is_synthetic": true
+  },
+  "transition_matrix": [
+    [
+      0.9987168520102652,
+      0.000855431993156544,
+      0.000427715996578272
+    ],
+    [
+      0.023255813953488372,
+      0.9302325581395349,
+      0.046511627906976744
+    ],
+    [
+      0.012195121951219513,
+      0.006097560975609756,
+      0.9817073170731707
+    ]
+  ],
+  "runtime_seconds": 7.19,
+  "caveats": [
+    "P-1 target channel only. NO actual spacecraft condition or operational mode metadata.",
+    "Proxy interval-onset vs core labels are not real degradation/fault labels.",
+    "No maintenance, confirmed failure, or expert health scores exist in this dataset.",
+    "Labeled interval locations supplied publicly; experiment uses an altered supervised split and not official unsupervised protocol.",
+    "Anomaly detector is fixed in V1.1. Incremental drift updating is NOT implemented.",
+    "MSF-MOFS wrapper uses logistic regression and a reduced search budget, not an exact replication of paper 5-NN settings.",
+    "HMM is discriminative posterior/prior approximation; not independently trained generative HMM.",
+    "One anomaly interval in each temporal partition; proxy evaluation has high uncertainty."
+  ]
+}

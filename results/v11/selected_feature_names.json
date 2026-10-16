@@ -1,0 +1,23 @@
+[
+  "len16_lag16_range",
+  "len48_lag0_mean",
+  "len48_lag0_min",
+  "len48_lag0_median",
+  "len48_lag8_mean",
+  "len48_lag8_median",
+  "len48_lag16_mean",
+  "len64_lag0_mean",
+  "len64_lag0_min",
+  "len64_lag0_median",
+  "len64_lag0_diff_abs_mean",
+  "len64_lag0_range",
+  "global_fft_power_05",
+  "global_fft_power_06",
+  "global_fft_power_09",
+  "global_fft_power_13",
+  "global_fft_power_18",
+  "global_fft_power_26",
+  "global_fft_power_31",
+  "global_acf_12",
+  "global_acf_16"
+]
