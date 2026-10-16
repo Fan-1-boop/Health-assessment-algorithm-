@@ -1,0 +1,48 @@
+{
+  "protocol": "V1.5_esa_crosschannel_pre_registered_v1",
+  "timestamp_utc": "2026-10-16",
+  "source": "ESA Mission1 ZIP Zenodo record 15237121",
+  "primary_target": "channel_29",
+  "context_channels": [
+    "channel_30",
+    "channel_31"
+  ],
+  "preselection": "Official channels.csv shows these are in subsystem_6, physical_unit_3; channel_29/channel_30 same group 4, channel_31 group 7. Chosen from metadata before looking at this cohort's model metrics.",
+  "resample": "10min as-of, max_staleness 60min",
+  "label_task": "Detect official anomaly in channel_29, excluding windows overlapping invalid data or context-channel non-target anomalies. Rare nominal is negative, audited separately.",
+  "split": "global official-ID-aware chronological 60/20/20 with no event ID among selected channels crossing boundary",
+  "lookback": 16,
+  "stride": 4,
+  "min_target_anomaly_ids_per_partition": 2,
+  "models": [
+    "robust_level_deviation",
+    "windowed_iforest",
+    "autoregressive_ridge"
+  ],
+  "variants": [
+    "target_only",
+    "target_plus_context"
+  ],
+  "training_reference": "train partition fully nominal on all three channels only; sample 20000 uniformly spaced windows",
+  "model_selection": "Validation point AP; choose one of 6 model/variant pairs exclusively using validation data",
+  "threshold": "99.8th percentile of official nominal validation scores, rare nominal excluded from cutoff fitting",
+  "alarm_policy": {
+    "min_consecutive_above_threshold": 3,
+    "restart_on_missing_windows": true
+  },
+  "test_metrics": [
+    "point_AP",
+    "point_AUROC",
+    "onset_ID_recall",
+    "coverage_ID_recall",
+    "nominal_alert_occupancy",
+    "rare_event_alert_occupancy",
+    "new_alarm_onsets_per_30_elapsed_days"
+  ],
+  "limits": [
+    "No fusion, no true 3-state physical fault labels",
+    "10min downsampling is nonofficial exploratory format",
+    "Known exposure to earlier Mission1 events via channel_21/channel_41 research; cannot claim truly untouched mission-wide event independence",
+    "Do not select threshold or model using test data"
+  ]
+}
