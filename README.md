@@ -1,5 +1,21 @@
 # 卫星健康度算法 V1：双分支异常证据融合与概率健康映射
 
+
+## V1.3 ESA Mission1 真实异常检测（2026-10-16）
+
+**研究状态：真实卫星遥测实验已运行成功，但异常误报过多，未达到部署验收。** 两条分支继续独立研究，未恢复概率融合。
+
+- 官方公开数据：ESA Anomaly Dataset v2 (DOI 10.5281/zenodo.15237121)，通过 HTTP Range 从原始压缩包按需提取 channel_41。
+- 固定 10 分钟研究采样得到 736415 个时间点，其中 Anomaly=5514、Rare Event=5570。该输入不是 ESA 官方 30 秒基准预处理，也不包含 telecommands。
+- 按时间正异常连续片段切分：train/validation/test = 13/5/5 段。窗口长度 16、步长 4；训练只使用纯正常窗口。
+- 验证集 AP 选出的稳健幅值偏离检测器：验证 AP 0.9413；独立测试 AP 0.2623、ROC-AUC 0.9311、5 段中检出 4 段，但产生 9855 个普通正常窗口误报、91/753 个 Rare Event 点误报。
+- Ridge 预测模型的测试 AP 0.3008 是**事后诊断，不可据此重新选模**。
+- [完整分析](docs/V13_ESA_RESULTS.md) · [实验指标](results/v13/esa_mission1/metrics.json) · [派生单通道数据](data/esa_lightweight/channel_41.csv) · [数据提取与来源清单](data/esa_lightweight/extraction_manifest.json) · [运行记录](https://github.com/Fan-1-boop/Health-assessment-algorithm-/actions/runs/38879569748)。
+- ESA-ADB 的 Anomaly 是遥测异常，不是经物理检查确认的卫星故障；基础 HMM 的三级标签依然只是历史 Proxy-V1。**上述两种结果不能合并声称真实故障诊断精度。**
+
+---
+
+
 > **研究性质**：基于 NASA SMAP 真实卫星遥测的 **异常检测** 概念验证。数据集没有真实设备 `健康/退化/故障` 三状态、维修人员确认记录和专家 0–100 分，因此后三者均明确标记为 **模拟/代理标签**；**不得把这些指标宣传为真实故障识别性能**。
 
 ## 架构
