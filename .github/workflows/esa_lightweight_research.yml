@@ -4,6 +4,8 @@ on:
     paths:
       - '.github/workflows/esa_lightweight_research.yml'
       - 'scripts/fetch_esa_remote_subset.py'
+      - 'src/v13_anomaly.py'
+      - 'tests/test_v13.py'
   workflow_dispatch:
 jobs:
   run_esa_subset:
