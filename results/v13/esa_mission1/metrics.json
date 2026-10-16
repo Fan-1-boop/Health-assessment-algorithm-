@@ -1,0 +1,143 @@
+{
+  "version": "1.3.0",
+  "research_status": "REAL_DATA_IF_RUN_WITH_OFFICIAL_ESA_CSV",
+  "selection_rule": "maximize validation point AP over 3 fixed baselines only",
+  "labels": "ESA official per-channel codes; positive=1, rare nominal code 2 is NEGATIVE",
+  "source": "data/esa_lightweight/channel_41.csv",
+  "target_channel": "channel_41",
+  "source_files_not_in_repository": true,
+  "source_checksum_sha256": "aedf9e9f0e7a60ec681db28699f4210cf14cb9b2c898eb443fc61bbc184b2f09",
+  "n_signals": 1,
+  "input_signal_columns": [
+    "channel_41"
+  ],
+  "window_length": 16,
+  "window_stride": 4,
+  "false_alarm_budget_on_validation_nominal": 0.02,
+  "event_protocol": {
+    "label_semantics": "0 nominal / 1 anomaly / 2 rare nominal / 3 gap / 4 invalid",
+    "splits": {
+      "train": {
+        "sample_start": 0,
+        "sample_stop_exclusive": 303749,
+        "anomaly_events": 13,
+        "rare_nominal_events": 41
+      },
+      "validation": {
+        "sample_start": 303749,
+        "sample_stop_exclusive": 497275,
+        "anomaly_events": 5,
+        "rare_nominal_events": 16
+      },
+      "test": {
+        "sample_start": 497275,
+        "sample_stop_exclusive": 736415,
+        "anomaly_events": 5,
+        "rare_nominal_events": 25
+      }
+    }
+  },
+  "samples_per_split": {
+    "train": 75860,
+    "validation": 48378,
+    "test": 59782
+  },
+  "pure_normal_training_windows": 20000,
+  "validation_metrics": {
+    "robust_level_deviation": {
+      "point_ap": 0.9413166933886783,
+      "point_roc_auc": 0.9957069773536344,
+      "anomaly_prevalence": 0.015420232337012691,
+      "threshold_from_validation": 1.3493828338253362
+    },
+    "windowed_iforest": {
+      "point_ap": 0.9230437587921435,
+      "point_roc_auc": 0.9947396218416259,
+      "anomaly_prevalence": 0.015420232337012691,
+      "threshold_from_validation": 0.6170307035878051
+    },
+    "autoregressive_ridge": {
+      "point_ap": 0.8690326647231145,
+      "point_roc_auc": 0.9701718143388859,
+      "anomaly_prevalence": 0.015420232337012691,
+      "threshold_from_validation": 2.7239442677234234
+    }
+  },
+  "selected_by_validation": "robust_level_deviation",
+  "heldout_test_all_candidates_DIAGNOSTIC_ONLY": {
+    "robust_level_deviation": {
+      "point_ap": 0.26234984844198744,
+      "point_roc_auc": 0.9310602234090345,
+      "anomaly_prevalence": 0.001756381519520926,
+      "n_anomaly_events": 5,
+      "n_events_detected": 4,
+      "event_recall": 0.8,
+      "mean_detection_delay_steps": 2.75,
+      "false_alarm_episodes": 7184,
+      "false_alarm_episodes_per_1000_evaluated_points": 120.16995082131746,
+      "false_positive_points_rare_nominal": 91,
+      "rare_nominal_evaluated_points": 753,
+      "normal_false_positive_points": 9855,
+      "test_points": 59782
+    },
+    "windowed_iforest": {
+      "point_ap": 0.05382316426307792,
+      "point_roc_auc": 0.892202228345131,
+      "anomaly_prevalence": 0.001756381519520926,
+      "n_anomaly_events": 5,
+      "n_events_detected": 4,
+      "event_recall": 0.8,
+      "mean_detection_delay_steps": 3.75,
+      "false_alarm_episodes": 902,
+      "false_alarm_episodes_per_1000_evaluated_points": 15.088153624836908,
+      "false_positive_points_rare_nominal": 22,
+      "rare_nominal_evaluated_points": 753,
+      "normal_false_positive_points": 1973,
+      "test_points": 59782
+    },
+    "autoregressive_ridge": {
+      "point_ap": 0.3007809739532397,
+      "point_roc_auc": 0.91956556605919,
+      "anomaly_prevalence": 0.001756381519520926,
+      "n_anomaly_events": 5,
+      "n_events_detected": 3,
+      "event_recall": 0.6,
+      "mean_detection_delay_steps": 21.0,
+      "false_alarm_episodes": 915,
+      "false_alarm_episodes_per_1000_evaluated_points": 15.305610384396642,
+      "false_positive_points_rare_nominal": 23,
+      "rare_nominal_evaluated_points": 753,
+      "normal_false_positive_points": 1085,
+      "test_points": 59782
+    }
+  },
+  "selected_heldout_test": {
+    "point_ap": 0.26234984844198744,
+    "point_roc_auc": 0.9310602234090345,
+    "anomaly_prevalence": 0.001756381519520926,
+    "n_anomaly_events": 5,
+    "n_events_detected": 4,
+    "event_recall": 0.8,
+    "mean_detection_delay_steps": 2.75,
+    "false_alarm_episodes": 7184,
+    "false_alarm_episodes_per_1000_evaluated_points": 120.16995082131746,
+    "false_positive_points_rare_nominal": 91,
+    "rare_nominal_evaluated_points": 753,
+    "normal_false_positive_points": 9855,
+    "test_points": 59782
+  },
+  "limitations": [
+    "This is a subset research baseline, NOT official ESA-ADB metric reproduction.",
+    "Sampled windows have stride >1; detection delay measured in raw time steps.",
+    "Per-channel event codes may group overlapping annotated events; prefer official ID table for event-level external reporting.",
+    "Repeated use of the same holdout during development invalidates confirmatory inference.",
+    "Telemanom-ESA is NOT implemented or evaluated by this script."
+  ],
+  "esa_real_data_research_note": {
+    "target": "channel_41",
+    "resampling": "Fixed 10-minute previous-observation grid; NOT official ESA 30-second resampling",
+    "labels": "Official anomaly vs rare nominal events; no verified physical faults",
+    "commands": "No telecommands in input; no physical regime-change claim",
+    "status": "Exploratory test, not official ESA-ADB benchmark or confirmatory result"
+  }
+}
