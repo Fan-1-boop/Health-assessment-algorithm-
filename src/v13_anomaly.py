@@ -56,13 +56,13 @@ class ForecastRidge:
         y=a[:,-1,:]
         self.sc=StandardScaler().fit(u)
         self.reg=Ridge(alpha=10.).fit(self.sc.transform(u),y)
-        err=y-self.reg.predict(self.sc.transform(u))
+        err=y-self.reg.predict(self.sc.transform(u)).reshape(len(a),-1)
         self.scale=np.maximum(np.std(err,axis=0),1e-5)
         return self
     def score(self, windows):
         a=np.asarray(windows,float)
         u=a[:,-self.lags-1:-1,:].reshape(len(a),-1)
-        e=(a[:,-1,:]-self.reg.predict(self.sc.transform(u)))/self.scale
+        e=(a[:,-1,:]-self.reg.predict(self.sc.transform(u)).reshape(len(a),-1))/self.scale
         return np.sqrt(np.mean(e*e,axis=1))
 
 
