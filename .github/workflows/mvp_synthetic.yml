@@ -23,6 +23,19 @@ jobs:
         run: python -m pytest -q mvp/test_mvp.py
       - name: Train and evaluate end-to-end MVP once
         run: python mvp/run.py --out results/mvp
+      - name: Verify saved model can predict without refitting
+        run: |
+          python mvp/predict.py --input results/mvp/synthetic_satellite_telemetry.csv --model results/mvp/model_bundle.joblib --mission 3 --out results/mvp/inference_reloaded.csv
+          python - <<'PY'
+          import pandas as pd,numpy as np
+          demo=pd.read_csv('results/mvp/demo_predictions.csv')
+          loaded=pd.read_csv('results/mvp/inference_reloaded.csv')
+          assert len(demo)==len(loaded)
+          cols=['p_healthy','p_degraded','p_fault','p_anomaly','health_score_predicted','state_predicted','anomaly_flag']
+          for c in cols:
+              assert np.allclose(demo[c],loaded[c],rtol=1e-9,atol=1e-9), c
+          print('MODEL_RELOAD_MATCH: all',len(loaded),'held-out predictions agree with initial experiment.')
+          PY
       - name: Artifact capture
         if: always()
         uses: actions/upload-artifact@v4
