@@ -1,0 +1,114 @@
+{
+  "status": "EXPLORATORY_MULTI_CHANNEL_NOT_ESA_OFFICIAL",
+  "source": "https://zenodo.org/records/15237121/files/ESA-Mission1.zip?download=1",
+  "channels": [
+    "channel_29",
+    "channel_30",
+    "channel_31"
+  ],
+  "primary_target": "channel_29",
+  "resampling": "10min strictly historical-asof, max_staleness=60min",
+  "source_channel_audits": {
+    "channel_29": {
+      "target_channel": "channel_29",
+      "source_dataset_doi": "10.5281/zenodo.15237121",
+      "nested_channel_archive": "ESA-Mission1/channels/channel_29.zip",
+      "source_channel_sha256": "2d3bbad053d54b4f281670e515a1ca29f031b5326125329779ff55a47b19580c",
+      "original_sample_count": 5272893,
+      "resampled_sample_count": 736415,
+      "resample_rule": "10min",
+      "max_staleness": "60min",
+      "missing_or_stale_points": 90,
+      "unique_true_anomaly_event_ids": 48,
+      "unique_rare_nominal_event_ids": 39,
+      "annotation_rows": 95,
+      "annotations_touching_resample_grid": 93,
+      "overlapping_regions": 3,
+      "label_distribution": {
+        "0": 711024,
+        "1": 10929,
+        "2": 14164,
+        "3": 298
+      },
+      "official_esa_benchmark_preprocessing": false,
+      "includes_telecommands": false,
+      "limitations": [
+        "Fixed 10-minute grid can miss short events",
+        "Exploratory research, NOT official ESA-ADB scores"
+      ]
+    },
+    "channel_30": {
+      "target_channel": "channel_30",
+      "source_dataset_doi": "10.5281/zenodo.15237121",
+      "nested_channel_archive": "ESA-Mission1/channels/channel_30.zip",
+      "source_channel_sha256": "ced12eeb18700f83a5d8c2cb552c3d036146a6b07f3ca2723f3d2c8926e6b862",
+      "original_sample_count": 5272893,
+      "resampled_sample_count": 736415,
+      "resample_rule": "10min",
+      "max_staleness": "60min",
+      "missing_or_stale_points": 90,
+      "unique_true_anomaly_event_ids": 5,
+      "unique_rare_nominal_event_ids": 38,
+      "annotation_rows": 49,
+      "annotations_touching_resample_grid": 49,
+      "overlapping_regions": 1,
+      "label_distribution": {
+        "0": 704341,
+        "1": 10727,
+        "2": 21049,
+        "3": 298
+      },
+      "official_esa_benchmark_preprocessing": false,
+      "includes_telecommands": false,
+      "limitations": [
+        "Fixed 10-minute grid can miss short events",
+        "Exploratory research, NOT official ESA-ADB scores"
+      ]
+    },
+    "channel_31": {
+      "target_channel": "channel_31",
+      "source_dataset_doi": "10.5281/zenodo.15237121",
+      "nested_channel_archive": "ESA-Mission1/channels/channel_31.zip",
+      "source_channel_sha256": "dea44c1bce95c8b51f4aeefc054f3cb5e498fb56c8fc47fcd740014d13ffa1bb",
+      "original_sample_count": 5272893,
+      "resampled_sample_count": 736415,
+      "resample_rule": "10min",
+      "max_staleness": "60min",
+      "missing_or_stale_points": 90,
+      "unique_true_anomaly_event_ids": 9,
+      "unique_rare_nominal_event_ids": 40,
+      "annotation_rows": 55,
+      "annotations_touching_resample_grid": 55,
+      "overlapping_regions": 1,
+      "label_distribution": {
+        "0": 683258,
+        "1": 12115,
+        "2": 40744,
+        "3": 298
+      },
+      "official_esa_benchmark_preprocessing": false,
+      "includes_telecommands": false,
+      "limitations": [
+        "Fixed 10-minute grid can miss short events",
+        "Exploratory research, NOT official ESA-ADB scores"
+      ]
+    }
+  },
+  "rows_common_grid": 736415,
+  "evaluation_label_counts": {
+    "0": 679826,
+    "1": 10929,
+    "2": 40841,
+    "3": 4819
+  },
+  "target_anomaly_points_masked_by_context_gap": 0,
+  "context_other_anomaly_points_excluded": 4521,
+  "csv_gzip_sha256": "bf42672b0a611cb855e44b93f00af535c774c1f25965e6d459c5781e8e86d58c",
+  "catalog_sha256": "829bf430f27903788add91f49ee75e038221f80530aafeb436e1ecb90bcf2208",
+  "warnings": [
+    "No physical health-state labels",
+    "Target anomaly only; overlapping context-only anomalies excluded for fair target comparison",
+    "10min downsample may eliminate short events",
+    "Some official IDs may span channels and previous explored cohorts"
+  ]
+}
