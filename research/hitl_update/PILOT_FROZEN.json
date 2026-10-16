@@ -1,0 +1,50 @@
+{
+  "version": "hitl_public_pilot_v0.1",
+  "seed": 271828,
+  "data": "Existing genuine OPS-SAT-AD official 18-feature dataset.csv, use official train=1 rows only; NO original official test usage.",
+  "source_relative_path": "results/real_ops_sat/dataset.csv",
+  "features_reference": "real_mvp/PROTOCOL_FROZEN.json",
+  "pool_split": {
+    "reserved_fraction": 0.25,
+    "candidate_batch_fraction_of_training_pool": 0.2666666667,
+    "audit_fraction_of_reserved": 0.4,
+    "stratified": true
+  },
+  "models": {
+    "baseline": "HistGradientBoostingClassifier(max_iter=220,max_leaf_nodes=11,learning_rate=0.055,l2_regularization=0.4,random_state=42)",
+    "retrain": "identical estimator, training on old+new",
+    "trained_from_scratch": true
+  },
+  "threshold_policy": "Each candidate can select validation-only F1 optimal decision threshold; no audit threshold fitting.",
+  "c_acceptance": {
+    "max_f1_regression": 0.01,
+    "max_recall_regression": 0.02,
+    "max_normal_false_alarm_rate_increase": 0.01
+  },
+  "three_arms": {
+    "A": "Old supervised fit only.",
+    "B": "Ordinary supervised fit using exact same old+new labeled rows as C.",
+    "C": "Same B candidate with ordinary label-contract check and validation-only accept/reject. No novel method claimed."
+  },
+  "input_upload": {
+    "source": "official preexisting expert-informed dataset labels, packaged as simulated human upload; NOT a new independent human review",
+    "review_status": "simulated_review",
+    "approval_status": "pending",
+    "training_demo_override_required": true
+  },
+  "audit": [
+    "real-data official-train-only reserved audit metrics",
+    "batch checksum",
+    "candidate decision",
+    "permission route",
+    "no production release"
+  ],
+  "disallowed": [
+    "No HMM inferred from independent segments",
+    "No fake three-state labels",
+    "No self-training or pseudo-labels",
+    "No production deployment",
+    "No patents claims in public branch",
+    "No modifying delivery or main"
+  ]
+}
