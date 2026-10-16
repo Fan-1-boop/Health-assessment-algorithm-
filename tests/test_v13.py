@@ -129,3 +129,12 @@ def test_run_complete_synthetic_smoke(tmp_path):
     assert 'rare_nominal_evaluated_points' in out['selected_heldout_test']
     assert out['event_protocol']['splits']['test']['anomaly_events']==2
     assert out['source_files_not_in_repository']
+
+
+def test_ridge_single_channel_produces_one_score_per_window():
+    rng=np.random.default_rng(7)
+    w=rng.normal(size=(90,16,1))
+    model=ForecastRidge().fit(w[:50])
+    scores=model.score(w[50:])
+    assert scores.shape==(40,)
+    assert np.isfinite(scores).all()
