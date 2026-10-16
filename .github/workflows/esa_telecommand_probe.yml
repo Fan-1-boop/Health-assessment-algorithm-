@@ -1,0 +1,42 @@
+name: ESA Mission1 telecommand metadata preflight
+on:
+  push:
+    paths:
+      - .github/workflows/esa_telecommand_probe.yml
+  workflow_dispatch:
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install --quiet remotezip pandas zipfile64
+      - name: Inspect Deflate64 catalog and command archive sizes
+        run: |
+          python - <<'PY'
+          import zipfile64.zipfile as zipfile
+          from remotezip import RemoteZip
+          import io,pandas as pd,json
+          url='https://zenodo.org/records/15237121/files/ESA-Mission1.zip?download=1'
+          with RemoteZip(url,timeout=90,initial_buffer_size=1024*512) as z:
+            members=z.namelist()
+            for filename in ['ESA-Mission1/telecommands.csv','ESA-Mission1/channels.csv']:
+              inf=z.getinfo(filename)
+              print('INFO',filename,'method',inf.compress_type,'compressed',inf.compress_size,flush=True)
+              try:
+                data=z.read(filename)
+                df=pd.read_csv(io.BytesIO(data))
+                print('READ_OK',filename,df.shape,list(df.columns),df.head(4).to_json(orient='records'),flush=True)
+                if filename.endswith('telecommands.csv'):
+                  archive_sizes={p.split('/')[-1][:-4]:z.getinfo(p).compress_size
+                                for p in members if p.startswith('ESA-Mission1/telecommands/') and p.endswith('.zip')}
+                  print('COMMAND_ARCHIVE_COUNT',len(archive_sizes),flush=True)
+                  if 'Priority' in df.columns and 'Telecommand' in df.columns:
+                    df['archive_bytes']=df.Telecommand.map(archive_sizes)
+                    top=df[(df.Priority>=3)&df.archive_bytes.notna()].sort_values('archive_bytes').head(8)
+                    print('SMALL_COMMANDS',top[['Telecommand','Priority','archive_bytes']].to_json(orient='records'),flush=True)
+              except Exception as e:print('READ_FAILED',filename,repr(e),flush=True)
+          PY
