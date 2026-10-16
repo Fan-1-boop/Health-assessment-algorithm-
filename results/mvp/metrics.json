@@ -1,0 +1,188 @@
+{
+  "title": "Single synthetic satellite dataset, MVP end-to-end demonstration",
+  "scope": "SIMULATION_ONLY; no verified satellite fault truth",
+  "dataset": {
+    "raw_rows": 4800,
+    "sensor_channels": 8,
+    "feature_dimensions": 400,
+    "train_windows": 544,
+    "calibration_windows": 272,
+    "test_windows": 272,
+    "state_train_counts": [
+      240,
+      192,
+      112
+    ],
+    "state_test_counts": [
+      120,
+      96,
+      56
+    ],
+    "simulated_anomaly_test_windows": 76,
+    "seed": 20261016
+  },
+  "msf_mofs": {
+    "task1_healthy_vs_unhealthy": {
+      "fisher_seed_group": "0",
+      "wrapper_group_folds": 3,
+      "wrapper_rows_exclude_seed": 476,
+      "selected_dim": 50,
+      "total_dim": 400,
+      "inner_cv_fitness_balanced_accuracy_NOT_unbiased": 0.9672027290448343,
+      "evaluated_subsets": 29
+    },
+    "task2_degraded_vs_fault": {
+      "fisher_seed_group": "0",
+      "wrapper_group_folds": 3,
+      "wrapper_rows_exclude_seed": 266,
+      "selected_dim": 10,
+      "total_dim": 400,
+      "inner_cv_fitness_balanced_accuracy_NOT_unbiased": 1.0,
+      "evaluated_subsets": 27
+    },
+    "feature_count_task1": 50,
+    "feature_count_task2": 10,
+    "features_union": 59,
+    "chosen_stage1_features": [
+      "load_current_scale6_mean",
+      "battery_temperature_scale6_std",
+      "bus_voltage_scale6_min",
+      "sensor_reference_scale6_min",
+      "thermal_gradient_scale6_max",
+      "load_current_scale6_p10",
+      "battery_temperature_scale6_p10",
+      "thermal_gradient_scale6_p10",
+      "thermal_gradient_scale6_p90",
+      "battery_temperature_scale6_rms",
+      "thermal_gradient_scale6_rms",
+      "thermal_gradient_scale10_mean",
+      "battery_temperature_scale10_min",
+      "reaction_wheel_current_scale10_min",
+      "thermal_gradient_scale10_min",
+      "battery_temperature_scale10_p10",
+      "thermal_gradient_scale10_p10",
+      "load_current_scale10_trend",
+      "battery_temperature_scale16_mean",
+      "reaction_wheel_current_scale16_min",
+      "panel_temperature_scale16_max",
+      "battery_temperature_scale16_p10",
+      "thermal_gradient_scale16_p10",
+      "panel_temperature_scale16_change",
+      "thermal_gradient_scale24_p90",
+      "sensor_reference_scale24_p90",
+      "reaction_wheel_current_scale24_rms",
+      "sensor_reference_scale24_rms",
+      "panel_temperature_scale24_slope",
+      "battery_temperature_scale24_slope",
+      "reaction_wheel_current_scale24_slope",
+      "sensor_reference_scale24_slope",
+      "battery_temperature_scale24_trend",
+      "thermal_gradient_scale24_trend",
+      "sensor_reference_scale24_trend",
+      "panel_temperature_scale24_change",
+      "reaction_wheel_current_scale32_mean",
+      "bus_voltage_scale32_std",
+      "sensor_reference_scale32_std",
+      "battery_temperature_scale32_min",
+      "sensor_reference_scale32_min",
+      "vibration_rms_scale32_max",
+      "sensor_reference_scale32_max",
+      "reaction_wheel_current_scale32_p10",
+      "battery_temperature_scale32_p90",
+      "reaction_wheel_current_scale32_p90",
+      "thermal_gradient_scale32_rms",
+      "reaction_wheel_current_scale32_trend",
+      "thermal_gradient_scale32_trend",
+      "load_current_scale32_change"
+    ],
+    "chosen_stage2_features": [
+      "vibration_rms_scale6_mean",
+      "vibration_rms_scale6_max",
+      "vibration_rms_scale6_p90",
+      "vibration_rms_scale6_rms",
+      "vibration_rms_scale10_max",
+      "vibration_rms_scale10_p90",
+      "vibration_rms_scale16_max",
+      "vibration_rms_scale16_p90",
+      "vibration_rms_scale24_max",
+      "vibration_rms_scale32_max"
+    ]
+  },
+  "base_static_state_metrics": {
+    "macro_f1": 0.9718450609371945,
+    "recalls": [
+      0.9666666666666667,
+      0.9479166666666666,
+      1.0
+    ],
+    "brier": 0.04975619423878217,
+    "nll": 0.07943602816330939
+  },
+  "base_hmm_state_metrics": {
+    "macro_f1": 0.9781888997078871,
+    "recalls": [
+      0.9583333333333334,
+      0.9791666666666666,
+      1.0
+    ],
+    "brier": 0.03426533334857038,
+    "nll": 0.06256645016876802
+  },
+  "anomaly_detector": {
+    "model": "RandomForest_raw_window",
+    "threshold_from_calibration": 0.4467624683776644,
+    "test": {
+      "n": 272,
+      "ap": 1.0,
+      "auroc": 1.0,
+      "f1": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "false_alarms": 0,
+      "missed_anomaly_windows": 0,
+      "confusion_matrix": [
+        [
+          196,
+          0
+        ],
+        [
+          0,
+          76
+        ]
+      ]
+    }
+  },
+  "late_fusion_state_metrics": {
+    "macro_f1": 0.9812500000000001,
+    "recalls": [
+      0.975,
+      0.96875,
+      1.0
+    ],
+    "brier": 0.03416971969977267,
+    "nll": 0.056186534765968646
+  },
+  "simulated_feedback": {
+    "n_calibration_ratings": 72,
+    "default_score_weights": [
+      100.0,
+      60.0,
+      0.0
+    ],
+    "corrected_score_weights": [
+      95.22807361875186,
+      67.30796016417725,
+      15.260747874997788
+    ],
+    "default_score_test_mae": 7.95968464213412,
+    "corrected_score_test_mae": 2.6231611856420063
+  },
+  "protocol_sha256": "f6a95296b9c14e2cdacaa4236d75fa5d7f3c576e9d55ac605af7616f7799bfe8",
+  "important_limitations": [
+    "Every state, fault, anomaly, operating mode and feedback score is synthetic.",
+    "Train/calibration/test are distinct missions generated by the SAME simulator distribution.",
+    "MSF-MOFS is the repository's LogisticRegression NSGA-II engineering adaptation, not a full paper reproduction.",
+    "Fusion and calibration both fit on the calibration mission; this is a demo, not a final research evaluation.",
+    "No claims of real satellite operating performance or maintenance efficiency."
+  ]
+}
