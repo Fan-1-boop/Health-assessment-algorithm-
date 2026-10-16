@@ -1,0 +1,259 @@
+{
+  "experiment": "SMAP_P-1_univariate_real_anomaly_proxy_three_state_v1",
+  "source": "NASA SMAP/Telemanom; converted CSV by aminmalekisadr/ICC2023",
+  "ground_truth_note": "Only binary anomaly intervals are externally verified. Three states and user scores are constructed proxies, never physical failure labels.",
+  "data": {
+    "train_normal_original_points": 2872,
+    "labeled_test_points": 8505,
+    "labeled_intervals": [
+      [
+        2149,
+        2349
+      ],
+      [
+        4536,
+        4844
+      ],
+      [
+        3539,
+        3779
+      ]
+    ],
+    "window": 64,
+    "train_end_exclusive": 2600,
+    "val_end_exclusive": 4000,
+    "window_counts": {
+      "train": 2537,
+      "val": 1400,
+      "test": 4505
+    },
+    "binary_positive_counts": {
+      "train": 201,
+      "val": 241,
+      "test": 309
+    },
+    "proxy_class_counts": {
+      "train": [
+        2336,
+        40,
+        161
+      ],
+      "val": [
+        1159,
+        48,
+        193
+      ],
+      "test": [
+        4196,
+        61,
+        248
+      ]
+    }
+  },
+  "feature_selection": {
+    "candidate_dim": 25,
+    "selected_dim": 2,
+    "guided_sizes": [
+      1,
+      2,
+      5
+    ],
+    "unique_wrapper_evaluations": 50,
+    "selection_cv_gmean": 0.90421,
+    "pareto_objectives": [
+      [
+        0.06605,
+        0.28
+      ],
+      [
+        0.16901,
+        0.04
+      ],
+      [
+        0.06605,
+        0.28
+      ],
+      [
+        0.16901,
+        0.04
+      ],
+      [
+        0.09579,
+        0.08
+      ],
+      [
+        0.07346,
+        0.12
+      ],
+      [
+        0.07049,
+        0.24
+      ],
+      [
+        0.09579,
+        0.08
+      ],
+      [
+        0.07049,
+        0.24
+      ],
+      [
+        0.07346,
+        0.12
+      ],
+      [
+        0.06605,
+        0.28
+      ],
+      [
+        0.16901,
+        0.04
+      ]
+    ]
+  },
+  "selected_indices": [
+    0,
+    2
+  ],
+  "anomaly_detector": {
+    "classifier": "supervised_random_forest_raw_lag_window",
+    "threshold_from_validation": 0.0069,
+    "validation": {
+      "n": 1400,
+      "positive_n": 241,
+      "average_precision": 0.1521,
+      "roc_auc": 0.449,
+      "precision": 0.172,
+      "recall": 0.9793,
+      "f1": 0.2926
+    },
+    "test": {
+      "n": 4505,
+      "positive_n": 309,
+      "average_precision": 0.0568,
+      "roc_auc": 0.3668,
+      "precision": 0.0664,
+      "recall": 0.945,
+      "f1": 0.1241
+    }
+  },
+  "transition_matrix": [
+    [
+      0.99872,
+      0.00086,
+      0.00043
+    ],
+    [
+      0.02326,
+      0.93023,
+      0.04651
+    ],
+    [
+      0.0122,
+      0.0061,
+      0.98171
+    ]
+  ],
+  "three_state_proxy_test": {
+    "hierarchical_logreg": {
+      "n": 4505,
+      "accuracy": 0.7902,
+      "macro_f1": 0.3253,
+      "balanced_accuracy": 0.3094,
+      "multi_brier": 0.32329,
+      "confusion_matrix": [
+        [
+          3539,
+          502,
+          155
+        ],
+        [
+          6,
+          0,
+          55
+        ],
+        [
+          227,
+          0,
+          21
+        ]
+      ]
+    },
+    "hierarchical_logreg_plus_HMM": {
+      "n": 4505,
+      "accuracy": 0.4411,
+      "macro_f1": 0.2527,
+      "balanced_accuracy": 0.2421,
+      "multi_brier": 1.0235,
+      "confusion_matrix": [
+        [
+          1953,
+          2197,
+          46
+        ],
+        [
+          0,
+          10,
+          51
+        ],
+        [
+          156,
+          68,
+          24
+        ]
+      ]
+    },
+    "late_fusion": {
+      "n": 4505,
+      "accuracy": 0.6448,
+      "macro_f1": 0.3115,
+      "balanced_accuracy": 0.32,
+      "multi_brier": 0.57061,
+      "confusion_matrix": [
+        [
+          2867,
+          1227,
+          102
+        ],
+        [
+          0,
+          10,
+          51
+        ],
+        [
+          206,
+          14,
+          28
+        ]
+      ]
+    }
+  },
+  "score_mapping_simulation": {
+    "default_weights": [
+      100,
+      60,
+      0
+    ],
+    "synthetic_user_target_weights": [
+      96.0,
+      74.0,
+      12.0
+    ],
+    "fitted_user_weights": [
+      92.024,
+      75.084,
+      7.66
+    ],
+    "calibration_sample_n": 168,
+    "default_mae_vs_synthetic_user": 22.874,
+    "adapted_mae_vs_synthetic_user": 21.83
+  },
+  "runtime_seconds": 1.86,
+  "limits": [
+    "Single satellite channel P-1; no multichannel command context in extracted CSV.",
+    "Temporal split has one anomalous interval per train/val/test, not independent device-level replication.",
+    "Proxy degraded/fault labels are onset/core partitions of annotated anomaly intervals, not actual equipment states.",
+    "No actual maintenance labels, no true human scores, no operational incremental learning or drift gate.",
+    "No proper HMM emission likelihood learned; posterior/prior discriminative approximation is used."
+  ]
+}
