@@ -1,0 +1,671 @@
+{
+  "study": "V1.2 independent branch validation; no fusion; no automatic increment",
+  "data": "NASA SMAP P-1 test and normal train telemetry, public binary anomaly intervals",
+  "source_labels": {
+    "real": "binary anomaly interval",
+    "three_state": "frozen synthetic position proxy",
+    "rule_id": "smap_p1_interval_position_proxy_v1_frozen",
+    "rule_sha256": "e7a39583833537becc3410cd61f76bc6ba5699d091c8553216bcec7710b7c390",
+    "anomaly_intervals": [
+      [
+        2149,
+        2349
+      ],
+      [
+        4536,
+        4844
+      ],
+      [
+        3539,
+        3779
+      ]
+    ]
+  },
+  "samples": {
+    "train": 2537,
+    "validation": 1400,
+    "test": 4505,
+    "test_positive": 309
+  },
+  "features": {
+    "candidate_dim": 510,
+    "first_stage_selected_dim": 30,
+    "second_stage_selected_dim": 10,
+    "online_feature_union_dim": 34,
+    "first_stage_names": [
+      "len32_lag0_mean",
+      "len32_lag0_median",
+      "len32_lag8_median",
+      "len32_lag16_median",
+      "len32_lag24_mean",
+      "len32_lag24_median",
+      "len32_lag32_mean",
+      "len32_lag32_median",
+      "len48_lag0_mean",
+      "len48_lag0_min",
+      "len48_lag0_median",
+      "len48_lag0_diff_abs_mean",
+      "len48_lag8_max",
+      "len48_lag8_mean_abs",
+      "len48_lag16_max",
+      "len48_lag16_median",
+      "len48_lag16_q10",
+      "len48_lag16_diff_std",
+      "len48_lag16_start_end_delta",
+      "len64_lag0_min",
+      "len64_lag0_diff_std",
+      "len64_lag0_range",
+      "global_fft_power_05",
+      "global_fft_power_06",
+      "global_fft_power_09",
+      "global_fft_power_13",
+      "global_fft_power_18",
+      "global_fft_power_26",
+      "global_fft_power_31",
+      "global_acf_16"
+    ],
+    "second_stage_names": [
+      "len32_lag24_median",
+      "len32_lag32_median",
+      "len48_lag0_min",
+      "len48_lag8_min",
+      "len48_lag8_median",
+      "len48_lag16_min",
+      "len48_lag16_median",
+      "len64_lag0_min",
+      "global_fft_power_26",
+      "global_acf_24"
+    ],
+    "first_stage_search": {
+      "candidate_dim": 510,
+      "selected_dim": 30,
+      "guided_sizes": [
+        10,
+        26,
+        51
+      ],
+      "unique_wrapper_evaluations": 65,
+      "selection_cv_gmean": 0.97458,
+      "pareto_objectives": [
+        [
+          0.09518,
+          0.01961
+        ],
+        [
+          0.0151,
+          0.17843
+        ],
+        [
+          0.09518,
+          0.01961
+        ],
+        [
+          0.0151,
+          0.17843
+        ],
+        [
+          0.04833,
+          0.03725
+        ],
+        [
+          0.09169,
+          0.02157
+        ],
+        [
+          0.01924,
+          0.07451
+        ],
+        [
+          0.01619,
+          0.15882
+        ],
+        [
+          0.02542,
+          0.05882
+        ],
+        [
+          0.03773,
+          0.04902
+        ],
+        [
+          0.04256,
+          0.04118
+        ],
+        [
+          0.01606,
+          0.16078
+        ]
+      ]
+    },
+    "second_stage_search": {
+      "candidate_dim": 510,
+      "selected_dim": 10,
+      "guided_sizes": [
+        10,
+        26,
+        51
+      ],
+      "unique_wrapper_evaluations": 54,
+      "selection_cv_gmean": 0.99055,
+      "pareto_objectives": [
+        [
+          0.00945,
+          0.01961
+        ],
+        [
+          0.0031,
+          0.02353
+        ],
+        [
+          0.00945,
+          0.01961
+        ],
+        [
+          0.00626,
+          0.02157
+        ],
+        [
+          0.00626,
+          0.02157
+        ],
+        [
+          0.00945,
+          0.01961
+        ],
+        [
+          0.00626,
+          0.02157
+        ],
+        [
+          0.00945,
+          0.01961
+        ],
+        [
+          0.00945,
+          0.01961
+        ],
+        [
+          0.00945,
+          0.01961
+        ],
+        [
+          0.00945,
+          0.01961
+        ],
+        [
+          0.00626,
+          0.02157
+        ]
+      ]
+    },
+    "dual_stage_search_seconds": 5.21
+  },
+  "state_branch": {
+    "transition_matrix": [
+      [
+        0.9992295180207174,
+        0.000599263761664241,
+        0.00017121821761835457
+      ],
+      [
+        0.00970873786407767,
+        0.9563106796116505,
+        0.03398058252427184
+      ],
+      [
+        0.008631319358816275,
+        0.002466091245376079,
+        0.9889025893958076
+      ]
+    ],
+    "class_prior": [
+      0.9207725660228616,
+      0.015766653527788728,
+      0.06346078044934962
+    ],
+    "discriminative_hmm": {
+      "gamma": 0.15,
+      "memory": 1.0,
+      "validation_objective": 0.577456,
+      "n_candidates": 24
+    },
+    "gaussian_hmm": {
+      "gamma": 0.15,
+      "memory": 1.0,
+      "validation_objective": 0.631085,
+      "n_candidates": 24
+    },
+    "validation": {
+      "two_stage_full_510d": {
+        "n": 1400,
+        "accuracy": 0.91929,
+        "macro_f1": 0.59588,
+        "balanced_accuracy": 0.58175,
+        "multi_brier": 0.15,
+        "confusion_matrix": [
+          [
+            1140,
+            11,
+            8
+          ],
+          [
+            43,
+            0,
+            5
+          ],
+          [
+            46,
+            0,
+            147
+          ]
+        ],
+        "prediction_counts": [
+          1229,
+          11,
+          160
+        ]
+      },
+      "two_stage_MSF_static": {
+        "n": 1400,
+        "accuracy": 0.90357,
+        "macro_f1": 0.58448,
+        "balanced_accuracy": 0.56967,
+        "multi_brier": 0.17958,
+        "confusion_matrix": [
+          [
+            1122,
+            20,
+            17
+          ],
+          [
+            48,
+            0,
+            0
+          ],
+          [
+            50,
+            0,
+            143
+          ]
+        ],
+        "prediction_counts": [
+          1220,
+          20,
+          160
+        ]
+      },
+      "two_stage_MSF_balanced_uncalibrated": {
+        "n": 1400,
+        "accuracy": 0.87214,
+        "macro_f1": 0.59866,
+        "balanced_accuracy": 0.59696,
+        "multi_brier": 0.218611,
+        "confusion_matrix": [
+          [
+            1072,
+            47,
+            40
+          ],
+          [
+            38,
+            6,
+            4
+          ],
+          [
+            50,
+            0,
+            143
+          ]
+        ],
+        "prediction_counts": [
+          1160,
+          53,
+          187
+        ]
+      },
+      "two_stage_MSF_discriminative_HMM": {
+        "n": 1400,
+        "accuracy": 0.90143,
+        "macro_f1": 0.59141,
+        "balanced_accuracy": 0.57025,
+        "multi_brier": 0.174423,
+        "confusion_matrix": [
+          [
+            1118,
+            32,
+            9
+          ],
+          [
+            48,
+            0,
+            0
+          ],
+          [
+            49,
+            0,
+            144
+          ]
+        ],
+        "prediction_counts": [
+          1215,
+          32,
+          153
+        ]
+      },
+      "two_stage_MSF_gaussian_HMM": {
+        "n": 1400,
+        "accuracy": 0.86143,
+        "macro_f1": 0.64797,
+        "balanced_accuracy": 0.69466,
+        "multi_brier": 0.211061,
+        "confusion_matrix": [
+          [
+            1026,
+            75,
+            58
+          ],
+          [
+            31,
+            17,
+            0
+          ],
+          [
+            30,
+            0,
+            163
+          ]
+        ],
+        "prediction_counts": [
+          1087,
+          92,
+          221
+        ]
+      }
+    },
+    "heldout_test": {
+      "two_stage_full_510d": {
+        "n": 4505,
+        "accuracy": 0.92941,
+        "macro_f1": 0.38473,
+        "balanced_accuracy": 0.37688,
+        "multi_brier": 0.135249,
+        "confusion_matrix": [
+          [
+            4152,
+            8,
+            36
+          ],
+          [
+            0,
+            0,
+            61
+          ],
+          [
+            213,
+            0,
+            35
+          ]
+        ],
+        "prediction_counts": [
+          4365,
+          8,
+          132
+        ]
+      },
+      "two_stage_MSF_static": {
+        "n": 4505,
+        "accuracy": 0.91165,
+        "macro_f1": 0.35457,
+        "balanced_accuracy": 0.35156,
+        "multi_brier": 0.161354,
+        "confusion_matrix": [
+          [
+            4087,
+            45,
+            64
+          ],
+          [
+            10,
+            0,
+            51
+          ],
+          [
+            228,
+            0,
+            20
+          ]
+        ],
+        "prediction_counts": [
+          4325,
+          45,
+          135
+        ]
+      },
+      "two_stage_MSF_balanced_uncalibrated": {
+        "n": 4505,
+        "accuracy": 0.86659,
+        "macro_f1": 0.35072,
+        "balanced_accuracy": 0.34555,
+        "multi_brier": 0.227013,
+        "confusion_matrix": [
+          [
+            3876,
+            179,
+            141
+          ],
+          [
+            1,
+            0,
+            60
+          ],
+          [
+            220,
+            0,
+            28
+          ]
+        ],
+        "prediction_counts": [
+          4097,
+          179,
+          229
+        ]
+      },
+      "two_stage_MSF_discriminative_HMM": {
+        "n": 4505,
+        "accuracy": 0.90766,
+        "macro_f1": 0.3572,
+        "balanced_accuracy": 0.35139,
+        "multi_brier": 0.166044,
+        "confusion_matrix": [
+          [
+            4068,
+            80,
+            48
+          ],
+          [
+            12,
+            0,
+            49
+          ],
+          [
+            227,
+            0,
+            21
+          ]
+        ],
+        "prediction_counts": [
+          4307,
+          80,
+          118
+        ]
+      },
+      "two_stage_MSF_gaussian_HMM": {
+        "n": 4505,
+        "accuracy": 0.79245,
+        "macro_f1": 0.41077,
+        "balanced_accuracy": 0.39236,
+        "multi_brier": 0.328585,
+        "confusion_matrix": [
+          [
+            3484,
+            605,
+            107
+          ],
+          [
+            2,
+            0,
+            59
+          ],
+          [
+            162,
+            0,
+            86
+          ]
+        ],
+        "prediction_counts": [
+          3648,
+          605,
+          252
+        ]
+      }
+    }
+  },
+  "anomaly_branch": {
+    "chosen_by_validation_ap": "rbf_svm_raw",
+    "validation_ranking": {
+      "random_forest_raw": {
+        "validation_ap": 0.228973,
+        "validation_auc": 0.613075,
+        "validation_threshold": 0.052020889179315494,
+        "validation_f1": 0.34589
+      },
+      "extra_trees_raw": {
+        "validation_ap": 0.507219,
+        "validation_auc": 0.722153,
+        "validation_threshold": 0.1345310505369077,
+        "validation_f1": 0.569892
+      },
+      "logistic_raw": {
+        "validation_ap": 0.675199,
+        "validation_auc": 0.832353,
+        "validation_threshold": 0.9123217358954653,
+        "validation_f1": 0.613333
+      },
+      "rbf_svm_raw": {
+        "validation_ap": 0.733438,
+        "validation_auc": 0.849087,
+        "validation_threshold": -0.040608054687885975,
+        "validation_f1": 0.693069
+      },
+      "hgb_raw": {
+        "validation_ap": 0.302668,
+        "validation_auc": 0.696838,
+        "validation_threshold": 0.0009299987778629142,
+        "validation_f1": 0.393597
+      },
+      "isolation_forest_novelty": {
+        "validation_ap": 0.107596,
+        "validation_auc": 0.23447,
+        "validation_threshold": 0.37479733033581425,
+        "used_for_supervised_selection": false
+      }
+    },
+    "chosen_test": {
+      "n": 4505,
+      "positive_n": 309,
+      "base_rate": 0.06859,
+      "average_precision": 0.052886,
+      "roc_auc": 0.393512,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "false_positive_count": 144,
+      "false_negative_count": 309
+    },
+    "all_test_diagnostics_NOT_for_model_selection": {
+      "random_forest_raw": {
+        "n": 4505,
+        "positive_n": 309,
+        "base_rate": 0.06859,
+        "average_precision": 0.109878,
+        "roc_auc": 0.486692,
+        "precision": 0.062857,
+        "recall": 0.213592,
+        "f1": 0.09713,
+        "false_positive_count": 984,
+        "false_negative_count": 243
+      },
+      "extra_trees_raw": {
+        "n": 4505,
+        "positive_n": 309,
+        "base_rate": 0.06859,
+        "average_precision": 0.083746,
+        "roc_auc": 0.537283,
+        "precision": 0.06962,
+        "recall": 0.035599,
+        "f1": 0.047109,
+        "false_positive_count": 147,
+        "false_negative_count": 298
+      },
+      "logistic_raw": {
+        "n": 4505,
+        "positive_n": 309,
+        "base_rate": 0.06859,
+        "average_precision": 0.061181,
+        "roc_auc": 0.456368,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "false_positive_count": 101,
+        "false_negative_count": 309
+      },
+      "rbf_svm_raw": {
+        "n": 4505,
+        "positive_n": 309,
+        "base_rate": 0.06859,
+        "average_precision": 0.052886,
+        "roc_auc": 0.393512,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "false_positive_count": 144,
+        "false_negative_count": 309
+      },
+      "hgb_raw": {
+        "n": 4505,
+        "positive_n": 309,
+        "base_rate": 0.06859,
+        "average_precision": 0.066409,
+        "roc_auc": 0.483457,
+        "precision": 0.061327,
+        "recall": 0.433657,
+        "f1": 0.107458,
+        "false_positive_count": 2051,
+        "false_negative_count": 175
+      },
+      "isolation_forest_novelty": {
+        "n": 4505,
+        "positive_n": 309,
+        "base_rate": 0.06859,
+        "average_precision": 0.044696,
+        "roc_auc": 0.265492,
+        "precision": 0.058586,
+        "recall": 0.84466,
+        "f1": 0.109572,
+        "false_positive_count": 4194,
+        "false_negative_count": 48
+      }
+    }
+  },
+  "runtime_seconds": 27.91,
+  "limitations": [
+    "Only one spacecraft telemetry target channel; no physical spacecraft operation-mode labels.",
+    "Labels degraded_proxy/fault_proxy based solely on frozen anomaly interval position, NOT real faults.",
+    "A single anomaly episode in each of train/validation/test; event-generalization is weakly identified.",
+    "The MSF-MOFS wrapper cross validation uses stratified folds and overlapping time windows; CV gains may be optimistic.",
+    "S1 and S2 select different subsets: MSF method adapted to each binary task.",
+    "Bayesian filtering is temporal and online-causal. Discriminative posterior/prior is only approximate; Gaussian HMM explicitly estimates class-conditional emissions.",
+    "No fusion, health score mapping, human simulation, or incremental update is performed in V1.2.",
+    "Anomaly and state branches report independent test criteria; test is never used to choose models or thresholds."
+  ]
+}
