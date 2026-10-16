@@ -29,6 +29,12 @@ python -m pip install -r requirements.txt
 python -m pip install joblib
 python -m pytest -q mvp/test_mvp.py
 python mvp/run.py --out results/mvp
+# 读取保存的模型，不重新训练，直接输出单个模拟任务段的健康判断：
+python mvp/predict.py \
+  --input results/mvp/synthetic_satellite_telemetry.csv \
+  --model results/mvp/model_bundle.joblib \
+  --mission 3 \
+  --out results/mvp/inference_reloaded.csv
 \`\`\`
 
 使用固定 seed=20261016、4 个模拟任务段、每段 1200 点、8 路原始遥测，训练段 mission 0+1、独立校准/简单融合段 mission 2、最后展示测试段 mission 3。每段按 4 个运行周期切分因果窗口，不跨任务段和周期使用观测值；真实标签已经内置于数据生成器，不采用历史 SMAP 20%/80% 区间位置代理标签。
