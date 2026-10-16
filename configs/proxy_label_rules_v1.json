@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0.0",
+  "rule_id": "smap_p1_interval_position_proxy_v1_frozen",
+  "frozen_at_utc": "2026-10-16",
+  "datasource": "NASA SMAP P-1 / Telemanom labeled_anomalies.csv",
+  "target_channel": "P-1",
+  "index_convention": "zero_based_inclusive",
+  "priority": [
+    "published anomaly interval",
+    "deterministic interval position"
+  ],
+  "healthy_proxy": "All samples not inside a published P-1 anomaly interval are class 0.",
+  "degraded_proxy": "For an anomaly interval [a,b] inclusive, the FIRST max(1, floor((b-a+1)*0.20)) samples are class 1.",
+  "fault_proxy": "The remaining samples of the same interval are class 2.",
+  "boundaries": "If an anomalous interval is of length 1, it produces only class 1; non-overlapping intervals assumed.",
+  "score_proxy": "No physical 0-100 health scores exist. Simulated feedback targets are defined in a separate frozen config and do not affect state labels.",
+  "prohibited": [
+    "Never infer physical failure from class 2.",
+    "Never use test measurements, model scores, or test metrics to change this labeling rule.",
+    "Never treat proxy class metrics as verified fault diagnosis.",
+    "No normal-operation change labels or technician feedback exist in this dataset."
+  ],
+  "rationale": "Frozen unchanged from V1 to permit architectural ablation under exactly the same artificial target; position in anomaly segment is a pedagogical proxy, not a degradation mechanism.",
+  "label_creation_time": "Prior to feature engineering / MSF-MOFS V1.1 experiments."
+}
