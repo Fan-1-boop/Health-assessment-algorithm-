@@ -37,3 +37,15 @@ def test_frozen_label_boundaries(tmp_path):
     dest=tmp_path/'bad.json';dest.write_text(json.dumps(tampered))
     import pytest
     with pytest.raises(ValueError):load_frozen_labels(100,metadata,dest)
+
+def test_proxy_csv_export_provenance():
+    from export_proxy_labels import build_label_table
+    from health_v1 import proxy_labels
+    states,binary=proxy_labels(40,[(10,19)])
+    df=build_label_table(40,[(10,19)],states,binary,'frozen','deadbeef')
+    assert len(df)==40
+    assert df.loc[10,'proxy_state_name']=='degraded_proxy'
+    assert df.loc[12,'proxy_state_name']=='fault_proxy'
+    assert df.loc[10,'published_anomaly_event_index']==0
+    assert df.loc[5,'published_anomaly_event_index']==-1
+    assert not df['physical_fault_confirmed'].any()
