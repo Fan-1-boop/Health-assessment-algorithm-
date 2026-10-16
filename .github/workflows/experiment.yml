@@ -1,7 +1,5 @@
 name: V1 reproducible SMAP experiment
 on:
-  push:
-    branches: [main]
   workflow_dispatch:
 jobs:
   experiment:
