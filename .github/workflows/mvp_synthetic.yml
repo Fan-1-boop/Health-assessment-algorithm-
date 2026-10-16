@@ -3,6 +3,7 @@ on:
   push:
     paths:
       - '.github/workflows/mvp_synthetic.yml'
+      - 'mvp/**'
   workflow_dispatch:
 jobs:
   mvp:
