@@ -1,0 +1,88 @@
+{
+  "version": "opssat_real_mvp_v1",
+  "frozen_before_test_results": true,
+  "source_dataset": "OPS-SAT-AD",
+  "source_zenodo_record": 12588359,
+  "source_file": "dataset.csv",
+  "source_url": "https://zenodo.org/api/records/12588359/files/dataset.csv/content",
+  "rows_expected": 2123,
+  "features": [
+    "mean",
+    "var",
+    "std",
+    "len",
+    "duration",
+    "len_weighted",
+    "gaps_squared",
+    "n_peaks",
+    "smooth10_n_peaks",
+    "smooth20_n_peaks",
+    "var_div_duration",
+    "var_div_len",
+    "diff_peaks",
+    "diff2_peaks",
+    "diff_var",
+    "diff2_var",
+    "kurtosis",
+    "skew"
+  ],
+  "ground_truth": {
+    "anomaly": 1,
+    "normal": 0,
+    "not_available": "physically verified healthy/degraded/fault three-state or human health score"
+  },
+  "split": {
+    "official_train_column_equals": 1,
+    "official_test_column_equals": 0,
+    "validation_fraction_of_official_train": 0.25,
+    "stratified_random_seed": 42
+  },
+  "data_quality": {
+    "no_test_imputation_fit": true,
+    "no_label_as_feature": true,
+    "no_test_used_in_selector_or_threshold": true
+  },
+  "feature_selection": {
+    "method": "repo MSF-MOFS engineering adaptation",
+    "population": 12,
+    "generations": 5,
+    "seed": 42,
+    "tolerance": 0.03
+  },
+  "candidate_models": [
+    "rf",
+    "extra_trees",
+    "rbf_svm",
+    "hist_gb"
+  ],
+  "feature_modes": [
+    "msf",
+    "all_18"
+  ],
+  "model_selection": "validation F1 after validation-only probability threshold; ties by AP, prefer fewer features",
+  "threshold_selection": "validation precision_recall_curve, exact thresholds, minimum 0.001 maximum 0.999",
+  "evaluation": {
+    "test_metrics": [
+      "Accuracy",
+      "Precision",
+      "Recall",
+      "F1",
+      "AveragePrecision",
+      "ROC_AUC",
+      "MCC",
+      "ConfusionMatrix"
+    ],
+    "test_scored_once": true
+  },
+  "artifact_outputs": [
+    "dataset.csv",
+    "source_manifest.json",
+    "metrics.json",
+    "test_predictions.csv",
+    "model_bundle.joblib",
+    "RESULTS.md",
+    "reload_predictions.csv"
+  ],
+  "update_policy": "No self-training; future updates require human-provided checked labeled data, staged evaluation and explicit approval",
+  "scope": "Authentic satellite binary anomaly classification on OPS-SAT-AD segmented telemetry; not true 3-class health diagnosis or HMM training"
+}
