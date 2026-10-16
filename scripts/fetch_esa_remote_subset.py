@@ -47,9 +47,9 @@ def extract_channel(z,meta,name,resample='10min',max_staleness='60min'):
     column=name if name in frame.columns else ('value' if 'value' in frame.columns else None)
     if column is None:raise ValueError('Unexpected channel columns')
     signal=pd.to_numeric(frame[column],errors='coerce').to_numpy(float)
-    observed=frame.index.asi8
+    observed=frame.index.as_unit('ns').asi8
     target=pd.date_range(frame.index[0].ceil(resample),frame.index[-1].floor(resample),freq=resample)
-    times=target.asi8
+    times=target.as_unit('ns').asi8
     locations=np.searchsorted(observed,times,side='right')-1
     nearest=locations.clip(0,len(signal)-1)
     values=signal[nearest].copy()
@@ -70,6 +70,8 @@ def extract_channel(z,meta,name,resample='10min',max_staleness='60min'):
         code[a:b]=np.where(np.array([order[value]>order[int(v)] for v in current]),value,current)
     code[bad]=3
     values[bad]=0
+    if len(events[events.Category=='Anomaly']) and not np.any(code==1):
+        raise ValueError('No surviving true-anomaly points on the fixed grid; check timestamp units, coverage and resolution')
     out=pd.DataFrame({'timestamp':target.strftime('%Y-%m-%d %H:%M:%S.%f%z'),name:values,'is_anomaly_'+name:code})
     audit={'target_channel':name,'source_dataset_doi':'10.5281/zenodo.15237121',
            'nested_channel_archive':member,'source_channel_sha256':hashlib.sha256(raw).hexdigest(),
