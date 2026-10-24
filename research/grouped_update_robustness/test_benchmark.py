@@ -68,7 +68,7 @@ def test_minimum_class_failure_is_recorded_without_relaxing_gate():
     phase["audit"]=phase["audit"][:1]
     ok,reason,count=validate_fold(phase,g,f.anomaly.to_numpy(),np.array([],int),
                    {"audit":3})
-    assert not ok and "audit" in reason
+    assert not ok and "fewer than required" in reason
 
 
 def test_official_test_never_eligible_in_phase():
