@@ -1,0 +1,59 @@
+name: OPS-SAT strict independent update acceptance
+on:
+  push:
+    branches:
+      - research/hitl-quality-gated-update
+    paths:
+      - '.github/workflows/strict_acceptance.yml'
+  workflow_dispatch:
+jobs:
+  ordinary_baselines:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: write
+    env:
+      PYTHONHASHSEED: '0'
+      OMP_NUM_THREADS: '1'
+      OPENBLAS_NUM_THREADS: '1'
+      MKL_NUM_THREADS: '1'
+      NUMEXPR_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install fixed numerical dependencies
+        run: |
+          python -m pip install -r requirements.txt
+          python -m pip install matplotlib joblib requests
+      - name: Run model-safety and acceptance isolation tests
+        run: |
+          python -m pytest -q research/strict_acceptance/test_benchmark.py
+          python -m pytest -q research/hitl_update/test_gate.py
+      - name: Run true OPS-SAT 2578D budget64 nested calibration and update study
+        run: |
+          python -u research/strict_acceptance/benchmark.py --out results/strict_acceptance
+      - name: Archive full multi-arm evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: opssat-strict-two-stage-updates
+          path: results/strict_acceptance/
+          if-no-files-found: warn
+      - name: Commit standard baseline metrics only to research branch
+        if: success()
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add results/strict_acceptance/
+          git commit -m 'results(research): nested acceptance and conservative ordinary update scores on OPS-SAT' || exit 0
+          git fetch origin research/hitl-quality-gated-update
+          git rebase origin/research/hitl-quality-gated-update
+          for i in 1 2 3; do
+            if git push origin HEAD:research/hitl-quality-gated-update; then exit 0; fi
+            git fetch origin research/hitl-quality-gated-update
+            git rebase origin/research/hitl-quality-gated-update
+          done
+          exit 1
