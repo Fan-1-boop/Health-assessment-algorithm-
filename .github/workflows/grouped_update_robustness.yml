@@ -1,4 +1,5 @@
 name: OPS-SAT grouped update robustness public baselines
+# Rerun with per-phase insufficient-class test fixed; frozen analysis seeds remain unchanged.
 on:
   push:
     branches:
