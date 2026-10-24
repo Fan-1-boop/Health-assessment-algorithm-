@@ -1,0 +1,716 @@
+{
+  "study": "Public generic two-branch probability interface maintenance, synthetic-only",
+  "simulated_review_only": true,
+  "real_human_reviewed_labels": false,
+  "candidate_model_deployed": false,
+  "original_delivery_model_untouched": true,
+  "protocol_sha256": "d17ff283960945841c44b882a725ceee852fdf45757eb086d645bd58e9d6ade7",
+  "frozen_state_msfs": "Original synthetic feature selector 50+10 (59 unique); no feature refit",
+  "real_OPSSAT_budget_max64_status": "Frozen earlier budget64, not transferred to this synthetic state task",
+  "counts": {
+    "historical_train": 544,
+    "simulated_operator_batch": 68,
+    "anomaly_threshold": 68,
+    "fusion_fit": 68,
+    "gate_validation": 68,
+    "mission3_audit": 272
+  },
+  "gate_data_validation": {
+    "candidate_allowed": true,
+    "production_release_allowed": false,
+    "route": "anomaly_detector_candidate",
+    "label_origin": "simulated",
+    "new_anomaly_labels": 19,
+    "new_normal_labels": 49,
+    "sha256": "6ac1bbb906c180fcb5bb9ba440d1aae712cd57bd215201c5642be7724aa3cb13"
+  },
+  "runtime": {
+    "candidate_RF_train_with_68_simulated_supervision": {
+      "median_ms": 325.17465199998696,
+      "q25_ms": 318.9695964999828,
+      "q75_ms": 327.0623619999924,
+      "repeats": 3
+    },
+    "reference_fusion_fit_only_cycle10": {
+      "median_ms": 9.429248999992978,
+      "q25_ms": 9.380782500016949,
+      "q75_ms": 9.510226000003286,
+      "repeats": 7
+    }
+  },
+  "scenarios": {
+    "natural": {
+      "stress_is_artificial": false,
+      "threshold_fit_on_cycle9": {
+        "old": 0.6233415371563787,
+        "candidate": 0.6332987413871206
+      },
+      "fusion_fit_times": {
+        "old": {
+          "median_ms": 9.429248999992978,
+          "q25_ms": 9.380782500016949,
+          "q75_ms": 9.510226000003286,
+          "repeats": 7
+        },
+        "candidate": {
+          "median_ms": 9.812549000002946,
+          "q25_ms": 9.769978500017373,
+          "q75_ms": 9.847034000003418,
+          "repeats": 7
+        }
+      },
+      "gate_validation": {
+        "A_legacy_detector_compatible_fusion": {
+          "state": {
+            "macro_f1": 0.9875475613974404,
+            "recalls": [
+              0.9666666666666667,
+              1.0,
+              1.0
+            ],
+            "brier": 0.014656678459700406,
+            "nll": 0.03460436129582725
+          },
+          "anomaly": {
+            "n": 68,
+            "positives": 19,
+            "f1": 1.0,
+            "ap": 1.0,
+            "auc": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "fpr": 0.0,
+            "FP": 0,
+            "FN": 0,
+            "threshold": 0.6233415371563787,
+            "prob_brier": 0.003704590976611701,
+            "prob_nll": 0.034129632831263426
+          },
+          "health_score_MAE": 7.82212517090392
+        },
+        "B_updated_detector_stale_fusion": {
+          "state": {
+            "macro_f1": 1.0,
+            "recalls": [
+              1.0,
+              1.0,
+              1.0
+            ],
+            "brier": 0.012092851331764125,
+            "nll": 0.03024327050121814
+          },
+          "anomaly": {
+            "n": 68,
+            "positives": 19,
+            "f1": 1.0,
+            "ap": 1.0,
+            "auc": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "fpr": 0.0,
+            "FP": 0,
+            "FN": 0,
+            "threshold": 0.6332987413871206,
+            "prob_brier": 0.0037284692280970984,
+            "prob_nll": 0.03259045433269815
+          },
+          "health_score_MAE": 7.864980636618253
+        },
+        "C_updated_detector_refit_fusion": {
+          "state": {
+            "macro_f1": 1.0,
+            "recalls": [
+              1.0,
+              1.0,
+              1.0
+            ],
+            "brier": 0.013826666945362573,
+            "nll": 0.03584565789409388
+          },
+          "anomaly": {
+            "n": 68,
+            "positives": 19,
+            "f1": 1.0,
+            "ap": 1.0,
+            "auc": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "fpr": 0.0,
+            "FP": 0,
+            "FN": 0,
+            "threshold": 0.6332987413871206,
+            "prob_brier": 0.0037284692280970984,
+            "prob_nll": 0.03259045433269815
+          },
+          "health_score_MAE": 7.481657663679534
+        },
+        "D_staged_validation_selection": {
+          "state": {
+            "macro_f1": 1.0,
+            "recalls": [
+              1.0,
+              1.0,
+              1.0
+            ],
+            "brier": 0.013826666945362573,
+            "nll": 0.03584565789409388
+          },
+          "anomaly": {
+            "n": 68,
+            "positives": 19,
+            "f1": 1.0,
+            "ap": 1.0,
+            "auc": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "fpr": 0.0,
+            "FP": 0,
+            "FN": 0,
+            "threshold": 0.6332987413871206,
+            "prob_brier": 0.0037284692280970984,
+            "prob_nll": 0.03259045433269815
+          },
+          "health_score_MAE": 7.481657663679534
+        }
+      },
+      "audit_mission3": {
+        "A_legacy_detector_compatible_fusion": {
+          "state": {
+            "macro_f1": 0.9657846419699752,
+            "recalls": [
+              0.9333333333333333,
+              0.96875,
+              1.0
+            ],
+            "brier": 0.05214790546326092,
+            "nll": 0.08655613543130991
+          },
+          "anomaly": {
+            "n": 272,
+            "positives": 76,
+            "f1": 0.9798657718120806,
+            "ap": 1.0,
+            "auc": 1.0,
+            "precision": 1.0,
+            "recall": 0.9605263157894737,
+            "fpr": 0.0,
+            "FP": 0,
+            "FN": 3,
+            "threshold": 0.6233415371563787,
+            "prob_brier": 0.0062528582804348715,
+            "prob_nll": 0.045307395262492015
+          },
+          "health_score_MAE": 8.109205197027933
+        },
+        "B_updated_detector_stale_fusion": {
+          "state": {
+            "macro_f1": 0.9689199689199689,
+            "recalls": [
+              0.9333333333333333,
+              0.9791666666666666,
+              1.0
+            ],
+            "brier": 0.046536994382535724,
+            "nll": 0.0771168043521123
+          },
+          "anomaly": {
+            "n": 272,
+            "positives": 76,
+            "f1": 0.9866666666666667,
+            "ap": 1.0,
+            "auc": 1.0,
+            "precision": 1.0,
+            "recall": 0.9736842105263158,
+            "fpr": 0.0,
+            "FP": 0,
+            "FN": 2,
+            "threshold": 0.6332987413871206,
+            "prob_brier": 0.006177202777218331,
+            "prob_nll": 0.04631995603233535
+          },
+          "health_score_MAE": 8.0348335404131
+        },
+        "C_updated_detector_refit_fusion": {
+          "state": {
+            "macro_f1": 0.9781888997078871,
+            "recalls": [
+              0.9583333333333334,
+              0.9791666666666666,
+              1.0
+            ],
+            "brier": 0.0351254914020282,
+            "nll": 0.06408487052868772
+          },
+          "anomaly": {
+            "n": 272,
+            "positives": 76,
+            "f1": 0.9866666666666667,
+            "ap": 1.0,
+            "auc": 1.0,
+            "precision": 1.0,
+            "recall": 0.9736842105263158,
+            "fpr": 0.0,
+            "FP": 0,
+            "FN": 2,
+            "threshold": 0.6332987413871206,
+            "prob_brier": 0.006177202777218331,
+            "prob_nll": 0.04631995603233535
+          },
+          "health_score_MAE": 7.824881783497574
+        },
+        "D_staged_validation_selection": {
+          "state": {
+            "macro_f1": 0.9781888997078871,
+            "recalls": [
+              0.9583333333333334,
+              0.9791666666666666,
+              1.0
+            ],
+            "brier": 0.0351254914020282,
+            "nll": 0.06408487052868772
+          },
+          "anomaly": {
+            "n": 272,
+            "positives": 76,
+            "f1": 0.9866666666666667,
+            "ap": 1.0,
+            "auc": 1.0,
+            "precision": 1.0,
+            "recall": 0.9736842105263158,
+            "fpr": 0.0,
+            "FP": 0,
+            "FN": 2,
+            "threshold": 0.6332987413871206,
+            "prob_brier": 0.006177202777218331,
+            "prob_nll": 0.04631995603233535
+          },
+          "health_score_MAE": 7.824881783497574
+        }
+      },
+      "probability_shifts": {
+        "gate_validation": {
+          "stale": {
+            "anomaly_probability_mean_abs_change": 0.011229054687174242,
+            "anomaly_probability_p95_abs_change": 0.0377635153499553,
+            "anomaly_bernoulli_JS_nats": 0.0018488117350657428,
+            "anomaly_binary_rank_preserved": false,
+            "fused_state_JS_nats": 0.0012976848762440546,
+            "fused_state_probability_mean_abs_change": 0.004423406174486582
+          },
+          "refit": {
+            "anomaly_probability_mean_abs_change": 0.011229054687174242,
+            "anomaly_probability_p95_abs_change": 0.0377635153499553,
+            "anomaly_bernoulli_JS_nats": 0.0018488117350657428,
+            "anomaly_binary_rank_preserved": false,
+            "fused_state_JS_nats": 0.005195929894660506,
+            "fused_state_probability_mean_abs_change": 0.019061494507720145
+          }
+        },
+        "audit_mission3": {
+          "stale": {
+            "anomaly_probability_mean_abs_change": 0.01362373107478414,
+            "anomaly_probability_p95_abs_change": 0.03933063085822031,
+            "anomaly_bernoulli_JS_nats": 0.0016021833971239744,
+            "anomaly_binary_rank_preserved": false,
+            "fused_state_JS_nats": 0.0030828411193758783,
+            "fused_state_probability_mean_abs_change": 0.00983032504454569
+          },
+          "refit": {
+            "anomaly_probability_mean_abs_change": 0.01362373107478414,
+            "anomaly_probability_p95_abs_change": 0.03933063085822031,
+            "anomaly_bernoulli_JS_nats": 0.0016021833971239744,
+            "anomaly_binary_rank_preserved": false,
+            "fused_state_JS_nats": 0.00482800881369785,
+            "fused_state_probability_mean_abs_change": 0.0189894827996801
+          }
+        }
+      },
+      "gate_checks": {
+        "state_macro_f1": true,
+        "state_brier": true,
+        "state_nll": true,
+        "anomaly_recall": true,
+        "anomaly_fpr": true,
+        "health_score_mae": true
+      },
+      "stage_only": true,
+      "candidate_allowed_for_human_approval": true,
+      "selected_undeployed_arm": "C_updated_detector_refit_fusion",
+      "runtime_audit": {
+        "old_anomaly_predict": {
+          "median_ms": 32.648921000003384,
+          "q25_ms": 32.41959700000052,
+          "q75_ms": 32.78557600000909,
+          "repeats": 9
+        },
+        "candidate_anomaly_predict": {
+          "median_ms": 32.89297000000602,
+          "q25_ms": 32.661474000008184,
+          "q75_ms": 33.064569000003985,
+          "repeats": 9
+        },
+        "A_legacy_detector_compatible_fusion_state_hmm_and_fusion_given_cached_anomaly": {
+          "median_ms": 61.50803100001667,
+          "q25_ms": 61.36112499999058,
+          "q75_ms": 61.69788799999765,
+          "repeats": 9
+        },
+        "B_updated_detector_stale_fusion_state_hmm_and_fusion_given_cached_anomaly": {
+          "median_ms": 60.993676999999025,
+          "q25_ms": 60.80747499999006,
+          "q75_ms": 61.18287999998984,
+          "repeats": 9
+        },
+        "C_updated_detector_refit_fusion_state_hmm_and_fusion_given_cached_anomaly": {
+          "median_ms": 61.02155799999309,
+          "q25_ms": 60.9140150000087,
+          "q75_ms": 61.22822700001507,
+          "repeats": 9
+        }
+      }
+    },
+    "logit_scale_stress": {
+      "stress_is_artificial": true,
+      "threshold_fit_on_cycle9": {
+        "old": 0.6233415371563787,
+        "candidate": 0.843368826122341
+      },
+      "fusion_fit_times": {
+        "old": {
+          "median_ms": 9.429248999992978,
+          "q25_ms": 9.380782500016949,
+          "q75_ms": 9.510226000003286,
+          "repeats": 7
+        },
+        "candidate": {
+          "median_ms": 11.620389999990266,
+          "q25_ms": 11.56808700000056,
+          "q75_ms": 11.878536500006476,
+          "repeats": 7
+        }
+      },
+      "gate_validation": {
+        "A_legacy_detector_compatible_fusion": {
+          "state": {
+            "macro_f1": 0.9875475613974404,
+            "recalls": [
+              0.9666666666666667,
+              1.0,
+              1.0
+            ],
+            "brier": 0.014656678459700406,
+            "nll": 0.03460436129582725
+          },
+          "anomaly": {
+            "n": 68,
+            "positives": 19,
+            "f1": 1.0,
+            "ap": 1.0,
+            "auc": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "fpr": 0.0,
+            "FP": 0,
+            "FN": 0,
+            "threshold": 0.6233415371563787,
+            "prob_brier": 0.003704590976611701,
+            "prob_nll": 0.034129632831263426
+          },
+          "health_score_MAE": 7.82212517090392
+        },
+        "B_updated_detector_stale_fusion": {
+          "state": {
+            "macro_f1": 1.0,
+            "recalls": [
+              1.0,
+              1.0,
+              1.0
+            ],
+            "brier": 0.007806555737918795,
+            "nll": 0.027526351410591433
+          },
+          "anomaly": {
+            "n": 68,
+            "positives": 19,
+            "f1": 1.0,
+            "ap": 1.0,
+            "auc": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "fpr": 0.0,
+            "FP": 0,
+            "FN": 0,
+            "threshold": 0.843368826122341,
+            "prob_brier": 0.0003663252563620707,
+            "prob_nll": 0.006052985406040384
+          },
+          "health_score_MAE": 7.506928001148947
+        },
+        "C_updated_detector_refit_fusion": {
+          "state": {
+            "macro_f1": 1.0,
+            "recalls": [
+              1.0,
+              1.0,
+              1.0
+            ],
+            "brier": 0.009354836075026319,
+            "nll": 0.03024641471311403
+          },
+          "anomaly": {
+            "n": 68,
+            "positives": 19,
+            "f1": 1.0,
+            "ap": 1.0,
+            "auc": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "fpr": 0.0,
+            "FP": 0,
+            "FN": 0,
+            "threshold": 0.843368826122341,
+            "prob_brier": 0.0003663252563620707,
+            "prob_nll": 0.006052985406040384
+          },
+          "health_score_MAE": 7.393723058869991
+        },
+        "D_staged_validation_selection": {
+          "state": {
+            "macro_f1": 1.0,
+            "recalls": [
+              1.0,
+              1.0,
+              1.0
+            ],
+            "brier": 0.009354836075026319,
+            "nll": 0.03024641471311403
+          },
+          "anomaly": {
+            "n": 68,
+            "positives": 19,
+            "f1": 1.0,
+            "ap": 1.0,
+            "auc": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "fpr": 0.0,
+            "FP": 0,
+            "FN": 0,
+            "threshold": 0.843368826122341,
+            "prob_brier": 0.0003663252563620707,
+            "prob_nll": 0.006052985406040384
+          },
+          "health_score_MAE": 7.393723058869991
+        }
+      },
+      "audit_mission3": {
+        "A_legacy_detector_compatible_fusion": {
+          "state": {
+            "macro_f1": 0.9657846419699752,
+            "recalls": [
+              0.9333333333333333,
+              0.96875,
+              1.0
+            ],
+            "brier": 0.05214790546326092,
+            "nll": 0.08655613543130991
+          },
+          "anomaly": {
+            "n": 272,
+            "positives": 76,
+            "f1": 0.9798657718120806,
+            "ap": 1.0,
+            "auc": 1.0,
+            "precision": 1.0,
+            "recall": 0.9605263157894737,
+            "fpr": 0.0,
+            "FP": 0,
+            "FN": 3,
+            "threshold": 0.6233415371563787,
+            "prob_brier": 0.0062528582804348715,
+            "prob_nll": 0.045307395262492015
+          },
+          "health_score_MAE": 8.109205197027933
+        },
+        "B_updated_detector_stale_fusion": {
+          "state": {
+            "macro_f1": 0.9750951227948806,
+            "recalls": [
+              0.95,
+              0.9791666666666666,
+              1.0
+            ],
+            "brier": 0.04223785516529538,
+            "nll": 0.0698518770642813
+          },
+          "anomaly": {
+            "n": 272,
+            "positives": 76,
+            "f1": 0.9866666666666667,
+            "ap": 1.0,
+            "auc": 1.0,
+            "precision": 1.0,
+            "recall": 0.9736842105263158,
+            "fpr": 0.0,
+            "FP": 0,
+            "FN": 2,
+            "threshold": 0.843368826122341,
+            "prob_brier": 0.0013367664200852186,
+            "prob_nll": 0.012284972680077675
+          },
+          "health_score_MAE": 7.957113759990765
+        },
+        "C_updated_detector_refit_fusion": {
+          "state": {
+            "macro_f1": 0.9781888997078871,
+            "recalls": [
+              0.9583333333333334,
+              0.9791666666666666,
+              1.0
+            ],
+            "brier": 0.03309034087768973,
+            "nll": 0.059474938101952944
+          },
+          "anomaly": {
+            "n": 272,
+            "positives": 76,
+            "f1": 0.9866666666666667,
+            "ap": 1.0,
+            "auc": 1.0,
+            "precision": 1.0,
+            "recall": 0.9736842105263158,
+            "fpr": 0.0,
+            "FP": 0,
+            "FN": 2,
+            "threshold": 0.843368826122341,
+            "prob_brier": 0.0013367664200852186,
+            "prob_nll": 0.012284972680077675
+          },
+          "health_score_MAE": 7.7919598392998335
+        },
+        "D_staged_validation_selection": {
+          "state": {
+            "macro_f1": 0.9781888997078871,
+            "recalls": [
+              0.9583333333333334,
+              0.9791666666666666,
+              1.0
+            ],
+            "brier": 0.03309034087768973,
+            "nll": 0.059474938101952944
+          },
+          "anomaly": {
+            "n": 272,
+            "positives": 76,
+            "f1": 0.9866666666666667,
+            "ap": 1.0,
+            "auc": 1.0,
+            "precision": 1.0,
+            "recall": 0.9736842105263158,
+            "fpr": 0.0,
+            "FP": 0,
+            "FN": 2,
+            "threshold": 0.843368826122341,
+            "prob_brier": 0.0013367664200852186,
+            "prob_nll": 0.012284972680077675
+          },
+          "health_score_MAE": 7.7919598392998335
+        }
+      },
+      "probability_shifts": {
+        "gate_validation": {
+          "stale": {
+            "anomaly_probability_mean_abs_change": 0.026625660227161372,
+            "anomaly_probability_p95_abs_change": 0.09114613359470213,
+            "anomaly_bernoulli_JS_nats": 0.006345748363580848,
+            "anomaly_binary_rank_preserved": false,
+            "fused_state_JS_nats": 0.0017186854787872938,
+            "fused_state_probability_mean_abs_change": 0.00954470810176838
+          },
+          "refit": {
+            "anomaly_probability_mean_abs_change": 0.026625660227161372,
+            "anomaly_probability_p95_abs_change": 0.09114613359470213,
+            "anomaly_bernoulli_JS_nats": 0.006345748363580848,
+            "anomaly_binary_rank_preserved": false,
+            "fused_state_JS_nats": 0.004020263171960187,
+            "fused_state_probability_mean_abs_change": 0.017255917019938914
+          }
+        },
+        "audit_mission3": {
+          "stale": {
+            "anomaly_probability_mean_abs_change": 0.029976157267852743,
+            "anomaly_probability_p95_abs_change": 0.10872293675232486,
+            "anomaly_bernoulli_JS_nats": 0.006492489780114285,
+            "anomaly_binary_rank_preserved": false,
+            "fused_state_JS_nats": 0.0025872669661869095,
+            "fused_state_probability_mean_abs_change": 0.01212019955393437
+          },
+          "refit": {
+            "anomaly_probability_mean_abs_change": 0.029976157267852743,
+            "anomaly_probability_p95_abs_change": 0.10872293675232486,
+            "anomaly_bernoulli_JS_nats": 0.006492489780114285,
+            "anomaly_binary_rank_preserved": false,
+            "fused_state_JS_nats": 0.004292344307236759,
+            "fused_state_probability_mean_abs_change": 0.018245564226542364
+          }
+        }
+      },
+      "gate_checks": {
+        "state_macro_f1": true,
+        "state_brier": true,
+        "state_nll": true,
+        "anomaly_recall": true,
+        "anomaly_fpr": true,
+        "health_score_mae": true
+      },
+      "stage_only": true,
+      "candidate_allowed_for_human_approval": true,
+      "selected_undeployed_arm": "C_updated_detector_refit_fusion",
+      "runtime_audit": {
+        "old_anomaly_predict": {
+          "median_ms": 32.97494599999595,
+          "q25_ms": 32.79662899998925,
+          "q75_ms": 33.06609399999161,
+          "repeats": 9
+        },
+        "candidate_anomaly_predict": {
+          "median_ms": 32.65427599998816,
+          "q25_ms": 32.371566999984225,
+          "q75_ms": 32.940945000007105,
+          "repeats": 9
+        },
+        "A_legacy_detector_compatible_fusion_state_hmm_and_fusion_given_cached_anomaly": {
+          "median_ms": 61.70858100000487,
+          "q25_ms": 61.60730100000933,
+          "q75_ms": 62.07870800000137,
+          "repeats": 9
+        },
+        "B_updated_detector_stale_fusion_state_hmm_and_fusion_given_cached_anomaly": {
+          "median_ms": 61.466825999985986,
+          "q25_ms": 61.18768999999702,
+          "q75_ms": 61.592552999997,
+          "repeats": 9
+        },
+        "C_updated_detector_refit_fusion_state_hmm_and_fusion_given_cached_anomaly": {
+          "median_ms": 61.34789200001478,
+          "q25_ms": 61.096618999982866,
+          "q75_ms": 61.50414600000431,
+          "repeats": 9
+        }
+      }
+    }
+  },
+  "limitations": [
+    "All new binary anomalies and three-class labels were generated by frozen simulator; not satellite expert labels",
+    "No new normal regime has actually been discovered or verified by a human",
+    "Candidate RF uses ordinary supervised refit on history plus exactly one 68-window simulated labeled cycle",
+    "Baseline and refreshed fusion both fit on exactly same reserved cycle10 three-class labels",
+    "Original frozen hierarchy probabilities/Platt calibration and prior already saw ALL mission2 labels including gate cycle11; inherited reference state-model leakage makes gate comparative and not independent full-pipeline validation",
+    "Original publication fusion is NOT reused as comparison baseline; it used whole mission2, so we refit both old/new fusion on cycle10 for fairer pairwise comparison",
+    "Mission3 was already observed in historical MVP publications; this is exploratory, not a fresh unknown audit set",
+    "Probability logit scaling is a deliberately artificial interface stress, not a real trained detector",
+    "No proprietary patent mechanism is tested; ordinary recalibration/rollback alone is not a patentable algorithm by itself",
+    "No model is auto deployed; no real authorized approval or human reviewed data",
+    "Do not compare with physical spacecraft degradation or real health score labels"
+  ]
+}
