@@ -1,0 +1,79 @@
+{
+  "version": "synthetic_hmm_fusion_ablation_v1",
+  "goal": "Module-specific, same-dataset effectiveness and compute audit for two-stage state classifier, causal smoothing, HMM and late evidence fusion",
+  "data": {
+    "source": "Frozen synthetic MVP generated with SEED=20261016",
+    "state_label": "SIMULATED healthy/degraded/fault classes",
+    "training_source_missions": [
+      0,
+      1
+    ],
+    "calibration_source_mission": 2,
+    "heldout_mission": 3,
+    "windows_expected": 272,
+    "score_label": "SIMULATED operator score"
+  },
+  "artifact": {
+    "model_path": "results/mvp/model_bundle.joblib",
+    "baseline_metrics_path": "results/mvp/metrics.json",
+    "frozen_synthetic_protocol_path": "mvp/SPEC_FROZEN.json",
+    "no_refit": true
+  },
+  "feature_selection": {
+    "real_highdim_branch_budget": 64,
+    "meaning": "MAXIMUM 64 for prior 2578D OPS-SAT study; selected 37 features; not claimed globally optimal",
+    "synthetic_state_branch": "Reuse previously frozen selectors (50, 10); do not retroactively apply OPS-SAT budget to a different training setup"
+  },
+  "comparison": [
+    "static_hierarchical",
+    "causal_rolling_mean_3",
+    "causal_hmm_gamma_0.6_memory_0.5",
+    "hmm_plus_anomaly_late_fusion"
+  ],
+  "no_test_tuning": true,
+  "window_frequency_minutes": 4,
+  "timing": {
+    "repeats": 17,
+    "single_thread": true,
+    "separate_stage_inference_cost": true,
+    "warmup": true
+  },
+  "metrics": {
+    "quality": [
+      "macro_F1",
+      "balanced_accuracy",
+      "per_class_recall",
+      "multi_Brier",
+      "NLL",
+      "confusion_matrix"
+    ],
+    "timeliness": [
+      "true_change_events",
+      "transition_detected",
+      "transition_missed",
+      "median_detected_delay_minutes",
+      "mean_detected_delay_minutes",
+      "p90_detected_delay_minutes",
+      "spurious_prediction_state_switches"
+    ],
+    "compute": [
+      "end_to_end_state_stage_time_ms_on_272_windows",
+      "incremental_causal_filter_time_ms",
+      "fusion_extra_inference_time_ms",
+      "time_per_window_ms"
+    ],
+    "health_score": [
+      "default_score_mapping_MAE",
+      "corrected_simulated_feedback_MAE"
+    ]
+  },
+  "limitations": [
+    "This is simulated satellite states and scores, not real physical fault validation",
+    "Model/calibrator/fusion were already built in frozen MVP. This is a frozen post-hoc diagnostic, not new unseen test model selection",
+    "HMM is causal discriminative-evidence forward filtering, not a separately verified full DBN",
+    "Rolling baseline is a causal history only, no future context",
+    "Transitions evaluated only within cycles (no cross-device/sequence transition)",
+    "Performance not comparable to real OPS-SAT binary classification",
+    "Patent-specific new algorithm should not be disclosed in public branch"
+  ]
+}
