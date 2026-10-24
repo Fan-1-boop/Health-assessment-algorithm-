@@ -1,0 +1,73 @@
+{
+  "version": "strict_cycle_isolation_and_rollback_v1",
+  "research_scope": "ordinary public engineering controls for simulated branch-update safety and full end-to-end rollback",
+  "frozen_input": "MVP simulator version and seed untouched, missions 0..3, cycles0..15",
+  "core_architecture": "original frozen MSF-selected stage1 50 + stage2 10 (union 59) -> two-stage classification re-fit -> HMM frozen parameters -> RF anomaly probabilities -> refitted or stale ordinary multinomial stacking",
+  "separate_real_binary_budget_note": "MSF maximum budget 64 from OPS-SAT 2578D is fixed experimental choice, actual 37 selected, NOT applied retroactively to separate 400D synthetic state task",
+  "dataset_partition": {
+    "model_fit_missions": [
+      0,
+      1
+    ],
+    "state_probability_calibration_cycle": 8,
+    "anomaly_threshold_calibration_cycle": 8,
+    "added_binary_labels_cycle": 9,
+    "old_and_new_fusion_fit_cycle": 10,
+    "full_pipeline_acceptance_cycle": 11,
+    "heldout_audit_mission": 3,
+    "expected_fit_windows": 544,
+    "expected_cycle_windows": 68,
+    "expected_audit_windows": 272
+  },
+  "selectors": "reuse previously frozen selected 50,10 indices originally computed ONLY from missions0,1",
+  "model_refit": "hierarchical classifiers train on missions0/1, Platt calibrate only cycle8; HMM state transitions from missions0/1; anomaly old RF already fit missions0/1",
+  "update": "new RF clone trained missions0/1 and cycle9 only; freeze hierarchical and HMM once re-fit, all candidate scenarios use same state model",
+  "metrics": [
+    "three_state_macro_f1",
+    "three_state_Brier",
+    "three_state_NLL",
+    "anomaly_recall",
+    "anomaly_normal_FPR",
+    "anomaly_AP",
+    "health_score_default_mapping_MAE",
+    "model_update_train_ms",
+    "fusion_retrain_ms",
+    "rollback_output_identity",
+    "probability_JS_distance"
+  ],
+  "arms": {
+    "A": "Old RF + reference fusion trained cycle10",
+    "B": "Supervised updated RF + stale reference fusion",
+    "C": "Supervised updated RF + ordinary fusion recalibration using SAME cycle10 labels",
+    "D": "Accept C only if independent cycle11 quality constraints hold, else exact rollback to A (no release)"
+  },
+  "scenarios": {
+    "honest_simulated_update": "Correct simulator binary anomaly labels from cycle9, not actual human review",
+    "incorrect_label_batch": "Exactly flipped binary labels for cycle9; structural metadata valid, semantic truth not verified, stress structural gate and independent downstream regression",
+    "semantic_probability_channel_fault": "Take normal C output and swap 3-class healthy/fault columns without retraining; intentional bad-wire fault verifying reject and exact A rollback, not a scientific model improvement"
+  },
+  "regression_rules": {
+    "max_state_macro_f1_drop": 0.02,
+    "max_state_Brier_increase": 0.01,
+    "max_state_NLL_increase": 0.02,
+    "max_anomaly_recall_drop": 0.05,
+    "max_anomaly_FPR_increase": 0.02,
+    "max_health_MAE_increase": 1,
+    "reject_non_finite_or_wrong_class_probability": true,
+    "reject_if_no_approved_release": true
+  },
+  "timing": {
+    "RF_retrain_repeats": 3,
+    "fusion_fit_repeats": 5,
+    "single_thread": true
+  },
+  "scientific_limits": [
+    "This is the same synthetic simulator and previously inspected mission3; exploratory not fresh confirmatory validation",
+    "State feature selection uses mission0/1 only; two-stage state Platt calibration and anomaly thresholds use only cycle8; update batch cycle9; fusion fit cycle10; independent gate cycle11; mission3 audit untouched within this experiment",
+    "A deliberately corrupted class-label batch or swapped probability channels are injected faults, NOT human-reviewed correct labels or naturally observed satellite operation",
+    "Nothing ever deploys to the public delivery branch",
+    "No novel patent-specific algorithm details committed to publicly accessible repository",
+    "No physical 3-class health state annotations in real OPS-SAT, no transfer-learning requirements"
+  ],
+  "acceptance_predeclared": "Gate compare C to A only on cycle11, never select from mission3; D retains A prediction bit-for-bit if rejected; external approval always false"
+}
