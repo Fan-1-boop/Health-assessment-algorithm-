@@ -1,0 +1,58 @@
+name: OPS-SAT MSF feature-budget quality and cost
+on:
+  push:
+    branches:
+      - research/hitl-quality-gated-update
+    paths:
+      - '.github/workflows/opssat_feature_budget.yml'
+  workflow_dispatch:
+jobs:
+  budget_study:
+    runs-on: ubuntu-latest
+    timeout-minutes: 55
+    permissions:
+      contents: write
+    env:
+      PYTHONHASHSEED: '0'
+      OMP_NUM_THREADS: '1'
+      OPENBLAS_NUM_THREADS: '1'
+      MKL_NUM_THREADS: '1'
+      NUMEXPR_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install numerical runtime for reproducible timing
+        run: |
+          python -m pip install -r requirements.txt
+          python -m pip install joblib matplotlib requests
+      - name: Test selector budgets and reproducibility
+        run: |
+          python -m pytest -q research/feature_budget/test_budget.py
+      - name: Run preregistered 2578D real OPS-SAT budget ablation
+        run: |
+          python -u research/feature_budget/run_budget.py --out results/feature_budget
+      - name: Archive detailed metrics, CSV, and charts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: opssat-feature-budget-pareto-v1
+          path: results/feature_budget/
+          if-no-files-found: warn
+      - name: Commit audited output to research branch only
+        if: success()
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add results/feature_budget/
+          git commit -m 'results(research): MSF/Fisher feature budgets vs F1 AP and search/training cost' || exit 0
+          git fetch origin research/hitl-quality-gated-update
+          git rebase origin/research/hitl-quality-gated-update
+          for n in 1 2 3; do
+            if git push origin HEAD:research/hitl-quality-gated-update; then exit 0; fi
+            git fetch origin research/hitl-quality-gated-update
+            git rebase origin/research/hitl-quality-gated-update
+          done
+          exit 1
