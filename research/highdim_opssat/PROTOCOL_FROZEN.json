@@ -1,0 +1,121 @@
+{
+  "version": "opssat_raw_2578d_tradeoff_v1",
+  "source": {
+    "zenodo_record": 12588359,
+    "raw_url": "https://zenodo.org/api/records/12588359/files/segments.csv/content",
+    "original_features_path": "results/real_ops_sat/dataset.csv",
+    "expected_segments": 2123,
+    "expected_raw_rows": 303493,
+    "expected_raw_columns": [
+      "channel",
+      "timestamp",
+      "value",
+      "label",
+      "sampling",
+      "anomaly",
+      "segment",
+      "train"
+    ]
+  },
+  "protocol": {
+    "only_original_train_1": true,
+    "official_test_0": "excluded completely",
+    "train_fraction": 0.6,
+    "calibration_fraction": 0.2,
+    "audit_fraction": 0.2,
+    "random_seed": 20261024,
+    "split_by_unique_segment": true
+  },
+  "high_dim_features": {
+    "normalized_resampling_points": 128,
+    "window_widths": [
+      8,
+      12,
+      16,
+      24,
+      32,
+      48,
+      64,
+      96
+    ],
+    "positions_per_width": 16,
+    "descriptors": [
+      "mean",
+      "std",
+      "min",
+      "max",
+      "p10",
+      "p90",
+      "rms",
+      "slope",
+      "delta",
+      "diff_abs_mean",
+      "diff_std",
+      "lag1_corr",
+      "lag2_corr",
+      "spectral_low_ratio",
+      "spectral_high_ratio",
+      "iqr",
+      "median",
+      "mad",
+      "center_value",
+      "energy"
+    ],
+    "additional_raw_segment_features": 2560,
+    "official_source_features": 18,
+    "total_features": 2578,
+    "notes": "Features are deterministic summaries of single-channel raw segments. Interpolating segments of length 8..1040 to 128 points does not create additional independent information."
+  },
+  "selectors": {
+    "msf": {
+      "population": 8,
+      "generations": 3,
+      "seed": 42,
+      "tolerance": 0.03
+    },
+    "alternatives": [
+      "Fisher64",
+      "Fisher128",
+      "Fisher256",
+      "Fisher512",
+      "Fisher1024"
+    ],
+    "all_features": "2578",
+    "official_features_only": "18"
+  },
+  "classifier": {
+    "type": "sklearn Pipeline(StandardScaler,LogisticRegression)",
+    "solver": "liblinear",
+    "max_iter": 350,
+    "class_weight": "balanced",
+    "C": 0.5,
+    "random_state": 42
+  },
+  "thresholds": "f1 maximizing only internal calibration subset; frozen on audit",
+  "timing": {
+    "repeat_model_fit": 5,
+    "repeat_predict": 5,
+    "blas_omp_threads": 1,
+    "feature_extraction_separate": true,
+    "selector_search_timed_once": true,
+    "report_first_fit_and_10_fits_amortized": true
+  },
+  "outputs": [
+    "metrics.json",
+    "comparison.csv",
+    "RESULTS.md",
+    "cost_vs_f1_fit.png",
+    "cost_vs_f1_initial.png",
+    "cost_vs_ap_fit.png",
+    "source_manifest.json",
+    "raw_feature_cache.npz (CI artifact only, not GitHub commit)"
+  ],
+  "expected_runtime_scope": "single CPU GitHub Actions execution; highdim full features training CPU time measured; no speedup claims until measured",
+  "prohibited": [
+    "No synthetic added noise or randomly generated fake input features",
+    "No cross-dataset generalization claims",
+    "No tuning using any original official test=0 labels",
+    "No claim that interpolation creates new sensor information",
+    "Do not change delivery branch"
+  ]
+}
