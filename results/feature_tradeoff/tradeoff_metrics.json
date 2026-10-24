@@ -1,0 +1,372 @@
+{
+  "experiment": "one_dataset_msf_tradeoff_v0.1",
+  "scope": "Single real satellite dataset OPS-SAT-AD, official 18 full-segment features",
+  "purpose": "Feature count vs downstream supervised fit cost and audit performance",
+  "data_sha256": "da20bc4bd3f30a3302ce06fe6a073bea6f036b297a92e83311d3f83b9c5e619b",
+  "config_sha256": "6b7afc5181e98b35a20afe01a4428469aec87348e3ae6be6ac46eaafd7986f0e",
+  "split": {
+    "fit": 956,
+    "calibration": 319,
+    "internal_audit": 319,
+    "official_test_excluded": 529,
+    "fit_positive": 193,
+    "cal_positive": 64,
+    "audit_positive": 64
+  },
+  "measurement": {
+    "runs_per_model": 7,
+    "preprocessing_once_ms": 0.690534000000298,
+    "timer": "time.perf_counter wall clock, same single CPU runner; no GPU",
+    "selection_timed_once": true,
+    "cpu_count": 4,
+    "blas_thread_env": {
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "NUMEXPR_NUM_THREADS": "1"
+    },
+    "feature_source": "Precomputed official 18 statistical features; input feature engineering cost unmeasured",
+    "timing_precision": "Small millisecond times are OS scheduling sensitive; median and quartiles are reported"
+  },
+  "msf_internal_selection": {
+    "selected": 7,
+    "search_metadata": {
+      "candidate_dim": 18,
+      "selected_dim": 7,
+      "guided_sizes": [
+        1,
+        2,
+        4
+      ],
+      "unique_wrapper_evaluations": 50,
+      "selection_cv_gmean": 0.88045,
+      "pareto_objectives": [
+        [
+          0.3646,
+          0.05556
+        ],
+        [
+          0.3646,
+          0.05556
+        ],
+        [
+          0.11955,
+          0.38889
+        ],
+        [
+          0.21635,
+          0.16667
+        ],
+        [
+          0.27965,
+          0.11111
+        ],
+        [
+          0.27965,
+          0.11111
+        ],
+        [
+          0.15124,
+          0.33333
+        ],
+        [
+          0.19469,
+          0.22222
+        ],
+        [
+          0.16516,
+          0.27778
+        ],
+        [
+          0.19469,
+          0.22222
+        ],
+        [
+          0.16516,
+          0.27778
+        ],
+        [
+          0.15124,
+          0.33333
+        ]
+      ]
+    }
+  },
+  "pareto_front_fit_time_vs_F1": [
+    "msf_mofs_selected",
+    "fisher_top3",
+    "fisher_top6",
+    "fisher_top9",
+    "fisher_top15"
+  ],
+  "pareto_front_initial_total_vs_F1": [
+    "fisher_top3",
+    "fisher_top6",
+    "fisher_top9",
+    "fisher_top15"
+  ],
+  "records": [
+    {
+      "name": "all_18",
+      "feature_count": 18,
+      "feature_fraction": 1.0,
+      "feature_names": [
+        "mean",
+        "var",
+        "std",
+        "len",
+        "duration",
+        "len_weighted",
+        "gaps_squared",
+        "n_peaks",
+        "smooth10_n_peaks",
+        "smooth20_n_peaks",
+        "var_div_duration",
+        "var_div_len",
+        "diff_peaks",
+        "diff2_peaks",
+        "diff_var",
+        "diff2_var",
+        "kurtosis",
+        "skew"
+      ],
+      "selection_ms_once": 0.0,
+      "model_fit_median_ms": 143.28626399998257,
+      "model_fit_q25_ms": 142.96486199999947,
+      "model_fit_q75_ms": 144.31099349999954,
+      "predict_audit_median_ms": 3.9584830000194415,
+      "predict_audit_q25_ms": 3.91747749999638,
+      "predict_audit_q75_ms": 3.96289900000113,
+      "predict_per_segment_median_ms": 0.012409037617615803,
+      "select_plus_first_fit_ms": 143.28626399998257,
+      "model_size_bytes": 118685,
+      "validation_threshold": 0.14268215718957467,
+      "audit_f1": 0.8571428571428571,
+      "audit_ap": 0.9309483791876189,
+      "audit_recall": 0.890625,
+      "audit_precision": 0.8260869565217391,
+      "audit_fpr": 0.047058823529411764,
+      "audit_mcc": 0.8205115248453808,
+      "audit_fp": 12,
+      "audit_fn": 7
+    },
+    {
+      "name": "msf_mofs_selected",
+      "feature_count": 7,
+      "feature_fraction": 0.3888888888888889,
+      "feature_names": [
+        "len",
+        "n_peaks",
+        "smooth20_n_peaks",
+        "var_div_duration",
+        "diff2_peaks",
+        "diff_var",
+        "kurtosis"
+      ],
+      "selection_ms_once": 449.50462999997853,
+      "model_fit_median_ms": 100.53454900000247,
+      "model_fit_q25_ms": 99.9414234999989,
+      "model_fit_q75_ms": 100.66132100000402,
+      "predict_audit_median_ms": 3.831456000000344,
+      "predict_audit_q25_ms": 3.81998900000724,
+      "predict_audit_q75_ms": 3.847960000001649,
+      "predict_per_segment_median_ms": 0.012010833855800452,
+      "select_plus_first_fit_ms": 550.039178999981,
+      "model_size_bytes": 101241,
+      "validation_threshold": 0.20413102394804866,
+      "audit_f1": 0.8125,
+      "audit_ap": 0.8983657529689357,
+      "audit_recall": 0.8125,
+      "audit_precision": 0.8125,
+      "audit_fpr": 0.047058823529411764,
+      "audit_mcc": 0.7654411764705882,
+      "audit_fp": 12,
+      "audit_fn": 12
+    },
+    {
+      "name": "fisher_top3",
+      "feature_count": 3,
+      "feature_fraction": 0.16666666666666666,
+      "feature_names": [
+        "smooth10_n_peaks",
+        "kurtosis",
+        "len"
+      ],
+      "selection_ms_once": 0.691724999995813,
+      "model_fit_median_ms": 84.91562599999725,
+      "model_fit_q25_ms": 84.78842399999564,
+      "model_fit_q75_ms": 85.52703400000894,
+      "predict_audit_median_ms": 3.929340000013326,
+      "predict_audit_q25_ms": 3.8701829999894244,
+      "predict_audit_q75_ms": 3.9436254999998255,
+      "predict_per_segment_median_ms": 0.012317680250825474,
+      "select_plus_first_fit_ms": 85.60735099999306,
+      "model_size_bytes": 93674,
+      "validation_threshold": 0.33803081939145235,
+      "audit_f1": 0.5454545454545454,
+      "audit_ap": 0.6287508391591501,
+      "audit_recall": 0.46875,
+      "audit_precision": 0.6521739130434783,
+      "audit_fpr": 0.06274509803921569,
+      "audit_mcc": 0.4628402451838921,
+      "audit_fp": 16,
+      "audit_fn": 34
+    },
+    {
+      "name": "fisher_top6",
+      "feature_count": 6,
+      "feature_fraction": 0.3333333333333333,
+      "feature_names": [
+        "smooth10_n_peaks",
+        "kurtosis",
+        "len",
+        "n_peaks",
+        "duration",
+        "diff2_var"
+      ],
+      "selection_ms_once": 0.691724999995813,
+      "model_fit_median_ms": 96.69496199998662,
+      "model_fit_q25_ms": 96.68799200001388,
+      "model_fit_q75_ms": 96.81483800000024,
+      "predict_audit_median_ms": 3.8687710000147035,
+      "predict_audit_q25_ms": 3.8623660000070004,
+      "predict_audit_q75_ms": 3.9009234999980436,
+      "predict_per_segment_median_ms": 0.01212780877747556,
+      "select_plus_first_fit_ms": 97.38668699998243,
+      "model_size_bytes": 101039,
+      "validation_threshold": 0.7148359170146391,
+      "audit_f1": 0.7678571428571429,
+      "audit_ap": 0.8533635106012302,
+      "audit_recall": 0.671875,
+      "audit_precision": 0.8958333333333334,
+      "audit_fpr": 0.0196078431372549,
+      "audit_mcc": 0.7306011045187659,
+      "audit_fp": 5,
+      "audit_fn": 21
+    },
+    {
+      "name": "fisher_top9",
+      "feature_count": 9,
+      "feature_fraction": 0.5,
+      "feature_names": [
+        "smooth10_n_peaks",
+        "kurtosis",
+        "len",
+        "n_peaks",
+        "duration",
+        "diff2_var",
+        "diff2_peaks",
+        "diff_peaks",
+        "var"
+      ],
+      "selection_ms_once": 0.691724999995813,
+      "model_fit_median_ms": 107.90710599999898,
+      "model_fit_q25_ms": 107.73467199999232,
+      "model_fit_q75_ms": 108.18053199999156,
+      "predict_audit_median_ms": 3.945624000010639,
+      "predict_audit_q25_ms": 3.9081784999979163,
+      "predict_audit_q75_ms": 3.955218000001537,
+      "predict_per_segment_median_ms": 0.012368727272760624,
+      "select_plus_first_fit_ms": 108.59883099999479,
+      "model_size_bytes": 103998,
+      "validation_threshold": 0.37932673057145655,
+      "audit_f1": 0.8455284552845529,
+      "audit_ap": 0.9307175118666208,
+      "audit_recall": 0.8125,
+      "audit_precision": 0.8813559322033898,
+      "audit_fpr": 0.027450980392156862,
+      "audit_mcc": 0.8097373517552587,
+      "audit_fp": 7,
+      "audit_fn": 12
+    },
+    {
+      "name": "fisher_top12",
+      "feature_count": 12,
+      "feature_fraction": 0.6666666666666666,
+      "feature_names": [
+        "smooth10_n_peaks",
+        "kurtosis",
+        "len",
+        "n_peaks",
+        "duration",
+        "diff2_var",
+        "diff2_peaks",
+        "diff_peaks",
+        "var",
+        "len_weighted",
+        "mean",
+        "std"
+      ],
+      "selection_ms_once": 0.691724999995813,
+      "model_fit_median_ms": 120.20456199999785,
+      "model_fit_q25_ms": 119.84217049999302,
+      "model_fit_q75_ms": 120.46563050000714,
+      "predict_audit_median_ms": 3.9296399999955156,
+      "predict_audit_q25_ms": 3.914011999995637,
+      "predict_audit_q75_ms": 3.9641859999903772,
+      "predict_per_segment_median_ms": 0.012318620689641114,
+      "select_plus_first_fit_ms": 120.89628699999366,
+      "model_size_bytes": 108566,
+      "validation_threshold": 0.33479668599865675,
+      "audit_f1": 0.8412698412698413,
+      "audit_ap": 0.9274606136159156,
+      "audit_recall": 0.828125,
+      "audit_precision": 0.8548387096774194,
+      "audit_fpr": 0.03529411764705882,
+      "audit_mcc": 0.8023765529477199,
+      "audit_fp": 9,
+      "audit_fn": 11
+    },
+    {
+      "name": "fisher_top15",
+      "feature_count": 15,
+      "feature_fraction": 0.8333333333333334,
+      "feature_names": [
+        "smooth10_n_peaks",
+        "kurtosis",
+        "len",
+        "n_peaks",
+        "duration",
+        "diff2_var",
+        "diff2_peaks",
+        "diff_peaks",
+        "var",
+        "len_weighted",
+        "mean",
+        "std",
+        "var_div_duration",
+        "gaps_squared",
+        "diff_var"
+      ],
+      "selection_ms_once": 0.691724999995813,
+      "model_fit_median_ms": 131.88669600000935,
+      "model_fit_q25_ms": 131.63992849999318,
+      "model_fit_q75_ms": 132.36641049999776,
+      "predict_audit_median_ms": 3.892074999981787,
+      "predict_audit_q25_ms": 3.8687710000004927,
+      "predict_audit_q75_ms": 3.8988450000090324,
+      "predict_per_segment_median_ms": 0.012200862068908424,
+      "select_plus_first_fit_ms": 132.57842100000516,
+      "model_size_bytes": 113459,
+      "validation_threshold": 0.23117334251884714,
+      "audit_f1": 0.8682170542635659,
+      "audit_ap": 0.9265832553698544,
+      "audit_recall": 0.875,
+      "audit_precision": 0.8615384615384616,
+      "audit_fpr": 0.03529411764705882,
+      "audit_mcc": 0.8348601587461832,
+      "audit_fp": 9,
+      "audit_fn": 8
+    }
+  ],
+  "warnings": [
+    "The original official test=0 was already reported in earlier delivery, but is excluded entirely here",
+    "This is an internal one-dataset tradeoff diagnostic; it cannot prove out-of-domain transfer",
+    "18 input features are already precomputed; extraction-time savings are not measured",
+    "MSF uses logistic regression wrapper; the comparison model here is HistGradientBoosting",
+    "To claim selection improves end-to-end cost, amortize the selector's up-front search cost over a specified number of retrains",
+    "Exact runtime ratios depend on CPU and workload; same hardware used for all methods",
+    "No feature-count/latency tradeoff is itself a novel patent mechanism",
+    "The pretrained frozen MVP and its reported best test model are unchanged"
+  ]
+}
