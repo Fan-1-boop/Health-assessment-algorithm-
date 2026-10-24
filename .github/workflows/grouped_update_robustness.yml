@@ -1,0 +1,57 @@
+name: OPS-SAT grouped update robustness public baselines
+on:
+  push:
+    branches:
+      - research/hitl-quality-gated-update
+    paths:
+      - '.github/workflows/grouped_update_robustness.yml'
+  workflow_dispatch:
+jobs:
+  channel_segment_robustness:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    permissions:
+      contents: write
+    env:
+      PYTHONHASHSEED: '0'
+      OMP_NUM_THREADS: '1'
+      OPENBLAS_NUM_THREADS: '1'
+      MKL_NUM_THREADS: '1'
+      NUMEXPR_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install same single-thread numerical runtime
+        run: |
+          python -m pip install -r requirements.txt
+          python -m pip install matplotlib joblib requests
+      - name: Test group isolation, immutable holdout and semantic uncertainty
+        run: python -m pytest -q research/grouped_update_robustness/test_benchmark.py
+      - name: Compute real OPS-SAT group-heldout ordinary update sensitivity
+        run: |
+          python -u research/grouped_update_robustness/benchmark.py --out results/grouped_update_robustness
+      - name: Archive public reference metrics and private-offline replay inputs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: OPS-SAT-single-dataset-channel-and-segment-block-robustness
+          path: results/grouped_update_robustness/
+          if-no-files-found: warn
+      - name: Commit measured ordinary results only on research branch
+        if: success()
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add results/grouped_update_robustness/
+          git commit -m 'results(research): grouped OPS-SAT supervised updates and leave-channel-out robustness' || exit 0
+          git fetch origin research/hitl-quality-gated-update
+          git rebase origin/research/hitl-quality-gated-update
+          for trial in 1 2 3; do
+            if git push origin HEAD:research/hitl-quality-gated-update; then exit 0; fi
+            git fetch origin research/hitl-quality-gated-update
+            git rebase origin/research/hitl-quality-gated-update
+          done
+          exit 1
