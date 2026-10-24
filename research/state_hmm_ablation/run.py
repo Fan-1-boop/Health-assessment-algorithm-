@@ -26,7 +26,13 @@ sys.path.insert(0,str(ROOT/"src"))
 sys.path.insert(0,str(ROOT/"mvp"))
 from synthetic import generate,make_windows,highdim_features,SEED
 from v13_state import predict_hierarchical,filter_groups,evaluation
-from run import stacking_inputs
+from scipy.special import logit
+
+def stacking_inputs(prob, anomaly):
+    """Exact frozen MVP fusion input construction; no parameter fitting."""
+    prob=np.clip(np.asarray(prob,float),1e-6,1)
+    q=logit(np.clip(np.asarray(anomaly,float),1e-6,1-1e-6))
+    return np.column_stack([np.log(prob),q])
 
 SPEC=ROOT/"research/state_hmm_ablation/PROTOCOL_FROZEN.json"
 FROZEN=ROOT/"results/mvp"
