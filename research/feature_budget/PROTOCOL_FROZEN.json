@@ -1,0 +1,87 @@
+{
+  "version": "opssat_2578d_budget_msf_pilot_v1",
+  "research_question": "Within one real satellite dataset, which feature-budgeted MSF variants provide a reasonable cost-vs-anomaly-detection tradeoff?",
+  "source": "OPS-SAT-AD genuine 303493 raw points, 2123 labeled segments, 2560 deterministic multi-scale descriptors plus original 18",
+  "source_code_to_reuse": "research/highdim_opssat/benchmark.py",
+  "use_official_test_0": false,
+  "important_evidence_warning": "Prior work already inspected independent random audits of official train=1; this new reseeded internal audit is exploratory, not a fresh independent confirmatory test.",
+  "split": {
+    "seed": 20261107,
+    "official_train_1_only": true,
+    "fit_fraction": 0.6,
+    "threshold_calibration_fraction": 0.2,
+    "internal_audit_fraction": 0.2,
+    "stratify_on_anomaly": true,
+    "segment_disjoint": true
+  },
+  "feature_budgets": [
+    16,
+    32,
+    64,
+    128,
+    256,
+    512
+  ],
+  "methods": [
+    "original_18d",
+    "full_2578d",
+    "fisher_top_budget",
+    "budgeted_msf_nsga2"
+  ],
+  "fisher": "Fisher scores computed on fit only; top-k feature masks for each fixed budget",
+  "budgeted_msf": {
+    "Fisher_seed": true,
+    "population": 8,
+    "generations": 3,
+    "inner_cv_folds": 2,
+    "random_seed": 77,
+    "objectives": [
+      "1 - inner-CV G-mean",
+      "subset cardinality / total 2578 features"
+    ],
+    "selected_subset_size": "between 50 percent of budget and budget, chosen from nondominated candidates within 0.025 of best wrapper G-mean",
+    "search_budget_cap": "number of selected descriptors <= feature budget",
+    "training_labels": "fit set only"
+  },
+  "classifier": {
+    "estimator": "StandardScaler + LogisticRegression(C=0.5, class_weight=balanced, solver=liblinear, max_iter=350,random_state=42)",
+    "same_across_methods": true
+  },
+  "timing": {
+    "single_thread_cpu": true,
+    "train_repeats": 5,
+    "prediction_repeats": 5,
+    "feature_extraction_reported_separately": true,
+    "selector_timed_once": true
+  },
+  "primary_evaluation": [
+    "audit F1",
+    "audit AP",
+    "audit Recall",
+    "audit normal FPR",
+    "number of features",
+    "downstream fit time",
+    "selection time",
+    "first-run end-to-end cost excluding raw extraction",
+    "model size"
+  ],
+  "calibration_only_recommendation": {
+    "max_F1_drop_from_full": 0.03,
+    "max_AP_drop_from_full": 0.03,
+    "max_recall_drop_from_full": 0.06,
+    "choose": "minimum selector+10x training cost among candidates satisfying constraints, no audit involvement"
+  },
+  "output_figures": [
+    "fit_time_vs_F1.png",
+    "first_cost_vs_F1.png",
+    "fit_time_vs_AP.png",
+    "feature_count_vs_F1.png"
+  ],
+  "prohibited": [
+    "No post-hoc use of audit to choose tuning",
+    "No cross-dataset transfer work",
+    "No raw feature leakage from different segments",
+    "No change to frozen delivery branch",
+    "No claim NSGA2 budget adaptation is patent novel without prior-art review"
+  ]
+}
