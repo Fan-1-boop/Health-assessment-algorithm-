@@ -1,0 +1,59 @@
+name: Synthetic cross-branch probability compatibility audit
+on:
+  push:
+    branches:
+      - research/hitl-quality-gated-update
+    paths:
+      - '.github/workflows/probability_compatibility.yml'
+  workflow_dispatch:
+jobs:
+  supervised_compatibility:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    permissions:
+      contents: write
+    env:
+      PYTHONHASHSEED: '0'
+      OMP_NUM_THREADS: '1'
+      OPENBLAS_NUM_THREADS: '1'
+      MKL_NUM_THREADS: '1'
+      NUMEXPR_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install frozen MVP dependencies
+        run: |
+          python -m pip install -r requirements.txt
+          python -m pip install matplotlib joblib
+      - name: Test probability compatibility, semantic gate and rollback
+        run: |
+          python -m pytest -q research/probability_compatibility/test_benchmark.py
+          python -m pytest -q research/hitl_update/test_gate.py
+      - name: Run predefined ordinary A/B/C/D cross-branch update study
+        run: |
+          python -u research/probability_compatibility/benchmark.py --out results/probability_compatibility
+      - name: Preserve reproducible diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: synthetic-probability-interface-compatibility
+          path: results/probability_compatibility/
+          if-no-files-found: warn
+      - name: Save results only on public research branch
+        if: success()
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add results/probability_compatibility/
+          git commit -m 'results(research): audited simulated updated-anomaly probability and fusion compatibility' || exit 0
+          git fetch origin research/hitl-quality-gated-update
+          git rebase origin/research/hitl-quality-gated-update
+          for n in 1 2 3; do
+            if git push origin HEAD:research/hitl-quality-gated-update; then exit 0; fi
+            git fetch origin research/hitl-quality-gated-update
+            git rebase origin/research/hitl-quality-gated-update
+          done
+          exit 1
