@@ -1,0 +1,38 @@
+name: OPS-SAT raw segment high-dimensional preflight
+on:
+  push:
+    branches:
+      - research/hitl-quality-gated-update
+    paths:
+      - .github/workflows/opssat_raw_preflight.yml
+  workflow_dispatch:
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Inspect authentic OPS-SAT raw segments and label/split consistency
+        run: |
+          python -m pip install pandas requests numpy
+          python - <<'PY'
+          import pandas as pd,requests,io,numpy as np
+          url='https://zenodo.org/api/records/12588359/files/segments.csv/content'
+          r=requests.get(url,timeout=110);r.raise_for_status()
+          print('RAW_DOWNLOAD_BYTES',len(r.content),flush=True)
+          d=pd.read_csv(io.BytesIO(r.content),parse_dates=['timestamp'])
+          print('RAW_SHAPE',d.shape,flush=True)
+          print('RAW_COLUMNS',d.columns.tolist(),flush=True)
+          print('RAW_SAMPLE',d.head(3).to_dict('records'),flush=True)
+          grp=d.groupby('segment',sort=False)
+          print('N_SEGMENTS',grp.ngroups,flush=True)
+          print('GROUP_SIZE_QUANTILES',grp.size().quantile([0,.01,.05,.1,.25,.5,.75,.9,.99,1]).to_dict(),flush=True)
+          print('LABEL_MIXED',int((grp.anomaly.nunique()>1).sum()),'SPLIT_MIXED',int((grp.train.nunique()>1).sum()),flush=True)
+          print('CHANNEL_VALUES',list(map(str,d.channel.unique()))[:20],flush=True)
+          print('VALUE_NULL_FRAC',float(d.value.isna().mean()),flush=True)
+          print('FREQUENCY_SAMPLING',d.sampling.value_counts(dropna=False).head(12).to_dict() if 'sampling' in d else 'column absent',flush=True)
+          print('FIRST_SEGMENTS',grp.size().head(5).to_dict(),flush=True)
+          PY
