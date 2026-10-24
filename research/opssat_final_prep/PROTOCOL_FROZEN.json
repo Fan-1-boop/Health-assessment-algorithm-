@@ -1,0 +1,90 @@
+{
+  "version": "opssat_real_2578d_budget64_label_stress_v1",
+  "purpose": "One-real-dataset final-validation PREPARATORY pilot: fixed MSF feature budget, simulate label-batch quality faults, compare ordinary binary supervised retrain with validation gates",
+  "stage": "exploratory_pre_acceptance; not final acceptance, not patent-specific innovation",
+  "source": "OPS-SAT-AD Zenodo 12588359 authentic raw 303493 samples + 18 official descriptors; derive 2560 existing fixed descriptors",
+  "old_feature_budget_decision": "maximum64 from prior exploratory MSF budget study; selected subset size may differ under new training partition, this is a fixed budget not a saved mask",
+  "total_features": 2578,
+  "official_test_0_excluded_completely": true,
+  "partition": {
+    "random_seed": 271828,
+    "original_train_1_only": true,
+    "fixed_indices": "research/hitl_update/_split using PILOT_FROZEN.json: old876/update319/validation239/audit160",
+    "selection_uses_old_training_only": true,
+    "no_audit_model_selection": true
+  },
+  "selector": {
+    "source": "research/feature_budget/run_budget.py selection_with_budget",
+    "budget": 64,
+    "population": 8,
+    "generations": 3,
+    "inner_cv_folds": 2,
+    "seed": 141,
+    "tolerance": 0.025
+  },
+  "classifier": {
+    "type": "StandardScaler + LogisticRegression(C=.5,class_weight=balanced,solver=liblinear,max_iter=350,random_state=42)",
+    "model_same_all_arms": true,
+    "thresholds": "F1 selected on validation only, frozen before audit",
+    "compare_ordinary_MSFOld_models": true
+  },
+  "scenarios": [
+    {
+      "name": "correct_known_labels",
+      "noise": 0
+    },
+    {
+      "name": "random_flip_10pct",
+      "noise": 0.1
+    },
+    {
+      "name": "random_flip_30pct",
+      "noise": 0.3
+    },
+    {
+      "name": "all_labels_flipped",
+      "noise": 1
+    }
+  ],
+  "random_noise_seed": 20261024,
+  "arms": [
+    "A historical-only baseline",
+    "B direct supervised retrain with old+simulated uploaded labels",
+    "C validation-only conventional pass/fail then stage B or rollback A"
+  ],
+  "gate": {
+    "min_f1_relative": -0.02,
+    "min_recall_relative": -0.06,
+    "min_AP_relative": -0.03,
+    "max_FPR_relative": 0.02,
+    "holdout_usage": "validation only; audit never selects"
+  },
+  "timing": {
+    "training_repeats": 5,
+    "one_cpu_thread": true,
+    "raw_feature_extraction_separate": true
+  },
+  "metrics": [
+    "validation and audit F1",
+    "AP",
+    "Recall",
+    "FPR",
+    "Precision",
+    "MCC",
+    "false positives",
+    "false negatives",
+    "label_disagreement_before_update",
+    "feature_selection_time",
+    "model_fit_time",
+    "candidate_release_allowed_false"
+  ],
+  "interpretation": [
+    "Labels are existing OPS-SAT-AD expert binary labels; human-new-upload is SIMULATED, not actual newly verified human batch",
+    "Artificial label noise injection is engineering fault test only; no new physical fault labels",
+    "No trusted 3-state or health score labels, no HMM on this real dataset",
+    "Fixed 64 max feature budget chosen after prior audit observations; descriptive not confirmatory selection",
+    "Original official holdout previously observed in different experiment; still excluded here to prevent more leakage",
+    "Final acceptance not claimed until private mechanism and read-only model card validated",
+    "Simple validation performance gate, not a novel patent algorithm"
+  ]
+}
