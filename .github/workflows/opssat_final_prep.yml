@@ -1,4 +1,5 @@
 name: Real OPS-SAT final-prep fixed-budget update robustness
+# Re-export old-model reference probability evidence, excluding internal and original audits.
 on:
   push:
     branches:
