@@ -1,0 +1,570 @@
+{
+  "study": "opssat_real_2578d_budget64_label_stress_v1",
+  "data_scope": "TRUE OPS-SAT observations and existing expert normal/anomaly labels. Simulated upload, not newly human verified.",
+  "prototype_only": true,
+  "production_deployed": false,
+  "protocol_sha256": "6f01d4b0be14511afcd2f5c7db62593b21c4c673036b34b2a002e1650f587973",
+  "counts": {
+    "old": 876,
+    "repackaged_update": 319,
+    "validation": 239,
+    "internal_audit": 160,
+    "official_test_excluded": 529
+  },
+  "original_real_data_source": {
+    "source_raw_records": 303493,
+    "raw_signal_segments": 2123,
+    "signal_channels": 9,
+    "raw_segment_size_min": 8,
+    "raw_segment_size_median": 70.0,
+    "source_raw_sha256": "dab2e01e873c93590692b50a7cc312d9cce4d5ba7e69ce8015603c47a8ffb97b",
+    "official_18d_sha256": "da20bc4bd3f30a3302ce06fe6a073bea6f036b297a92e83311d3f83b9c5e619b",
+    "derived_matrix_sha256": "559c99f2fb8548d3bb21af90544f6cb44ac83baae15b1e9ed668e203b093790d",
+    "resampled_points": 128,
+    "derived_features": 2560,
+    "combined_features": 2578,
+    "feature_engineering_seconds": 5.2079590190000005,
+    "official_raw_download_seconds": 3.9238559740000056,
+    "derived_feature_generation": "window statistics of deterministically interpolated original raw per-segment signal; no synthetic added training features",
+    "important_limitations": [
+      "Entire segment is observed for features: retrospective, not online early anomaly onset",
+      "Interpolation does not create independent observations; thousands of correlated features likely",
+      "Official precomputed 18 features are appended to 2560 derived features",
+      "No model ever uses segment/channel ID or original official test samples as training features"
+    ],
+    "source_url": "https://zenodo.org/api/records/12588359/files/segments.csv/content"
+  },
+  "selector": {
+    "fixed_max_budget": 64,
+    "actual_selected_count": 32,
+    "feature_indices": [
+      8,
+      870,
+      1170,
+      1510,
+      1730,
+      1750,
+      1790,
+      1810,
+      1830,
+      1850,
+      1990,
+      2010,
+      2030,
+      2050,
+      2070,
+      2110,
+      2130,
+      2150,
+      2190,
+      2270,
+      2290,
+      2310,
+      2330,
+      2350,
+      2370,
+      2390,
+      2410,
+      2430,
+      2450,
+      2470,
+      2490,
+      2510
+    ],
+    "selected_feature_names": [
+      "smooth10_n_peaks",
+      "width16_start10_lag2_corr",
+      "width24_start09_lag2_corr",
+      "width32_start10_lag2_corr",
+      "width48_start05_lag2_corr",
+      "width48_start06_lag2_corr",
+      "width48_start08_lag2_corr",
+      "width48_start09_lag2_corr",
+      "width48_start10_lag2_corr",
+      "width48_start11_lag2_corr",
+      "width64_start02_lag2_corr",
+      "width64_start03_lag2_corr",
+      "width64_start04_lag2_corr",
+      "width64_start05_lag2_corr",
+      "width64_start06_lag2_corr",
+      "width64_start08_lag2_corr",
+      "width64_start09_lag2_corr",
+      "width64_start10_lag2_corr",
+      "width64_start12_lag2_corr",
+      "width96_start00_lag2_corr",
+      "width96_start01_lag2_corr",
+      "width96_start02_lag2_corr",
+      "width96_start03_lag2_corr",
+      "width96_start04_lag2_corr",
+      "width96_start05_lag2_corr",
+      "width96_start06_lag2_corr",
+      "width96_start07_lag2_corr",
+      "width96_start08_lag2_corr",
+      "width96_start09_lag2_corr",
+      "width96_start10_lag2_corr",
+      "width96_start11_lag2_corr",
+      "width96_start12_lag2_corr"
+    ],
+    "search_ms": 358.3289030000003,
+    "meta": {
+      "budget": 64,
+      "selected": 32,
+      "inner_cv_best_gmean": 0.8977287812070637,
+      "chosen_gmean": 0.8770448921217124,
+      "unique_cv_wrapper_evaluations": 32,
+      "population": 8,
+      "generations": 3,
+      "cv_folds": 2,
+      "objectives": [
+        "1 - CV Gmean",
+        "feature count / 2578"
+      ]
+    }
+  },
+  "classifier_old": {
+    "fit_timing": {
+      "median_ms": 3.602031999989208,
+      "q25_ms": 3.5920879999906674,
+      "q75_ms": 3.6362320000051795,
+      "repeats": 5
+    },
+    "validation": {
+      "rows": 239,
+      "anomalies": 48,
+      "f1": 0.8817204301075269,
+      "AP": 0.923904992345616,
+      "recall": 0.8541666666666666,
+      "precision": 0.9111111111111111,
+      "FPR": 0.020942408376963352,
+      "MCC": 0.8538706500109821,
+      "FP": 4,
+      "FN": 7,
+      "brier": 0.05288416722204375,
+      "threshold": 0.7287039561837432
+    },
+    "audit": {
+      "rows": 160,
+      "anomalies": 32,
+      "f1": 0.7868852459016393,
+      "AP": 0.8597954566306828,
+      "recall": 0.75,
+      "precision": 0.8275862068965517,
+      "FPR": 0.0390625,
+      "MCC": 0.7382046047209175,
+      "FP": 5,
+      "FN": 8,
+      "brier": 0.07927586178638016,
+      "threshold": 0.7287039561837432
+    }
+  },
+  "scenarios": {
+    "correct_known_labels": {
+      "original_expert_labels_flipped_only_for_fault_injection": 0,
+      "batch_simulated_review_not_real_operator": true,
+      "original_old_model_held_constant": true,
+      "candidate_fit": {
+        "median_ms": 6.0698879999989686,
+        "q25_ms": 6.056587999992757,
+        "q75_ms": 6.143846000000508,
+        "repeats": 5
+      },
+      "validation": {
+        "A": {
+          "rows": 239,
+          "anomalies": 48,
+          "f1": 0.8817204301075269,
+          "AP": 0.923904992345616,
+          "recall": 0.8541666666666666,
+          "precision": 0.9111111111111111,
+          "FPR": 0.020942408376963352,
+          "MCC": 0.8538706500109821,
+          "FP": 4,
+          "FN": 7,
+          "brier": 0.05288416722204375,
+          "threshold": 0.7287039561837432
+        },
+        "B": {
+          "rows": 239,
+          "anomalies": 48,
+          "f1": 0.8817204301075269,
+          "AP": 0.9175511095885927,
+          "recall": 0.8541666666666666,
+          "precision": 0.9111111111111111,
+          "FPR": 0.020942408376963352,
+          "MCC": 0.8538706500109821,
+          "FP": 4,
+          "FN": 7,
+          "brier": 0.054408999200812866,
+          "threshold": 0.7979544519891233
+        }
+      },
+      "acceptance_checks": {
+        "f1": true,
+        "AP": true,
+        "recall": true,
+        "FPR": true
+      },
+      "candidate_passed": true,
+      "staged_selection": "B",
+      "audit": {
+        "A": {
+          "rows": 160,
+          "anomalies": 32,
+          "f1": 0.7868852459016393,
+          "AP": 0.8597954566306828,
+          "recall": 0.75,
+          "precision": 0.8275862068965517,
+          "FPR": 0.0390625,
+          "MCC": 0.7382046047209175,
+          "FP": 5,
+          "FN": 8,
+          "brier": 0.07927586178638016,
+          "threshold": 0.7287039561837432
+        },
+        "B": {
+          "rows": 160,
+          "anomalies": 32,
+          "f1": 0.7142857142857143,
+          "AP": 0.852247538328024,
+          "recall": 0.625,
+          "precision": 0.8333333333333334,
+          "FPR": 0.03125,
+          "MCC": 0.6651330399133046,
+          "FP": 4,
+          "FN": 12,
+          "brier": 0.08072120206948145,
+          "threshold": 0.7979544519891233
+        },
+        "C": {
+          "rows": 160,
+          "anomalies": 32,
+          "f1": 0.7142857142857143,
+          "AP": 0.852247538328024,
+          "recall": 0.625,
+          "precision": 0.8333333333333334,
+          "FPR": 0.03125,
+          "MCC": 0.6651330399133046,
+          "FP": 4,
+          "FN": 12,
+          "brier": 0.08072120206948145,
+          "threshold": 0.7979544519891233
+        }
+      },
+      "model_disagreement_diagnostics": {
+        "old_threshold_label_disagreement_rate": 0.07210031347962383,
+        "old_score_confident_disagreement_rate": 0.025078369905956112,
+        "old_score_confident_agreement_rate": 0.7586206896551724,
+        "note": "Old-model confidence disagreements are only a warning: legitimate new regimes can break old predictions, no authenticity inference"
+      }
+    },
+    "random_flip_10pct": {
+      "original_expert_labels_flipped_only_for_fault_injection": 32,
+      "batch_simulated_review_not_real_operator": true,
+      "original_old_model_held_constant": true,
+      "candidate_fit": {
+        "median_ms": 6.532116999991899,
+        "q25_ms": 6.491225999994299,
+        "q75_ms": 6.538296000002219,
+        "repeats": 5
+      },
+      "validation": {
+        "A": {
+          "rows": 239,
+          "anomalies": 48,
+          "f1": 0.8817204301075269,
+          "AP": 0.923904992345616,
+          "recall": 0.8541666666666666,
+          "precision": 0.9111111111111111,
+          "FPR": 0.020942408376963352,
+          "MCC": 0.8538706500109821,
+          "FP": 4,
+          "FN": 7,
+          "brier": 0.05288416722204375,
+          "threshold": 0.7287039561837432
+        },
+        "B": {
+          "rows": 239,
+          "anomalies": 48,
+          "f1": 0.8723404255319149,
+          "AP": 0.9118755241984641,
+          "recall": 0.8541666666666666,
+          "precision": 0.8913043478260869,
+          "FPR": 0.02617801047120419,
+          "MCC": 0.8414031213206417,
+          "FP": 5,
+          "FN": 7,
+          "brier": 0.06867829600415308,
+          "threshold": 0.7047354529852993
+        }
+      },
+      "acceptance_checks": {
+        "f1": true,
+        "AP": true,
+        "recall": true,
+        "FPR": true
+      },
+      "candidate_passed": true,
+      "staged_selection": "B",
+      "audit": {
+        "A": {
+          "rows": 160,
+          "anomalies": 32,
+          "f1": 0.7868852459016393,
+          "AP": 0.8597954566306828,
+          "recall": 0.75,
+          "precision": 0.8275862068965517,
+          "FPR": 0.0390625,
+          "MCC": 0.7382046047209175,
+          "FP": 5,
+          "FN": 8,
+          "brier": 0.07927586178638016,
+          "threshold": 0.7287039561837432
+        },
+        "B": {
+          "rows": 160,
+          "anomalies": 32,
+          "f1": 0.7586206896551724,
+          "AP": 0.8541995673525681,
+          "recall": 0.6875,
+          "precision": 0.8461538461538461,
+          "FPR": 0.03125,
+          "MCC": 0.711557854950282,
+          "FP": 4,
+          "FN": 10,
+          "brier": 0.09264269220263857,
+          "threshold": 0.7047354529852993
+        },
+        "C": {
+          "rows": 160,
+          "anomalies": 32,
+          "f1": 0.7586206896551724,
+          "AP": 0.8541995673525681,
+          "recall": 0.6875,
+          "precision": 0.8461538461538461,
+          "FPR": 0.03125,
+          "MCC": 0.711557854950282,
+          "FP": 4,
+          "FN": 10,
+          "brier": 0.09264269220263857,
+          "threshold": 0.7047354529852993
+        }
+      },
+      "model_disagreement_diagnostics": {
+        "old_threshold_label_disagreement_rate": 0.14733542319749215,
+        "old_score_confident_disagreement_rate": 0.10031347962382445,
+        "old_score_confident_agreement_rate": 0.6833855799373041,
+        "note": "Old-model confidence disagreements are only a warning: legitimate new regimes can break old predictions, no authenticity inference"
+      }
+    },
+    "random_flip_30pct": {
+      "original_expert_labels_flipped_only_for_fault_injection": 96,
+      "batch_simulated_review_not_real_operator": true,
+      "original_old_model_held_constant": true,
+      "candidate_fit": {
+        "median_ms": 6.060082999994165,
+        "q25_ms": 6.042868000008639,
+        "q75_ms": 6.092930999997748,
+        "repeats": 5
+      },
+      "validation": {
+        "A": {
+          "rows": 239,
+          "anomalies": 48,
+          "f1": 0.8817204301075269,
+          "AP": 0.923904992345616,
+          "recall": 0.8541666666666666,
+          "precision": 0.9111111111111111,
+          "FPR": 0.020942408376963352,
+          "MCC": 0.8538706500109821,
+          "FP": 4,
+          "FN": 7,
+          "brier": 0.05288416722204375,
+          "threshold": 0.7287039561837432
+        },
+        "B": {
+          "rows": 239,
+          "anomalies": 48,
+          "f1": 0.8260869565217391,
+          "AP": 0.8616411925997063,
+          "recall": 0.7916666666666666,
+          "precision": 0.8636363636363636,
+          "FPR": 0.031413612565445025,
+          "MCC": 0.7858720296458348,
+          "FP": 6,
+          "FN": 10,
+          "brier": 0.1203962842456787,
+          "threshold": 0.6074698963001826
+        }
+      },
+      "acceptance_checks": {
+        "f1": false,
+        "AP": false,
+        "recall": false,
+        "FPR": true
+      },
+      "candidate_passed": false,
+      "staged_selection": "A",
+      "audit": {
+        "A": {
+          "rows": 160,
+          "anomalies": 32,
+          "f1": 0.7868852459016393,
+          "AP": 0.8597954566306828,
+          "recall": 0.75,
+          "precision": 0.8275862068965517,
+          "FPR": 0.0390625,
+          "MCC": 0.7382046047209175,
+          "FP": 5,
+          "FN": 8,
+          "brier": 0.07927586178638016,
+          "threshold": 0.7287039561837432
+        },
+        "B": {
+          "rows": 160,
+          "anomalies": 32,
+          "f1": 0.7017543859649122,
+          "AP": 0.7479693894887656,
+          "recall": 0.625,
+          "precision": 0.8,
+          "FPR": 0.0390625,
+          "MCC": 0.6454972243679028,
+          "FP": 5,
+          "FN": 12,
+          "brier": 0.14576612190985908,
+          "threshold": 0.6074698963001826
+        },
+        "C": {
+          "rows": 160,
+          "anomalies": 32,
+          "f1": 0.7868852459016393,
+          "AP": 0.8597954566306828,
+          "recall": 0.75,
+          "precision": 0.8275862068965517,
+          "FPR": 0.0390625,
+          "MCC": 0.7382046047209175,
+          "FP": 5,
+          "FN": 8,
+          "brier": 0.07927586178638016,
+          "threshold": 0.7287039561837432
+        }
+      },
+      "model_disagreement_diagnostics": {
+        "old_threshold_label_disagreement_rate": 0.3166144200626959,
+        "old_score_confident_disagreement_rate": 0.2413793103448276,
+        "old_score_confident_agreement_rate": 0.542319749216301,
+        "note": "Old-model confidence disagreements are only a warning: legitimate new regimes can break old predictions, no authenticity inference"
+      }
+    },
+    "all_labels_flipped": {
+      "original_expert_labels_flipped_only_for_fault_injection": 319,
+      "batch_simulated_review_not_real_operator": true,
+      "original_old_model_held_constant": true,
+      "candidate_fit": {
+        "median_ms": 6.6380319999979065,
+        "q25_ms": 6.588690000000952,
+        "q75_ms": 6.650790999998435,
+        "repeats": 5
+      },
+      "validation": {
+        "A": {
+          "rows": 239,
+          "anomalies": 48,
+          "f1": 0.8817204301075269,
+          "AP": 0.923904992345616,
+          "recall": 0.8541666666666666,
+          "precision": 0.9111111111111111,
+          "FPR": 0.020942408376963352,
+          "MCC": 0.8538706500109821,
+          "FP": 4,
+          "FN": 7,
+          "brier": 0.05288416722204375,
+          "threshold": 0.7287039561837432
+        },
+        "B": {
+          "rows": 239,
+          "anomalies": 48,
+          "f1": 0.8333333333333334,
+          "AP": 0.8163192678408806,
+          "recall": 0.8333333333333334,
+          "precision": 0.8333333333333334,
+          "FPR": 0.041884816753926704,
+          "MCC": 0.7914485165794066,
+          "FP": 8,
+          "FN": 8,
+          "brier": 0.18885359350955744,
+          "threshold": 0.48648182709543536
+        }
+      },
+      "acceptance_checks": {
+        "f1": false,
+        "AP": false,
+        "recall": true,
+        "FPR": false
+      },
+      "candidate_passed": false,
+      "staged_selection": "A",
+      "audit": {
+        "A": {
+          "rows": 160,
+          "anomalies": 32,
+          "f1": 0.7868852459016393,
+          "AP": 0.8597954566306828,
+          "recall": 0.75,
+          "precision": 0.8275862068965517,
+          "FPR": 0.0390625,
+          "MCC": 0.7382046047209175,
+          "FP": 5,
+          "FN": 8,
+          "brier": 0.07927586178638016,
+          "threshold": 0.7287039561837432
+        },
+        "B": {
+          "rows": 160,
+          "anomalies": 32,
+          "f1": 0.6666666666666666,
+          "AP": 0.7115505539965166,
+          "recall": 0.75,
+          "precision": 0.6,
+          "FPR": 0.125,
+          "MCC": 0.5773502691896257,
+          "FP": 16,
+          "FN": 8,
+          "brier": 0.20293301059498514,
+          "threshold": 0.48648182709543536
+        },
+        "C": {
+          "rows": 160,
+          "anomalies": 32,
+          "f1": 0.7868852459016393,
+          "AP": 0.8597954566306828,
+          "recall": 0.75,
+          "precision": 0.8275862068965517,
+          "FPR": 0.0390625,
+          "MCC": 0.7382046047209175,
+          "FP": 5,
+          "FN": 8,
+          "brier": 0.07927586178638016,
+          "threshold": 0.7287039561837432
+        }
+      },
+      "model_disagreement_diagnostics": {
+        "old_threshold_label_disagreement_rate": 0.9278996865203761,
+        "old_score_confident_disagreement_rate": 0.7586206896551724,
+        "old_score_confident_agreement_rate": 0.025078369905956112,
+        "note": "Old-model confidence disagreements are only a warning: legitimate new regimes can break old predictions, no authenticity inference"
+      }
+    }
+  },
+  "caveats": [
+    "This is an exploratory real-satellite binary anomaly study, with original test=0 completely excluded",
+    "Existing real expert labels were rearranged into pseudo-upload; no newly human-confirmed data or actual deployment",
+    "Scenarios flip original labels deliberately only for engineering robustness tests",
+    "High-dimensional budget64 selected after previous experiments, not an independently optimal budget claim",
+    "Feature-selection mask is recomputed on old876 because prior study's mask was learned with a different training split; count may differ from earlier 37",
+    "Selected features describe complete segments, not true real-time early detection",
+    "No trusted physically verified 3-class states/HMM on OPS-SAT",
+    "No patent-specific algorithm implemented; only conventional calibration gate",
+    "Rejecting a real honest new operating condition merely due to old-model prediction disagreement is unsafe",
+    "Internal split may contain correlated segments of one channel/operation; do not assume source-independent temporal generalization"
+  ]
+}
