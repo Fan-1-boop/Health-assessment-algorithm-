@@ -139,6 +139,15 @@ def run(output):
     old_audit=metrics(labels[audit],
                      old_model.predict_proba(x_audit)[:,1],old_t)
     scores_new=old_model.predict_proba(X[batch][:,sel])[:,1]
+    # Public non-patent evidence for privately testing ordinary reviewer-risk
+    # diagnostics. No audit or original official test labels are written here.
+    review_evidence=pd.concat([
+       pd.DataFrame({"split":"update_batch",
+           "label":labels[batch],"old_model_probability":scores_new}),
+       pd.DataFrame({"split":"validation_reference",
+           "label":labels[val],"old_model_probability":old_val})
+    ],ignore_index=True)
+    review_evidence.to_csv(out/"review_evidence.csv",index=False,float_format="%.12g")
     scenarios={}
     all_rows=[]
     for condition in spec["scenarios"]:
@@ -201,6 +210,7 @@ def run(output):
       "study":spec["version"],
       "data_scope":"TRUE OPS-SAT observations and existing expert normal/anomaly labels. Simulated upload, not newly human verified.",
       "prototype_only":True,"production_deployed":False,
+      "review_evidence_notice":"Review evidence has ONLY pre-update model scores/labels on batch and internal validation; no audit or official test examples",
       "protocol_sha256":hashlib.sha256(spec_raw).hexdigest(),
       "counts":{"old":len(old),"repackaged_update":len(batch),
                 "validation":len(val),"internal_audit":len(audit),
