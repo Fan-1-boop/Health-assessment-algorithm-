@@ -1,0 +1,23 @@
+{
+  "source_raw_records": 303493,
+  "raw_signal_segments": 2123,
+  "signal_channels": 9,
+  "raw_segment_size_min": 8,
+  "raw_segment_size_median": 70.0,
+  "source_raw_sha256": "dab2e01e873c93590692b50a7cc312d9cce4d5ba7e69ce8015603c47a8ffb97b",
+  "official_18d_sha256": "da20bc4bd3f30a3302ce06fe6a073bea6f036b297a92e83311d3f83b9c5e619b",
+  "derived_matrix_sha256": "559c99f2fb8548d3bb21af90544f6cb44ac83baae15b1e9ed668e203b093790d",
+  "resampled_points": 128,
+  "derived_features": 2560,
+  "combined_features": 2578,
+  "feature_engineering_seconds": 5.190813905999988,
+  "official_raw_download_seconds": 3.3560221290000243,
+  "derived_feature_generation": "window statistics of deterministically interpolated original raw per-segment signal; no synthetic added training features",
+  "important_limitations": [
+    "Entire segment is observed for features: retrospective, not online early anomaly onset",
+    "Interpolation does not create independent observations; thousands of correlated features likely",
+    "Official precomputed 18 features are appended to 2560 derived features",
+    "No model ever uses segment/channel ID or original official test samples as training features"
+  ],
+  "source_url": "https://zenodo.org/api/records/12588359/files/segments.csv/content"
+}
