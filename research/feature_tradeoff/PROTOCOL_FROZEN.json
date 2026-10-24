@@ -1,0 +1,50 @@
+{
+  "study": "one_dataset_msf_tradeoff_v0.1",
+  "prior_test_policy": "exclude original OPS-SAT official test=0 entirely; no tuning against previously published test",
+  "data_source": "existing official OPS-SAT-AD dataset.csv (18 precomputed segment features)",
+  "frozen_seed": 20261024,
+  "original_training_only": true,
+  "split": {
+    "fit": 0.6,
+    "threshold_calibration": 0.2,
+    "audit": 0.2,
+    "stratified": true
+  },
+  "classifier": "HistGradientBoostingClassifier(max_iter=220,max_leaf_nodes=11,learning_rate=0.055,l2_regularization=0.4,random_state=42)",
+  "comparison_methods": [
+    "all_18",
+    "msf_mofs_selected",
+    "fisher_top3",
+    "fisher_top6",
+    "fisher_top9",
+    "fisher_top12",
+    "fisher_top15"
+  ],
+  "selector": "Fisher rank using fit labels, and existing MSF-MOFS implementation on fit only, population=12/generations=5/seed=42",
+  "training_repeat_count": 7,
+  "measured_time": "performance_counter wall-clock on one fixed GitHub Actions CPU; single BLAS/OpenMP thread",
+  "measured_parts": [
+    "feature_selection_ms_once",
+    "model_fit_ms_median_of_7",
+    "predict_ms_median_of_7_on_audit",
+    "model_size_bytes"
+  ],
+  "reported_quality": [
+    "audit_ap",
+    "audit_f1",
+    "audit_recall",
+    "audit_fpr",
+    "audit_precision",
+    "audit_mcc"
+  ],
+  "decision": "descriptive Pareto analysis only; no re-selection of frozen delivery models",
+  "feature_engineering_caveat": "official 18 statistical features precomputed for entire segment; raw feature extraction runtime and online causal compute are not measured",
+  "outcome_files": [
+    "tradeoff_metrics.json",
+    "tradeoff_table.csv",
+    "tradeoff_fit_time_vs_f1.png",
+    "tradeoff_selection_plus_fit_vs_f1.png",
+    "RESULTS.md"
+  ],
+  "scope": "Within one real satellite dataset only; no cross-dataset/transfer learning experiments, no physical 3-state validation"
+}
