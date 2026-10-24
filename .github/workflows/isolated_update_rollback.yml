@@ -1,4 +1,5 @@
 name: Phase-disjoint simulated update and exact rollback
+# Test assertions use exact gate field names; see research/isolated_update_rollback/test_run.py.
 on:
   push:
     branches:
