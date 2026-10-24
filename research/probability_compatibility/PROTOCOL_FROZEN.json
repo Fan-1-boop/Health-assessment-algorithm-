@@ -1,0 +1,79 @@
+{
+  "version": "cross_branch_probability_compatibility_v0.1",
+  "scope": "Generic public engineering control experiment, no patent-specific proposed algorithm",
+  "dataset": "Frozen simulated satellite MVP only, all labels SIMULATED, 4 missions x 4 cycles",
+  "fixed_architecture": "original MSF-MOFS-selected features -> frozen 2-level classifier -> frozen causal HMM -> anomaly probability fusion",
+  "feature_budget_note": "OPS-SAT 2578D budget max 64 and actual37 fixed only for OPS-SAT; no retroactive change to frozen synthetic 400D state features (50 and 10 selected).",
+  "folds": {
+    "base_train_missions": [
+      0,
+      1
+    ],
+    "internal_mission": 2,
+    "new_simulated_label_batch_cycle_id": 8,
+    "threshold_calibration_cycle_id": 9,
+    "fusion_refit_cycle_id": 10,
+    "candidate_acceptance_cycle_id": 11,
+    "external_heldout_mission": 3,
+    "no_cycle_overlap": true
+  },
+  "update": {
+    "source": "SIMULATED reviewed anomaly labels on entire windows in cycle8 only",
+    "gate": "Existing public fail-closed label quality validator, demo override enabled, no real reviewer",
+    "anomaly_detector": "Same RandomForest 120 trees, max_depth14, min_samples_leaf2, balanced_subsample, seed42, n_jobs2, refit original base training+one new-label batch",
+    "state_branch": "unchanged, HMM transition/prior unchanged",
+    "anomaly_threshold": "both old and updated threshold selected on cycle9 only",
+    "fusion_fit": "both old-compatible and refreshed fusion trained on same fixed cycle10 3-state SIMULATED labels; no gate/test labels in fit"
+  },
+  "scenario": {
+    "natural": "actual refit anomaly RF on base + simulated vetted cycle8 labels",
+    "logit_scale_stress": "diagnostic artificial p'=sigmoid(1.8*logit(p)+0.7) applied to new RF output; represents hypothetical interface probability shift, NOT a trained model or real event"
+  },
+  "arms": {
+    "A": "old anomaly detector + old-compatible fusion fit on reserved cycle10",
+    "B": "updated anomaly detector + stale old fusion (same as A)",
+    "C": "updated anomaly detector + ordinary supervised fusion retrain on exactly cycle10, same state/HMM",
+    "D": "validation-only staged selection: accept C if ordinary frozen safety metrics, otherwise retain A; no real deployment"
+  },
+  "acceptance_validation": {
+    "max_macro_f1_drop": 0.02,
+    "max_brier_increase": 0.01,
+    "max_state_nll_increase": 0.02,
+    "max_anomaly_recall_drop": 0.05,
+    "max_anomaly_fpr_increase": 0.02,
+    "max_health_MAE_increase": 1,
+    "always_stage_only": true
+  },
+  "primary_metrics": [
+    "state_macro_f1",
+    "state_brier",
+    "state_nll",
+    "state_health_MAE_using_frozen_mapping",
+    "binary_anomaly_F1",
+    "binary_anomaly_AP",
+    "binary_anomaly_recall",
+    "binary_anomaly_FPR",
+    "anomaly_probability_shift_MAE",
+    "anomaly_probability_JS",
+    "fused_state_probability_JS",
+    "candidate_fit_time_ms",
+    "fusion_refit_ms",
+    "per_272_window_inference_ms"
+  ],
+  "timing": {
+    "model_fit_repeats": 3,
+    "fusion_fit_repeats": 7,
+    "inference_repeats": 9,
+    "single_thread": true
+  },
+  "interpretation_policy": [
+    "Same synthetic data; prior mission3 metrics already publicly inspected, so this is exploratory diagnostic not confirmatory test",
+    "Original MVP fusion fitted ALL mission2; avoid leakage by refitting both A and C only on cycle10 and using distinct cycle11 as gate",
+    "All labels are simulated, never claim new operator-verified physical spacecraft labels",
+    "Stress case is deterministic model-interface perturbation, NOT proof supervised update produces that drift",
+    "Fusion retrain uses normal logistic stacking, not a novel patent method",
+    "No self-learning, no automated production release",
+    "Do not change original release or main",
+    "No authentic physical three-state labels on real OPS-SAT; do not merge disparate datasets' label semantics"
+  ]
+}
