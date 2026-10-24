@@ -1,0 +1,2044 @@
+{
+  "source": "OPS-SAT REAL BINARY prior true labels; grouped internal split",
+  "protocol_sha256": "87a64507ce66bdb342d02d402bb182d884a1a781d8bd5fe6e11203c0a7da73a6",
+  "research_only": true,
+  "snapshots": [
+    {
+      "fold_name": "block_105",
+      "source": "REAL OPS-SAT-AD old model reference on disjoint grouped records",
+      "reference_label_conflicts": 4,
+      "reference_count": 163,
+      "sample_counts": {
+        "batch": 238,
+        "old": 913,
+        "cal": 163,
+        "accept": 142,
+        "audit": 138
+      },
+      "base": {
+        "acceptance": {
+          "rows": 142,
+          "anomalies": 36,
+          "f1": 0.6037735849056604,
+          "AP": 0.8466732167084594,
+          "recall": 0.4444444444444444,
+          "precision": 0.9411764705882353,
+          "FPR": 0.009433962264150943,
+          "MCC": 0.5829407801299271,
+          "FP": 1,
+          "FN": 20,
+          "brier": 0.09236323510951143,
+          "threshold": 0.8861907241118497,
+          "nll": 0.3409364258280935
+        },
+        "audit": {
+          "rows": 138,
+          "anomalies": 25,
+          "f1": 0.717948717948718,
+          "AP": 0.9178357280298822,
+          "recall": 0.56,
+          "precision": 1.0,
+          "FPR": 0.0,
+          "MCC": 0.7143686587786179,
+          "FP": 0,
+          "FN": 11,
+          "brier": 0.04553440519504809,
+          "threshold": 0.8861907241118497,
+          "nll": 0.19569684443968302
+        }
+      },
+      "scenarios": {
+        "correct_existing_binary_labels": {
+          "conflicts": 8,
+          "flipped": 0,
+          "ordinary_accept": false,
+          "prob_guard_accept": false,
+          "acceptance": {
+            "rows": 142,
+            "anomalies": 36,
+            "f1": 0.8059701492537313,
+            "AP": 0.8511558743251952,
+            "recall": 0.75,
+            "precision": 0.8709677419354839,
+            "FPR": 0.03773584905660377,
+            "MCC": 0.7500719644373969,
+            "FP": 4,
+            "FN": 9,
+            "brier": 0.08891827100256734,
+            "threshold": 0.4882763094205429,
+            "nll": 0.3347231878186085
+          },
+          "audit": {
+            "rows": 138,
+            "anomalies": 25,
+            "f1": 0.8936170212765957,
+            "AP": 0.9215851011233002,
+            "recall": 0.84,
+            "precision": 0.9545454545454546,
+            "FPR": 0.008849557522123894,
+            "MCC": 0.874477282052116,
+            "FP": 1,
+            "FN": 4,
+            "brier": 0.04324314374365043,
+            "threshold": 0.4882763094205429,
+            "nll": 0.18443792564695213
+          },
+          "calibration_mixture_alpha": 1.0,
+          "public_checks": {
+            "C": {
+              "F1": true,
+              "AP": true,
+              "recall": true,
+              "normal_FPR": false
+            },
+            "D": {
+              "F1": true,
+              "AP": true,
+              "recall": true,
+              "normal_FPR": false,
+              "Brier": true,
+              "NLL": true
+            },
+            "E": {
+              "F1": true,
+              "AP": true,
+              "recall": true,
+              "normal_FPR": false,
+              "Brier": true,
+              "NLL": true
+            }
+          }
+        },
+        "flip_random_10pct": {
+          "conflicts": 19,
+          "flipped": 24,
+          "ordinary_accept": false,
+          "prob_guard_accept": false,
+          "acceptance": {
+            "rows": 142,
+            "anomalies": 36,
+            "f1": 0.75,
+            "AP": 0.8289701394531653,
+            "recall": 0.6666666666666666,
+            "precision": 0.8571428571428571,
+            "FPR": 0.03773584905660377,
+            "MCC": 0.687662936323115,
+            "FP": 4,
+            "FN": 12,
+            "brier": 0.10224522556987344,
+            "threshold": 0.5403981688815591,
+            "nll": 0.3646652512298437
+          },
+          "audit": {
+            "rows": 138,
+            "anomalies": 25,
+            "f1": 0.8936170212765957,
+            "AP": 0.905035646513615,
+            "recall": 0.84,
+            "precision": 0.9545454545454546,
+            "FPR": 0.008849557522123894,
+            "MCC": 0.874477282052116,
+            "FP": 1,
+            "FN": 4,
+            "brier": 0.053684711018343885,
+            "threshold": 0.5403981688815591,
+            "nll": 0.2215941009870725
+          },
+          "calibration_mixture_alpha": 0,
+          "public_checks": {
+            "C": {
+              "F1": true,
+              "AP": true,
+              "recall": true,
+              "normal_FPR": false
+            },
+            "D": {
+              "F1": true,
+              "AP": true,
+              "recall": true,
+              "normal_FPR": false,
+              "Brier": false,
+              "NLL": false
+            },
+            "E": {
+              "F1": true,
+              "AP": true,
+              "recall": true,
+              "normal_FPR": true,
+              "Brier": true,
+              "NLL": true
+            }
+          }
+        },
+        "flip_random_30pct": {
+          "conflicts": 45,
+          "flipped": 71,
+          "ordinary_accept": false,
+          "prob_guard_accept": false,
+          "acceptance": {
+            "rows": 142,
+            "anomalies": 36,
+            "f1": 0.6557377049180327,
+            "AP": 0.7948509899734826,
+            "recall": 0.5555555555555556,
+            "precision": 0.8,
+            "FPR": 0.04716981132075472,
+            "MCC": 0.5806769829857271,
+            "FP": 5,
+            "FN": 16,
+            "brier": 0.12616400407596234,
+            "threshold": 0.5411867947555357,
+            "nll": 0.42680884936307534
+          },
+          "audit": {
+            "rows": 138,
+            "anomalies": 25,
+            "f1": 0.8695652173913043,
+            "AP": 0.9069837936947319,
+            "recall": 0.8,
+            "precision": 0.9523809523809523,
+            "FPR": 0.008849557522123894,
+            "MCC": 0.8483317534517681,
+            "FP": 1,
+            "FN": 5,
+            "brier": 0.07810240005054524,
+            "threshold": 0.5411867947555357,
+            "nll": 0.30501575664296743
+          },
+          "calibration_mixture_alpha": 0,
+          "public_checks": {
+            "C": {
+              "F1": true,
+              "AP": false,
+              "recall": true,
+              "normal_FPR": false
+            },
+            "D": {
+              "F1": true,
+              "AP": false,
+              "recall": true,
+              "normal_FPR": false,
+              "Brier": false,
+              "NLL": false
+            },
+            "E": {
+              "F1": true,
+              "AP": true,
+              "recall": true,
+              "normal_FPR": true,
+              "Brier": true,
+              "NLL": true
+            }
+          }
+        },
+        "flip_all_labels": {
+          "conflicts": 149,
+          "flipped": 238,
+          "ordinary_accept": false,
+          "prob_guard_accept": false,
+          "acceptance": {
+            "rows": 142,
+            "anomalies": 36,
+            "f1": 0.5483870967741935,
+            "AP": 0.6064836744853492,
+            "recall": 0.4722222222222222,
+            "precision": 0.6538461538461539,
+            "FPR": 0.08490566037735849,
+            "MCC": 0.4356669170383423,
+            "FP": 9,
+            "FN": 19,
+            "brier": 0.2012833194230475,
+            "threshold": 0.5463854583876047,
+            "nll": 0.5940927452435927
+          },
+          "audit": {
+            "rows": 138,
+            "anomalies": 25,
+            "f1": 0.7142857142857143,
+            "AP": 0.7948424129329039,
+            "recall": 0.6,
+            "precision": 0.8823529411764706,
+            "FPR": 0.017699115044247787,
+            "MCC": 0.68240080481443,
+            "FP": 2,
+            "FN": 10,
+            "brier": 0.17206765387605932,
+            "threshold": 0.5463854583876047,
+            "nll": 0.5293088742001513
+          },
+          "calibration_mixture_alpha": 0,
+          "public_checks": {
+            "C": {
+              "F1": false,
+              "AP": false,
+              "recall": true,
+              "normal_FPR": false
+            },
+            "D": {
+              "F1": false,
+              "AP": false,
+              "recall": true,
+              "normal_FPR": false,
+              "Brier": false,
+              "NLL": false
+            },
+            "E": {
+              "F1": true,
+              "AP": true,
+              "recall": true,
+              "normal_FPR": true,
+              "Brier": true,
+              "NLL": true
+            }
+          }
+        }
+      }
+    },
+    {
+      "fold_name": "block_205",
+      "source": "REAL OPS-SAT-AD old model reference on disjoint grouped records",
+      "reference_label_conflicts": 3,
+      "reference_count": 131,
+      "sample_counts": {
+        "batch": 256,
+        "old": 920,
+        "cal": 131,
+        "accept": 146,
+        "audit": 141
+      },
+      "base": {
+        "acceptance": {
+          "rows": 146,
+          "anomalies": 31,
+          "f1": 0.8813559322033898,
+          "AP": 0.9408866709680976,
+          "recall": 0.8387096774193549,
+          "precision": 0.9285714285714286,
+          "FPR": 0.017391304347826087,
+          "MCC": 0.8531419278275941,
+          "FP": 2,
+          "FN": 5,
+          "brier": 0.05006995403843839,
+          "threshold": 0.3237042149268587,
+          "nll": 0.19970291023608328
+        },
+        "audit": {
+          "rows": 141,
+          "anomalies": 41,
+          "f1": 0.8433734939759037,
+          "AP": 0.9118221666567159,
+          "recall": 0.8536585365853658,
+          "precision": 0.8333333333333334,
+          "FPR": 0.07,
+          "MCC": 0.7781737105075289,
+          "FP": 7,
+          "FN": 6,
+          "brier": 0.07836117921601646,
+          "threshold": 0.3237042149268587,
+          "nll": 0.27471895239586536
+        }
+      },
+      "scenarios": {
+        "correct_existing_binary_labels": {
+          "conflicts": 7,
+          "flipped": 0,
+          "ordinary_accept": true,
+          "prob_guard_accept": false,
+          "acceptance": {
+            "rows": 146,
+            "anomalies": 31,
+            "f1": 0.9,
+            "AP": 0.947303971564939,
+            "recall": 0.8709677419354839,
+            "precision": 0.9310344827586207,
+            "FPR": 0.017391304347826087,
+            "MCC": 0.8749439962843472,
+            "FP": 2,
+            "FN": 4,
+            "brier": 0.04898636838267772,
+            "threshold": 0.31332327614256184,
+            "nll": 0.20239161637281777
+          },
+          "audit": {
+            "rows": 141,
+            "anomalies": 41,
+            "f1": 0.8470588235294118,
+            "AP": 0.9205786705428599,
+            "recall": 0.8780487804878049,
+            "precision": 0.8181818181818182,
+            "FPR": 0.08,
+            "MCC": 0.7821844201597241,
+            "FP": 8,
+            "FN": 5,
+            "brier": 0.07261840137351624,
+            "threshold": 0.31332327614256184,
+            "nll": 0.2653293052182527
+          },
+          "calibration_mixture_alpha": 0.75,
+          "public_checks": {
+            "C": {
+              "F1": true,
+              "AP": true,
+              "recall": true,
+              "normal_FPR": true
+            },
+            "D": {
+              "F1": true,
+              "AP": true,
+              "recall": true,
+              "normal_FPR": true,
+              "Brier": true,
+              "NLL": false
+            },
+            "E": {
+              "F1": true,
+              "AP": true,
+              "recall": true,
+              "normal_FPR": true,
+              "Brier": true,
+              "NLL": false
+            }
+          }
+        },
+        "flip_random_10pct": {
+          "conflicts": 31,
+          "flipped": 26,
+          "ordinary_accept": true,
+          "prob_guard_accept": false,
+          "acceptance": {
+            "rows": 146,
+            "anomalies": 31,
+            "f1": 0.8813559322033898,
+            "AP": 0.9425786870604109,
+            "recall": 0.8387096774193549,
+            "precision": 0.9285714285714286,
+            "FPR": 0.017391304347826087,
+            "MCC": 0.8531419278275941,
+            "FP": 2,
+            "FN": 5,
+            "brier": 0.06157546532384711,
+            "threshold": 0.4182516856965256,
+            "nll": 0.2557735469610424
+          },
+          "audit": {
+            "rows": 141,
+            "anomalies": 41,
+            "f1": 0.8292682926829268,
+            "AP": 0.930669304253465,
+            "recall": 0.8292682926829268,
+            "precision": 0.8292682926829268,
+            "FPR": 0.07,
+            "MCC": 0.7592682926829268,
+            "FP": 7,
+            "FN": 7,
+            "brier": 0.08259419386038733,
+            "threshold": 0.4182516856965256,
+            "nll": 0.3009603622304243
+          },
+          "calibration_mixture_alpha": 0,
+          "public_checks": {
+            "C": {
+              "F1": true,
+              "AP": true,
+              "recall": true,
+              "normal_FPR": true
+            },
+            "D": {
+              "F1": true,
+              "AP": true,
+              "recall": true,
+              "normal_FPR": true,
+              "Brier": false,
+              "NLL": false
+            },
+            "E": {
+              "F1": true,
+              "AP": true,
+              "recall": true,
+              "normal_FPR": true,
+              "Brier": true,
+              "NLL": true
+            }
+          }
+        },
+        "flip_random_30pct": {
+          "conflicts": 69,
+          "flipped": 77,
+          "ordinary_accept": false,
+          "prob_guard_accept": false,
+          "acceptance": {
+            "rows": 146,
+            "anomalies": 31,
+            "f1": 0.8421052631578947,
+            "AP": 0.9028078564386697,
+            "recall": 0.7741935483870968,
+            "precision": 0.9230769230769231,
+            "FPR": 0.017391304347826087,
+            "MCC": 0.8089745912181192,
+            "FP": 2,
+            "FN": 7,
+            "brier": 0.09480254157387662,
+            "threshold": 0.49532279434931425,
+            "nll": 0.3503357600410113
+          },
+          "audit": {
+            "rows": 141,
+            "anomalies": 41,
+            "f1": 0.8048780487804879,
+            "AP": 0.9352474837555563,
+            "recall": 0.8048780487804879,
+            "precision": 0.8048780487804879,
+            "FPR": 0.08,
+            "MCC": 0.7248780487804878,
+            "FP": 8,
+            "FN": 8,
+            "brier": 0.10123474159736408,
+            "threshold": 0.49532279434931425,
+            "nll": 0.35394574935408885
+          },
+          "calibration_mixture_alpha": 0,
+          "public_checks": {
+            "C": {
+              "F1": false,
+              "AP": false,
+              "recall": false,
+              "normal_FPR": true
+            },
+            "D": {
+              "F1": false,
+              "AP": false,
+              "recall": false,
+              "normal_FPR": true,
+              "Brier": false,
+              "NLL": false
+            },
+            "E": {
+              "F1": true,
+              "AP": true,
+              "recall": true,
+              "normal_FPR": true,
+              "Brier": true,
+              "NLL": true
+            }
+          }
+        },
+        "flip_all_labels": {
+          "conflicts": 219,
+          "flipped": 256,
+          "ordinary_accept": false,
+          "prob_guard_accept": false,
+          "acceptance": {
+            "rows": 146,
+            "anomalies": 31,
+            "f1": 0.7540983606557377,
+            "AP": 0.7903865305725642,
+            "recall": 0.7419354838709677,
+            "precision": 0.7666666666666667,
+            "FPR": 0.06086956521739131,
+            "MCC": 0.6893333549734769,
+            "FP": 7,
+            "FN": 8,
+            "brier": 0.1869256042187212,
+            "threshold": 0.4622603235384056,
+            "nll": 0.5617355286197115
+          },
+          "audit": {
+            "rows": 141,
+            "anomalies": 41,
+            "f1": 0.7191011235955056,
+            "AP": 0.821660317068602,
+            "recall": 0.7804878048780488,
+            "precision": 0.6666666666666666,
+            "FPR": 0.16,
+            "MCC": 0.5946522762604073,
+            "FP": 16,
+            "FN": 9,
+            "brier": 0.1815093858232149,
+            "threshold": 0.4622603235384056,
+            "nll": 0.5434512944953606
+          },
+          "calibration_mixture_alpha": 0,
+          "public_checks": {
+            "C": {
+              "F1": false,
+              "AP": false,
+              "recall": false,
+              "normal_FPR": false
+            },
+            "D": {
+              "F1": false,
+              "AP": false,
+              "recall": false,
+              "normal_FPR": false,
+              "Brier": false,
+              "NLL": false
+            },
+            "E": {
+              "F1": true,
+              "AP": true,
+              "recall": true,
+              "normal_FPR": true,
+              "Brier": true,
+              "NLL": true
+            }
+          }
+        }
+      }
+    },
+    {
+      "fold_name": "block_305",
+      "source": "REAL OPS-SAT-AD old model reference on disjoint grouped records",
+      "reference_label_conflicts": 2,
+      "reference_count": 156,
+      "sample_counts": {
+        "batch": 283,
+        "old": 872,
+        "cal": 156,
+        "accept": 132,
+        "audit": 151
+      },
+      "base": {
+        "acceptance": {
+          "rows": 132,
+          "anomalies": 55,
+          "f1": 0.9174311926605505,
+          "AP": 0.9794066853908465,
+          "recall": 0.9090909090909091,
+          "precision": 0.9259259259259259,
+          "FPR": 0.05194805194805195,
+          "MCC": 0.8594799233872417,
+          "FP": 4,
+          "FN": 5,
+          "brier": 0.046337529360425275,
+          "threshold": 0.3456488342882429,
+          "nll": 0.18441945605793034
+        },
+        "audit": {
+          "rows": 151,
+          "anomalies": 24,
+          "f1": 0.7924528301886793,
+          "AP": 0.9049850344992669,
+          "recall": 0.875,
+          "precision": 0.7241379310344828,
+          "FPR": 0.06299212598425197,
+          "MCC": 0.753683153012843,
+          "FP": 8,
+          "FN": 3,
+          "brier": 0.0527320434061473,
+          "threshold": 0.3456488342882429,
+          "nll": 0.21719318068004212
+        }
+      },
+      "scenarios": {
+        "correct_existing_binary_labels": {
+          "conflicts": 4,
+          "flipped": 0,
+          "ordinary_accept": true,
+          "prob_guard_accept": false,
+          "acceptance": {
+            "rows": 132,
+            "anomalies": 55,
+            "f1": 0.9245283018867925,
+            "AP": 0.9792014256074486,
+            "recall": 0.8909090909090909,
+            "precision": 0.9607843137254902,
+            "FPR": 0.025974025974025976,
+            "MCC": 0.8757549764126291,
+            "FP": 2,
+            "FN": 6,
+            "brier": 0.04680341695172117,
+            "threshold": 0.398780540096114,
+            "nll": 0.18169224532632838
+          },
+          "audit": {
+            "rows": 151,
+            "anomalies": 24,
+            "f1": 0.7843137254901961,
+            "AP": 0.9040908972704103,
+            "recall": 0.8333333333333334,
+            "precision": 0.7407407407407407,
+            "FPR": 0.05511811023622047,
+            "MCC": 0.742530810093814,
+            "FP": 7,
+            "FN": 4,
+            "brier": 0.054253449587924135,
+            "threshold": 0.398780540096114,
+            "nll": 0.21913989758731134
+          },
+          "calibration_mixture_alpha": 1.0,
+          "public_checks": {
+            "C": {
+              "F1": true,
+              "AP": true,
+              "recall": true,
+              "normal_FPR": true
+            },
+            "D": {
+              "F1": true,
+              "AP": true,
+              "recall": true,
+              "normal_FPR": true,
+              "Brier": false,
+              "NLL": true
+            },
+            "E": {
+              "F1": true,
+              "AP": true,
+              "recall": true,
+              "normal_FPR": true,
+              "Brier": false,
+              "NLL": true
+            }
+          }
+        },
+        "flip_random_10pct": {
+          "conflicts": 30,
+          "flipped": 28,
+          "ordinary_accept": true,
+          "prob_guard_accept": false,
+          "acceptance": {
+            "rows": 132,
+            "anomalies": 55,
+            "f1": 0.9333333333333333,
+            "AP": 0.9788180585294923,
+            "recall": 0.8909090909090909,
+            "precision": 0.98,
+            "FPR": 0.012987012987012988,
+            "MCC": 0.8922586147188883,
+            "FP": 1,
+            "FN": 6,
+            "brier": 0.05793735041472119,
+            "threshold": 0.4729297178686034,
+            "nll": 0.2264034731874906
+          },
+          "audit": {
+            "rows": 151,
+            "anomalies": 24,
+            "f1": 0.8333333333333334,
+            "AP": 0.9142944651035683,
+            "recall": 0.8333333333333334,
+            "precision": 0.8333333333333334,
+            "FPR": 0.031496062992125984,
+            "MCC": 0.8018372703412073,
+            "FP": 4,
+            "FN": 4,
+            "brier": 0.07181281136299295,
+            "threshold": 0.4729297178686034,
+            "nll": 0.2845603060130245
+          },
+          "calibration_mixture_alpha": 0,
+          "public_checks": {
+            "C": {
+              "F1": true,
+              "AP": true,
+              "recall": true,
+              "normal_FPR": true
+            },
+            "D": {
+              "F1": true,
+              "AP": true,
+              "recall": true,
+              "normal_FPR": true,
+              "Brier": false,
+              "NLL": false
+            },
+            "E": {
+              "F1": true,
+              "AP": true,
+              "recall": true,
+              "normal_FPR": true,
+              "Brier": true,
+              "NLL": true
+            }
+          }
+        },
+        "flip_random_30pct": {
+          "conflicts": 77,
+          "flipped": 85,
+          "ordinary_accept": true,
+          "prob_guard_accept": false,
+          "acceptance": {
+            "rows": 132,
+            "anomalies": 55,
+            "f1": 0.9433962264150944,
+            "AP": 0.9718675211381369,
+            "recall": 0.9090909090909091,
+            "precision": 0.9803921568627451,
+            "FPR": 0.012987012987012988,
+            "MCC": 0.9073137143013725,
+            "FP": 1,
+            "FN": 5,
+            "brier": 0.08371059302021044,
+            "threshold": 0.46714923232755107,
+            "nll": 0.29828730753717186
+          },
+          "audit": {
+            "rows": 151,
+            "anomalies": 24,
+            "f1": 0.8461538461538461,
+            "AP": 0.9440134314761832,
+            "recall": 0.9166666666666666,
+            "precision": 0.7857142857142857,
+            "FPR": 0.047244094488188976,
+            "MCC": 0.8179124542944334,
+            "FP": 6,
+            "FN": 2,
+            "brier": 0.10559897724728462,
+            "threshold": 0.46714923232755107,
+            "nll": 0.375484152860047
+          },
+          "calibration_mixture_alpha": 0,
+          "public_checks": {
+            "C": {
+              "F1": true,
+              "AP": true,
+              "recall": true,
+              "normal_FPR": true
+            },
+            "D": {
+              "F1": true,
+              "AP": true,
+              "recall": true,
+              "normal_FPR": true,
+              "Brier": false,
+              "NLL": false
+            },
+            "E": {
+              "F1": true,
+              "AP": true,
+              "recall": true,
+              "normal_FPR": true,
+              "Brier": true,
+              "NLL": true
+            }
+          }
+        },
+        "flip_all_labels": {
+          "conflicts": 255,
+          "flipped": 283,
+          "ordinary_accept": false,
+          "prob_guard_accept": false,
+          "acceptance": {
+            "rows": 132,
+            "anomalies": 55,
+            "f1": 0.8910891089108911,
+            "AP": 0.9239699773766411,
+            "recall": 0.8181818181818182,
+            "precision": 0.9782608695652174,
+            "FPR": 0.012987012987012988,
+            "MCC": 0.833104595695905,
+            "FP": 1,
+            "FN": 10,
+            "brier": 0.1631283375890053,
+            "threshold": 0.4854640098126248,
+            "nll": 0.5407921016869628
+          },
+          "audit": {
+            "rows": 151,
+            "anomalies": 24,
+            "f1": 0.8444444444444444,
+            "AP": 0.8829378199021789,
+            "recall": 0.7916666666666666,
+            "precision": 0.9047619047619048,
+            "FPR": 0.015748031496062992,
+            "MCC": 0.8198649875848915,
+            "FP": 2,
+            "FN": 5,
+            "brier": 0.18281082411994223,
+            "threshold": 0.4854640098126248,
+            "nll": 0.5490479731252477
+          },
+          "calibration_mixture_alpha": 0,
+          "public_checks": {
+            "C": {
+              "F1": false,
+              "AP": false,
+              "recall": false,
+              "normal_FPR": true
+            },
+            "D": {
+              "F1": false,
+              "AP": false,
+              "recall": false,
+              "normal_FPR": true,
+              "Brier": false,
+              "NLL": false
+            },
+            "E": {
+              "F1": true,
+              "AP": true,
+              "recall": true,
+              "normal_FPR": true,
+              "Brier": true,
+              "NLL": true
+            }
+          }
+        }
+      }
+    },
+    {
+      "fold_name": "block_405",
+      "source": "REAL OPS-SAT-AD old model reference on disjoint grouped records",
+      "reference_label_conflicts": 1,
+      "reference_count": 149,
+      "sample_counts": {
+        "batch": 256,
+        "old": 913,
+        "cal": 149,
+        "accept": 135,
+        "audit": 141
+      },
+      "base": {
+        "acceptance": {
+          "rows": 135,
+          "anomalies": 33,
+          "f1": 0.8484848484848485,
+          "AP": 0.9460623776564876,
+          "recall": 0.8484848484848485,
+          "precision": 0.8484848484848485,
+          "FPR": 0.049019607843137254,
+          "MCC": 0.7994652406417112,
+          "FP": 5,
+          "FN": 5,
+          "brier": 0.055101794937080326,
+          "threshold": 0.2653209302013542,
+          "nll": 0.22624166251676978
+        },
+        "audit": {
+          "rows": 141,
+          "anomalies": 30,
+          "f1": 0.9333333333333333,
+          "AP": 0.9610612244897959,
+          "recall": 0.9333333333333333,
+          "precision": 0.9333333333333333,
+          "FPR": 0.018018018018018018,
+          "MCC": 0.9153153153153153,
+          "FP": 2,
+          "FN": 2,
+          "brier": 0.03547635502372842,
+          "threshold": 0.2653209302013542,
+          "nll": 0.17007790078655521
+        }
+      },
+      "scenarios": {
+        "correct_existing_binary_labels": {
+          "conflicts": 5,
+          "flipped": 0,
+          "ordinary_accept": true,
+          "prob_guard_accept": false,
+          "acceptance": {
+            "rows": 135,
+            "anomalies": 33,
+            "f1": 0.835820895522388,
+            "AP": 0.9309221259275757,
+            "recall": 0.8484848484848485,
+            "precision": 0.8235294117647058,
+            "FPR": 0.058823529411764705,
+            "MCC": 0.781803797049509,
+            "FP": 6,
+            "FN": 5,
+            "brier": 0.06056179630664347,
+            "threshold": 0.29710883727277715,
+            "nll": 0.23531916485750604
+          },
+          "audit": {
+            "rows": 141,
+            "anomalies": 30,
+            "f1": 0.9473684210526315,
+            "AP": 0.9649750852347233,
+            "recall": 0.9,
+            "precision": 1.0,
+            "FPR": 0.0,
+            "MCC": 0.9361174015441034,
+            "FP": 0,
+            "FN": 3,
+            "brier": 0.03366002075956794,
+            "threshold": 0.29710883727277715,
+            "nll": 0.16297985222573871
+          },
+          "calibration_mixture_alpha": 1.0,
+          "public_checks": {
+            "C": {
+              "F1": true,
+              "AP": true,
+              "recall": true,
+              "normal_FPR": true
+            },
+            "D": {
+              "F1": true,
+              "AP": true,
+              "recall": true,
+              "normal_FPR": true,
+              "Brier": false,
+              "NLL": false
+            },
+            "E": {
+              "F1": true,
+              "AP": true,
+              "recall": true,
+              "normal_FPR": true,
+              "Brier": false,
+              "NLL": false
+            }
+          }
+        },
+        "flip_random_10pct": {
+          "conflicts": 22,
+          "flipped": 26,
+          "ordinary_accept": false,
+          "prob_guard_accept": false,
+          "acceptance": {
+            "rows": 135,
+            "anomalies": 33,
+            "f1": 0.8450704225352113,
+            "AP": 0.9297624223575449,
+            "recall": 0.9090909090909091,
+            "precision": 0.7894736842105263,
+            "FPR": 0.0784313725490196,
+            "MCC": 0.7937841920246158,
+            "FP": 8,
+            "FN": 3,
+            "brier": 0.07699658056187426,
+            "threshold": 0.3401610215165066,
+            "nll": 0.2912196761165066
+          },
+          "audit": {
+            "rows": 141,
+            "anomalies": 30,
+            "f1": 0.9180327868852459,
+            "AP": 0.9525985300501019,
+            "recall": 0.9333333333333333,
+            "precision": 0.9032258064516129,
+            "FPR": 0.02702702702702703,
+            "MCC": 0.8956120521338464,
+            "FP": 3,
+            "FN": 2,
+            "brier": 0.049433974724016595,
+            "threshold": 0.3401610215165066,
+            "nll": 0.21762281211529264
+          },
+          "calibration_mixture_alpha": 0,
+          "public_checks": {
+            "C": {
+              "F1": true,
+              "AP": true,
+              "recall": true,
+              "normal_FPR": false
+            },
+            "D": {
+              "F1": true,
+              "AP": true,
+              "recall": true,
+              "normal_FPR": false,
+              "Brier": false,
+              "NLL": false
+            },
+            "E": {
+              "F1": true,
+              "AP": true,
+              "recall": true,
+              "normal_FPR": true,
+              "Brier": true,
+              "NLL": true
+            }
+          }
+        },
+        "flip_random_30pct": {
+          "conflicts": 69,
+          "flipped": 77,
+          "ordinary_accept": false,
+          "prob_guard_accept": false,
+          "acceptance": {
+            "rows": 135,
+            "anomalies": 33,
+            "f1": 0.8333333333333334,
+            "AP": 0.9321837306846259,
+            "recall": 0.7575757575757576,
+            "precision": 0.9259259259259259,
+            "FPR": 0.0196078431372549,
+            "MCC": 0.7928677913256961,
+            "FP": 2,
+            "FN": 8,
+            "brier": 0.12277755093265315,
+            "threshold": 0.47373215370515936,
+            "nll": 0.41040410884272693
+          },
+          "audit": {
+            "rows": 141,
+            "anomalies": 30,
+            "f1": 0.9,
+            "AP": 0.946439871375998,
+            "recall": 0.9,
+            "precision": 0.9,
+            "FPR": 0.02702702702702703,
+            "MCC": 0.8729729729729729,
+            "FP": 3,
+            "FN": 3,
+            "brier": 0.09702597948492754,
+            "threshold": 0.47373215370515936,
+            "nll": 0.34761904113406455
+          },
+          "calibration_mixture_alpha": 0,
+          "public_checks": {
+            "C": {
+              "F1": true,
+              "AP": true,
+              "recall": false,
+              "normal_FPR": true
+            },
+            "D": {
+              "F1": true,
+              "AP": true,
+              "recall": false,
+              "normal_FPR": true,
+              "Brier": false,
+              "NLL": false
+            },
+            "E": {
+              "F1": true,
+              "AP": true,
+              "recall": true,
+              "normal_FPR": true,
+              "Brier": true,
+              "NLL": true
+            }
+          }
+        },
+        "flip_all_labels": {
+          "conflicts": 213,
+          "flipped": 256,
+          "ordinary_accept": false,
+          "prob_guard_accept": false,
+          "acceptance": {
+            "rows": 135,
+            "anomalies": 33,
+            "f1": 0.5428571428571428,
+            "AP": 0.6326327008455688,
+            "recall": 0.5757575757575758,
+            "precision": 0.5135135135135135,
+            "FPR": 0.17647058823529413,
+            "MCC": 0.38470542710666883,
+            "FP": 18,
+            "FN": 14,
+            "brier": 0.22574178579832205,
+            "threshold": 0.5384856923698279,
+            "nll": 0.6360615055768072
+          },
+          "audit": {
+            "rows": 141,
+            "anomalies": 30,
+            "f1": 0.647887323943662,
+            "AP": 0.7639780014097771,
+            "recall": 0.7666666666666667,
+            "precision": 0.5609756097560976,
+            "FPR": 0.16216216216216217,
+            "MCC": 0.5447907558865208,
+            "FP": 18,
+            "FN": 7,
+            "brier": 0.20769560831681713,
+            "threshold": 0.5384856923698279,
+            "nll": 0.7302155227688658
+          },
+          "calibration_mixture_alpha": 0,
+          "public_checks": {
+            "C": {
+              "F1": false,
+              "AP": false,
+              "recall": false,
+              "normal_FPR": false
+            },
+            "D": {
+              "F1": false,
+              "AP": false,
+              "recall": false,
+              "normal_FPR": false,
+              "Brier": false,
+              "NLL": false
+            },
+            "E": {
+              "F1": true,
+              "AP": true,
+              "recall": true,
+              "normal_FPR": true,
+              "Brier": true,
+              "NLL": true
+            }
+          }
+        }
+      }
+    },
+    {
+      "fold_name": "block_505",
+      "source": "REAL OPS-SAT-AD old model reference on disjoint grouped records",
+      "reference_label_conflicts": 3,
+      "reference_count": 155,
+      "sample_counts": {
+        "batch": 241,
+        "old": 935,
+        "cal": 155,
+        "accept": 131,
+        "audit": 132
+      },
+      "base": {
+        "acceptance": {
+          "rows": 131,
+          "anomalies": 27,
+          "f1": 0.8571428571428571,
+          "AP": 0.9555021395414101,
+          "recall": 0.8888888888888888,
+          "precision": 0.8275862068965517,
+          "FPR": 0.04807692307692308,
+          "MCC": 0.8192158578782555,
+          "FP": 5,
+          "FN": 3,
+          "brier": 0.0542600675828208,
+          "threshold": 0.5049346230708378,
+          "nll": 0.21163375460659023
+        },
+        "audit": {
+          "rows": 132,
+          "anomalies": 30,
+          "f1": 0.8666666666666667,
+          "AP": 0.9348288437046872,
+          "recall": 0.8666666666666667,
+          "precision": 0.8666666666666667,
+          "FPR": 0.0392156862745098,
+          "MCC": 0.8274509803921568,
+          "FP": 4,
+          "FN": 4,
+          "brier": 0.052241042390030766,
+          "threshold": 0.5049346230708378,
+          "nll": 0.2799780653021678
+        }
+      },
+      "scenarios": {
+        "correct_existing_binary_labels": {
+          "conflicts": 8,
+          "flipped": 0,
+          "ordinary_accept": true,
+          "prob_guard_accept": false,
+          "acceptance": {
+            "rows": 131,
+            "anomalies": 27,
+            "f1": 0.8771929824561403,
+            "AP": 0.9577142168383312,
+            "recall": 0.9259259259259259,
+            "precision": 0.8333333333333334,
+            "FPR": 0.04807692307692308,
+            "MCC": 0.8450785094511841,
+            "FP": 5,
+            "FN": 2,
+            "brier": 0.054316802532214596,
+            "threshold": 0.4736742947128439,
+            "nll": 0.21577944692434473
+          },
+          "audit": {
+            "rows": 132,
+            "anomalies": 30,
+            "f1": 0.8709677419354839,
+            "AP": 0.9467868836344657,
+            "recall": 0.9,
+            "precision": 0.84375,
+            "FPR": 0.049019607843137254,
+            "MCC": 0.832157012899397,
+            "FP": 5,
+            "FN": 3,
+            "brier": 0.0517165722048598,
+            "threshold": 0.4736742947128439,
+            "nll": 0.22111827197254597
+          },
+          "calibration_mixture_alpha": 0,
+          "public_checks": {
+            "C": {
+              "F1": true,
+              "AP": true,
+              "recall": true,
+              "normal_FPR": true
+            },
+            "D": {
+              "F1": true,
+              "AP": true,
+              "recall": true,
+              "normal_FPR": true,
+              "Brier": false,
+              "NLL": false
+            },
+            "E": {
+              "F1": true,
+              "AP": true,
+              "recall": true,
+              "normal_FPR": true,
+              "Brier": true,
+              "NLL": true
+            }
+          }
+        },
+        "flip_random_10pct": {
+          "conflicts": 29,
+          "flipped": 24,
+          "ordinary_accept": true,
+          "prob_guard_accept": false,
+          "acceptance": {
+            "rows": 131,
+            "anomalies": 27,
+            "f1": 0.8620689655172413,
+            "AP": 0.9520471311963066,
+            "recall": 0.9259259259259259,
+            "precision": 0.8064516129032258,
+            "FPR": 0.057692307692307696,
+            "MCC": 0.8263314888328005,
+            "FP": 6,
+            "FN": 2,
+            "brier": 0.06583353102561477,
+            "threshold": 0.41026992871387724,
+            "nll": 0.2589935861834442
+          },
+          "audit": {
+            "rows": 132,
+            "anomalies": 30,
+            "f1": 0.8709677419354839,
+            "AP": 0.9356868556023159,
+            "recall": 0.9,
+            "precision": 0.84375,
+            "FPR": 0.049019607843137254,
+            "MCC": 0.832157012899397,
+            "FP": 5,
+            "FN": 3,
+            "brier": 0.0655871075461686,
+            "threshold": 0.41026992871387724,
+            "nll": 0.2644729794774307
+          },
+          "calibration_mixture_alpha": 0,
+          "public_checks": {
+            "C": {
+              "F1": true,
+              "AP": true,
+              "recall": true,
+              "normal_FPR": true
+            },
+            "D": {
+              "F1": true,
+              "AP": true,
+              "recall": true,
+              "normal_FPR": true,
+              "Brier": false,
+              "NLL": false
+            },
+            "E": {
+              "F1": true,
+              "AP": true,
+              "recall": true,
+              "normal_FPR": true,
+              "Brier": true,
+              "NLL": true
+            }
+          }
+        },
+        "flip_random_30pct": {
+          "conflicts": 63,
+          "flipped": 72,
+          "ordinary_accept": false,
+          "prob_guard_accept": false,
+          "acceptance": {
+            "rows": 131,
+            "anomalies": 27,
+            "f1": 0.8275862068965517,
+            "AP": 0.9392122809816806,
+            "recall": 0.8888888888888888,
+            "precision": 0.7741935483870968,
+            "FPR": 0.0673076923076923,
+            "MCC": 0.7819305761842784,
+            "FP": 7,
+            "FN": 3,
+            "brier": 0.09231756698157455,
+            "threshold": 0.40910350153353375,
+            "nll": 0.33616364455013126
+          },
+          "audit": {
+            "rows": 132,
+            "anomalies": 30,
+            "f1": 0.8571428571428571,
+            "AP": 0.9235888754751096,
+            "recall": 0.9,
+            "precision": 0.8181818181818182,
+            "FPR": 0.058823529411764705,
+            "MCC": 0.8140915784106943,
+            "FP": 6,
+            "FN": 3,
+            "brier": 0.0937175984180897,
+            "threshold": 0.40910350153353375,
+            "nll": 0.3579936676589994
+          },
+          "calibration_mixture_alpha": 0,
+          "public_checks": {
+            "C": {
+              "F1": false,
+              "AP": true,
+              "recall": true,
+              "normal_FPR": true
+            },
+            "D": {
+              "F1": false,
+              "AP": true,
+              "recall": true,
+              "normal_FPR": true,
+              "Brier": false,
+              "NLL": false
+            },
+            "E": {
+              "F1": true,
+              "AP": true,
+              "recall": true,
+              "normal_FPR": true,
+              "Brier": true,
+              "NLL": true
+            }
+          }
+        },
+        "flip_all_labels": {
+          "conflicts": 204,
+          "flipped": 241,
+          "ordinary_accept": false,
+          "prob_guard_accept": false,
+          "acceptance": {
+            "rows": 131,
+            "anomalies": 27,
+            "f1": 0.7391304347826086,
+            "AP": 0.7911119896229878,
+            "recall": 0.6296296296296297,
+            "precision": 0.8947368421052632,
+            "FPR": 0.019230769230769232,
+            "MCC": 0.7011750498470617,
+            "FP": 2,
+            "FN": 10,
+            "brier": 0.16522424264903465,
+            "threshold": 0.5689288459430298,
+            "nll": 0.5050409439974017
+          },
+          "audit": {
+            "rows": 132,
+            "anomalies": 30,
+            "f1": 0.6938775510204082,
+            "AP": 0.8086111256009356,
+            "recall": 0.5666666666666667,
+            "precision": 0.8947368421052632,
+            "FPR": 0.0196078431372549,
+            "MCC": 0.6530985479711388,
+            "FP": 2,
+            "FN": 13,
+            "brier": 0.1620858239621952,
+            "threshold": 0.5689288459430298,
+            "nll": 0.5374421471483404
+          },
+          "calibration_mixture_alpha": 0,
+          "public_checks": {
+            "C": {
+              "F1": false,
+              "AP": false,
+              "recall": false,
+              "normal_FPR": true
+            },
+            "D": {
+              "F1": false,
+              "AP": false,
+              "recall": false,
+              "normal_FPR": true,
+              "Brier": false,
+              "NLL": false
+            },
+            "E": {
+              "F1": true,
+              "AP": true,
+              "recall": true,
+              "normal_FPR": true,
+              "Brier": true,
+              "NLL": true
+            }
+          }
+        }
+      }
+    },
+    {
+      "fold_name": "heldout_channel_CADC0872",
+      "source": "REAL OPS-SAT-AD old model reference on disjoint grouped records",
+      "reference_label_conflicts": 6,
+      "reference_count": 191,
+      "sample_counts": {
+        "batch": 207,
+        "old": 989,
+        "cal": 191,
+        "accept": 95,
+        "audit": 96
+      },
+      "base": {
+        "acceptance": {
+          "rows": 95,
+          "anomalies": 14,
+          "f1": 0.88,
+          "AP": 0.9434968017057568,
+          "recall": 0.7857142857142857,
+          "precision": 1.0,
+          "FPR": 0.0,
+          "MCC": 0.8704326862109958,
+          "FP": 0,
+          "FN": 3,
+          "brier": 0.04165353751335513,
+          "threshold": 0.40847128416378475,
+          "nll": 0.19633514646052683
+        },
+        "audit": {
+          "rows": 96,
+          "anomalies": 17,
+          "f1": 0.8666666666666667,
+          "AP": 0.9127399489207448,
+          "recall": 0.7647058823529411,
+          "precision": 1.0,
+          "FPR": 0.0,
+          "MCC": 0.8531427704774035,
+          "FP": 0,
+          "FN": 4,
+          "brier": 0.055770160786068064,
+          "threshold": 0.40847128416378475,
+          "nll": 0.26251208421722544
+        }
+      },
+      "scenarios": {
+        "correct_existing_binary_labels": {
+          "conflicts": 6,
+          "flipped": 0,
+          "ordinary_accept": true,
+          "prob_guard_accept": false,
+          "acceptance": {
+            "rows": 95,
+            "anomalies": 14,
+            "f1": 0.9230769230769231,
+            "AP": 0.9428571428571428,
+            "recall": 0.8571428571428571,
+            "precision": 1.0,
+            "FPR": 0.0,
+            "MCC": 0.9145976232160387,
+            "FP": 0,
+            "FN": 2,
+            "brier": 0.041782105232154955,
+            "threshold": 0.3480493340331207,
+            "nll": 0.20033586286606153
+          },
+          "audit": {
+            "rows": 96,
+            "anomalies": 17,
+            "f1": 0.8666666666666667,
+            "AP": 0.9079498734977862,
+            "recall": 0.7647058823529411,
+            "precision": 1.0,
+            "FPR": 0.0,
+            "MCC": 0.8531427704774035,
+            "FP": 0,
+            "FN": 4,
+            "brier": 0.05832392655630353,
+            "threshold": 0.3480493340331207,
+            "nll": 0.2709106036864781
+          },
+          "calibration_mixture_alpha": 0,
+          "public_checks": {
+            "C": {
+              "F1": true,
+              "AP": true,
+              "recall": true,
+              "normal_FPR": true
+            },
+            "D": {
+              "F1": true,
+              "AP": true,
+              "recall": true,
+              "normal_FPR": true,
+              "Brier": false,
+              "NLL": false
+            },
+            "E": {
+              "F1": true,
+              "AP": true,
+              "recall": true,
+              "normal_FPR": true,
+              "Brier": true,
+              "NLL": true
+            }
+          }
+        },
+        "flip_random_10pct": {
+          "conflicts": 19,
+          "flipped": 21,
+          "ordinary_accept": true,
+          "prob_guard_accept": false,
+          "acceptance": {
+            "rows": 95,
+            "anomalies": 14,
+            "f1": 0.88,
+            "AP": 0.916017316017316,
+            "recall": 0.7857142857142857,
+            "precision": 1.0,
+            "FPR": 0.0,
+            "MCC": 0.8704326862109958,
+            "FP": 0,
+            "FN": 3,
+            "brier": 0.06330164729949606,
+            "threshold": 0.4179314719534613,
+            "nll": 0.2672484744271828
+          },
+          "audit": {
+            "rows": 96,
+            "anomalies": 17,
+            "f1": 0.8275862068965517,
+            "AP": 0.9166911764705883,
+            "recall": 0.7058823529411765,
+            "precision": 1.0,
+            "FPR": 0.0,
+            "MCC": 0.8147794463647738,
+            "FP": 0,
+            "FN": 5,
+            "brier": 0.07434866203092133,
+            "threshold": 0.4179314719534613,
+            "nll": 0.30855293663606426
+          },
+          "calibration_mixture_alpha": 0,
+          "public_checks": {
+            "C": {
+              "F1": true,
+              "AP": true,
+              "recall": true,
+              "normal_FPR": true
+            },
+            "D": {
+              "F1": true,
+              "AP": true,
+              "recall": true,
+              "normal_FPR": true,
+              "Brier": false,
+              "NLL": false
+            },
+            "E": {
+              "F1": true,
+              "AP": true,
+              "recall": true,
+              "normal_FPR": true,
+              "Brier": true,
+              "NLL": true
+            }
+          }
+        },
+        "flip_random_30pct": {
+          "conflicts": 56,
+          "flipped": 62,
+          "ordinary_accept": true,
+          "prob_guard_accept": false,
+          "acceptance": {
+            "rows": 95,
+            "anomalies": 14,
+            "f1": 0.9230769230769231,
+            "AP": 0.9430641821946169,
+            "recall": 0.8571428571428571,
+            "precision": 1.0,
+            "FPR": 0.0,
+            "MCC": 0.9145976232160387,
+            "FP": 0,
+            "FN": 2,
+            "brier": 0.10971570618327461,
+            "threshold": 0.49021283988766695,
+            "nll": 0.38719885077989036
+          },
+          "audit": {
+            "rows": 96,
+            "anomalies": 17,
+            "f1": 0.7857142857142857,
+            "AP": 0.8365383322893339,
+            "recall": 0.6470588235294118,
+            "precision": 1.0,
+            "FPR": 0.0,
+            "MCC": 0.7754895763612705,
+            "FP": 0,
+            "FN": 6,
+            "brier": 0.12385675482155949,
+            "threshold": 0.49021283988766695,
+            "nll": 0.4214503722324337
+          },
+          "calibration_mixture_alpha": 0,
+          "public_checks": {
+            "C": {
+              "F1": true,
+              "AP": true,
+              "recall": true,
+              "normal_FPR": true
+            },
+            "D": {
+              "F1": true,
+              "AP": true,
+              "recall": true,
+              "normal_FPR": true,
+              "Brier": false,
+              "NLL": false
+            },
+            "E": {
+              "F1": true,
+              "AP": true,
+              "recall": true,
+              "normal_FPR": true,
+              "Brier": true,
+              "NLL": true
+            }
+          }
+        },
+        "flip_all_labels": {
+          "conflicts": 154,
+          "flipped": 207,
+          "ordinary_accept": false,
+          "prob_guard_accept": false,
+          "acceptance": {
+            "rows": 95,
+            "anomalies": 14,
+            "f1": 0.75,
+            "AP": 0.71639223025294,
+            "recall": 0.6428571428571429,
+            "precision": 0.9,
+            "FPR": 0.012345679012345678,
+            "MCC": 0.7282660281946345,
+            "FP": 1,
+            "FN": 5,
+            "brier": 0.2313555574815884,
+            "threshold": 0.5527591350598821,
+            "nll": 0.6488690594949111
+          },
+          "audit": {
+            "rows": 96,
+            "anomalies": 17,
+            "f1": 0.7407407407407407,
+            "AP": 0.759561293228797,
+            "recall": 0.5882352941176471,
+            "precision": 1.0,
+            "FPR": 0.0,
+            "MCC": 0.7350888906483235,
+            "FP": 0,
+            "FN": 7,
+            "brier": 0.2308504733247907,
+            "threshold": 0.5527591350598821,
+            "nll": 0.647147072012546
+          },
+          "calibration_mixture_alpha": 0,
+          "public_checks": {
+            "C": {
+              "F1": false,
+              "AP": false,
+              "recall": false,
+              "normal_FPR": true
+            },
+            "D": {
+              "F1": false,
+              "AP": false,
+              "recall": false,
+              "normal_FPR": true,
+              "Brier": false,
+              "NLL": false
+            },
+            "E": {
+              "F1": true,
+              "AP": true,
+              "recall": true,
+              "normal_FPR": true,
+              "Brier": true,
+              "NLL": true
+            }
+          }
+        }
+      }
+    },
+    {
+      "fold_name": "heldout_channel_CADC0888",
+      "source": "REAL OPS-SAT-AD old model reference on disjoint grouped records",
+      "reference_label_conflicts": 7,
+      "reference_count": 222,
+      "sample_counts": {
+        "batch": 94,
+        "old": 1184,
+        "cal": 222,
+        "accept": 39,
+        "audit": 39
+      },
+      "base": {
+        "acceptance": {
+          "rows": 39,
+          "anomalies": 19,
+          "f1": 0.8125,
+          "AP": 0.9682083997873467,
+          "recall": 0.6842105263157895,
+          "precision": 1.0,
+          "FPR": 0.0,
+          "MCC": 0.7254762501100117,
+          "FP": 0,
+          "FN": 6,
+          "brier": 0.09075431739582657,
+          "threshold": 0.6872646558569602,
+          "nll": 0.2954787145853617
+        },
+        "audit": {
+          "rows": 39,
+          "anomalies": 10,
+          "f1": 0.7619047619047619,
+          "AP": 0.9057387057387057,
+          "recall": 0.8,
+          "precision": 0.7272727272727273,
+          "FPR": 0.10344827586206896,
+          "MCC": 0.6758915427189726,
+          "FP": 3,
+          "FN": 2,
+          "brier": 0.1150074877829819,
+          "threshold": 0.6872646558569602,
+          "nll": 0.35483279309823207
+        }
+      },
+      "scenarios": {
+        "correct_existing_binary_labels": {
+          "conflicts": 3,
+          "flipped": 0,
+          "ordinary_accept": true,
+          "prob_guard_accept": true,
+          "acceptance": {
+            "rows": 39,
+            "anomalies": 19,
+            "f1": 0.8484848484848485,
+            "AP": 0.9727709963167024,
+            "recall": 0.7368421052631579,
+            "precision": 1.0,
+            "FPR": 0.0,
+            "MCC": 0.7677718959499145,
+            "FP": 0,
+            "FN": 5,
+            "brier": 0.07729035190698068,
+            "threshold": 0.6979434696955963,
+            "nll": 0.2543602077904617
+          },
+          "audit": {
+            "rows": 39,
+            "anomalies": 10,
+            "f1": 0.8181818181818182,
+            "AP": 0.9318181818181818,
+            "recall": 0.9,
+            "precision": 0.75,
+            "FPR": 0.10344827586206896,
+            "MCC": 0.7535992817105361,
+            "FP": 3,
+            "FN": 1,
+            "brier": 0.10864625171998082,
+            "threshold": 0.6979434696955963,
+            "nll": 0.3308433324098914
+          },
+          "calibration_mixture_alpha": 0,
+          "public_checks": {
+            "C": {
+              "F1": true,
+              "AP": true,
+              "recall": true,
+              "normal_FPR": true
+            },
+            "D": {
+              "F1": true,
+              "AP": true,
+              "recall": true,
+              "normal_FPR": true,
+              "Brier": true,
+              "NLL": true
+            },
+            "E": {
+              "F1": true,
+              "AP": true,
+              "recall": true,
+              "normal_FPR": true,
+              "Brier": true,
+              "NLL": true
+            }
+          }
+        },
+        "flip_random_10pct": {
+          "conflicts": 11,
+          "flipped": 9,
+          "ordinary_accept": true,
+          "prob_guard_accept": true,
+          "acceptance": {
+            "rows": 39,
+            "anomalies": 19,
+            "f1": 0.8484848484848485,
+            "AP": 0.9759398496240597,
+            "recall": 0.7368421052631579,
+            "precision": 1.0,
+            "FPR": 0.0,
+            "MCC": 0.7677718959499145,
+            "FP": 0,
+            "FN": 5,
+            "brier": 0.0733316879306906,
+            "threshold": 0.6682402328956062,
+            "nll": 0.25181466936533375
+          },
+          "audit": {
+            "rows": 39,
+            "anomalies": 10,
+            "f1": 0.8181818181818182,
+            "AP": 0.9107142857142857,
+            "recall": 0.9,
+            "precision": 0.75,
+            "FPR": 0.10344827586206896,
+            "MCC": 0.7535992817105361,
+            "FP": 3,
+            "FN": 1,
+            "brier": 0.11198929058957298,
+            "threshold": 0.6682402328956062,
+            "nll": 0.35246124325135586
+          },
+          "calibration_mixture_alpha": 0,
+          "public_checks": {
+            "C": {
+              "F1": true,
+              "AP": true,
+              "recall": true,
+              "normal_FPR": true
+            },
+            "D": {
+              "F1": true,
+              "AP": true,
+              "recall": true,
+              "normal_FPR": true,
+              "Brier": true,
+              "NLL": true
+            },
+            "E": {
+              "F1": true,
+              "AP": true,
+              "recall": true,
+              "normal_FPR": true,
+              "Brier": true,
+              "NLL": true
+            }
+          }
+        },
+        "flip_random_30pct": {
+          "conflicts": 26,
+          "flipped": 28,
+          "ordinary_accept": true,
+          "prob_guard_accept": false,
+          "acceptance": {
+            "rows": 39,
+            "anomalies": 19,
+            "f1": 0.8484848484848485,
+            "AP": 0.9503292545088207,
+            "recall": 0.7368421052631579,
+            "precision": 1.0,
+            "FPR": 0.0,
+            "MCC": 0.7677718959499145,
+            "FP": 0,
+            "FN": 5,
+            "brier": 0.10800071413243072,
+            "threshold": 0.6495078551560098,
+            "nll": 0.35425753192877457
+          },
+          "audit": {
+            "rows": 39,
+            "anomalies": 10,
+            "f1": 0.782608695652174,
+            "AP": 0.9094827586206896,
+            "recall": 0.9,
+            "precision": 0.6923076923076923,
+            "FPR": 0.13793103448275862,
+            "MCC": 0.7058865787567897,
+            "FP": 4,
+            "FN": 1,
+            "brier": 0.13957226638810785,
+            "threshold": 0.6495078551560098,
+            "nll": 0.4272556151065351
+          },
+          "calibration_mixture_alpha": 0,
+          "public_checks": {
+            "C": {
+              "F1": true,
+              "AP": true,
+              "recall": true,
+              "normal_FPR": true
+            },
+            "D": {
+              "F1": true,
+              "AP": true,
+              "recall": true,
+              "normal_FPR": true,
+              "Brier": false,
+              "NLL": false
+            },
+            "E": {
+              "F1": true,
+              "AP": true,
+              "recall": true,
+              "normal_FPR": true,
+              "Brier": true,
+              "NLL": true
+            }
+          }
+        },
+        "flip_all_labels": {
+          "conflicts": 84,
+          "flipped": 94,
+          "ordinary_accept": false,
+          "prob_guard_accept": false,
+          "acceptance": {
+            "rows": 39,
+            "anomalies": 19,
+            "f1": 0.7272727272727273,
+            "AP": 0.8739107096498735,
+            "recall": 0.631578947368421,
+            "precision": 0.8571428571428571,
+            "FPR": 0.1,
+            "MCC": 0.5538925820781526,
+            "FP": 2,
+            "FN": 7,
+            "brier": 0.17351517107967385,
+            "threshold": 0.7944702011408338,
+            "nll": 0.5097524041659792
+          },
+          "audit": {
+            "rows": 39,
+            "anomalies": 10,
+            "f1": 0.8,
+            "AP": 0.9027777777777778,
+            "recall": 0.8,
+            "precision": 0.8,
+            "FPR": 0.06896551724137931,
+            "MCC": 0.7310344827586207,
+            "FP": 2,
+            "FN": 2,
+            "brier": 0.18190584335832005,
+            "threshold": 0.7944702011408338,
+            "nll": 0.5369433002700196
+          },
+          "calibration_mixture_alpha": 0,
+          "public_checks": {
+            "C": {
+              "F1": false,
+              "AP": false,
+              "recall": true,
+              "normal_FPR": false
+            },
+            "D": {
+              "F1": false,
+              "AP": false,
+              "recall": true,
+              "normal_FPR": false,
+              "Brier": false,
+              "NLL": false
+            },
+            "E": {
+              "F1": true,
+              "AP": true,
+              "recall": true,
+              "normal_FPR": true,
+              "Brier": true,
+              "NLL": true
+            }
+          }
+        }
+      }
+    }
+  ]
+}
