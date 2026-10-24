@@ -1,0 +1,61 @@
+{
+  "version": "synthetic_hierarchical_vs_direct_v1",
+  "purpose": "Test whether the two-stage 3-state classifier improves state quality, fault/degraded recall or compute over a standard direct multinomial classifier in the same synthetic mission holdout.",
+  "data": {
+    "source": "frozen mvp/synthetic.py",
+    "seed": 20261016,
+    "mission_fit": [
+      0,
+      1
+    ],
+    "mission_calibration": [
+      2
+    ],
+    "mission_test": [
+      3
+    ],
+    "expected_train_windows": 544,
+    "expected_cal_windows": 272,
+    "expected_test_windows": 272,
+    "source_is_simulated": true
+  },
+  "classifiers": {
+    "hierarchical_reference": "Frozen saved two-stage calibrated logistic classifiers, selected stage1=50 and stage2=10 (union=59).",
+    "direct_union59": "Train multinomial LogisticRegression C=0.5 class_weight=balanced max_iter=700 on exact union of saved stage1+stage2 selected features; StandardScaler train-only; temperature calibration using only mission2.",
+    "direct_all400": "Train identical direct multinomial estimator and temperature calibration on all 400 original features.",
+    "hierarchical_refit_timing": "Fit same stage1+stage2 classifiers with frozen 50/10 features and Platt calibrators using original fit/cal mission; timing only; verify unchanged holdout probabilities."
+  },
+  "postprocessors": [
+    "none",
+    "same previously trained transition/prior causal HMM filter, gamma .6 memory .5 for all static models"
+  ],
+  "decision_rule": "No new model selection based on mission3 results; report every method, no 'winner' chosen by test.",
+  "timing": {
+    "repeats": 11,
+    "single_thread": true,
+    "train_time_scope": "model fit including calibration but excluding original feature-selection search",
+    "prediction_time_scope": "272 windows excluding raw telemetry feature extraction and abnormal branch"
+  },
+  "metrics": [
+    "macro_f1",
+    "per_state_recall",
+    "brier",
+    "nll",
+    "confusion_matrix",
+    "normal_fpr_for_each_state",
+    "state_transition_missed",
+    "median_state_transition_delay_minutes",
+    "spurious_noncontemporaneous_switches",
+    "fit_wallclock_ms",
+    "model_pickle_bytes",
+    "prediction_wallclock_ms"
+  ],
+  "note": "This is exploratory posthoc ablation on previously assessed synthetic data; reproducible but not an untouched independent confirmation. Physical satellite fault truth does not exist here.",
+  "forbidden": [
+    "No real-satellite 3-state claims",
+    "No use mission3 for fitting or calibration",
+    "Do not modify frozen delivery branch",
+    "No novel patent mechanics published",
+    "Do not silently apply real OPS-SAT 64-dimensional budget to different 400D synthetic selection"
+  ]
+}
