@@ -1,0 +1,825 @@
+{
+  "study": "Frozen SYNTHETIC satellite 3-state HMM/fusion module multiobjective diagnostic",
+  "simulation_only": true,
+  "original_mvp_test_metrics_reproduced": true,
+  "no_new_hyperparameter_tuning_on_test": true,
+  "original_synthetic_spec_sha256": "f6a95296b9c14e2cdacaa4236d75fa5d7f3c576e9d55ac605af7616f7799bfe8",
+  "research_protocol_sha256": "28d6167b653429e454841a9c0a9148f76934daa594f3d665e20c3d0a52e36d9a",
+  "state_truth": [
+    "simulated_healthy",
+    "simulated_degraded",
+    "simulated_fault"
+  ],
+  "synthetic_data": {
+    "test_windows": 272,
+    "independent_test_cycles": 4,
+    "state_counts": [
+      120,
+      96,
+      56
+    ],
+    "number_true_state_transitions": 12,
+    "stride_minutes": 4
+  },
+  "methods": {
+    "static_hierarchical": {
+      "macro_f1": 0.9718450609371945,
+      "recalls": [
+        0.9666666666666667,
+        0.9479166666666666,
+        1.0
+      ],
+      "brier": 0.04975619423878217,
+      "nll": 0.07943602816330939,
+      "balanced_accuracy": 0.9715277777777778,
+      "confusion_matrix": [
+        [
+          116,
+          4,
+          0
+        ],
+        [
+          5,
+          91,
+          0
+        ],
+        [
+          0,
+          0,
+          56
+        ]
+      ],
+      "state_counts_truth": [
+        120,
+        96,
+        56
+      ],
+      "state_counts_predicted": [
+        121,
+        95,
+        56
+      ],
+      "temporal": {
+        "true_change_events": 12,
+        "transition_detected": 12,
+        "transition_missed": 0,
+        "detected_fraction": 1.0,
+        "median_detected_delay_minutes": 0.0,
+        "mean_detected_delay_minutes": 0.0,
+        "p90_detected_delay_minutes": 0.0,
+        "spurious_prediction_state_switches": 13,
+        "by_target": {
+          "healthy": {
+            "events": 4,
+            "detected": 4,
+            "missed": 0,
+            "median_delay_minutes": 0.0
+          },
+          "degraded": {
+            "events": 4,
+            "detected": 4,
+            "missed": 0,
+            "median_delay_minutes": 0.0
+          },
+          "fault": {
+            "events": 4,
+            "detected": 4,
+            "missed": 0,
+            "median_delay_minutes": 0.0
+          }
+        },
+        "events": [
+          {
+            "cycle_id": 12,
+            "from": 0,
+            "to": 1,
+            "window_onset_index": 21,
+            "window_detection_index": 21,
+            "delay_minutes": 0,
+            "transition_detected": true
+          },
+          {
+            "cycle_id": 12,
+            "from": 1,
+            "to": 2,
+            "window_onset_index": 45,
+            "window_detection_index": 45,
+            "delay_minutes": 0,
+            "transition_detected": true
+          },
+          {
+            "cycle_id": 12,
+            "from": 2,
+            "to": 0,
+            "window_onset_index": 59,
+            "window_detection_index": 59,
+            "delay_minutes": 0,
+            "transition_detected": true
+          },
+          {
+            "cycle_id": 13,
+            "from": 0,
+            "to": 1,
+            "window_onset_index": 89,
+            "window_detection_index": 89,
+            "delay_minutes": 0,
+            "transition_detected": true
+          },
+          {
+            "cycle_id": 13,
+            "from": 1,
+            "to": 2,
+            "window_onset_index": 113,
+            "window_detection_index": 113,
+            "delay_minutes": 0,
+            "transition_detected": true
+          },
+          {
+            "cycle_id": 13,
+            "from": 2,
+            "to": 0,
+            "window_onset_index": 127,
+            "window_detection_index": 127,
+            "delay_minutes": 0,
+            "transition_detected": true
+          },
+          {
+            "cycle_id": 14,
+            "from": 0,
+            "to": 1,
+            "window_onset_index": 157,
+            "window_detection_index": 157,
+            "delay_minutes": 0,
+            "transition_detected": true
+          },
+          {
+            "cycle_id": 14,
+            "from": 1,
+            "to": 2,
+            "window_onset_index": 181,
+            "window_detection_index": 181,
+            "delay_minutes": 0,
+            "transition_detected": true
+          },
+          {
+            "cycle_id": 14,
+            "from": 2,
+            "to": 0,
+            "window_onset_index": 195,
+            "window_detection_index": 195,
+            "delay_minutes": 0,
+            "transition_detected": true
+          },
+          {
+            "cycle_id": 15,
+            "from": 0,
+            "to": 1,
+            "window_onset_index": 225,
+            "window_detection_index": 225,
+            "delay_minutes": 0,
+            "transition_detected": true
+          },
+          {
+            "cycle_id": 15,
+            "from": 1,
+            "to": 2,
+            "window_onset_index": 249,
+            "window_detection_index": 249,
+            "delay_minutes": 0,
+            "transition_detected": true
+          },
+          {
+            "cycle_id": 15,
+            "from": 2,
+            "to": 0,
+            "window_onset_index": 263,
+            "window_detection_index": 263,
+            "delay_minutes": 0,
+            "transition_detected": true
+          }
+        ]
+      }
+    },
+    "causal_rolling_mean_3": {
+      "macro_f1": 0.9324404761904761,
+      "recalls": [
+        0.9416666666666667,
+        0.9270833333333334,
+        0.9285714285714286
+      ],
+      "brier": 0.08745655711506164,
+      "nll": 0.13804313674929283,
+      "balanced_accuracy": 0.9324404761904761,
+      "confusion_matrix": [
+        [
+          113,
+          3,
+          4
+        ],
+        [
+          7,
+          89,
+          0
+        ],
+        [
+          0,
+          4,
+          52
+        ]
+      ],
+      "state_counts_truth": [
+        120,
+        96,
+        56
+      ],
+      "state_counts_predicted": [
+        120,
+        96,
+        56
+      ],
+      "temporal": {
+        "true_change_events": 12,
+        "transition_detected": 12,
+        "transition_missed": 0,
+        "detected_fraction": 1.0,
+        "median_detected_delay_minutes": 4.0,
+        "mean_detected_delay_minutes": 4.0,
+        "p90_detected_delay_minutes": 4.0,
+        "spurious_prediction_state_switches": 17,
+        "by_target": {
+          "healthy": {
+            "events": 4,
+            "detected": 4,
+            "missed": 0,
+            "median_delay_minutes": 4.0
+          },
+          "degraded": {
+            "events": 4,
+            "detected": 4,
+            "missed": 0,
+            "median_delay_minutes": 4.0
+          },
+          "fault": {
+            "events": 4,
+            "detected": 4,
+            "missed": 0,
+            "median_delay_minutes": 4.0
+          }
+        },
+        "events": [
+          {
+            "cycle_id": 12,
+            "from": 0,
+            "to": 1,
+            "window_onset_index": 21,
+            "window_detection_index": 22,
+            "delay_minutes": 4,
+            "transition_detected": true
+          },
+          {
+            "cycle_id": 12,
+            "from": 1,
+            "to": 2,
+            "window_onset_index": 45,
+            "window_detection_index": 46,
+            "delay_minutes": 4,
+            "transition_detected": true
+          },
+          {
+            "cycle_id": 12,
+            "from": 2,
+            "to": 0,
+            "window_onset_index": 59,
+            "window_detection_index": 60,
+            "delay_minutes": 4,
+            "transition_detected": true
+          },
+          {
+            "cycle_id": 13,
+            "from": 0,
+            "to": 1,
+            "window_onset_index": 89,
+            "window_detection_index": 90,
+            "delay_minutes": 4,
+            "transition_detected": true
+          },
+          {
+            "cycle_id": 13,
+            "from": 1,
+            "to": 2,
+            "window_onset_index": 113,
+            "window_detection_index": 114,
+            "delay_minutes": 4,
+            "transition_detected": true
+          },
+          {
+            "cycle_id": 13,
+            "from": 2,
+            "to": 0,
+            "window_onset_index": 127,
+            "window_detection_index": 128,
+            "delay_minutes": 4,
+            "transition_detected": true
+          },
+          {
+            "cycle_id": 14,
+            "from": 0,
+            "to": 1,
+            "window_onset_index": 157,
+            "window_detection_index": 158,
+            "delay_minutes": 4,
+            "transition_detected": true
+          },
+          {
+            "cycle_id": 14,
+            "from": 1,
+            "to": 2,
+            "window_onset_index": 181,
+            "window_detection_index": 182,
+            "delay_minutes": 4,
+            "transition_detected": true
+          },
+          {
+            "cycle_id": 14,
+            "from": 2,
+            "to": 0,
+            "window_onset_index": 195,
+            "window_detection_index": 196,
+            "delay_minutes": 4,
+            "transition_detected": true
+          },
+          {
+            "cycle_id": 15,
+            "from": 0,
+            "to": 1,
+            "window_onset_index": 225,
+            "window_detection_index": 226,
+            "delay_minutes": 4,
+            "transition_detected": true
+          },
+          {
+            "cycle_id": 15,
+            "from": 1,
+            "to": 2,
+            "window_onset_index": 249,
+            "window_detection_index": 250,
+            "delay_minutes": 4,
+            "transition_detected": true
+          },
+          {
+            "cycle_id": 15,
+            "from": 2,
+            "to": 0,
+            "window_onset_index": 263,
+            "window_detection_index": 264,
+            "delay_minutes": 4,
+            "transition_detected": true
+          }
+        ]
+      }
+    },
+    "causal_hmm_gamma_0.6_memory_0.5": {
+      "macro_f1": 0.9781888997078871,
+      "recalls": [
+        0.9583333333333334,
+        0.9791666666666666,
+        1.0
+      ],
+      "brier": 0.03426533334857038,
+      "nll": 0.06256645016876802,
+      "balanced_accuracy": 0.9791666666666666,
+      "confusion_matrix": [
+        [
+          115,
+          5,
+          0
+        ],
+        [
+          2,
+          94,
+          0
+        ],
+        [
+          0,
+          0,
+          56
+        ]
+      ],
+      "state_counts_truth": [
+        120,
+        96,
+        56
+      ],
+      "state_counts_predicted": [
+        117,
+        99,
+        56
+      ],
+      "temporal": {
+        "true_change_events": 12,
+        "transition_detected": 12,
+        "transition_missed": 0,
+        "detected_fraction": 1.0,
+        "median_detected_delay_minutes": 0.0,
+        "mean_detected_delay_minutes": 0.0,
+        "p90_detected_delay_minutes": 0.0,
+        "spurious_prediction_state_switches": 9,
+        "by_target": {
+          "healthy": {
+            "events": 4,
+            "detected": 4,
+            "missed": 0,
+            "median_delay_minutes": 0.0
+          },
+          "degraded": {
+            "events": 4,
+            "detected": 4,
+            "missed": 0,
+            "median_delay_minutes": 0.0
+          },
+          "fault": {
+            "events": 4,
+            "detected": 4,
+            "missed": 0,
+            "median_delay_minutes": 0.0
+          }
+        },
+        "events": [
+          {
+            "cycle_id": 12,
+            "from": 0,
+            "to": 1,
+            "window_onset_index": 21,
+            "window_detection_index": 21,
+            "delay_minutes": 0,
+            "transition_detected": true
+          },
+          {
+            "cycle_id": 12,
+            "from": 1,
+            "to": 2,
+            "window_onset_index": 45,
+            "window_detection_index": 45,
+            "delay_minutes": 0,
+            "transition_detected": true
+          },
+          {
+            "cycle_id": 12,
+            "from": 2,
+            "to": 0,
+            "window_onset_index": 59,
+            "window_detection_index": 59,
+            "delay_minutes": 0,
+            "transition_detected": true
+          },
+          {
+            "cycle_id": 13,
+            "from": 0,
+            "to": 1,
+            "window_onset_index": 89,
+            "window_detection_index": 89,
+            "delay_minutes": 0,
+            "transition_detected": true
+          },
+          {
+            "cycle_id": 13,
+            "from": 1,
+            "to": 2,
+            "window_onset_index": 113,
+            "window_detection_index": 113,
+            "delay_minutes": 0,
+            "transition_detected": true
+          },
+          {
+            "cycle_id": 13,
+            "from": 2,
+            "to": 0,
+            "window_onset_index": 127,
+            "window_detection_index": 127,
+            "delay_minutes": 0,
+            "transition_detected": true
+          },
+          {
+            "cycle_id": 14,
+            "from": 0,
+            "to": 1,
+            "window_onset_index": 157,
+            "window_detection_index": 157,
+            "delay_minutes": 0,
+            "transition_detected": true
+          },
+          {
+            "cycle_id": 14,
+            "from": 1,
+            "to": 2,
+            "window_onset_index": 181,
+            "window_detection_index": 181,
+            "delay_minutes": 0,
+            "transition_detected": true
+          },
+          {
+            "cycle_id": 14,
+            "from": 2,
+            "to": 0,
+            "window_onset_index": 195,
+            "window_detection_index": 195,
+            "delay_minutes": 0,
+            "transition_detected": true
+          },
+          {
+            "cycle_id": 15,
+            "from": 0,
+            "to": 1,
+            "window_onset_index": 225,
+            "window_detection_index": 225,
+            "delay_minutes": 0,
+            "transition_detected": true
+          },
+          {
+            "cycle_id": 15,
+            "from": 1,
+            "to": 2,
+            "window_onset_index": 249,
+            "window_detection_index": 249,
+            "delay_minutes": 0,
+            "transition_detected": true
+          },
+          {
+            "cycle_id": 15,
+            "from": 2,
+            "to": 0,
+            "window_onset_index": 263,
+            "window_detection_index": 263,
+            "delay_minutes": 0,
+            "transition_detected": true
+          }
+        ]
+      }
+    },
+    "hmm_plus_anomaly_late_fusion": {
+      "macro_f1": 0.9812500000000001,
+      "recalls": [
+        0.975,
+        0.96875,
+        1.0
+      ],
+      "brier": 0.03416971969976556,
+      "nll": 0.05618653476594739,
+      "balanced_accuracy": 0.9812500000000001,
+      "confusion_matrix": [
+        [
+          117,
+          3,
+          0
+        ],
+        [
+          3,
+          93,
+          0
+        ],
+        [
+          0,
+          0,
+          56
+        ]
+      ],
+      "state_counts_truth": [
+        120,
+        96,
+        56
+      ],
+      "state_counts_predicted": [
+        120,
+        96,
+        56
+      ],
+      "temporal": {
+        "true_change_events": 12,
+        "transition_detected": 12,
+        "transition_missed": 0,
+        "detected_fraction": 1.0,
+        "median_detected_delay_minutes": 0.0,
+        "mean_detected_delay_minutes": 0.0,
+        "p90_detected_delay_minutes": 0.0,
+        "spurious_prediction_state_switches": 9,
+        "by_target": {
+          "healthy": {
+            "events": 4,
+            "detected": 4,
+            "missed": 0,
+            "median_delay_minutes": 0.0
+          },
+          "degraded": {
+            "events": 4,
+            "detected": 4,
+            "missed": 0,
+            "median_delay_minutes": 0.0
+          },
+          "fault": {
+            "events": 4,
+            "detected": 4,
+            "missed": 0,
+            "median_delay_minutes": 0.0
+          }
+        },
+        "events": [
+          {
+            "cycle_id": 12,
+            "from": 0,
+            "to": 1,
+            "window_onset_index": 21,
+            "window_detection_index": 21,
+            "delay_minutes": 0,
+            "transition_detected": true
+          },
+          {
+            "cycle_id": 12,
+            "from": 1,
+            "to": 2,
+            "window_onset_index": 45,
+            "window_detection_index": 45,
+            "delay_minutes": 0,
+            "transition_detected": true
+          },
+          {
+            "cycle_id": 12,
+            "from": 2,
+            "to": 0,
+            "window_onset_index": 59,
+            "window_detection_index": 59,
+            "delay_minutes": 0,
+            "transition_detected": true
+          },
+          {
+            "cycle_id": 13,
+            "from": 0,
+            "to": 1,
+            "window_onset_index": 89,
+            "window_detection_index": 89,
+            "delay_minutes": 0,
+            "transition_detected": true
+          },
+          {
+            "cycle_id": 13,
+            "from": 1,
+            "to": 2,
+            "window_onset_index": 113,
+            "window_detection_index": 113,
+            "delay_minutes": 0,
+            "transition_detected": true
+          },
+          {
+            "cycle_id": 13,
+            "from": 2,
+            "to": 0,
+            "window_onset_index": 127,
+            "window_detection_index": 127,
+            "delay_minutes": 0,
+            "transition_detected": true
+          },
+          {
+            "cycle_id": 14,
+            "from": 0,
+            "to": 1,
+            "window_onset_index": 157,
+            "window_detection_index": 157,
+            "delay_minutes": 0,
+            "transition_detected": true
+          },
+          {
+            "cycle_id": 14,
+            "from": 1,
+            "to": 2,
+            "window_onset_index": 181,
+            "window_detection_index": 181,
+            "delay_minutes": 0,
+            "transition_detected": true
+          },
+          {
+            "cycle_id": 14,
+            "from": 2,
+            "to": 0,
+            "window_onset_index": 195,
+            "window_detection_index": 195,
+            "delay_minutes": 0,
+            "transition_detected": true
+          },
+          {
+            "cycle_id": 15,
+            "from": 0,
+            "to": 1,
+            "window_onset_index": 225,
+            "window_detection_index": 225,
+            "delay_minutes": 0,
+            "transition_detected": true
+          },
+          {
+            "cycle_id": 15,
+            "from": 1,
+            "to": 2,
+            "window_onset_index": 249,
+            "window_detection_index": 249,
+            "delay_minutes": 0,
+            "transition_detected": true
+          },
+          {
+            "cycle_id": 15,
+            "from": 2,
+            "to": 0,
+            "window_onset_index": 263,
+            "window_detection_index": 263,
+            "delay_minutes": 0,
+            "transition_detected": true
+          }
+        ]
+      }
+    }
+  },
+  "timings": {
+    "static_hierarchical": {
+      "median_ms": 0.7583909999908656,
+      "q25_ms": 0.7406550000013112,
+      "q75_ms": 0.78372899999124,
+      "repeats": 17
+    },
+    "causal_rolling_mean_3": {
+      "median_ms": 2.3098059999995257,
+      "q25_ms": 2.2957449999978508,
+      "q75_ms": 2.3302060000105485,
+      "repeats": 17
+    },
+    "causal_hmm_gamma_0.6_memory_0.5": {
+      "median_ms": 32.15141999999105,
+      "q25_ms": 31.88418699998863,
+      "q75_ms": 32.36314800000173,
+      "repeats": 17
+    },
+    "hmm_plus_anomaly_late_fusion": {
+      "median_ms": 55.122138999990966,
+      "q25_ms": 54.73180199999206,
+      "q75_ms": 55.219010000001845,
+      "repeats": 17
+    }
+  },
+  "incremental_stages": {
+    "hierarchical_classifier": {
+      "median_ms": 0.7607849999970995,
+      "q25_ms": 0.7483760000042139,
+      "q75_ms": 0.7818370000052255,
+      "repeats": 17
+    },
+    "causal_average_additional": {
+      "median_ms": 1.5020400000054224,
+      "q25_ms": 1.494418999996583,
+      "q75_ms": 1.5178639999930965,
+      "repeats": 17
+    },
+    "hmm_forward_filter_additional": {
+      "median_ms": 31.093858000005525,
+      "q25_ms": 30.967187000001672,
+      "q75_ms": 31.391084999995655,
+      "repeats": 17
+    },
+    "anomaly_rf_probability_additional": {
+      "median_ms": 21.72964199999683,
+      "q25_ms": 21.704318999994143,
+      "q75_ms": 21.79025800001,
+      "repeats": 17
+    },
+    "late_fusion_predict_additional": {
+      "median_ms": 0.1389489999894522,
+      "q25_ms": 0.13179799999818442,
+      "q75_ms": 0.14873299998896528,
+      "repeats": 17
+    }
+  },
+  "simulated_health_score": {
+    "label_origin": "FULLY_SIMULATED_OPERATOR_SCORE",
+    "default_MAE": 7.9596846421334835,
+    "corrected_MAE": 2.623161207559757,
+    "score_mapping_weight_vectors": {
+      "default": [
+        100.0,
+        60.0,
+        0.0
+      ],
+      "corrected": [
+        95.22807345209165,
+        67.30796048593506,
+        15.260749074074933
+      ]
+    },
+    "note": "Operator feedback in this MVP is generated and is not a real expert health score"
+  },
+  "limitations": [
+    "Every state and health score is generated by the frozen simulator, not actual expert-labeled spacecraft fault truth",
+    "The simulation uses four test cycles from one simulated mission; transitions are repeated by construction",
+    "This is existing discriminative hierarchical classification with causal HMM forward filtering; not a separately implemented full dynamic Bayesian network",
+    "Fusion classifier and probability calibrators were trained on the same preexisting calibration mission; this is diagnostic evidence, not a new model-selection test",
+    "A causal rolling mean is a simple fixed history baseline; it is not trained or retuned",
+    "Timing on 272 batch windows and single CI machine measures module compute, not actual on-orbit realtime latency",
+    "No post-hoc choice of smoothing gamma/memory using the heldout test",
+    "OPS-SAT 64-feature-budget decision belongs to a distinct real 2578-dimensional experiment; frozen synthetic 400-feature selector is unchanged",
+    "Patent-sensitive mechanisms for targeted supervised updates are not present here"
+  ]
+}
