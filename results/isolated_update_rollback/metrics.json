@@ -1,0 +1,658 @@
+{
+  "experiment": "strict_cycle_isolation_and_rollback_v1",
+  "simulated_only": true,
+  "real_operator_verified": false,
+  "model_production_deployed": false,
+  "protocol_sha256": "ff1af7fc7c619bad914eec6b25b78bc52a2aee915b04a6ff25637af91657c478",
+  "frozen_model_spec": "f6a95296b9c14e2cdacaa4236d75fa5d7f3c576e9d55ac605af7616f7799bfe8",
+  "phases": {
+    "model_fit": 544,
+    "state_calibration_and_anomaly_threshold": 68,
+    "update_batch": 68,
+    "fusion_train": 68,
+    "acceptance_gate": 68,
+    "mission3_audit": 272
+  },
+  "feature_selectors": {
+    "stage1": 50,
+    "stage2": 10,
+    "unique": 59,
+    "selected_only_from_base_fit_missions": true
+  },
+  "state_calibration_and_HMM_group_check": "Platt: cycle8 only; T: model_fit mission0/1 only; all HMM groups reset at cycle boundaries",
+  "scenario_definitions": {
+    "honest_simulated_update": "Correct simulator binary anomaly labels from cycle9, not actual human review",
+    "incorrect_label_batch": "Exactly flipped binary labels for cycle9; structural metadata valid, semantic truth not verified, stress structural gate and independent downstream regression",
+    "semantic_probability_channel_fault": "Take normal C output and swap 3-class healthy/fault columns without retraining; intentional bad-wire fault verifying reject and exact A rollback, not a scientific model improvement"
+  },
+  "scenarios": {
+    "honest_simulated_update": {
+      "review": {
+        "digest": "97903aa32394dd1087848b1cab3b91914a929d8571ec8cb7a2c37ef65780b897",
+        "task": "anomaly_detector_candidate",
+        "demo_only": true,
+        "production_release_allowed": false,
+        "rows": 68,
+        "claimed_review_is_authenticated": false
+      },
+      "candidate_train_time": {
+        "median_ms": 328.93991600002437,
+        "q25_ms": 326.17548400001795,
+        "q75_ms": 331.03294300001096,
+        "runs": 3
+      },
+      "fusion_train_time": {
+        "median_ms": 8.123095999991392,
+        "q25_ms": 8.081658999998353,
+        "q75_ms": 8.255614000006517,
+        "runs": 5
+      },
+      "old_fusion_train_time": {
+        "median_ms": 10.26121100002797,
+        "q25_ms": 10.219772999988663,
+        "q75_ms": 10.505486999988989,
+        "runs": 5
+      },
+      "thresholds": {
+        "base": 0.4467624683776644,
+        "candidate": 0.4415672585157745
+      },
+      "independent_gate": {
+        "A": {
+          "state_macro_f1": 0.9875475613974404,
+          "state_brier": 0.017142929652688054,
+          "state_nll": 0.04115143011029936,
+          "state_recalls": [
+            0.9666666666666667,
+            1.0,
+            1.0
+          ],
+          "anomaly_f1": 1.0,
+          "anomaly_AP": 1.0,
+          "anomaly_recall": 1.0,
+          "anomaly_precision": 1.0,
+          "anomaly_normal_fpr": 0.0,
+          "anomaly_FP": 0,
+          "anomaly_FN": 0,
+          "score_default_weights_MAE": 7.642878645556057,
+          "threshold": 0.4467624683776644
+        },
+        "B": {
+          "state_macro_f1": 1.0,
+          "state_brier": 0.023448471655512185,
+          "state_nll": 0.04864256437670138,
+          "state_recalls": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "anomaly_f1": 1.0,
+          "anomaly_AP": 0.9999999999999999,
+          "anomaly_recall": 1.0,
+          "anomaly_precision": 1.0,
+          "anomaly_normal_fpr": 0.0,
+          "anomaly_FP": 0,
+          "anomaly_FN": 0,
+          "score_default_weights_MAE": 7.842204071893541,
+          "threshold": 0.4415672585157745
+        },
+        "C": {
+          "state_macro_f1": 1.0,
+          "state_brier": 0.013354083151952172,
+          "state_nll": 0.03650819649556308,
+          "state_recalls": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "anomaly_f1": 1.0,
+          "anomaly_AP": 0.9999999999999999,
+          "anomaly_recall": 1.0,
+          "anomaly_precision": 1.0,
+          "anomaly_normal_fpr": 0.0,
+          "anomaly_FP": 0,
+          "anomaly_FN": 0,
+          "score_default_weights_MAE": 7.5158572176091605,
+          "threshold": 0.4415672585157745
+        },
+        "D": {
+          "state_macro_f1": 1.0,
+          "state_brier": 0.013354083151952172,
+          "state_nll": 0.03650819649556308,
+          "state_recalls": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "anomaly_f1": 1.0,
+          "anomaly_AP": 0.9999999999999999,
+          "anomaly_recall": 1.0,
+          "anomaly_precision": 1.0,
+          "anomaly_normal_fpr": 0.0,
+          "anomaly_FP": 0,
+          "anomaly_FN": 0,
+          "score_default_weights_MAE": 7.5158572176091605,
+          "threshold": 0.4415672585157745
+        }
+      },
+      "checks": {
+        "three_state_macro_f1": true,
+        "three_state_Brier": true,
+        "three_state_NLL": true,
+        "anomaly_recall": true,
+        "anomaly_normal_FPR": true,
+        "default_score_MAE": true
+      },
+      "passed_regression_gate": true,
+      "staged_selected": "C",
+      "audit": {
+        "A": {
+          "state_macro_f1": 0.9657846419699752,
+          "state_brier": 0.05295616345576035,
+          "state_nll": 0.08838814153384002,
+          "state_recalls": [
+            0.9333333333333333,
+            0.96875,
+            1.0
+          ],
+          "anomaly_f1": 1.0,
+          "anomaly_AP": 1.0,
+          "anomaly_recall": 1.0,
+          "anomaly_precision": 1.0,
+          "anomaly_normal_fpr": 0.0,
+          "anomaly_FP": 0,
+          "anomaly_FN": 0,
+          "score_default_weights_MAE": 8.068828700235832,
+          "threshold": 0.4467624683776644
+        },
+        "B": {
+          "state_macro_f1": 0.9657846419699752,
+          "state_brier": 0.05153817346693434,
+          "state_nll": 0.08469249836831114,
+          "state_recalls": [
+            0.9333333333333333,
+            0.96875,
+            1.0
+          ],
+          "anomaly_f1": 1.0,
+          "anomaly_AP": 1.0000000000000002,
+          "anomaly_recall": 1.0,
+          "anomaly_precision": 1.0,
+          "anomaly_normal_fpr": 0.0,
+          "anomaly_FP": 0,
+          "anomaly_FN": 0,
+          "score_default_weights_MAE": 8.07477946056332,
+          "threshold": 0.4415672585157745
+        },
+        "C": {
+          "state_macro_f1": 0.9689199689199689,
+          "state_brier": 0.04207650256082549,
+          "state_nll": 0.0722022749346045,
+          "state_recalls": [
+            0.9333333333333333,
+            0.9791666666666666,
+            1.0
+          ],
+          "anomaly_f1": 1.0,
+          "anomaly_AP": 1.0000000000000002,
+          "anomaly_recall": 1.0,
+          "anomaly_precision": 1.0,
+          "anomaly_normal_fpr": 0.0,
+          "anomaly_FP": 0,
+          "anomaly_FN": 0,
+          "score_default_weights_MAE": 7.9406651553186745,
+          "threshold": 0.4415672585157745
+        },
+        "D": {
+          "state_macro_f1": 0.9689199689199689,
+          "state_brier": 0.04207650256082549,
+          "state_nll": 0.0722022749346045,
+          "state_recalls": [
+            0.9333333333333333,
+            0.9791666666666666,
+            1.0
+          ],
+          "anomaly_f1": 1.0,
+          "anomaly_AP": 1.0000000000000002,
+          "anomaly_recall": 1.0,
+          "anomaly_precision": 1.0,
+          "anomaly_normal_fpr": 0.0,
+          "anomaly_FP": 0,
+          "anomaly_FN": 0,
+          "score_default_weights_MAE": 7.9406651553186745,
+          "threshold": 0.4415672585157745
+        }
+      },
+      "rejection_rollback_predictions_bitwise_identical": null,
+      "state_probability_JS_vs_A_on_audit": {
+        "B_stale": 0.0024357970173659494,
+        "C_new": 0.002268986154477943
+      },
+      "test_labels_used_for_selection": false,
+      "production_deployed": false
+    },
+    "incorrect_label_batch": {
+      "review": {
+        "digest": "73b70010293b7556428f1199d4b1ce23dfbe8b0ceaed6bed59c0f242bcf05c8d",
+        "task": "anomaly_detector_candidate",
+        "demo_only": true,
+        "production_release_allowed": false,
+        "rows": 68,
+        "claimed_review_is_authenticated": false
+      },
+      "candidate_train_time": {
+        "median_ms": 365.136146999987,
+        "q25_ms": 364.5685859999901,
+        "q75_ms": 373.3883949999921,
+        "runs": 3
+      },
+      "fusion_train_time": {
+        "median_ms": 7.931594000012865,
+        "q25_ms": 7.915303999993739,
+        "q75_ms": 7.93523199999413,
+        "runs": 5
+      },
+      "old_fusion_train_time": {
+        "median_ms": 10.26121100002797,
+        "q25_ms": 10.219772999988663,
+        "q75_ms": 10.505486999988989,
+        "runs": 5
+      },
+      "thresholds": {
+        "base": 0.4467624683776644,
+        "candidate": 0.5350393083386581
+      },
+      "independent_gate": {
+        "A": {
+          "state_macro_f1": 0.9875475613974404,
+          "state_brier": 0.017142929652688054,
+          "state_nll": 0.04115143011029936,
+          "state_recalls": [
+            0.9666666666666667,
+            1.0,
+            1.0
+          ],
+          "anomaly_f1": 1.0,
+          "anomaly_AP": 1.0,
+          "anomaly_recall": 1.0,
+          "anomaly_precision": 1.0,
+          "anomaly_normal_fpr": 0.0,
+          "anomaly_FP": 0,
+          "anomaly_FN": 0,
+          "score_default_weights_MAE": 7.642878645556057,
+          "threshold": 0.4467624683776644
+        },
+        "B": {
+          "state_macro_f1": 0.9875475613974404,
+          "state_brier": 0.021931532554297223,
+          "state_nll": 0.04314664146510558,
+          "state_recalls": [
+            0.9666666666666667,
+            1.0,
+            1.0
+          ],
+          "anomaly_f1": 1.0,
+          "anomaly_AP": 0.9999999999999998,
+          "anomaly_recall": 1.0,
+          "anomaly_precision": 1.0,
+          "anomaly_normal_fpr": 0.0,
+          "anomaly_FP": 0,
+          "anomaly_FN": 0,
+          "score_default_weights_MAE": 8.287586747238455,
+          "threshold": 0.5350393083386581
+        },
+        "C": {
+          "state_macro_f1": 1.0,
+          "state_brier": 0.006037184060462456,
+          "state_nll": 0.028619253583083232,
+          "state_recalls": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "anomaly_f1": 1.0,
+          "anomaly_AP": 0.9999999999999998,
+          "anomaly_recall": 1.0,
+          "anomaly_precision": 1.0,
+          "anomaly_normal_fpr": 0.0,
+          "anomaly_FP": 0,
+          "anomaly_FN": 0,
+          "score_default_weights_MAE": 7.423096669767133,
+          "threshold": 0.5350393083386581
+        },
+        "D": {
+          "state_macro_f1": 1.0,
+          "state_brier": 0.006037184060462456,
+          "state_nll": 0.028619253583083232,
+          "state_recalls": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "anomaly_f1": 1.0,
+          "anomaly_AP": 0.9999999999999998,
+          "anomaly_recall": 1.0,
+          "anomaly_precision": 1.0,
+          "anomaly_normal_fpr": 0.0,
+          "anomaly_FP": 0,
+          "anomaly_FN": 0,
+          "score_default_weights_MAE": 7.423096669767133,
+          "threshold": 0.5350393083386581
+        }
+      },
+      "checks": {
+        "three_state_macro_f1": true,
+        "three_state_Brier": true,
+        "three_state_NLL": true,
+        "anomaly_recall": true,
+        "anomaly_normal_FPR": true,
+        "default_score_MAE": true
+      },
+      "passed_regression_gate": true,
+      "staged_selected": "C",
+      "audit": {
+        "A": {
+          "state_macro_f1": 0.9657846419699752,
+          "state_brier": 0.05295616345576035,
+          "state_nll": 0.08838814153384002,
+          "state_recalls": [
+            0.9333333333333333,
+            0.96875,
+            1.0
+          ],
+          "anomaly_f1": 1.0,
+          "anomaly_AP": 1.0,
+          "anomaly_recall": 1.0,
+          "anomaly_precision": 1.0,
+          "anomaly_normal_fpr": 0.0,
+          "anomaly_FP": 0,
+          "anomaly_FN": 0,
+          "score_default_weights_MAE": 8.068828700235832,
+          "threshold": 0.4467624683776644
+        },
+        "B": {
+          "state_macro_f1": 0.9720876138786586,
+          "state_brier": 0.05219086677864443,
+          "state_nll": 0.08991252810781582,
+          "state_recalls": [
+            0.925,
+            1.0,
+            1.0
+          ],
+          "anomaly_f1": 1.0,
+          "anomaly_AP": 1.0000000000000002,
+          "anomaly_recall": 1.0,
+          "anomaly_precision": 1.0,
+          "anomaly_normal_fpr": 0.0,
+          "anomaly_FP": 0,
+          "anomaly_FN": 0,
+          "score_default_weights_MAE": 8.11163474435666,
+          "threshold": 0.5350393083386581
+        },
+        "C": {
+          "state_macro_f1": 0.9624184428012179,
+          "state_brier": 0.07239221666473572,
+          "state_nll": 0.11541891257893425,
+          "state_recalls": [
+            0.9583333333333334,
+            0.9270833333333334,
+            1.0
+          ],
+          "anomaly_f1": 1.0,
+          "anomaly_AP": 1.0000000000000002,
+          "anomaly_recall": 1.0,
+          "anomaly_precision": 1.0,
+          "anomaly_normal_fpr": 0.0,
+          "anomaly_FP": 0,
+          "anomaly_FN": 0,
+          "score_default_weights_MAE": 8.222851438830347,
+          "threshold": 0.5350393083386581
+        },
+        "D": {
+          "state_macro_f1": 0.9624184428012179,
+          "state_brier": 0.07239221666473572,
+          "state_nll": 0.11541891257893425,
+          "state_recalls": [
+            0.9583333333333334,
+            0.9270833333333334,
+            1.0
+          ],
+          "anomaly_f1": 1.0,
+          "anomaly_AP": 1.0000000000000002,
+          "anomaly_recall": 1.0,
+          "anomaly_precision": 1.0,
+          "anomaly_normal_fpr": 0.0,
+          "anomaly_FP": 0,
+          "anomaly_FN": 0,
+          "score_default_weights_MAE": 8.222851438830347,
+          "threshold": 0.5350393083386581
+        }
+      },
+      "rejection_rollback_predictions_bitwise_identical": null,
+      "state_probability_JS_vs_A_on_audit": {
+        "B_stale": 0.003971194288319371,
+        "C_new": 0.010804355419207877
+      },
+      "test_labels_used_for_selection": false,
+      "production_deployed": false
+    },
+    "semantic_probability_channel_fault": {
+      "review": {
+        "digest": "97903aa32394dd1087848b1cab3b91914a929d8571ec8cb7a2c37ef65780b897",
+        "task": "anomaly_detector_candidate",
+        "demo_only": true,
+        "production_release_allowed": false,
+        "rows": 68,
+        "claimed_review_is_authenticated": false
+      },
+      "candidate_train_time": {
+        "median_ms": 322.34616899998514,
+        "q25_ms": 321.1856699999913,
+        "q75_ms": 328.43696199999783,
+        "runs": 3
+      },
+      "fusion_train_time": {
+        "median_ms": 8.112902999982907,
+        "q25_ms": 8.110248000008369,
+        "q75_ms": 8.148409000000356,
+        "runs": 5
+      },
+      "old_fusion_train_time": {
+        "median_ms": 10.26121100002797,
+        "q25_ms": 10.219772999988663,
+        "q75_ms": 10.505486999988989,
+        "runs": 5
+      },
+      "thresholds": {
+        "base": 0.4467624683776644,
+        "candidate": 0.4415672585157745
+      },
+      "independent_gate": {
+        "A": {
+          "state_macro_f1": 0.9875475613974404,
+          "state_brier": 0.017142929652688054,
+          "state_nll": 0.04115143011029936,
+          "state_recalls": [
+            0.9666666666666667,
+            1.0,
+            1.0
+          ],
+          "anomaly_f1": 1.0,
+          "anomaly_AP": 1.0,
+          "anomaly_recall": 1.0,
+          "anomaly_precision": 1.0,
+          "anomaly_normal_fpr": 0.0,
+          "anomaly_FP": 0,
+          "anomaly_FN": 0,
+          "score_default_weights_MAE": 7.642878645556057,
+          "threshold": 0.4467624683776644
+        },
+        "B": {
+          "state_macro_f1": 1.0,
+          "state_brier": 0.023448471655512185,
+          "state_nll": 0.04864256437670138,
+          "state_recalls": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "anomaly_f1": 1.0,
+          "anomaly_AP": 0.9999999999999999,
+          "anomaly_recall": 1.0,
+          "anomaly_precision": 1.0,
+          "anomaly_normal_fpr": 0.0,
+          "anomaly_FP": 0,
+          "anomaly_FN": 0,
+          "score_default_weights_MAE": 7.842204071893541,
+          "threshold": 0.4415672585157745
+        },
+        "C": {
+          "state_macro_f1": 0.3333333333333333,
+          "state_brier": 1.2731390876976305,
+          "state_nll": 8.078994045491955,
+          "state_recalls": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "anomaly_f1": 1.0,
+          "anomaly_AP": 0.9999999999999999,
+          "anomaly_recall": 1.0,
+          "anomaly_precision": 1.0,
+          "anomaly_normal_fpr": 0.0,
+          "anomaly_FP": 0,
+          "anomaly_FN": 0,
+          "score_default_weights_MAE": 62.27776176744431,
+          "threshold": 0.4415672585157745
+        },
+        "D": {
+          "state_macro_f1": 0.9875475613974404,
+          "state_brier": 0.017142929652688054,
+          "state_nll": 0.04115143011029936,
+          "state_recalls": [
+            0.9666666666666667,
+            1.0,
+            1.0
+          ],
+          "anomaly_f1": 1.0,
+          "anomaly_AP": 1.0,
+          "anomaly_recall": 1.0,
+          "anomaly_precision": 1.0,
+          "anomaly_normal_fpr": 0.0,
+          "anomaly_FP": 0,
+          "anomaly_FN": 0,
+          "score_default_weights_MAE": 7.642878645556057,
+          "threshold": 0.4467624683776644
+        }
+      },
+      "checks": {
+        "three_state_macro_f1": false,
+        "three_state_Brier": false,
+        "three_state_NLL": false,
+        "anomaly_recall": true,
+        "anomaly_normal_FPR": true,
+        "default_score_MAE": false
+      },
+      "passed_regression_gate": false,
+      "staged_selected": "A",
+      "audit": {
+        "A": {
+          "state_macro_f1": 0.9657846419699752,
+          "state_brier": 0.05295616345576035,
+          "state_nll": 0.08838814153384002,
+          "state_recalls": [
+            0.9333333333333333,
+            0.96875,
+            1.0
+          ],
+          "anomaly_f1": 1.0,
+          "anomaly_AP": 1.0,
+          "anomaly_recall": 1.0,
+          "anomaly_precision": 1.0,
+          "anomaly_normal_fpr": 0.0,
+          "anomaly_FP": 0,
+          "anomaly_FN": 0,
+          "score_default_weights_MAE": 8.068828700235832,
+          "threshold": 0.4467624683776644
+        },
+        "B": {
+          "state_macro_f1": 0.9657846419699752,
+          "state_brier": 0.05153817346693434,
+          "state_nll": 0.08469249836831114,
+          "state_recalls": [
+            0.9333333333333333,
+            0.96875,
+            1.0
+          ],
+          "anomaly_f1": 1.0,
+          "anomaly_AP": 1.0000000000000002,
+          "anomaly_recall": 1.0,
+          "anomaly_precision": 1.0,
+          "anomaly_normal_fpr": 0.0,
+          "anomaly_FP": 0,
+          "anomaly_FN": 0,
+          "score_default_weights_MAE": 8.07477946056332,
+          "threshold": 0.4415672585157745
+        },
+        "C": {
+          "state_macro_f1": 0.3164983164983165,
+          "state_brier": 1.2779273669756714,
+          "state_nll": 8.17129904367798,
+          "state_recalls": [
+            0.0,
+            0.9791666666666666,
+            0.0
+          ],
+          "anomaly_f1": 1.0,
+          "anomaly_AP": 1.0000000000000002,
+          "anomaly_recall": 1.0,
+          "anomaly_precision": 1.0,
+          "anomaly_normal_fpr": 0.0,
+          "anomaly_FP": 0,
+          "anomaly_FN": 0,
+          "score_default_weights_MAE": 61.69527756449929,
+          "threshold": 0.4415672585157745
+        },
+        "D": {
+          "state_macro_f1": 0.9657846419699752,
+          "state_brier": 0.05295616345576035,
+          "state_nll": 0.08838814153384002,
+          "state_recalls": [
+            0.9333333333333333,
+            0.96875,
+            1.0
+          ],
+          "anomaly_f1": 1.0,
+          "anomaly_AP": 1.0,
+          "anomaly_recall": 1.0,
+          "anomaly_precision": 1.0,
+          "anomaly_normal_fpr": 0.0,
+          "anomaly_FP": 0,
+          "anomaly_FN": 0,
+          "score_default_weights_MAE": 8.068828700235832,
+          "threshold": 0.4467624683776644
+        }
+      },
+      "rejection_rollback_predictions_bitwise_identical": true,
+      "state_probability_JS_vs_A_on_audit": {
+        "B_stale": 0.0024357970173659494,
+        "C_new": 0.43933638977112843
+      },
+      "test_labels_used_for_selection": false,
+      "production_deployed": false
+    }
+  },
+  "limitations": [
+    "Whole dataset is simulated; human-reviewed labels are only simulated manifests",
+    "All earlier synthetic mission3 results have been inspected. Audit is a disjoint phase within this run, but not a fresh unseen test",
+    "State feature selector indices are reused from frozen MVP selected on missions0/1 labels only",
+    "True calibration independence here: cycle8 is not included in original MSF search, state classifier fit, fusion fit or validation gate",
+    "Cycle11 gate is excluded from all model fitting, selector, probability calibrator, fusion fitting and alarm threshold estimation",
+    "Original RF trained missions0/1 (not recalibrated), kept frozen as A",
+    "Injected 0/1 label reversal and class-column swap are negative engineering tests, not physically generated fault behavior",
+    "Quality checks reject adverse candidates but cannot cryptographically verify a human's diagnosis",
+    "Original on-orbit three-state truth unavailable; no real digital-twin field validation",
+    "Approval remains pending; D is staging only, not a deployed model",
+    "Public baseline uses ordinary re-training and regression gates, no proprietary/patent-specific new mechanism"
+  ]
+}
