@@ -1,0 +1,80 @@
+{
+  "name": "OPS-SAT strict two-stage acceptance and conventional conservative baseline",
+  "status": "pre-registered exploratory; original OPS-SAT held-out 529 EXCLUDED and internal audit160 historically seen",
+  "source": "OPS-SAT genuine 2578D engineered descriptors + 18 official features",
+  "split": {
+    "original_train_only": 1594,
+    "old": 876,
+    "simulated_reviewed_batch": 319,
+    "former_validation": 239,
+    "former_audit": 160,
+    "threshold_calibration_fraction": 0.5,
+    "calibration_seed": 20261024,
+    "protect_sample_disjointness": true,
+    "external_official_test_0": 0
+  },
+  "msf": {
+    "max_budget": 64,
+    "population": 8,
+    "generations": 3,
+    "seed": 141,
+    "selected_from_old_only": true,
+    "prior_best_dimension_not_fixed": "subset size may change with old subset, do not claim universal optimum"
+  },
+  "model": "same original StandardScaler + weighted binary LogisticRegression as earlier pilot",
+  "label_conditions": [
+    "correct_known_labels",
+    "random_flip_10pct",
+    "random_flip_30pct",
+    "all_labels_flipped"
+  ],
+  "threshold": "use first internal validation half only, select max F1; never use acceptance/ audit",
+  "policies": {
+    "A": "old model untouched",
+    "B": "conventional retrain old+simulated batch with own calibration-only alarm threshold",
+    "C": "ordinary binary F1 AP recall FPR noninferiority on second disjoint acceptance half",
+    "D": "C plus calibration-quality noninferiority Brier and NLL on second acceptance half",
+    "E": "predeclared convex old/new probability mixture alpha in 0,.25,.5,.75,1 selected on calibration-only Brier; then independent acceptance C and D constraints"
+  },
+  "safety_constraints": {
+    "max_f1_drop": 0.02,
+    "max_AP_drop": 0.03,
+    "max_recall_drop": 0.06,
+    "max_FPR_increase": 0.02,
+    "max_brier_increase": 0,
+    "max_NLL_increase": 0
+  },
+  "alpha_selection": {
+    "candidates": [
+      0,
+      0.25,
+      0.5,
+      0.75,
+      1
+    ],
+    "minimum_calibration_brier_gain": 0.0001,
+    "tiebreak": "prefer 0 (no update) if gain absent",
+    "alpha_zero_must_be_reported_as_no_update": true
+  },
+  "timing": {
+    "retrain_repeats": 5,
+    "single_cpu_thread": true
+  },
+  "expected_outputs": [
+    "strict_metrics.json",
+    "strict_table.csv",
+    "RESULTS.md",
+    "strict_f1.png",
+    "strict_brier.png"
+  ],
+  "known_limits": [
+    "Prior audits have been seen on same dataset; this is a retrospective exploratory protocol not a fresh prospective confirmatory test",
+    "Selected 64 budget from prior exploratory results; cannot call global optimum",
+    "Current original OPS-SAT only binary abnormal/normal; no real physical HMM or H/D/F labels",
+    "Scenario errors are artificially injected; neither real human approval nor new operational regime",
+    "Safe guard rejection is not a successful adaptation if all valid updates rejected",
+    "Channel/time-correlated telemetry segments can reduce effective sample independence",
+    "No privately sensitive invention algorithm publicly disclosed",
+    "Original official train flag zero never accessed for model fitting, calibration, acceptance, audit"
+  ]
+}
