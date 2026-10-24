@@ -1,0 +1,1138 @@
+{
+  "study": "Frozen synthetic satellite hierarchical classifier vs direct multinomial comparison",
+  "source_truth": "SIMULATED 3-state healthy/degraded/fault, not real satellite diagnosis",
+  "exploratory_not_fresh_confirmation": true,
+  "protocol_sha256": "ec4db562b004ef6ed3873ab20fc704d220b8c86ad77c23615afd17c76d844dec",
+  "frozen_mvp_spec_sha256": "f6a95296b9c14e2cdacaa4236d75fa5d7f3c576e9d55ac605af7616f7799bfe8",
+  "training_rows": 544,
+  "calibration_rows": 272,
+  "independent_mission3_test_rows": 272,
+  "feature_setup": {
+    "stage1": 50,
+    "stage2": 10,
+    "task_specific_union": 59,
+    "all_dimensions": 400,
+    "direct_union_uses_supervised_hierarchical_selected_features": true,
+    "real_opssat_64_budget_not_applied_here": true
+  },
+  "temperature_calibration": {
+    "direct_union59": 0.5105607007145326,
+    "direct_all400": 0.9940648572608852
+  },
+  "retrained_hierarchy_max_probability_difference_from_frozen": 0.0,
+  "methods": {
+    "two_stage_static": {
+      "macro_f1": 0.9718450609371945,
+      "recalls": [
+        0.9666666666666667,
+        0.9479166666666666,
+        1.0
+      ],
+      "brier": 0.04975619423878217,
+      "nll": 0.07943602816330939,
+      "balanced_accuracy": 0.9715277777777778,
+      "confusion_matrix": [
+        [
+          116,
+          4,
+          0
+        ],
+        [
+          5,
+          91,
+          0
+        ],
+        [
+          0,
+          0,
+          56
+        ]
+      ],
+      "class_recall_names": [
+        "healthy",
+        "degraded",
+        "fault"
+      ],
+      "transition": {
+        "true_change_events": 12,
+        "transition_detected": 12,
+        "transition_missed": 0,
+        "detected_fraction": 1.0,
+        "median_detected_delay_minutes": 0.0,
+        "mean_detected_delay_minutes": 0.0,
+        "p90_detected_delay_minutes": 0.0,
+        "spurious_prediction_state_switches": 13,
+        "by_target": {
+          "healthy": {
+            "events": 4,
+            "detected": 4,
+            "missed": 0,
+            "median_delay_minutes": 0.0
+          },
+          "degraded": {
+            "events": 4,
+            "detected": 4,
+            "missed": 0,
+            "median_delay_minutes": 0.0
+          },
+          "fault": {
+            "events": 4,
+            "detected": 4,
+            "missed": 0,
+            "median_delay_minutes": 0.0
+          }
+        },
+        "events": [
+          {
+            "cycle_id": 12,
+            "from": 0,
+            "to": 1,
+            "window_onset_index": 21,
+            "window_detection_index": 21,
+            "delay_minutes": 0,
+            "transition_detected": true
+          },
+          {
+            "cycle_id": 12,
+            "from": 1,
+            "to": 2,
+            "window_onset_index": 45,
+            "window_detection_index": 45,
+            "delay_minutes": 0,
+            "transition_detected": true
+          },
+          {
+            "cycle_id": 12,
+            "from": 2,
+            "to": 0,
+            "window_onset_index": 59,
+            "window_detection_index": 59,
+            "delay_minutes": 0,
+            "transition_detected": true
+          },
+          {
+            "cycle_id": 13,
+            "from": 0,
+            "to": 1,
+            "window_onset_index": 89,
+            "window_detection_index": 89,
+            "delay_minutes": 0,
+            "transition_detected": true
+          },
+          {
+            "cycle_id": 13,
+            "from": 1,
+            "to": 2,
+            "window_onset_index": 113,
+            "window_detection_index": 113,
+            "delay_minutes": 0,
+            "transition_detected": true
+          },
+          {
+            "cycle_id": 13,
+            "from": 2,
+            "to": 0,
+            "window_onset_index": 127,
+            "window_detection_index": 127,
+            "delay_minutes": 0,
+            "transition_detected": true
+          },
+          {
+            "cycle_id": 14,
+            "from": 0,
+            "to": 1,
+            "window_onset_index": 157,
+            "window_detection_index": 157,
+            "delay_minutes": 0,
+            "transition_detected": true
+          },
+          {
+            "cycle_id": 14,
+            "from": 1,
+            "to": 2,
+            "window_onset_index": 181,
+            "window_detection_index": 181,
+            "delay_minutes": 0,
+            "transition_detected": true
+          },
+          {
+            "cycle_id": 14,
+            "from": 2,
+            "to": 0,
+            "window_onset_index": 195,
+            "window_detection_index": 195,
+            "delay_minutes": 0,
+            "transition_detected": true
+          },
+          {
+            "cycle_id": 15,
+            "from": 0,
+            "to": 1,
+            "window_onset_index": 225,
+            "window_detection_index": 225,
+            "delay_minutes": 0,
+            "transition_detected": true
+          },
+          {
+            "cycle_id": 15,
+            "from": 1,
+            "to": 2,
+            "window_onset_index": 249,
+            "window_detection_index": 249,
+            "delay_minutes": 0,
+            "transition_detected": true
+          },
+          {
+            "cycle_id": 15,
+            "from": 2,
+            "to": 0,
+            "window_onset_index": 263,
+            "window_detection_index": 263,
+            "delay_minutes": 0,
+            "transition_detected": true
+          }
+        ]
+      }
+    },
+    "direct_union59": {
+      "macro_f1": 0.9657846419699752,
+      "recalls": [
+        0.9333333333333333,
+        0.96875,
+        1.0
+      ],
+      "brier": 0.04840465027042583,
+      "nll": 0.0837805973189815,
+      "balanced_accuracy": 0.9673611111111112,
+      "confusion_matrix": [
+        [
+          112,
+          8,
+          0
+        ],
+        [
+          3,
+          93,
+          0
+        ],
+        [
+          0,
+          0,
+          56
+        ]
+      ],
+      "class_recall_names": [
+        "healthy",
+        "degraded",
+        "fault"
+      ],
+      "transition": {
+        "true_change_events": 12,
+        "transition_detected": 12,
+        "transition_missed": 0,
+        "detected_fraction": 1.0,
+        "median_detected_delay_minutes": 0.0,
+        "mean_detected_delay_minutes": 0.0,
+        "p90_detected_delay_minutes": 0.0,
+        "spurious_prediction_state_switches": 13,
+        "by_target": {
+          "healthy": {
+            "events": 4,
+            "detected": 4,
+            "missed": 0,
+            "median_delay_minutes": 0.0
+          },
+          "degraded": {
+            "events": 4,
+            "detected": 4,
+            "missed": 0,
+            "median_delay_minutes": 0.0
+          },
+          "fault": {
+            "events": 4,
+            "detected": 4,
+            "missed": 0,
+            "median_delay_minutes": 0.0
+          }
+        },
+        "events": [
+          {
+            "cycle_id": 12,
+            "from": 0,
+            "to": 1,
+            "window_onset_index": 21,
+            "window_detection_index": 21,
+            "delay_minutes": 0,
+            "transition_detected": true
+          },
+          {
+            "cycle_id": 12,
+            "from": 1,
+            "to": 2,
+            "window_onset_index": 45,
+            "window_detection_index": 45,
+            "delay_minutes": 0,
+            "transition_detected": true
+          },
+          {
+            "cycle_id": 12,
+            "from": 2,
+            "to": 0,
+            "window_onset_index": 59,
+            "window_detection_index": 59,
+            "delay_minutes": 0,
+            "transition_detected": true
+          },
+          {
+            "cycle_id": 13,
+            "from": 0,
+            "to": 1,
+            "window_onset_index": 89,
+            "window_detection_index": 89,
+            "delay_minutes": 0,
+            "transition_detected": true
+          },
+          {
+            "cycle_id": 13,
+            "from": 1,
+            "to": 2,
+            "window_onset_index": 113,
+            "window_detection_index": 113,
+            "delay_minutes": 0,
+            "transition_detected": true
+          },
+          {
+            "cycle_id": 13,
+            "from": 2,
+            "to": 0,
+            "window_onset_index": 127,
+            "window_detection_index": 127,
+            "delay_minutes": 0,
+            "transition_detected": true
+          },
+          {
+            "cycle_id": 14,
+            "from": 0,
+            "to": 1,
+            "window_onset_index": 157,
+            "window_detection_index": 157,
+            "delay_minutes": 0,
+            "transition_detected": true
+          },
+          {
+            "cycle_id": 14,
+            "from": 1,
+            "to": 2,
+            "window_onset_index": 181,
+            "window_detection_index": 181,
+            "delay_minutes": 0,
+            "transition_detected": true
+          },
+          {
+            "cycle_id": 14,
+            "from": 2,
+            "to": 0,
+            "window_onset_index": 195,
+            "window_detection_index": 195,
+            "delay_minutes": 0,
+            "transition_detected": true
+          },
+          {
+            "cycle_id": 15,
+            "from": 0,
+            "to": 1,
+            "window_onset_index": 225,
+            "window_detection_index": 225,
+            "delay_minutes": 0,
+            "transition_detected": true
+          },
+          {
+            "cycle_id": 15,
+            "from": 1,
+            "to": 2,
+            "window_onset_index": 249,
+            "window_detection_index": 249,
+            "delay_minutes": 0,
+            "transition_detected": true
+          },
+          {
+            "cycle_id": 15,
+            "from": 2,
+            "to": 0,
+            "window_onset_index": 263,
+            "window_detection_index": 263,
+            "delay_minutes": 0,
+            "transition_detected": true
+          }
+        ]
+      }
+    },
+    "direct_all400": {
+      "macro_f1": 0.9688689034936009,
+      "recalls": [
+        0.9416666666666667,
+        0.96875,
+        1.0
+      ],
+      "brier": 0.04961982825223664,
+      "nll": 0.07442516507354874,
+      "balanced_accuracy": 0.9701388888888888,
+      "confusion_matrix": [
+        [
+          113,
+          7,
+          0
+        ],
+        [
+          3,
+          93,
+          0
+        ],
+        [
+          0,
+          0,
+          56
+        ]
+      ],
+      "class_recall_names": [
+        "healthy",
+        "degraded",
+        "fault"
+      ],
+      "transition": {
+        "true_change_events": 12,
+        "transition_detected": 12,
+        "transition_missed": 0,
+        "detected_fraction": 1.0,
+        "median_detected_delay_minutes": 0.0,
+        "mean_detected_delay_minutes": 0.0,
+        "p90_detected_delay_minutes": 0.0,
+        "spurious_prediction_state_switches": 12,
+        "by_target": {
+          "healthy": {
+            "events": 4,
+            "detected": 4,
+            "missed": 0,
+            "median_delay_minutes": 0.0
+          },
+          "degraded": {
+            "events": 4,
+            "detected": 4,
+            "missed": 0,
+            "median_delay_minutes": 0.0
+          },
+          "fault": {
+            "events": 4,
+            "detected": 4,
+            "missed": 0,
+            "median_delay_minutes": 0.0
+          }
+        },
+        "events": [
+          {
+            "cycle_id": 12,
+            "from": 0,
+            "to": 1,
+            "window_onset_index": 21,
+            "window_detection_index": 21,
+            "delay_minutes": 0,
+            "transition_detected": true
+          },
+          {
+            "cycle_id": 12,
+            "from": 1,
+            "to": 2,
+            "window_onset_index": 45,
+            "window_detection_index": 45,
+            "delay_minutes": 0,
+            "transition_detected": true
+          },
+          {
+            "cycle_id": 12,
+            "from": 2,
+            "to": 0,
+            "window_onset_index": 59,
+            "window_detection_index": 59,
+            "delay_minutes": 0,
+            "transition_detected": true
+          },
+          {
+            "cycle_id": 13,
+            "from": 0,
+            "to": 1,
+            "window_onset_index": 89,
+            "window_detection_index": 89,
+            "delay_minutes": 0,
+            "transition_detected": true
+          },
+          {
+            "cycle_id": 13,
+            "from": 1,
+            "to": 2,
+            "window_onset_index": 113,
+            "window_detection_index": 113,
+            "delay_minutes": 0,
+            "transition_detected": true
+          },
+          {
+            "cycle_id": 13,
+            "from": 2,
+            "to": 0,
+            "window_onset_index": 127,
+            "window_detection_index": 127,
+            "delay_minutes": 0,
+            "transition_detected": true
+          },
+          {
+            "cycle_id": 14,
+            "from": 0,
+            "to": 1,
+            "window_onset_index": 157,
+            "window_detection_index": 157,
+            "delay_minutes": 0,
+            "transition_detected": true
+          },
+          {
+            "cycle_id": 14,
+            "from": 1,
+            "to": 2,
+            "window_onset_index": 181,
+            "window_detection_index": 181,
+            "delay_minutes": 0,
+            "transition_detected": true
+          },
+          {
+            "cycle_id": 14,
+            "from": 2,
+            "to": 0,
+            "window_onset_index": 195,
+            "window_detection_index": 195,
+            "delay_minutes": 0,
+            "transition_detected": true
+          },
+          {
+            "cycle_id": 15,
+            "from": 0,
+            "to": 1,
+            "window_onset_index": 225,
+            "window_detection_index": 225,
+            "delay_minutes": 0,
+            "transition_detected": true
+          },
+          {
+            "cycle_id": 15,
+            "from": 1,
+            "to": 2,
+            "window_onset_index": 249,
+            "window_detection_index": 249,
+            "delay_minutes": 0,
+            "transition_detected": true
+          },
+          {
+            "cycle_id": 15,
+            "from": 2,
+            "to": 0,
+            "window_onset_index": 263,
+            "window_detection_index": 263,
+            "delay_minutes": 0,
+            "transition_detected": true
+          }
+        ]
+      }
+    },
+    "two_stage_hmm": {
+      "macro_f1": 0.9781888997078871,
+      "recalls": [
+        0.9583333333333334,
+        0.9791666666666666,
+        1.0
+      ],
+      "brier": 0.03426533334857038,
+      "nll": 0.06256645016876802,
+      "balanced_accuracy": 0.9791666666666666,
+      "confusion_matrix": [
+        [
+          115,
+          5,
+          0
+        ],
+        [
+          2,
+          94,
+          0
+        ],
+        [
+          0,
+          0,
+          56
+        ]
+      ],
+      "class_recall_names": [
+        "healthy",
+        "degraded",
+        "fault"
+      ],
+      "transition": {
+        "true_change_events": 12,
+        "transition_detected": 12,
+        "transition_missed": 0,
+        "detected_fraction": 1.0,
+        "median_detected_delay_minutes": 0.0,
+        "mean_detected_delay_minutes": 0.0,
+        "p90_detected_delay_minutes": 0.0,
+        "spurious_prediction_state_switches": 9,
+        "by_target": {
+          "healthy": {
+            "events": 4,
+            "detected": 4,
+            "missed": 0,
+            "median_delay_minutes": 0.0
+          },
+          "degraded": {
+            "events": 4,
+            "detected": 4,
+            "missed": 0,
+            "median_delay_minutes": 0.0
+          },
+          "fault": {
+            "events": 4,
+            "detected": 4,
+            "missed": 0,
+            "median_delay_minutes": 0.0
+          }
+        },
+        "events": [
+          {
+            "cycle_id": 12,
+            "from": 0,
+            "to": 1,
+            "window_onset_index": 21,
+            "window_detection_index": 21,
+            "delay_minutes": 0,
+            "transition_detected": true
+          },
+          {
+            "cycle_id": 12,
+            "from": 1,
+            "to": 2,
+            "window_onset_index": 45,
+            "window_detection_index": 45,
+            "delay_minutes": 0,
+            "transition_detected": true
+          },
+          {
+            "cycle_id": 12,
+            "from": 2,
+            "to": 0,
+            "window_onset_index": 59,
+            "window_detection_index": 59,
+            "delay_minutes": 0,
+            "transition_detected": true
+          },
+          {
+            "cycle_id": 13,
+            "from": 0,
+            "to": 1,
+            "window_onset_index": 89,
+            "window_detection_index": 89,
+            "delay_minutes": 0,
+            "transition_detected": true
+          },
+          {
+            "cycle_id": 13,
+            "from": 1,
+            "to": 2,
+            "window_onset_index": 113,
+            "window_detection_index": 113,
+            "delay_minutes": 0,
+            "transition_detected": true
+          },
+          {
+            "cycle_id": 13,
+            "from": 2,
+            "to": 0,
+            "window_onset_index": 127,
+            "window_detection_index": 127,
+            "delay_minutes": 0,
+            "transition_detected": true
+          },
+          {
+            "cycle_id": 14,
+            "from": 0,
+            "to": 1,
+            "window_onset_index": 157,
+            "window_detection_index": 157,
+            "delay_minutes": 0,
+            "transition_detected": true
+          },
+          {
+            "cycle_id": 14,
+            "from": 1,
+            "to": 2,
+            "window_onset_index": 181,
+            "window_detection_index": 181,
+            "delay_minutes": 0,
+            "transition_detected": true
+          },
+          {
+            "cycle_id": 14,
+            "from": 2,
+            "to": 0,
+            "window_onset_index": 195,
+            "window_detection_index": 195,
+            "delay_minutes": 0,
+            "transition_detected": true
+          },
+          {
+            "cycle_id": 15,
+            "from": 0,
+            "to": 1,
+            "window_onset_index": 225,
+            "window_detection_index": 225,
+            "delay_minutes": 0,
+            "transition_detected": true
+          },
+          {
+            "cycle_id": 15,
+            "from": 1,
+            "to": 2,
+            "window_onset_index": 249,
+            "window_detection_index": 249,
+            "delay_minutes": 0,
+            "transition_detected": true
+          },
+          {
+            "cycle_id": 15,
+            "from": 2,
+            "to": 0,
+            "window_onset_index": 263,
+            "window_detection_index": 263,
+            "delay_minutes": 0,
+            "transition_detected": true
+          }
+        ]
+      }
+    },
+    "direct_union59_hmm": {
+      "macro_f1": 0.9782604007160264,
+      "recalls": [
+        0.9416666666666667,
+        1.0,
+        1.0
+      ],
+      "brier": 0.037237407317360485,
+      "nll": 0.06150108090752465,
+      "balanced_accuracy": 0.9805555555555555,
+      "confusion_matrix": [
+        [
+          113,
+          7,
+          0
+        ],
+        [
+          0,
+          96,
+          0
+        ],
+        [
+          0,
+          0,
+          56
+        ]
+      ],
+      "class_recall_names": [
+        "healthy",
+        "degraded",
+        "fault"
+      ],
+      "transition": {
+        "true_change_events": 12,
+        "transition_detected": 12,
+        "transition_missed": 0,
+        "detected_fraction": 1.0,
+        "median_detected_delay_minutes": 0.0,
+        "mean_detected_delay_minutes": 0.0,
+        "p90_detected_delay_minutes": 0.0,
+        "spurious_prediction_state_switches": 8,
+        "by_target": {
+          "healthy": {
+            "events": 4,
+            "detected": 4,
+            "missed": 0,
+            "median_delay_minutes": 0.0
+          },
+          "degraded": {
+            "events": 4,
+            "detected": 4,
+            "missed": 0,
+            "median_delay_minutes": 0.0
+          },
+          "fault": {
+            "events": 4,
+            "detected": 4,
+            "missed": 0,
+            "median_delay_minutes": 0.0
+          }
+        },
+        "events": [
+          {
+            "cycle_id": 12,
+            "from": 0,
+            "to": 1,
+            "window_onset_index": 21,
+            "window_detection_index": 21,
+            "delay_minutes": 0,
+            "transition_detected": true
+          },
+          {
+            "cycle_id": 12,
+            "from": 1,
+            "to": 2,
+            "window_onset_index": 45,
+            "window_detection_index": 45,
+            "delay_minutes": 0,
+            "transition_detected": true
+          },
+          {
+            "cycle_id": 12,
+            "from": 2,
+            "to": 0,
+            "window_onset_index": 59,
+            "window_detection_index": 59,
+            "delay_minutes": 0,
+            "transition_detected": true
+          },
+          {
+            "cycle_id": 13,
+            "from": 0,
+            "to": 1,
+            "window_onset_index": 89,
+            "window_detection_index": 89,
+            "delay_minutes": 0,
+            "transition_detected": true
+          },
+          {
+            "cycle_id": 13,
+            "from": 1,
+            "to": 2,
+            "window_onset_index": 113,
+            "window_detection_index": 113,
+            "delay_minutes": 0,
+            "transition_detected": true
+          },
+          {
+            "cycle_id": 13,
+            "from": 2,
+            "to": 0,
+            "window_onset_index": 127,
+            "window_detection_index": 127,
+            "delay_minutes": 0,
+            "transition_detected": true
+          },
+          {
+            "cycle_id": 14,
+            "from": 0,
+            "to": 1,
+            "window_onset_index": 157,
+            "window_detection_index": 157,
+            "delay_minutes": 0,
+            "transition_detected": true
+          },
+          {
+            "cycle_id": 14,
+            "from": 1,
+            "to": 2,
+            "window_onset_index": 181,
+            "window_detection_index": 181,
+            "delay_minutes": 0,
+            "transition_detected": true
+          },
+          {
+            "cycle_id": 14,
+            "from": 2,
+            "to": 0,
+            "window_onset_index": 195,
+            "window_detection_index": 195,
+            "delay_minutes": 0,
+            "transition_detected": true
+          },
+          {
+            "cycle_id": 15,
+            "from": 0,
+            "to": 1,
+            "window_onset_index": 225,
+            "window_detection_index": 225,
+            "delay_minutes": 0,
+            "transition_detected": true
+          },
+          {
+            "cycle_id": 15,
+            "from": 1,
+            "to": 2,
+            "window_onset_index": 249,
+            "window_detection_index": 249,
+            "delay_minutes": 0,
+            "transition_detected": true
+          },
+          {
+            "cycle_id": 15,
+            "from": 2,
+            "to": 0,
+            "window_onset_index": 263,
+            "window_detection_index": 263,
+            "delay_minutes": 0,
+            "transition_detected": true
+          }
+        ]
+      }
+    },
+    "direct_all400_hmm": {
+      "macro_f1": 0.9781888997078871,
+      "recalls": [
+        0.9583333333333334,
+        0.9791666666666666,
+        1.0
+      ],
+      "brier": 0.03525105102053437,
+      "nll": 0.06335977455057686,
+      "balanced_accuracy": 0.9791666666666666,
+      "confusion_matrix": [
+        [
+          115,
+          5,
+          0
+        ],
+        [
+          2,
+          94,
+          0
+        ],
+        [
+          0,
+          0,
+          56
+        ]
+      ],
+      "class_recall_names": [
+        "healthy",
+        "degraded",
+        "fault"
+      ],
+      "transition": {
+        "true_change_events": 12,
+        "transition_detected": 12,
+        "transition_missed": 0,
+        "detected_fraction": 1.0,
+        "median_detected_delay_minutes": 0.0,
+        "mean_detected_delay_minutes": 0.3333333333333333,
+        "p90_detected_delay_minutes": 0.0,
+        "spurious_prediction_state_switches": 7,
+        "by_target": {
+          "healthy": {
+            "events": 4,
+            "detected": 4,
+            "missed": 0,
+            "median_delay_minutes": 0.0
+          },
+          "degraded": {
+            "events": 4,
+            "detected": 4,
+            "missed": 0,
+            "median_delay_minutes": 0.0
+          },
+          "fault": {
+            "events": 4,
+            "detected": 4,
+            "missed": 0,
+            "median_delay_minutes": 0.0
+          }
+        },
+        "events": [
+          {
+            "cycle_id": 12,
+            "from": 0,
+            "to": 1,
+            "window_onset_index": 21,
+            "window_detection_index": 21,
+            "delay_minutes": 0,
+            "transition_detected": true
+          },
+          {
+            "cycle_id": 12,
+            "from": 1,
+            "to": 2,
+            "window_onset_index": 45,
+            "window_detection_index": 45,
+            "delay_minutes": 0,
+            "transition_detected": true
+          },
+          {
+            "cycle_id": 12,
+            "from": 2,
+            "to": 0,
+            "window_onset_index": 59,
+            "window_detection_index": 59,
+            "delay_minutes": 0,
+            "transition_detected": true
+          },
+          {
+            "cycle_id": 13,
+            "from": 0,
+            "to": 1,
+            "window_onset_index": 89,
+            "window_detection_index": 89,
+            "delay_minutes": 0,
+            "transition_detected": true
+          },
+          {
+            "cycle_id": 13,
+            "from": 1,
+            "to": 2,
+            "window_onset_index": 113,
+            "window_detection_index": 113,
+            "delay_minutes": 0,
+            "transition_detected": true
+          },
+          {
+            "cycle_id": 13,
+            "from": 2,
+            "to": 0,
+            "window_onset_index": 127,
+            "window_detection_index": 127,
+            "delay_minutes": 0,
+            "transition_detected": true
+          },
+          {
+            "cycle_id": 14,
+            "from": 0,
+            "to": 1,
+            "window_onset_index": 157,
+            "window_detection_index": 158,
+            "delay_minutes": 4,
+            "transition_detected": true
+          },
+          {
+            "cycle_id": 14,
+            "from": 1,
+            "to": 2,
+            "window_onset_index": 181,
+            "window_detection_index": 181,
+            "delay_minutes": 0,
+            "transition_detected": true
+          },
+          {
+            "cycle_id": 14,
+            "from": 2,
+            "to": 0,
+            "window_onset_index": 195,
+            "window_detection_index": 195,
+            "delay_minutes": 0,
+            "transition_detected": true
+          },
+          {
+            "cycle_id": 15,
+            "from": 0,
+            "to": 1,
+            "window_onset_index": 225,
+            "window_detection_index": 225,
+            "delay_minutes": 0,
+            "transition_detected": true
+          },
+          {
+            "cycle_id": 15,
+            "from": 1,
+            "to": 2,
+            "window_onset_index": 249,
+            "window_detection_index": 249,
+            "delay_minutes": 0,
+            "transition_detected": true
+          },
+          {
+            "cycle_id": 15,
+            "from": 2,
+            "to": 0,
+            "window_onset_index": 263,
+            "window_detection_index": 263,
+            "delay_minutes": 0,
+            "transition_detected": true
+          }
+        ]
+      }
+    }
+  },
+  "model_fit_timings_including_prob_calibration_excluding_feature_search": {
+    "two_stage_retrain_without_feature_search": {
+      "median_ms": 6.988972999998566,
+      "q25_ms": 6.860528499995411,
+      "q75_ms": 7.057180000000329,
+      "repeats": 11
+    },
+    "direct_union59_train_and_calibrate": {
+      "median_ms": 7.599562000002891,
+      "q25_ms": 7.541975500000575,
+      "q75_ms": 7.7364234999990344,
+      "repeats": 11
+    },
+    "direct_all400_train_and_calibrate": {
+      "median_ms": 16.144328999999402,
+      "q25_ms": 16.019796999994895,
+      "q75_ms": 16.30899700000299,
+      "repeats": 11
+    }
+  },
+  "inference_timing": {
+    "two_stage_static": {
+      "median_ms": 0.5863339999976347,
+      "q25_ms": 0.5843709999986402,
+      "q75_ms": 0.5996184999972343,
+      "repeats": 11
+    },
+    "direct_union59": {
+      "median_ms": 0.26797299999969937,
+      "q25_ms": 0.2635724999997535,
+      "q75_ms": 0.28067299999889883,
+      "repeats": 11
+    },
+    "direct_all400": {
+      "median_ms": 0.3705789999983722,
+      "q25_ms": 0.3682050000008985,
+      "q75_ms": 0.37582149999693115,
+      "repeats": 11
+    },
+    "direct_union59_hmm": {
+      "median_ms": 21.401871999998434,
+      "q25_ms": 21.37577749999764,
+      "q75_ms": 21.610625999997524,
+      "repeats": 11
+    },
+    "direct_all400_hmm": {
+      "median_ms": 21.29048399999789,
+      "q25_ms": 21.24682299999847,
+      "q75_ms": 21.41845700000289,
+      "repeats": 11
+    },
+    "two_stage_hmm": {
+      "median_ms": 21.914203999997994,
+      "q25_ms": 21.628863499998374,
+      "q75_ms": 22.025376499996696,
+      "repeats": 11
+    }
+  },
+  "compressed_model_sizes_bytes": {
+    "two_stage_classifier_calibrators_and_HMM": 3478,
+    "direct_union59_classifier_and_temperature": 3865,
+    "direct_all400_classifier_and_temperature": 20351
+  },
+  "methodological_limits": [
+    "Only synthetic state truth from frozen simulator; no real physical satellite faults",
+    "Mission 3 outcomes not used for model fitting or temperature calibration",
+    "Union59 direct baseline shares class-supervised features originally chosen for the two binary tasks and is not an independently optimized feature selection",
+    "Direct multiclass is multinomial lbfgs, hierarchical uses separate liblinear binary models; regularization and class weighting similar but not perfectly identical optimization",
+    "Both direct models use scalar temperature scaling fitted on the same simulation mission2 that hierarchical uses for its two Platt calibrators",
+    "Fixed HMM state transition/prior shared across all models, not fit on mission3",
+    "Feature selection search cost excluded from training; full feature extraction excluded from inference timing",
+    "Prior frozen synthetic test has been inspected; this is descriptive exploratory ablation, not a new unbiased data-independent model comparison",
+    "No claims of statistical significance from one synthetic test mission",
+    "No patent-level mechanism or invention proven by familiar hierarchy/HMM model structures"
+  ]
+}
