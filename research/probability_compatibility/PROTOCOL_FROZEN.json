@@ -23,7 +23,8 @@
     "anomaly_detector": "Same RandomForest 120 trees, max_depth14, min_samples_leaf2, balanced_subsample, seed42, n_jobs2, refit original base training+one new-label batch",
     "state_branch": "unchanged, HMM transition/prior unchanged",
     "anomaly_threshold": "both old and updated threshold selected on cycle9 only",
-    "fusion_fit": "both old-compatible and refreshed fusion trained on same fixed cycle10 3-state SIMULATED labels; no gate/test labels in fit"
+    "fusion_fit": "both old-compatible and refreshed fusion trained on same fixed cycle10 3-state SIMULATED labels; no gate/test labels in fit",
+    "score_mapping": "Use original DEFAULT_WEIGHTS=(100,60,0) only for gating; original fitted feedback weights used all mission2, so not an independent gate signal."
   },
   "scenario": {
     "natural": "actual refit anomaly RF on base + simulated vetted cycle8 labels",
@@ -48,7 +49,7 @@
     "state_macro_f1",
     "state_brier",
     "state_nll",
-    "state_health_MAE_using_frozen_mapping",
+    "state_health_MAE_using_unfitted_default_weights",
     "binary_anomaly_F1",
     "binary_anomaly_AP",
     "binary_anomaly_recall",
@@ -74,6 +75,7 @@
     "Fusion retrain uses normal logistic stacking, not a novel patent method",
     "No self-learning, no automated production release",
     "Do not change original release or main",
-    "No authentic physical three-state labels on real OPS-SAT; do not merge disparate datasets' label semantics"
+    "No authentic physical three-state labels on real OPS-SAT; do not merge disparate datasets' label semantics",
+    "Frozen hierarchy Platt calibrators and state prior were trained on all mission2, including cycle11; validation comparisons are relative, NOT an unbiased independent acceptance set for the full state system."
   ]
 }
