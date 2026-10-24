@@ -175,7 +175,7 @@ def chart(report,out):
     for f,ylabel,file in fields:
         fig,axs=plt.subplots(1,3,figsize=(15,5.5),sharey=True)
         for ax,s in zip(axs,keys):
-            a=report["scenarios"][s]["audit_mission3"]
+            a=report["scenarios"][s]["audit"]
             values=[a[k][f] for k in ("A","B","C","D")]
             ax.bar(range(4),values)
             ax.set_xticks(range(4),label,rotation=35,ha="right")
