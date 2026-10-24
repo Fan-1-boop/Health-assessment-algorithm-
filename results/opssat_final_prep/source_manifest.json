@@ -10,8 +10,8 @@
   "resampled_points": 128,
   "derived_features": 2560,
   "combined_features": 2578,
-  "feature_engineering_seconds": 5.2079590190000005,
-  "official_raw_download_seconds": 3.9238559740000056,
+  "feature_engineering_seconds": 8.847067405000004,
+  "official_raw_download_seconds": 4.333972160999991,
   "derived_feature_generation": "window statistics of deterministically interpolated original raw per-segment signal; no synthetic added training features",
   "important_limitations": [
     "Entire segment is observed for features: retrospective, not online early anomaly onset",
