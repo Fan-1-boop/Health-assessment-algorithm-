@@ -1,4 +1,5 @@
 name: Synthetic health HMM and fusion module audit
+# Audit uses research/state_hmm_ablation/run.py with self-contained frozen stacking input.
 on:
   push:
     branches:
