@@ -1,0 +1,104 @@
+{
+  "version": "opssat_grouped_update_robustness_v1",
+  "scientific_scope": "same real OPS-SAT source, fixed MSF max64, repeated group-disjoint internal perturbation study; exploratory not blind verification",
+  "source": {
+    "dataset": "OPS-SAT-AD",
+    "original_train_1_only": true,
+    "exclude_all_official_test_0": true,
+    "raw_samples": 303493,
+    "segments": 2123,
+    "precomputed_features": 18,
+    "derived_features": 2560,
+    "label": "binary anomaly or normal only",
+    "no_original_official_test_labels_even_for_model_choice": true
+  },
+  "frozen_rule": "MSF max64 (engineering selection), C=0.5 balanced logistic; same dimensions chosen fit-only for all arms within fold",
+  "blocked_group": {
+    "definition": "sort original train segments within each telemetry channel by segment ID; group consecutive 16 same-channel segments. Segment ID ordering is only an order proxy, not independently verified UTC chronology.",
+    "block_size": 16,
+    "repeat_seeds": [
+      105,
+      205,
+      305,
+      405,
+      505
+    ],
+    "partition": {
+      "first_split": "old historical fit groups 57%, reserve43%",
+      "second_split": "new simulated labeled batch 36% of reserved groups, remainder for calibration, gate, audit",
+      "third_split": "alarm threshold and baseline label-conflict calibration 33% of remaining groups, remaining gate+audit",
+      "fourth_split": "independent candidate acceptance 50% of remaining groups, remaining audit"
+    },
+    "min_class_counts_per_split": {
+      "old_fit": 5,
+      "new_label_batch": 3,
+      "calibration": 3,
+      "acceptance": 3,
+      "audit": 3
+    },
+    "if_infeasible": "record as infeasible for that preregistered seed (no replacement based on model performance)"
+  },
+  "channel_shift": {
+    "target_channels": [
+      "CADC0872",
+      "CADC0873",
+      "CADC0888"
+    ],
+    "design": "hold out all target channel records from old fit. Target channel: earliest 50% segments to simulated label upload, next 25% to acceptance, last 25% to descriptive audit; non-target channels split fit/calibration by group to avoid same-group leakage.",
+    "purpose": "sensitivity to changed channel with correct labels (legitimate operating/domain change), not to claim new sensor distribution transfer learning",
+    "min_class_counts": {
+      "target_batch": 2,
+      "target_accept": 2,
+      "target_audit": 2
+    },
+    "infeasible": "record without inventing results"
+  },
+  "conditions": [
+    "correct_existing_binary_labels",
+    "flip_random_10pct",
+    "flip_random_30pct",
+    "flip_all_labels"
+  ],
+  "label_flip_seed": 20261024,
+  "existing_label_source": "Original true OPS-SAT published anomaly labels repackaged as hypothetical operator update. All deliberately flipped labels are faults injected into copies.",
+  "public_baselines": {
+    "A": "old model only, threshold fitted calibration-only",
+    "B": "usual supervised retrain old+label batch, threshold fitted calibration-only",
+    "C": "ordinary non-inferiority validation gate on F1/AP/recall/FPR",
+    "D": "C plus strict non-inferiority on Brier/NLL",
+    "E": "calibration-only best simple convex old/new probability shrinkage, acceptance after D gate"
+  },
+  "acceptance_limits": {
+    "max_f1_drop": 0.02,
+    "max_AP_drop": 0.03,
+    "max_recall_drop": 0.06,
+    "max_normal_FPR_increase": 0.02,
+    "max_brier_increase": 0,
+    "max_nll_increase": 0
+  },
+  "mixture_alpha": [
+    0,
+    0.25,
+    0.5,
+    0.75,
+    1
+  ],
+  "required_public_stats_for_private_frozen_v02_replay": [
+    "sample counts for each fold and split",
+    "old probability high-confidence conflict counts on clean calibration (reference) and each hypothetical batch",
+    "A/B acceptance and audit F1, AP, Recall, FPR, Brier, NLL for 4 label conditions",
+    "A/B threshold selection on calibration only",
+    "per-fold feature count, search time, fit time, prior audit only descriptive"
+  ],
+  "private_candidate": "not embedded in public workflow; use unchanged v0.2 implementation separately on public pre-update evidence",
+  "boundary_conditions": [
+    "Previously viewed official test and many internal audit splits prevent a confirmatory blind claim",
+    "Channel/group held-out data are still drawn from same spacecraft dataset",
+    "Time ordering is a segment-ID proxy, not guaranteed actual physical UTC telemetry order",
+    "A high old-model conflict with a legitimate changed channel must not be equated to wrong expert labels",
+    "No real new authenticated label reviewer, no true three-state fault label, no dynamic HMM ground truth from this dataset",
+    "Compare correct candidate update accept rate AND corrupt candidate reject rate, not only accuracy of abstention",
+    "No patent-sensitive details in this repository; ordinary controls only",
+    "No changes to main or frozen delivery branch"
+  ]
+}
