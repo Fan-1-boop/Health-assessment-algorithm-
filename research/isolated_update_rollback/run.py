@@ -358,7 +358,7 @@ def run(out_path):
           "audit_D":{k:a["D"][k] for k in
                 ("state_macro_f1","state_brier","state_nll")},
           "bitwise_rollback":report["rejection_rollback_predictions_bitwise_identical"]
-        },flush=True))
+        }),flush=True)
     (out/"metrics.json").write_text(json.dumps(out_report,ensure_ascii=False,indent=2)+"\n")
     rows=[]
     for scenario,res in out_report["scenarios"].items():
