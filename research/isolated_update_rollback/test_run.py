@@ -40,7 +40,7 @@ def test_bad_state_semantics_must_trigger_rollback():
     new=evaluate_probs(y,anomaly,healthy_score,np.array([.02,.05,.92]),.5,wrong)
     checks,ok=stage_accept(old,new,RULES)
     assert not ok
-    assert not checks["state_macro_f1"] and not checks["state_brier"]
+    assert not checks["three_state_macro_f1"] and not checks["three_state_Brier"]
     final=stage_select(original,wrong,ok)
     assert np.array_equal(final,original)
 
