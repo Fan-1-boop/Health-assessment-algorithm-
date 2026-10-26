@@ -1,0 +1,38 @@
+{
+  "grounding": "TRUE published OPS-SAT-AD original train==1, heldout internal segments only",
+  "rows": 182,
+  "genuine_binary_anomalies": 43,
+  "two_PRESCRIBED_not_expert_calibrated_policy_versions": [
+    "INIT_100_60_0",
+    "HYPOTHETICAL_SCALE_100_70_0_NOT_EXPERT"
+  ],
+  "expert_score_groundtruth_count": 0,
+  "cannot_report_expert_MAE": true,
+  "original_policy_weight": [
+    100,
+    60,
+    0
+  ],
+  "new_hypothetical_policy_weight": [
+    100,
+    70,
+    0
+  ],
+  "raw_main_state_probs_unchanged": true,
+  "raw_aux_anomaly_probs_unchanged": true,
+  "alarm_decisions_unchanged": true,
+  "alarm_rate_at_arbitrary_0_5_threshold": 0.8296703296703297,
+  "score_A_mean": 53.26841305347671,
+  "score_B_mean": 56.29136956337429,
+  "mean_score_B_minus_A": 3.022956509897566,
+  "nonzero_score_delta_count": 153,
+  "score_A_minmax": [
+    0.0,
+    95.91602879802052
+  ],
+  "score_B_minmax": [
+    0.0,
+    96.07967326071417
+  ],
+  "interpretation": "A policy-sensitivity/invariance check, NOT measured human-score agreement or validation of initial policy 15 point anomaly penalty. Objective anomaly alarm is separate."
+}
