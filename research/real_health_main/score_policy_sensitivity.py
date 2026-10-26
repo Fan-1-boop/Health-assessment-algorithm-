@@ -33,8 +33,10 @@ def run(source="results/real_health_main/audit_segment_predictions.csv",
     assert np.array_equal(before,df.alarm_input_p.to_numpy(float))
     assert np.allclose(states.sum(axis=1),1)
     # No threshold/alert recomputation from subjective health score.
-    alarms_a=alarmprob>=.5
-    alarms_b=alarmprob>=.5
+    metrics=json.loads(Path("results/real_health_main/metrics.json").read_text())
+    alarm_threshold=float(metrics["classification_metrics_against_PUBLISHED_REAL_SEGMENT_ANOMALY_LABELS"]["aux"]["threshold_from_independent_calibration"])
+    alarms_a=alarmprob>=alarm_threshold
+    alarms_b=alarmprob>=alarm_threshold
     assert np.array_equal(alarms_a,alarms_b)
     sdelta=score_b-score_a
     output={
@@ -48,7 +50,8 @@ def run(source="results/real_health_main/audit_segment_predictions.csv",
       "raw_main_state_probs_unchanged":True,
       "raw_aux_anomaly_probs_unchanged":True,
       "alarm_decisions_unchanged":bool(np.array_equal(alarms_a,alarms_b)),
-      "alarm_rate_at_arbitrary_0_5_threshold":float(np.mean(alarms_a)),
+      "alarm_threshold_from_independent_calibration":alarm_threshold,
+      "alarm_rate_at_calibration_threshold":float(np.mean(alarms_a)),
       "score_A_mean":float(score_a.mean()),"score_B_mean":float(score_b.mean()),
       "mean_score_B_minus_A":float(sdelta.mean()),
       "nonzero_score_delta_count":int(np.sum(abs(sdelta)>1e-9)),
