@@ -1,4 +1,5 @@
 name: Real OPS-SAT chronological within-segment HMM main + anomaly assistance
+# Version 2: fair same-data calibrated objective anomaly baseline + score-interface invariants
 on:
   push:
     branches: [research/hitl-quality-gated-update]
@@ -25,7 +26,7 @@ jobs:
           python -m pip install -r requirements.txt
           python -m pip install matplotlib requests
       - name: Test causal-time and real-label inference invariants
-        run: python -m pytest -q research/real_health_main/test_benchmark.py
+        run: python -m pytest -q research/real_health_main/test_benchmark.py research/real_health_main/test_display_score.py
       - name: Run real chronological OPS-SAT main/auxiliary ablations
         run: |
           python -u research/real_health_main/benchmark.py --out results/real_health_main
