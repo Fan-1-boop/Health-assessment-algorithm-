@@ -1,5 +1,5 @@
 name: ESA real observation innovation HMM E2 frozen ablation
-# Rerun qualified old HMM module import; frozen numerical configuration unchanged.
+# Rerun repo-root import correction; both independent test suites already passed, numerical protocol unchanged.
 on:
   push:
     branches: [research/hitl-quality-gated-update]
