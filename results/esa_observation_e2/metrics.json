@@ -288,7 +288,7 @@
       "test_AP": 0.011323435162432907,
       "test_AUROC": 0.5372791247523016,
       "test_anomaly_prevalence": 0.009894071941641745,
-      "alarm_cutoff_from_validation": 6.200593228302948,
+      "alarm_cutoff_from_validation": 6.200593228303127,
       "alarm_occupancy": {
         "normal_evaluated": 32172,
         "normal_alert_windows": 0,
@@ -592,7 +592,7 @@
     },
     "fixed_combined_static_3tier": {
       "test_AP": 0.012348210463947646,
-      "test_AUROC": 0.57314697638442,
+      "test_AUROC": 0.5731470162553975,
       "test_anomaly_prevalence": 0.009894071941641745,
       "alarm_cutoff_from_validation": 0.8952434947249884,
       "alarm_occupancy": {
@@ -690,7 +690,7 @@
           }
         ]
       },
-      "validation_AP_descriptive": 0.09992326731832972
+      "validation_AP_descriptive": 0.09992325197842997
     },
     "fixed_combined_EMA_3tier": {
       "test_AP": 0.012820408442153713,
@@ -924,7 +924,7 @@
     ],
     "consecutive_only_nominal_pairs": 100982
   },
-  "elapsed_seconds": 7.319467887000002,
+  "elapsed_seconds": 18.643961545000025,
   "critical_limitations": [
     "NEVER select best weights or threshold based on exposed test; NO retuning until new independently frozen event group",
     "Do not interpret risk H/D/R as verified physical health, degradation, failure; R means request human check",

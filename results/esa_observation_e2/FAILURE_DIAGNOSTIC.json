@@ -1,0 +1,874 @@
+{
+  "study": "Frozen real ESA E2 missed-event threshold attribution audit",
+  "source": "previously exposed real ESA Mission1 official event IDs, exploratory ONLY",
+  "model_weights_thresholds_splits_modified": false,
+  "prediction_or_model_refit": false,
+  "not_an_independent_holdout": true,
+  "no_true_three_state_physical_fault_labels": true,
+  "no_expert_health_scores": true,
+  "e2_metrics_SHA256": "c2bdd773d50e2a5f901d4012b3b2b180882ee59ce1ecc37871349a844f71cf5b",
+  "results": {
+    "original_robust_level": {
+      "frozen_validation_threshold": 2.583552500259693,
+      "events_with_at_least_one_single_crossing": 4,
+      "events_with_strict_new_alarm": 0,
+      "failure_reason_counts": {
+        "no_in_event_single_threshold_crossing": 6,
+        "threshold_crossings_without_in_event_sustained_alarm": 0,
+        "alarm_preexisting": 4,
+        "in_event_new_onset": 0
+      },
+      "per_official_event": [
+        {
+          "id": "id_156",
+          "target_anomaly_evaluation_windows": 2,
+          "instantaneous_validation_threshold_crossings": 0,
+          "max_consecutive_in_event_crossings": 0,
+          "sustained_alarm_covered": false,
+          "strict_new_alarm_onset": false,
+          "first_crossing_delay_10min_grid_steps": null,
+          "strict_alarm_delay_10min_grid_steps": null,
+          "observed_failure_type": "no_in_event_single_threshold_crossing"
+        },
+        {
+          "id": "id_161",
+          "target_anomaly_evaluation_windows": 7,
+          "instantaneous_validation_threshold_crossings": 0,
+          "max_consecutive_in_event_crossings": 0,
+          "sustained_alarm_covered": false,
+          "strict_new_alarm_onset": false,
+          "first_crossing_delay_10min_grid_steps": null,
+          "strict_alarm_delay_10min_grid_steps": null,
+          "observed_failure_type": "no_in_event_single_threshold_crossing"
+        },
+        {
+          "id": "id_162",
+          "target_anomaly_evaluation_windows": 3,
+          "instantaneous_validation_threshold_crossings": 0,
+          "max_consecutive_in_event_crossings": 0,
+          "sustained_alarm_covered": false,
+          "strict_new_alarm_onset": false,
+          "first_crossing_delay_10min_grid_steps": null,
+          "strict_alarm_delay_10min_grid_steps": null,
+          "observed_failure_type": "no_in_event_single_threshold_crossing"
+        },
+        {
+          "id": "id_171",
+          "target_anomaly_evaluation_windows": 64,
+          "instantaneous_validation_threshold_crossings": 0,
+          "max_consecutive_in_event_crossings": 0,
+          "sustained_alarm_covered": false,
+          "strict_new_alarm_onset": false,
+          "first_crossing_delay_10min_grid_steps": null,
+          "strict_alarm_delay_10min_grid_steps": null,
+          "observed_failure_type": "no_in_event_single_threshold_crossing"
+        },
+        {
+          "id": "id_46",
+          "target_anomaly_evaluation_windows": 125,
+          "instantaneous_validation_threshold_crossings": 0,
+          "max_consecutive_in_event_crossings": 0,
+          "sustained_alarm_covered": false,
+          "strict_new_alarm_onset": false,
+          "first_crossing_delay_10min_grid_steps": null,
+          "strict_alarm_delay_10min_grid_steps": null,
+          "observed_failure_type": "no_in_event_single_threshold_crossing"
+        },
+        {
+          "id": "id_178",
+          "target_anomaly_evaluation_windows": 8,
+          "instantaneous_validation_threshold_crossings": 0,
+          "max_consecutive_in_event_crossings": 0,
+          "sustained_alarm_covered": false,
+          "strict_new_alarm_onset": false,
+          "first_crossing_delay_10min_grid_steps": null,
+          "strict_alarm_delay_10min_grid_steps": null,
+          "observed_failure_type": "no_in_event_single_threshold_crossing"
+        },
+        {
+          "id": "id_179",
+          "target_anomaly_evaluation_windows": 3,
+          "instantaneous_validation_threshold_crossings": 3,
+          "max_consecutive_in_event_crossings": 3,
+          "sustained_alarm_covered": true,
+          "strict_new_alarm_onset": false,
+          "first_crossing_delay_10min_grid_steps": 2,
+          "strict_alarm_delay_10min_grid_steps": null,
+          "observed_failure_type": "alarm_preexisting"
+        },
+        {
+          "id": "id_181",
+          "target_anomaly_evaluation_windows": 83,
+          "instantaneous_validation_threshold_crossings": 83,
+          "max_consecutive_in_event_crossings": 83,
+          "sustained_alarm_covered": true,
+          "strict_new_alarm_onset": false,
+          "first_crossing_delay_10min_grid_steps": 2,
+          "strict_alarm_delay_10min_grid_steps": null,
+          "observed_failure_type": "alarm_preexisting"
+        },
+        {
+          "id": "id_188",
+          "target_anomaly_evaluation_windows": 3,
+          "instantaneous_validation_threshold_crossings": 3,
+          "max_consecutive_in_event_crossings": 3,
+          "sustained_alarm_covered": true,
+          "strict_new_alarm_onset": false,
+          "first_crossing_delay_10min_grid_steps": 2,
+          "strict_alarm_delay_10min_grid_steps": null,
+          "observed_failure_type": "alarm_preexisting"
+        },
+        {
+          "id": "id_189",
+          "target_anomaly_evaluation_windows": 56,
+          "instantaneous_validation_threshold_crossings": 56,
+          "max_consecutive_in_event_crossings": 56,
+          "sustained_alarm_covered": true,
+          "strict_new_alarm_onset": false,
+          "first_crossing_delay_10min_grid_steps": 0,
+          "strict_alarm_delay_10min_grid_steps": null,
+          "observed_failure_type": "alarm_preexisting"
+        }
+      ]
+    },
+    "forecast_innovation": {
+      "frozen_validation_threshold": 6.200593228303127,
+      "events_with_at_least_one_single_crossing": 3,
+      "events_with_strict_new_alarm": 0,
+      "failure_reason_counts": {
+        "no_in_event_single_threshold_crossing": 7,
+        "threshold_crossings_without_in_event_sustained_alarm": 3,
+        "alarm_preexisting": 0,
+        "in_event_new_onset": 0
+      },
+      "per_official_event": [
+        {
+          "id": "id_156",
+          "target_anomaly_evaluation_windows": 2,
+          "instantaneous_validation_threshold_crossings": 0,
+          "max_consecutive_in_event_crossings": 0,
+          "sustained_alarm_covered": false,
+          "strict_new_alarm_onset": false,
+          "first_crossing_delay_10min_grid_steps": null,
+          "strict_alarm_delay_10min_grid_steps": null,
+          "observed_failure_type": "no_in_event_single_threshold_crossing"
+        },
+        {
+          "id": "id_161",
+          "target_anomaly_evaluation_windows": 7,
+          "instantaneous_validation_threshold_crossings": 1,
+          "max_consecutive_in_event_crossings": 1,
+          "sustained_alarm_covered": false,
+          "strict_new_alarm_onset": false,
+          "first_crossing_delay_10min_grid_steps": 6,
+          "strict_alarm_delay_10min_grid_steps": null,
+          "observed_failure_type": "threshold_crossings_without_in_event_sustained_alarm"
+        },
+        {
+          "id": "id_162",
+          "target_anomaly_evaluation_windows": 3,
+          "instantaneous_validation_threshold_crossings": 0,
+          "max_consecutive_in_event_crossings": 0,
+          "sustained_alarm_covered": false,
+          "strict_new_alarm_onset": false,
+          "first_crossing_delay_10min_grid_steps": null,
+          "strict_alarm_delay_10min_grid_steps": null,
+          "observed_failure_type": "no_in_event_single_threshold_crossing"
+        },
+        {
+          "id": "id_171",
+          "target_anomaly_evaluation_windows": 64,
+          "instantaneous_validation_threshold_crossings": 0,
+          "max_consecutive_in_event_crossings": 0,
+          "sustained_alarm_covered": false,
+          "strict_new_alarm_onset": false,
+          "first_crossing_delay_10min_grid_steps": null,
+          "strict_alarm_delay_10min_grid_steps": null,
+          "observed_failure_type": "no_in_event_single_threshold_crossing"
+        },
+        {
+          "id": "id_46",
+          "target_anomaly_evaluation_windows": 125,
+          "instantaneous_validation_threshold_crossings": 1,
+          "max_consecutive_in_event_crossings": 1,
+          "sustained_alarm_covered": false,
+          "strict_new_alarm_onset": false,
+          "first_crossing_delay_10min_grid_steps": 363,
+          "strict_alarm_delay_10min_grid_steps": null,
+          "observed_failure_type": "threshold_crossings_without_in_event_sustained_alarm"
+        },
+        {
+          "id": "id_178",
+          "target_anomaly_evaluation_windows": 8,
+          "instantaneous_validation_threshold_crossings": 0,
+          "max_consecutive_in_event_crossings": 0,
+          "sustained_alarm_covered": false,
+          "strict_new_alarm_onset": false,
+          "first_crossing_delay_10min_grid_steps": null,
+          "strict_alarm_delay_10min_grid_steps": null,
+          "observed_failure_type": "no_in_event_single_threshold_crossing"
+        },
+        {
+          "id": "id_179",
+          "target_anomaly_evaluation_windows": 3,
+          "instantaneous_validation_threshold_crossings": 0,
+          "max_consecutive_in_event_crossings": 0,
+          "sustained_alarm_covered": false,
+          "strict_new_alarm_onset": false,
+          "first_crossing_delay_10min_grid_steps": null,
+          "strict_alarm_delay_10min_grid_steps": null,
+          "observed_failure_type": "no_in_event_single_threshold_crossing"
+        },
+        {
+          "id": "id_181",
+          "target_anomaly_evaluation_windows": 83,
+          "instantaneous_validation_threshold_crossings": 2,
+          "max_consecutive_in_event_crossings": 1,
+          "sustained_alarm_covered": false,
+          "strict_new_alarm_onset": false,
+          "first_crossing_delay_10min_grid_steps": 238,
+          "strict_alarm_delay_10min_grid_steps": null,
+          "observed_failure_type": "threshold_crossings_without_in_event_sustained_alarm"
+        },
+        {
+          "id": "id_188",
+          "target_anomaly_evaluation_windows": 3,
+          "instantaneous_validation_threshold_crossings": 0,
+          "max_consecutive_in_event_crossings": 0,
+          "sustained_alarm_covered": false,
+          "strict_new_alarm_onset": false,
+          "first_crossing_delay_10min_grid_steps": null,
+          "strict_alarm_delay_10min_grid_steps": null,
+          "observed_failure_type": "no_in_event_single_threshold_crossing"
+        },
+        {
+          "id": "id_189",
+          "target_anomaly_evaluation_windows": 56,
+          "instantaneous_validation_threshold_crossings": 0,
+          "max_consecutive_in_event_crossings": 0,
+          "sustained_alarm_covered": false,
+          "strict_new_alarm_onset": false,
+          "first_crossing_delay_10min_grid_steps": null,
+          "strict_alarm_delay_10min_grid_steps": null,
+          "observed_failure_type": "no_in_event_single_threshold_crossing"
+        }
+      ]
+    },
+    "local_change": {
+      "frozen_validation_threshold": 209.6076954012848,
+      "events_with_at_least_one_single_crossing": 3,
+      "events_with_strict_new_alarm": 0,
+      "failure_reason_counts": {
+        "no_in_event_single_threshold_crossing": 7,
+        "threshold_crossings_without_in_event_sustained_alarm": 3,
+        "alarm_preexisting": 0,
+        "in_event_new_onset": 0
+      },
+      "per_official_event": [
+        {
+          "id": "id_156",
+          "target_anomaly_evaluation_windows": 2,
+          "instantaneous_validation_threshold_crossings": 0,
+          "max_consecutive_in_event_crossings": 0,
+          "sustained_alarm_covered": false,
+          "strict_new_alarm_onset": false,
+          "first_crossing_delay_10min_grid_steps": null,
+          "strict_alarm_delay_10min_grid_steps": null,
+          "observed_failure_type": "no_in_event_single_threshold_crossing"
+        },
+        {
+          "id": "id_161",
+          "target_anomaly_evaluation_windows": 7,
+          "instantaneous_validation_threshold_crossings": 1,
+          "max_consecutive_in_event_crossings": 1,
+          "sustained_alarm_covered": false,
+          "strict_new_alarm_onset": false,
+          "first_crossing_delay_10min_grid_steps": 6,
+          "strict_alarm_delay_10min_grid_steps": null,
+          "observed_failure_type": "threshold_crossings_without_in_event_sustained_alarm"
+        },
+        {
+          "id": "id_162",
+          "target_anomaly_evaluation_windows": 3,
+          "instantaneous_validation_threshold_crossings": 0,
+          "max_consecutive_in_event_crossings": 0,
+          "sustained_alarm_covered": false,
+          "strict_new_alarm_onset": false,
+          "first_crossing_delay_10min_grid_steps": null,
+          "strict_alarm_delay_10min_grid_steps": null,
+          "observed_failure_type": "no_in_event_single_threshold_crossing"
+        },
+        {
+          "id": "id_171",
+          "target_anomaly_evaluation_windows": 64,
+          "instantaneous_validation_threshold_crossings": 0,
+          "max_consecutive_in_event_crossings": 0,
+          "sustained_alarm_covered": false,
+          "strict_new_alarm_onset": false,
+          "first_crossing_delay_10min_grid_steps": null,
+          "strict_alarm_delay_10min_grid_steps": null,
+          "observed_failure_type": "no_in_event_single_threshold_crossing"
+        },
+        {
+          "id": "id_46",
+          "target_anomaly_evaluation_windows": 125,
+          "instantaneous_validation_threshold_crossings": 1,
+          "max_consecutive_in_event_crossings": 1,
+          "sustained_alarm_covered": false,
+          "strict_new_alarm_onset": false,
+          "first_crossing_delay_10min_grid_steps": 363,
+          "strict_alarm_delay_10min_grid_steps": null,
+          "observed_failure_type": "threshold_crossings_without_in_event_sustained_alarm"
+        },
+        {
+          "id": "id_178",
+          "target_anomaly_evaluation_windows": 8,
+          "instantaneous_validation_threshold_crossings": 0,
+          "max_consecutive_in_event_crossings": 0,
+          "sustained_alarm_covered": false,
+          "strict_new_alarm_onset": false,
+          "first_crossing_delay_10min_grid_steps": null,
+          "strict_alarm_delay_10min_grid_steps": null,
+          "observed_failure_type": "no_in_event_single_threshold_crossing"
+        },
+        {
+          "id": "id_179",
+          "target_anomaly_evaluation_windows": 3,
+          "instantaneous_validation_threshold_crossings": 0,
+          "max_consecutive_in_event_crossings": 0,
+          "sustained_alarm_covered": false,
+          "strict_new_alarm_onset": false,
+          "first_crossing_delay_10min_grid_steps": null,
+          "strict_alarm_delay_10min_grid_steps": null,
+          "observed_failure_type": "no_in_event_single_threshold_crossing"
+        },
+        {
+          "id": "id_181",
+          "target_anomaly_evaluation_windows": 83,
+          "instantaneous_validation_threshold_crossings": 2,
+          "max_consecutive_in_event_crossings": 1,
+          "sustained_alarm_covered": false,
+          "strict_new_alarm_onset": false,
+          "first_crossing_delay_10min_grid_steps": 238,
+          "strict_alarm_delay_10min_grid_steps": null,
+          "observed_failure_type": "threshold_crossings_without_in_event_sustained_alarm"
+        },
+        {
+          "id": "id_188",
+          "target_anomaly_evaluation_windows": 3,
+          "instantaneous_validation_threshold_crossings": 0,
+          "max_consecutive_in_event_crossings": 0,
+          "sustained_alarm_covered": false,
+          "strict_new_alarm_onset": false,
+          "first_crossing_delay_10min_grid_steps": null,
+          "strict_alarm_delay_10min_grid_steps": null,
+          "observed_failure_type": "no_in_event_single_threshold_crossing"
+        },
+        {
+          "id": "id_189",
+          "target_anomaly_evaluation_windows": 56,
+          "instantaneous_validation_threshold_crossings": 0,
+          "max_consecutive_in_event_crossings": 0,
+          "sustained_alarm_covered": false,
+          "strict_new_alarm_onset": false,
+          "first_crossing_delay_10min_grid_steps": null,
+          "strict_alarm_delay_10min_grid_steps": null,
+          "observed_failure_type": "no_in_event_single_threshold_crossing"
+        }
+      ]
+    },
+    "fixed_combined_static_risk": {
+      "frozen_validation_threshold": 0.9847007649617519,
+      "events_with_at_least_one_single_crossing": 2,
+      "events_with_strict_new_alarm": 0,
+      "failure_reason_counts": {
+        "no_in_event_single_threshold_crossing": 8,
+        "threshold_crossings_without_in_event_sustained_alarm": 2,
+        "alarm_preexisting": 0,
+        "in_event_new_onset": 0
+      },
+      "per_official_event": [
+        {
+          "id": "id_156",
+          "target_anomaly_evaluation_windows": 2,
+          "instantaneous_validation_threshold_crossings": 0,
+          "max_consecutive_in_event_crossings": 0,
+          "sustained_alarm_covered": false,
+          "strict_new_alarm_onset": false,
+          "first_crossing_delay_10min_grid_steps": null,
+          "strict_alarm_delay_10min_grid_steps": null,
+          "observed_failure_type": "no_in_event_single_threshold_crossing"
+        },
+        {
+          "id": "id_161",
+          "target_anomaly_evaluation_windows": 7,
+          "instantaneous_validation_threshold_crossings": 0,
+          "max_consecutive_in_event_crossings": 0,
+          "sustained_alarm_covered": false,
+          "strict_new_alarm_onset": false,
+          "first_crossing_delay_10min_grid_steps": null,
+          "strict_alarm_delay_10min_grid_steps": null,
+          "observed_failure_type": "no_in_event_single_threshold_crossing"
+        },
+        {
+          "id": "id_162",
+          "target_anomaly_evaluation_windows": 3,
+          "instantaneous_validation_threshold_crossings": 0,
+          "max_consecutive_in_event_crossings": 0,
+          "sustained_alarm_covered": false,
+          "strict_new_alarm_onset": false,
+          "first_crossing_delay_10min_grid_steps": null,
+          "strict_alarm_delay_10min_grid_steps": null,
+          "observed_failure_type": "no_in_event_single_threshold_crossing"
+        },
+        {
+          "id": "id_171",
+          "target_anomaly_evaluation_windows": 64,
+          "instantaneous_validation_threshold_crossings": 0,
+          "max_consecutive_in_event_crossings": 0,
+          "sustained_alarm_covered": false,
+          "strict_new_alarm_onset": false,
+          "first_crossing_delay_10min_grid_steps": null,
+          "strict_alarm_delay_10min_grid_steps": null,
+          "observed_failure_type": "no_in_event_single_threshold_crossing"
+        },
+        {
+          "id": "id_46",
+          "target_anomaly_evaluation_windows": 125,
+          "instantaneous_validation_threshold_crossings": 0,
+          "max_consecutive_in_event_crossings": 0,
+          "sustained_alarm_covered": false,
+          "strict_new_alarm_onset": false,
+          "first_crossing_delay_10min_grid_steps": null,
+          "strict_alarm_delay_10min_grid_steps": null,
+          "observed_failure_type": "no_in_event_single_threshold_crossing"
+        },
+        {
+          "id": "id_178",
+          "target_anomaly_evaluation_windows": 8,
+          "instantaneous_validation_threshold_crossings": 0,
+          "max_consecutive_in_event_crossings": 0,
+          "sustained_alarm_covered": false,
+          "strict_new_alarm_onset": false,
+          "first_crossing_delay_10min_grid_steps": null,
+          "strict_alarm_delay_10min_grid_steps": null,
+          "observed_failure_type": "no_in_event_single_threshold_crossing"
+        },
+        {
+          "id": "id_179",
+          "target_anomaly_evaluation_windows": 3,
+          "instantaneous_validation_threshold_crossings": 0,
+          "max_consecutive_in_event_crossings": 0,
+          "sustained_alarm_covered": false,
+          "strict_new_alarm_onset": false,
+          "first_crossing_delay_10min_grid_steps": null,
+          "strict_alarm_delay_10min_grid_steps": null,
+          "observed_failure_type": "no_in_event_single_threshold_crossing"
+        },
+        {
+          "id": "id_181",
+          "target_anomaly_evaluation_windows": 83,
+          "instantaneous_validation_threshold_crossings": 2,
+          "max_consecutive_in_event_crossings": 1,
+          "sustained_alarm_covered": false,
+          "strict_new_alarm_onset": false,
+          "first_crossing_delay_10min_grid_steps": 238,
+          "strict_alarm_delay_10min_grid_steps": null,
+          "observed_failure_type": "threshold_crossings_without_in_event_sustained_alarm"
+        },
+        {
+          "id": "id_188",
+          "target_anomaly_evaluation_windows": 3,
+          "instantaneous_validation_threshold_crossings": 0,
+          "max_consecutive_in_event_crossings": 0,
+          "sustained_alarm_covered": false,
+          "strict_new_alarm_onset": false,
+          "first_crossing_delay_10min_grid_steps": null,
+          "strict_alarm_delay_10min_grid_steps": null,
+          "observed_failure_type": "no_in_event_single_threshold_crossing"
+        },
+        {
+          "id": "id_189",
+          "target_anomaly_evaluation_windows": 56,
+          "instantaneous_validation_threshold_crossings": 2,
+          "max_consecutive_in_event_crossings": 1,
+          "sustained_alarm_covered": false,
+          "strict_new_alarm_onset": false,
+          "first_crossing_delay_10min_grid_steps": 100,
+          "strict_alarm_delay_10min_grid_steps": null,
+          "observed_failure_type": "threshold_crossings_without_in_event_sustained_alarm"
+        }
+      ]
+    },
+    "fixed_combined_static_3tier": {
+      "frozen_validation_threshold": 0.8952434947249884,
+      "events_with_at_least_one_single_crossing": 2,
+      "events_with_strict_new_alarm": 0,
+      "failure_reason_counts": {
+        "no_in_event_single_threshold_crossing": 8,
+        "threshold_crossings_without_in_event_sustained_alarm": 2,
+        "alarm_preexisting": 0,
+        "in_event_new_onset": 0
+      },
+      "per_official_event": [
+        {
+          "id": "id_156",
+          "target_anomaly_evaluation_windows": 2,
+          "instantaneous_validation_threshold_crossings": 0,
+          "max_consecutive_in_event_crossings": 0,
+          "sustained_alarm_covered": false,
+          "strict_new_alarm_onset": false,
+          "first_crossing_delay_10min_grid_steps": null,
+          "strict_alarm_delay_10min_grid_steps": null,
+          "observed_failure_type": "no_in_event_single_threshold_crossing"
+        },
+        {
+          "id": "id_161",
+          "target_anomaly_evaluation_windows": 7,
+          "instantaneous_validation_threshold_crossings": 0,
+          "max_consecutive_in_event_crossings": 0,
+          "sustained_alarm_covered": false,
+          "strict_new_alarm_onset": false,
+          "first_crossing_delay_10min_grid_steps": null,
+          "strict_alarm_delay_10min_grid_steps": null,
+          "observed_failure_type": "no_in_event_single_threshold_crossing"
+        },
+        {
+          "id": "id_162",
+          "target_anomaly_evaluation_windows": 3,
+          "instantaneous_validation_threshold_crossings": 0,
+          "max_consecutive_in_event_crossings": 0,
+          "sustained_alarm_covered": false,
+          "strict_new_alarm_onset": false,
+          "first_crossing_delay_10min_grid_steps": null,
+          "strict_alarm_delay_10min_grid_steps": null,
+          "observed_failure_type": "no_in_event_single_threshold_crossing"
+        },
+        {
+          "id": "id_171",
+          "target_anomaly_evaluation_windows": 64,
+          "instantaneous_validation_threshold_crossings": 0,
+          "max_consecutive_in_event_crossings": 0,
+          "sustained_alarm_covered": false,
+          "strict_new_alarm_onset": false,
+          "first_crossing_delay_10min_grid_steps": null,
+          "strict_alarm_delay_10min_grid_steps": null,
+          "observed_failure_type": "no_in_event_single_threshold_crossing"
+        },
+        {
+          "id": "id_46",
+          "target_anomaly_evaluation_windows": 125,
+          "instantaneous_validation_threshold_crossings": 0,
+          "max_consecutive_in_event_crossings": 0,
+          "sustained_alarm_covered": false,
+          "strict_new_alarm_onset": false,
+          "first_crossing_delay_10min_grid_steps": null,
+          "strict_alarm_delay_10min_grid_steps": null,
+          "observed_failure_type": "no_in_event_single_threshold_crossing"
+        },
+        {
+          "id": "id_178",
+          "target_anomaly_evaluation_windows": 8,
+          "instantaneous_validation_threshold_crossings": 0,
+          "max_consecutive_in_event_crossings": 0,
+          "sustained_alarm_covered": false,
+          "strict_new_alarm_onset": false,
+          "first_crossing_delay_10min_grid_steps": null,
+          "strict_alarm_delay_10min_grid_steps": null,
+          "observed_failure_type": "no_in_event_single_threshold_crossing"
+        },
+        {
+          "id": "id_179",
+          "target_anomaly_evaluation_windows": 3,
+          "instantaneous_validation_threshold_crossings": 0,
+          "max_consecutive_in_event_crossings": 0,
+          "sustained_alarm_covered": false,
+          "strict_new_alarm_onset": false,
+          "first_crossing_delay_10min_grid_steps": null,
+          "strict_alarm_delay_10min_grid_steps": null,
+          "observed_failure_type": "no_in_event_single_threshold_crossing"
+        },
+        {
+          "id": "id_181",
+          "target_anomaly_evaluation_windows": 83,
+          "instantaneous_validation_threshold_crossings": 2,
+          "max_consecutive_in_event_crossings": 1,
+          "sustained_alarm_covered": false,
+          "strict_new_alarm_onset": false,
+          "first_crossing_delay_10min_grid_steps": 238,
+          "strict_alarm_delay_10min_grid_steps": null,
+          "observed_failure_type": "threshold_crossings_without_in_event_sustained_alarm"
+        },
+        {
+          "id": "id_188",
+          "target_anomaly_evaluation_windows": 3,
+          "instantaneous_validation_threshold_crossings": 0,
+          "max_consecutive_in_event_crossings": 0,
+          "sustained_alarm_covered": false,
+          "strict_new_alarm_onset": false,
+          "first_crossing_delay_10min_grid_steps": null,
+          "strict_alarm_delay_10min_grid_steps": null,
+          "observed_failure_type": "no_in_event_single_threshold_crossing"
+        },
+        {
+          "id": "id_189",
+          "target_anomaly_evaluation_windows": 56,
+          "instantaneous_validation_threshold_crossings": 2,
+          "max_consecutive_in_event_crossings": 1,
+          "sustained_alarm_covered": false,
+          "strict_new_alarm_onset": false,
+          "first_crossing_delay_10min_grid_steps": 100,
+          "strict_alarm_delay_10min_grid_steps": null,
+          "observed_failure_type": "threshold_crossings_without_in_event_sustained_alarm"
+        }
+      ]
+    },
+    "fixed_combined_EMA_3tier": {
+      "frozen_validation_threshold": 0.8040104343680063,
+      "events_with_at_least_one_single_crossing": 3,
+      "events_with_strict_new_alarm": 2,
+      "failure_reason_counts": {
+        "no_in_event_single_threshold_crossing": 7,
+        "threshold_crossings_without_in_event_sustained_alarm": 1,
+        "alarm_preexisting": 0,
+        "in_event_new_onset": 2
+      },
+      "per_official_event": [
+        {
+          "id": "id_156",
+          "target_anomaly_evaluation_windows": 2,
+          "instantaneous_validation_threshold_crossings": 0,
+          "max_consecutive_in_event_crossings": 0,
+          "sustained_alarm_covered": false,
+          "strict_new_alarm_onset": false,
+          "first_crossing_delay_10min_grid_steps": null,
+          "strict_alarm_delay_10min_grid_steps": null,
+          "observed_failure_type": "no_in_event_single_threshold_crossing"
+        },
+        {
+          "id": "id_161",
+          "target_anomaly_evaluation_windows": 7,
+          "instantaneous_validation_threshold_crossings": 0,
+          "max_consecutive_in_event_crossings": 0,
+          "sustained_alarm_covered": false,
+          "strict_new_alarm_onset": false,
+          "first_crossing_delay_10min_grid_steps": null,
+          "strict_alarm_delay_10min_grid_steps": null,
+          "observed_failure_type": "no_in_event_single_threshold_crossing"
+        },
+        {
+          "id": "id_162",
+          "target_anomaly_evaluation_windows": 3,
+          "instantaneous_validation_threshold_crossings": 0,
+          "max_consecutive_in_event_crossings": 0,
+          "sustained_alarm_covered": false,
+          "strict_new_alarm_onset": false,
+          "first_crossing_delay_10min_grid_steps": null,
+          "strict_alarm_delay_10min_grid_steps": null,
+          "observed_failure_type": "no_in_event_single_threshold_crossing"
+        },
+        {
+          "id": "id_171",
+          "target_anomaly_evaluation_windows": 64,
+          "instantaneous_validation_threshold_crossings": 0,
+          "max_consecutive_in_event_crossings": 0,
+          "sustained_alarm_covered": false,
+          "strict_new_alarm_onset": false,
+          "first_crossing_delay_10min_grid_steps": null,
+          "strict_alarm_delay_10min_grid_steps": null,
+          "observed_failure_type": "no_in_event_single_threshold_crossing"
+        },
+        {
+          "id": "id_46",
+          "target_anomaly_evaluation_windows": 125,
+          "instantaneous_validation_threshold_crossings": 0,
+          "max_consecutive_in_event_crossings": 0,
+          "sustained_alarm_covered": false,
+          "strict_new_alarm_onset": false,
+          "first_crossing_delay_10min_grid_steps": null,
+          "strict_alarm_delay_10min_grid_steps": null,
+          "observed_failure_type": "no_in_event_single_threshold_crossing"
+        },
+        {
+          "id": "id_178",
+          "target_anomaly_evaluation_windows": 8,
+          "instantaneous_validation_threshold_crossings": 0,
+          "max_consecutive_in_event_crossings": 0,
+          "sustained_alarm_covered": false,
+          "strict_new_alarm_onset": false,
+          "first_crossing_delay_10min_grid_steps": null,
+          "strict_alarm_delay_10min_grid_steps": null,
+          "observed_failure_type": "no_in_event_single_threshold_crossing"
+        },
+        {
+          "id": "id_179",
+          "target_anomaly_evaluation_windows": 3,
+          "instantaneous_validation_threshold_crossings": 0,
+          "max_consecutive_in_event_crossings": 0,
+          "sustained_alarm_covered": false,
+          "strict_new_alarm_onset": false,
+          "first_crossing_delay_10min_grid_steps": null,
+          "strict_alarm_delay_10min_grid_steps": null,
+          "observed_failure_type": "no_in_event_single_threshold_crossing"
+        },
+        {
+          "id": "id_181",
+          "target_anomaly_evaluation_windows": 83,
+          "instantaneous_validation_threshold_crossings": 11,
+          "max_consecutive_in_event_crossings": 4,
+          "sustained_alarm_covered": true,
+          "strict_new_alarm_onset": true,
+          "first_crossing_delay_10min_grid_steps": 110,
+          "strict_alarm_delay_10min_grid_steps": 118,
+          "observed_failure_type": "in_event_new_onset"
+        },
+        {
+          "id": "id_188",
+          "target_anomaly_evaluation_windows": 3,
+          "instantaneous_validation_threshold_crossings": 1,
+          "max_consecutive_in_event_crossings": 1,
+          "sustained_alarm_covered": false,
+          "strict_new_alarm_onset": false,
+          "first_crossing_delay_10min_grid_steps": 10,
+          "strict_alarm_delay_10min_grid_steps": null,
+          "observed_failure_type": "threshold_crossings_without_in_event_sustained_alarm"
+        },
+        {
+          "id": "id_189",
+          "target_anomaly_evaluation_windows": 56,
+          "instantaneous_validation_threshold_crossings": 8,
+          "max_consecutive_in_event_crossings": 3,
+          "sustained_alarm_covered": true,
+          "strict_new_alarm_onset": true,
+          "first_crossing_delay_10min_grid_steps": 0,
+          "strict_alarm_delay_10min_grid_steps": 0,
+          "observed_failure_type": "in_event_new_onset"
+        }
+      ]
+    },
+    "fixed_combined_HMM_3tier": {
+      "frozen_validation_threshold": 0.9220780890700777,
+      "events_with_at_least_one_single_crossing": 3,
+      "events_with_strict_new_alarm": 1,
+      "failure_reason_counts": {
+        "no_in_event_single_threshold_crossing": 7,
+        "threshold_crossings_without_in_event_sustained_alarm": 2,
+        "alarm_preexisting": 0,
+        "in_event_new_onset": 1
+      },
+      "per_official_event": [
+        {
+          "id": "id_156",
+          "target_anomaly_evaluation_windows": 2,
+          "instantaneous_validation_threshold_crossings": 0,
+          "max_consecutive_in_event_crossings": 0,
+          "sustained_alarm_covered": false,
+          "strict_new_alarm_onset": false,
+          "first_crossing_delay_10min_grid_steps": null,
+          "strict_alarm_delay_10min_grid_steps": null,
+          "observed_failure_type": "no_in_event_single_threshold_crossing"
+        },
+        {
+          "id": "id_161",
+          "target_anomaly_evaluation_windows": 7,
+          "instantaneous_validation_threshold_crossings": 0,
+          "max_consecutive_in_event_crossings": 0,
+          "sustained_alarm_covered": false,
+          "strict_new_alarm_onset": false,
+          "first_crossing_delay_10min_grid_steps": null,
+          "strict_alarm_delay_10min_grid_steps": null,
+          "observed_failure_type": "no_in_event_single_threshold_crossing"
+        },
+        {
+          "id": "id_162",
+          "target_anomaly_evaluation_windows": 3,
+          "instantaneous_validation_threshold_crossings": 1,
+          "max_consecutive_in_event_crossings": 1,
+          "sustained_alarm_covered": false,
+          "strict_new_alarm_onset": false,
+          "first_crossing_delay_10min_grid_steps": 7,
+          "strict_alarm_delay_10min_grid_steps": null,
+          "observed_failure_type": "threshold_crossings_without_in_event_sustained_alarm"
+        },
+        {
+          "id": "id_171",
+          "target_anomaly_evaluation_windows": 64,
+          "instantaneous_validation_threshold_crossings": 0,
+          "max_consecutive_in_event_crossings": 0,
+          "sustained_alarm_covered": false,
+          "strict_new_alarm_onset": false,
+          "first_crossing_delay_10min_grid_steps": null,
+          "strict_alarm_delay_10min_grid_steps": null,
+          "observed_failure_type": "no_in_event_single_threshold_crossing"
+        },
+        {
+          "id": "id_46",
+          "target_anomaly_evaluation_windows": 125,
+          "instantaneous_validation_threshold_crossings": 0,
+          "max_consecutive_in_event_crossings": 0,
+          "sustained_alarm_covered": false,
+          "strict_new_alarm_onset": false,
+          "first_crossing_delay_10min_grid_steps": null,
+          "strict_alarm_delay_10min_grid_steps": null,
+          "observed_failure_type": "no_in_event_single_threshold_crossing"
+        },
+        {
+          "id": "id_178",
+          "target_anomaly_evaluation_windows": 8,
+          "instantaneous_validation_threshold_crossings": 0,
+          "max_consecutive_in_event_crossings": 0,
+          "sustained_alarm_covered": false,
+          "strict_new_alarm_onset": false,
+          "first_crossing_delay_10min_grid_steps": null,
+          "strict_alarm_delay_10min_grid_steps": null,
+          "observed_failure_type": "no_in_event_single_threshold_crossing"
+        },
+        {
+          "id": "id_179",
+          "target_anomaly_evaluation_windows": 3,
+          "instantaneous_validation_threshold_crossings": 0,
+          "max_consecutive_in_event_crossings": 0,
+          "sustained_alarm_covered": false,
+          "strict_new_alarm_onset": false,
+          "first_crossing_delay_10min_grid_steps": null,
+          "strict_alarm_delay_10min_grid_steps": null,
+          "observed_failure_type": "no_in_event_single_threshold_crossing"
+        },
+        {
+          "id": "id_181",
+          "target_anomaly_evaluation_windows": 83,
+          "instantaneous_validation_threshold_crossings": 4,
+          "max_consecutive_in_event_crossings": 3,
+          "sustained_alarm_covered": true,
+          "strict_new_alarm_onset": true,
+          "first_crossing_delay_10min_grid_steps": 114,
+          "strict_alarm_delay_10min_grid_steps": 290,
+          "observed_failure_type": "in_event_new_onset"
+        },
+        {
+          "id": "id_188",
+          "target_anomaly_evaluation_windows": 3,
+          "instantaneous_validation_threshold_crossings": 0,
+          "max_consecutive_in_event_crossings": 0,
+          "sustained_alarm_covered": false,
+          "strict_new_alarm_onset": false,
+          "first_crossing_delay_10min_grid_steps": null,
+          "strict_alarm_delay_10min_grid_steps": null,
+          "observed_failure_type": "no_in_event_single_threshold_crossing"
+        },
+        {
+          "id": "id_189",
+          "target_anomaly_evaluation_windows": 56,
+          "instantaneous_validation_threshold_crossings": 4,
+          "max_consecutive_in_event_crossings": 1,
+          "sustained_alarm_covered": false,
+          "strict_new_alarm_onset": false,
+          "first_crossing_delay_10min_grid_steps": 36,
+          "strict_alarm_delay_10min_grid_steps": null,
+          "observed_failure_type": "threshold_crossings_without_in_event_sustained_alarm"
+        }
+      ]
+    }
+  },
+  "caution": "Single-window threshold crossings are diagnostic only; they are NOT deployed alarms. An event absent above the frozen threshold does NOT prove absence of a physical signature. This replay cannot estimate blind generalization or justify tuning."
+}
