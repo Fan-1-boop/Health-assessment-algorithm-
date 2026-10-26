@@ -105,28 +105,51 @@
       "FPR": 0.05755395683453238,
       "FP": 8,
       "FN": 35,
-      "threshold_from_independent_calibration": 0.5193621608327118,
-      "binary_Brier": 0.2460839456087838,
-      "binary_NLL": 0.6830270132566281
+      "threshold_from_independent_calibration": 0.519362160832724,
+      "binary_Brier": 0.2460839456087902,
+      "binary_NLL": 0.6830270132566403
+    },
+    "aux_cal": {
+      "segments": 182,
+      "anomalies": 43,
+      "AP": 0.47101584316911316,
+      "ROC_AUC": 0.6824493893257486,
+      "F1": 0.2711864406779661,
+      "Recall": 0.18604651162790697,
+      "Precision": 0.5,
+      "FPR": 0.05755395683453238,
+      "FP": 8,
+      "FN": 35,
+      "threshold_from_independent_calibration": 0.24147490028134708,
+      "binary_Brier": 0.16736998971738712,
+      "binary_NLL": 0.5159680630427147
     },
     "fusion": {
       "segments": 182,
       "anomalies": 43,
-      "AP": 0.4505500749353355,
-      "ROC_AUC": 0.6801070771289945,
+      "AP": 0.4505500749353354,
+      "ROC_AUC": 0.6797724611008867,
       "F1": 0.3838383838383838,
       "Recall": 0.4418604651162791,
       "Precision": 0.3392857142857143,
       "FPR": 0.26618705035971224,
       "FP": 37,
       "FN": 24,
-      "threshold_from_independent_calibration": 0.25671306142252404,
-      "binary_Brier": 0.16539714376374043,
-      "binary_NLL": 0.5081754756745352
+      "threshold_from_independent_calibration": 0.25671306142253525,
+      "binary_Brier": 0.1653971437637369,
+      "binary_NLL": 0.5081754756745259
     }
   },
+  "fair_fusion_increment_vs_same_data_calibrated_aux": {
+    "delta_AP": -0.02046576823377777,
+    "delta_binary_Brier": -0.001972845953650215,
+    "delta_binary_NLL": -0.007792587368188775,
+    "delta_F1": 0.11265194316041771,
+    "delta_FPR": 0.20863309352517986,
+    "same_fusion_training_segments_for_both": true
+  },
   "score": "Initial policy 100 H + 60 D + 0 R minus 15 times fused observed anomaly probability; not tuned to experts.",
-  "elapsed_seconds": 8.005284543999998,
+  "elapsed_seconds": 15.107966124,
   "critical_limitations": [
     "No physical 3-state labels; auxiliary binary class only is genuine expert-published groundtruth",
     "Entire anomaly truth refers to the original SEGMENT; prefix windows inherit it solely for supervised auxiliary FIT, not for per-point scoring",
