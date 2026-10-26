@@ -138,11 +138,22 @@ def run(source=SOURCE,catalog=CATALOG,out="results/esa_observation_e2"):
     rank_refs={k:np.sort(v) for k,v in nominal_for_ecdf.items()}
     components_train,train_combo,_=compute_risks(full_normal,models,rank_refs)
     hmm_params=nominal_three_tier_fit(train_combo,full_end,{"stride":4})
-    scores={};testing_details={}
+    scores={};testing_details={};inference_profile={}
     for phase in ("validation","test"):
+        phase_start=time.perf_counter()
         partscores,combined,_=compute_risks(w[phase],models,rank_refs)
+        evidence_done=time.perf_counter()
         st,ema,hmm=static_ema_hmm(combined,ends[phase],hmm_params,
                  gamma=.6,memory=.5,ema_alpha=.4,stride=4)
+        filter_done=time.perf_counter()
+        inference_profile[phase]={
+          "evaluated_windows":int(len(ends[phase])),
+          "risk_components_and_ranking_joint_seconds":float(evidence_done-phase_start),
+          "static_EMA_HMM_joint_seconds":float(filter_done-evidence_done),
+          "both_joint_seconds":float(filter_done-phase_start),
+          "raw_window_tensor_megabytes":float(w[phase].nbytes/(1024*1024)),
+          "measured_window_shape":list(map(int,w[phase].shape))
+        }
         score={
           "original_robust_level":partscores["level"],
           "forecast_innovation":partscores["innovation"],
@@ -193,6 +204,16 @@ def run(source=SOURCE,catalog=CATALOG,out="results/esa_observation_e2"):
         "consecutive_only_nominal_pairs":hmm_params["consecutive_nominal_transition_pairs"]
       },
       "elapsed_seconds":time.perf_counter()-t0,
+      "inference_cost_audit":{
+        "profiling_scope":"single CPU GitHub Actions runner; wall-clock descriptive only; shared joint-stage timings, NOT isolated per-arm model latency or peak RSS",
+        "measured_phases":inference_profile,
+        "real_channels":3,
+        "window_length":16,
+        "evaluation_stride_raw_points":4,
+        "raw_window_bytes_per_evaluation":int(16*3*8),
+        "per_arm_individual_timing_available":False,
+        "timing_not_suitable_for_hardware_independent_speedup_claims":True
+      },
       "critical_limitations":cfg["forbidden"],
       "interpretation":[
          "Combined weights PRE-fixed, comparison is exploratory because source ESA test IDs have been previously viewed",
