@@ -13,6 +13,7 @@ from pathlib import Path
 import numpy as np,pandas as pd
 from sklearn.metrics import average_precision_score,roc_auc_score
 ROOT=Path(__file__).resolve().parents[2]
+sys.path.insert(0,str(ROOT))
 sys.path.insert(0,str(ROOT/"src"))
 sys.path.insert(0,str(ROOT/"research/esa_real_hmm_main"))
 from v13_protocol import windows_in_partition
