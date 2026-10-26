@@ -6,7 +6,7 @@
   "not_an_independent_holdout": true,
   "no_true_three_state_physical_fault_labels": true,
   "no_expert_health_scores": true,
-  "e2_metrics_SHA256": "c2bdd773d50e2a5f901d4012b3b2b180882ee59ce1ecc37871349a844f71cf5b",
+  "e2_metrics_SHA256": "96b0e92f9646146c2b0b2535664ae8165f7cbddc8e7c201f27edbb55b18db7d1",
   "results": {
     "original_robust_level": {
       "frozen_validation_threshold": 2.583552500259693,
@@ -132,7 +132,7 @@
       ]
     },
     "forecast_innovation": {
-      "frozen_validation_threshold": 6.200593228303127,
+      "frozen_validation_threshold": 6.200593228302948,
       "events_with_at_least_one_single_crossing": 3,
       "events_with_strict_new_alarm": 0,
       "failure_reason_counts": {

@@ -288,7 +288,7 @@
       "test_AP": 0.011323435162432907,
       "test_AUROC": 0.5372791247523016,
       "test_anomaly_prevalence": 0.009894071941641745,
-      "alarm_cutoff_from_validation": 6.200593228303127,
+      "alarm_cutoff_from_validation": 6.200593228302948,
       "alarm_occupancy": {
         "normal_evaluated": 32172,
         "normal_alert_windows": 0,
@@ -592,7 +592,7 @@
     },
     "fixed_combined_static_3tier": {
       "test_AP": 0.012348210463947646,
-      "test_AUROC": 0.5731470162553975,
+      "test_AUROC": 0.57314697638442,
       "test_anomaly_prevalence": 0.009894071941641745,
       "alarm_cutoff_from_validation": 0.8952434947249884,
       "alarm_occupancy": {
@@ -690,7 +690,7 @@
           }
         ]
       },
-      "validation_AP_descriptive": 0.09992325197842997
+      "validation_AP_descriptive": 0.09992326731832972
     },
     "fixed_combined_EMA_3tier": {
       "test_AP": 0.012820408442153713,
@@ -924,7 +924,42 @@
     ],
     "consecutive_only_nominal_pairs": 100982
   },
-  "elapsed_seconds": 18.643961545000025,
+  "elapsed_seconds": 10.191772149999991,
+  "inference_cost_audit": {
+    "profiling_scope": "single CPU GitHub Actions runner; wall-clock descriptive only; shared joint-stage timings, NOT isolated per-arm model latency or peak RSS",
+    "measured_phases": {
+      "validation": {
+        "evaluated_windows": 40412,
+        "risk_components_and_ranking_joint_seconds": 0.028499769000006836,
+        "static_EMA_HMM_joint_seconds": 4.415103195,
+        "both_joint_seconds": 4.443602964000007,
+        "raw_window_tensor_megabytes": 14.79931640625,
+        "measured_window_shape": [
+          40412,
+          16,
+          3
+        ]
+      },
+      "test": {
+        "evaluated_windows": 35779,
+        "risk_components_and_ranking_joint_seconds": 0.02528402000001506,
+        "static_EMA_HMM_joint_seconds": 3.9290908679999745,
+        "both_joint_seconds": 3.9543748879999896,
+        "raw_window_tensor_megabytes": 13.1026611328125,
+        "measured_window_shape": [
+          35779,
+          16,
+          3
+        ]
+      }
+    },
+    "real_channels": 3,
+    "window_length": 16,
+    "evaluation_stride_raw_points": 4,
+    "raw_window_bytes_per_evaluation": 384,
+    "per_arm_individual_timing_available": false,
+    "timing_not_suitable_for_hardware_independent_speedup_claims": true
+  },
   "critical_limitations": [
     "NEVER select best weights or threshold based on exposed test; NO retuning until new independently frozen event group",
     "Do not interpret risk H/D/R as verified physical health, degradation, failure; R means request human check",
