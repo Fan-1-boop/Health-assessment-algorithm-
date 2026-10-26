@@ -1,0 +1,113 @@
+{
+  "version": "real_own_initial_risk_HMM_with_post_fusion_score_calibration_v0.1",
+  "goal": "First real-input interpretable primary health HMM and auxiliary supervised anomaly evidence, not a physical 3-state diagnosis",
+  "real_data": "OPS-SAT-AD original raw segments, train=1 ONLY, 9 independent single-channel groups, source https://doi.org/10.5281/zenodo.12588359",
+  "fixed_truth": "Genuine published normal/anomaly label per entire segment; no true sub-window anomaly onset and no independently confirmed physical health/degraded/fault or expert health scores",
+  "split": {
+    "unit": "blocks of consecutive 16 same-channel segment IDs, not asserted physical UTC across segments",
+    "seed": 20261026,
+    "historical_fit_fraction": 0.6,
+    "remaining_split": "divide remaining groups into HMM_aux_fit_compatible_fusion,calibration,holdout via group split: 45%/25%/30% within remainder",
+    "primary_reference_from_fit_nominal_only": true,
+    "segment_ids_no_overlap": true,
+    "official_test_0_excluded": true,
+    "no_audit_selection": true,
+    "separate_test": "Internal blocked segment holdout; historically observed same dataset, never first blind"
+  },
+  "prefix_window": {
+    "length": 16,
+    "stride": 8,
+    "semantics": "use only past 16 raw samples for each inference tick, reset at each segment; segment onset unknown",
+    "point_label_usage": "NO subwindow true labels; inherit segment label only for grouped auxiliary training, never report point-wise F1",
+    "discard_segments_lt_window": true,
+    "input_features": [
+      "mean",
+      "log1p_std",
+      "min",
+      "max",
+      "median",
+      "rms",
+      "slope",
+      "mean_abs_first_diff"
+    ],
+    "per_channel_normal_reference": "fit historical nominal windows only, robust median and MAD of mean and log(std)",
+    "simulated_data": false
+  },
+  "initialization": {
+    "states": [
+      "Healthy_reference",
+      "Deviation_reference",
+      "High_risk_reference"
+    ],
+    "semantics": "engineering-defined relative nominal deviation, NOT physical faults",
+    "risk_score": "sqrt( zmean^2 + zlogstd^2 ), z normalized using fitted nominal per-channel median / robust MAD",
+    "threshold_1_quantile": 0.7,
+    "threshold_2_quantile": 0.95,
+    "softening": "softmax closeness to class quantile anchor centers determined from nominal train, bounded minimum temperature",
+    "manual_health_weights": [
+      100,
+      60,
+      0
+    ]
+  },
+  "hmm": {
+    "transition": "only consecutive weak-state windows WITHIN each historical fit segment; add0.5 pseudocount; reset at every segment",
+    "mode": "causal forward filter, posterior/as-if-likelihood class prior correction",
+    "gamma": 0.6,
+    "memory": 0.5,
+    "compare_static": true,
+    "compare_ema_alpha": 0.4,
+    "no_claim_true_fault_transitions": true
+  },
+  "auxiliary": {
+    "estimator": "StandardScaler + LogisticRegression(C=.5,class_weight=balanced,solver=liblinear,max_iter=500)",
+    "fit": "historical fit windows (max up to12 windows per segment to reduce unequal segment weights)",
+    "calibration": "independent phase only",
+    "same_sensor_as_main": "yes; not statistically independent"
+  },
+  "fusion": {
+    "estimator": "multinomial logistic(C=.5) trained on distinct fusion phase, using HMM state log-probs and auxiliary anomaly logit",
+    "target": "published binary segment anomaly (normal/anomaly); NOT 3-class physical states",
+    "validation_comparison": [
+      "static reference risk",
+      "HMM reference risk",
+      "auxiliary supervised classifier",
+      "auxiliary+HMM fusion"
+    ],
+    "output_semantics": "post-fusion anomaly probability is auxiliary-objective risk measure, not directly a new P(physical 3state)",
+    "no_automatic_update": true
+  },
+  "final_health_score": {
+    "role": "mapping after fused evidence; maintain raw model anomaly alarm independently",
+    "initial": "health initial 100*P(H)+60*P(D)+0*P(R)",
+    "correction": "a fused-evidence-aware display risk adjustment must be PREDEFINED for study; final display score mapping only after all evidence",
+    "actual_expert_scores_available": false,
+    "calibrator": "constrained ordered mapping fitting needs authenticated human scores and disjoint acceptance; may implement API but cannot assess empirical score MAE",
+    "guarantee": "rating change cannot change objective anomaly p or alarm; version/baseline hash"
+  },
+  "evaluation": {
+    "unit": "one segment: evaluate last causal subwindow output against true official segment binary label",
+    "measures": [
+      "AP",
+      "ROC-AUC",
+      "F1 after cal-only threshold",
+      "Recall",
+      "FPR",
+      "Brier for supervised anomaly probability ONLY",
+      "nominal a2/a3/a4 FPR",
+      "score monotonicity",
+      "runtime"
+    ],
+    "disclaimer": "static tier risk cannot be interpreted as calibrated objective P(anomaly): no Brier vs objective label",
+    "accept": "Exploratory result only, because dataset audited many times and segment labels do not annotate state-transition onset",
+    "failure_report": "if no incremental gain, report full metrics and do not claim fusion improves diagnosis"
+  },
+  "forbidden": [
+    "label a2/a3/a4 as three ordinal physical states",
+    "string different segments into groundtruth Markov sequences",
+    "evaluate sampled windows as independent labels",
+    "claim expert score matching without expert data",
+    "use official original test0",
+    "change main or frozen delivery"
+  ]
+}
