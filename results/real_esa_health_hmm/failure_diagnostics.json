@@ -1,0 +1,98 @@
+{
+  "study": "Posthoc failure diagnostic of already-used ESA Mission1 continuous real E1 data",
+  "not_new_confirmatory_experiment": true,
+  "real_ESA_official_labels": true,
+  "labels": [
+    "target anomaly",
+    "rare nominal (negative under study convention)",
+    "ordinary nominal"
+  ],
+  "source_metrics_key": "results/real_esa_health_hmm/metrics.json",
+  "n_real_evaluated_windows": 35779,
+  "label_class_summaries": {
+    "ordinary_nominal": {
+      "n_real_windows": 32172,
+      "raw_robust_risk_quantile_10_50_90": [
+        0.5340030880976303,
+        1.478673477387503,
+        6.7424140132620805
+      ],
+      "static_risk_quantile_10_50_90": [
+        0.0,
+        0.2161917061189923,
+        0.812784660192005
+      ],
+      "HMM_risk_quantile_10_50_90": [
+        0.0,
+        0.18021703504606157,
+        0.9855851280214681
+      ],
+      "HMM_R_argmax_fraction": 0.1510319532512744,
+      "HMM_H_argmax_fraction": 0.5570371751833892
+    },
+    "rare_nominal": {
+      "n_real_windows": 3253,
+      "raw_robust_risk_quantile_10_50_90": [
+        1.1932589775576887,
+        2.1109344276312925,
+        10.208194761402282
+      ],
+      "static_risk_quantile_10_50_90": [
+        0.0,
+        4.280545606860642e-08,
+        0.811026374186548
+      ],
+      "HMM_risk_quantile_10_50_90": [
+        0.0,
+        1.81043966485106e-08,
+        0.9462645568456769
+      ],
+      "HMM_R_argmax_fraction": 0.1029818628957885,
+      "HMM_H_argmax_fraction": 0.5671687672917307
+    },
+    "anomaly": {
+      "n_real_windows": 354,
+      "raw_robust_risk_quantile_10_50_90": [
+        1.0894822989343513,
+        1.1414281617065127,
+        7.205562249383206
+      ],
+      "static_risk_quantile_10_50_90": [
+        0.0,
+        0.17133208308195724,
+        0.23252343296500633
+      ],
+      "HMM_risk_quantile_10_50_90": [
+        0.0,
+        0.12138089036140354,
+        0.24078356230793496
+      ],
+      "HMM_R_argmax_fraction": 0.002824858757062147,
+      "HMM_H_argmax_fraction": 0.9745762711864406
+    }
+  },
+  "static_HMM_risk_average_absolute_difference": 0.07707485134201082,
+  "static_HMM_risk_correlation": 0.9947404771133864,
+  "transition_mat": [
+    [
+      0.9944702671058478,
+      0.0055226796634198294,
+      7.053230732336947e-06
+    ],
+    [
+      0.015682455129097016,
+      0.9775794557850171,
+      0.006738089085885791
+    ],
+    [
+      0.00010118385105737125,
+      0.03369422240210462,
+      0.966204593746838
+    ]
+  ],
+  "HMM_high_risk_state_self_transition": 0.966204593746838,
+  "HMM_normal_reference_self_transition": 0.9944702671058478,
+  "weak_state_definitions_do_not_come_from_physical_fault_annotators": true,
+  "forbidden": "No threshold change/model selection on these exposed real ESA test event results",
+  "interpretation_limit": "A lower alarm occupancy paired with zero strict event onset recall is not a safe operational improvement; this diagnostic cannot verify expert score calibration."
+}
