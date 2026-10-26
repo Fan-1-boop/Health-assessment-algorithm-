@@ -37,6 +37,9 @@ jobs:
       - name: Audit pre-frozen test event non-detection without modifying thresholds or re-fitting
         run: |
           python -u research/esa_observation_e2/failure_diagnostic.py --result-dir results/esa_observation_e2
+      - name: Verify fixed protocol still has attributable joint inference cost
+        run: |
+          python -c 'import json; m=json.load(open("results/esa_observation_e2/metrics.json")); p=m["inference_cost_audit"]; assert p["per_arm_individual_timing_available"] is False; assert p["measured_phases"]["test"]["evaluated_windows"] == 35779; assert p["measured_phases"]["test"]["both_joint_seconds"] >= 0'
       - name: Archive complete exploratory evidence even if job fails
         if: always()
         uses: actions/upload-artifact@v4
