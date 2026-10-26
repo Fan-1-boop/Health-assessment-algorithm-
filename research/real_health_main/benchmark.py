@@ -239,7 +239,8 @@ def save_plot(frame,out):
     matplotlib.use("Agg")
     import matplotlib.pyplot as plt
     cols={"static":"p_static_risk","EMA":"p_ema_risk","HMM":"p_hmm_risk",
-          "aux":"p_aux_anomaly","fusion":"p_fused_anomaly"}
+          "aux":"p_aux_anomaly","aux_cal":"p_aux_cal_anomaly",
+          "fusion":"p_fused_anomaly"}
     fig,ax=plt.subplots(figsize=(11,5))
     for key,col in cols.items():
         # Raw scores are never assumed calibrated P(physical fault).
@@ -291,22 +292,33 @@ def run(path):
     frames={k:values_for_part(seq,ids,risk,hmm,aux) for k,ids in splits.items()
             if k in ("fusion_fit","calibration","audit")}
     fuse=train_aux_fusion(frames["fusion_fit"])
+    # Fair comparator: ordinary single-score Platt calibration trained on
+    # EXACT SAME real labeled fusion_fit segments as the HMM-assisted fusion.
+    fit_f=frames["fusion_fit"]
+    aux_cal=LogisticRegression(C=.5,solver="lbfgs",max_iter=1200,random_state=42)
+    aux_cal.fit(logit(np.clip(fit_f["p_aux_anomaly"].to_numpy(float),
+                      1e-7,1-1e-7)).reshape(-1,1),
+                fit_f.binary_y.to_numpy(int))
     for key,f in frames.items():
         f["p_fused_anomaly"]=fuse.predict_proba(fusion_columns(f))[:,1]
+        f["p_aux_cal_anomaly"]=aux_cal.predict_proba(
+            logit(np.clip(f["p_aux_anomaly"].to_numpy(float),
+                          1e-7,1-1e-7)).reshape(-1,1))[:,1]
         # Initial DISPLAY POLICY after all evidence: NOT expert-rated.
         f["final_display_health_index_initial"]=np.clip(
             f["main_health_index_initial"]-15*f["p_fused_anomaly"],0,100)
         # Alarm stays EXACTLY from objective detector, not post-score override.
         f["alarm_input_p"]=f["p_aux_anomaly"]
     names={"static":"p_static_risk","EMA":"p_ema_risk","HMM":"p_hmm_risk",
-           "aux":"p_aux_anomaly","fusion":"p_fused_anomaly"}
+           "aux":"p_aux_anomaly","aux_cal":"p_aux_cal_anomaly",
+           "fusion":"p_fused_anomaly"}
     calibration=frames["calibration"]
     audit=frames["audit"]
     stats={}
     for name,col in names.items():
         th=threshold_for_f1(calibration.binary_y,calibration[col])
         stats[name]=report(audit.binary_y,audit[col],th,
-                           calibrated=name in ("aux","fusion"))
+                           calibrated=name in ("aux","aux_cal","fusion"))
     for item in (calibration,audit):
         assert np.array_equal(item.alarm_input_p.to_numpy(),item.p_aux_anomaly.to_numpy())
         assert (item.final_display_health_index_initial.between(0,100)).all()
@@ -331,6 +343,14 @@ def run(path):
       "hmm_weak_state_transition_matrix":hmm["transition"].tolist(),
       "hmm_state_semantics":"Weak rule-based nominal-reference risk tiers. NOT observed physical state transitions.",
       "classification_metrics_against_PUBLISHED_REAL_SEGMENT_ANOMALY_LABELS":stats,
+      "fair_fusion_increment_vs_same_data_calibrated_aux":{
+        "delta_AP":float(stats["fusion"]["AP"]-stats["aux_cal"]["AP"]),
+        "delta_binary_Brier":float(stats["fusion"]["binary_Brier"]-stats["aux_cal"]["binary_Brier"]),
+        "delta_binary_NLL":float(stats["fusion"]["binary_NLL"]-stats["aux_cal"]["binary_NLL"]),
+        "delta_F1":float(stats["fusion"]["F1"]-stats["aux_cal"]["F1"]),
+        "delta_FPR":float(stats["fusion"]["FPR"]-stats["aux_cal"]["FPR"]),
+        "same_fusion_training_segments_for_both":True
+      },
       "score":"Initial policy 100 H + 60 D + 0 R minus 15 times fused observed anomaly probability; not tuned to experts.",
       "elapsed_seconds":time.perf_counter()-t0,
       "critical_limitations":[
