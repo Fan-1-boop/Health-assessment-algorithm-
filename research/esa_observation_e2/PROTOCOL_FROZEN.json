@@ -1,0 +1,72 @@
+{
+  "study": "ESA_Mission1_real_observation_v2_frozen_post_v1_failure",
+  "research_mode": "EXPLORATORY within SAME ESA Mission1 previously exposed event IDs; does NOT establish independent generalization",
+  "goal": "Test whether fixed causal prediction innovation and local change add information beyond level deviation; then test HMM marginal time value on the SAME combined observation",
+  "dataset": "data/esa_v15_multichannel/three_channels.csv.gz",
+  "catalog": "data/esa_v15_multichannel/mission1_event_catalog.csv",
+  "source_sha256": "bf42672b0a611cb855e44b93f00af535c774c1f25965e6d459c5781e8e86d58c",
+  "channels": [
+    "channel_29",
+    "channel_30",
+    "channel_31"
+  ],
+  "target": "channel_29",
+  "preexisting_split": "reuse exact V1.5 global-ID-aware chronological split cut indices [431304,593284], no posthoc changes",
+  "sampling": "10 min asof, 60 min max staleness, 16point history, evaluation stride4=40min, not official 30s ESA",
+  "training_reference": "only training partition strictly normal (code==0) in all 16 timepoints of each window, 20k evenly-spaced windows to fit the reference models",
+  "risk_components": {
+    "level": "original RobustLevelDeviation on last simultaneous real-channel telemetry readings",
+    "innovation": "existing ForecastRidge model trained on same pure-normal 20k causal windows, predict last reading using prior 8 real windows, report normalized multichannel forecast error",
+    "local_change": "max over channels of absolute latest telemetry value minus median of preceding 8 real samples, normalized by fitted normal residual robust scale",
+    "calibration": "for each risk component, reference empirical CDF on strictly nominal training windows; clamp tail percentile [0,1]",
+    "combined": "0.35*rank_level + 0.45*rank_innovation + 0.20*rank_local_change, fixed BEFORE any V2 metric",
+    "component_weights": [
+      0.35,
+      0.45,
+      0.2
+    ],
+    "risk_state_init": "on combined rank risk, train-pure-normal q70 and q95 initialize three ordered risk tiers H / D / R (R check advised, never auto fault)",
+    "hmm": "same prior HMM code and gamma=0.6,memory=0.5,variance floor=0.0036 trained from train normal pseudo-risk-tier sequence; no abnormal→physical state invention",
+    "ema_alpha": 0.4
+  },
+  "evaluated_models": [
+    "original_robust_level",
+    "forecast_innovation",
+    "local_change",
+    "fixed_combined_static_risk",
+    "fixed_combined_static_3tier",
+    "fixed_combined_EMA_3tier",
+    "fixed_combined_HMM_3tier"
+  ],
+  "alarm_rules": {
+    "method": "for each model, 99.8th percentile of OFFICIAL NOMINAL validation scores, not test; 3 consecutive 40min windows required",
+    "reset_over_gap": true,
+    "rare_nominal": "negative (separate burden audit), as frozen V1.5 protocol"
+  },
+  "metrics": [
+    "test_AP",
+    "test_AUROC",
+    "validation_AP_diagnostic_only",
+    "normal_alert_occupancy",
+    "rare_nominal_alert_occupancy",
+    "strict_official_event_ID_new_alarm_onset_recall",
+    "official_ID_alarm_coverage_recall",
+    "false_alarm_onsets_per_30d",
+    "total_alert_starts"
+  ],
+  "predeclared_effect_questions": [
+    "Is the fixed combined static risk AP better than original raw level baseline (not HMM)?",
+    "Does adding HMM to the SAME combined 3tier emission preserve/increase AP and official new-onset recall relative to same-tier static and EMA?",
+    "Is any false-alarm occupancy reduction achieved without losing all true new event onset?",
+    "Do risk tiers remain author-defined rather than physically verified?"
+  ],
+  "forbidden": [
+    "NEVER select best weights or threshold based on exposed test; NO retuning until new independently frozen event group",
+    "Do not interpret risk H/D/R as verified physical health, degradation, failure; R means request human check",
+    "Do not claim main HMM successful when event onset recall=0, irrespective of lower normal false alert occupancy",
+    "Do not claim this trial is objective calibration of displayed 0-100 health index; expert rated scores are absent",
+    "Not official ESA preprocessing; not a real-operator online labeling deployment",
+    "Do not use telecommand_36 etc as verified actuator context; anonymized relevance has not been demonstrated",
+    "No modification to frozen main or delivery release or original MSF maximum64 budget"
+  ]
+}
