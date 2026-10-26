@@ -1,0 +1,945 @@
+{
+  "study": "Real ESA three-channel original-V15 split, causal nominal-referenced level+innovation+change, static/EMA/HMM observation ablation",
+  "protocol_SHA256": "26e30d259a135c4d3e1d309867c6c0dea76169b9d62d86cc4fbeec6d8e07a9c6",
+  "real_ESA_source_SHA256": "bf42672b0a611cb855e44b93f00af535c774c1f25965e6d459c5781e8e86d58c",
+  "real_catalog_SHA256": "829bf430f27903788add91f49ee75e038221f80530aafeb436e1ecb90bcf2208",
+  "original_source_sample_count": 736415,
+  "source_window_end_counts": {
+    "train": 106642,
+    "validation": 40412,
+    "test": 35779
+  },
+  "pure_nominal_train_windows": 101039,
+  "nominal_reference_fit_windows": 20000,
+  "official_event_ID_partition": {
+    "train": {
+      "Anomaly": [
+        "id_30",
+        "id_4",
+        "id_36",
+        "id_45",
+        "id_56",
+        "id_58",
+        "id_5",
+        "id_2",
+        "id_3",
+        "id_6",
+        "id_82",
+        "id_7",
+        "id_8",
+        "id_9",
+        "id_89",
+        "id_92",
+        "id_94",
+        "id_97",
+        "id_99",
+        "id_101",
+        "id_103",
+        "id_105",
+        "id_108",
+        "id_111",
+        "id_113",
+        "id_115",
+        "id_116",
+        "id_119",
+        "id_120",
+        "id_126",
+        "id_127"
+      ],
+      "Rare Event": [
+        "id_151",
+        "id_59",
+        "id_35",
+        "id_77",
+        "id_80",
+        "id_81",
+        "id_87",
+        "id_88",
+        "id_95",
+        "id_1",
+        "id_17",
+        "id_98",
+        "id_100",
+        "id_104",
+        "id_106",
+        "id_112",
+        "id_117",
+        "id_123",
+        "id_27",
+        "id_28",
+        "id_125"
+      ],
+      "target_evaluable_anomaly": [
+        "id_30",
+        "id_4",
+        "id_36",
+        "id_45",
+        "id_56",
+        "id_58",
+        "id_5",
+        "id_2",
+        "id_3",
+        "id_6",
+        "id_82",
+        "id_7",
+        "id_8",
+        "id_9",
+        "id_92",
+        "id_94",
+        "id_97",
+        "id_99",
+        "id_101",
+        "id_105",
+        "id_108",
+        "id_111",
+        "id_113",
+        "id_115",
+        "id_116",
+        "id_119",
+        "id_120",
+        "id_126",
+        "id_127"
+      ]
+    },
+    "validation": {
+      "Anomaly": [
+        "id_131",
+        "id_134",
+        "id_135",
+        "id_137",
+        "id_141",
+        "id_143",
+        "id_145",
+        "id_146",
+        "id_148",
+        "id_152"
+      ],
+      "Rare Event": [
+        "id_128",
+        "id_29",
+        "id_31",
+        "id_32",
+        "id_33",
+        "id_133",
+        "id_34",
+        "id_136",
+        "id_139",
+        "id_147",
+        "id_154"
+      ],
+      "target_evaluable_anomaly": [
+        "id_131",
+        "id_134",
+        "id_135",
+        "id_137",
+        "id_143",
+        "id_145",
+        "id_146",
+        "id_148",
+        "id_152"
+      ]
+    },
+    "test": {
+      "Anomaly": [
+        "id_156",
+        "id_161",
+        "id_162",
+        "id_171",
+        "id_46",
+        "id_178",
+        "id_179",
+        "id_181",
+        "id_188",
+        "id_189"
+      ],
+      "Rare Event": [
+        "id_155",
+        "id_159",
+        "id_51",
+        "id_164",
+        "id_169",
+        "id_175",
+        "id_14",
+        "id_180",
+        "id_182"
+      ],
+      "target_evaluable_anomaly": [
+        "id_156",
+        "id_161",
+        "id_162",
+        "id_171",
+        "id_46",
+        "id_178",
+        "id_179",
+        "id_181",
+        "id_188",
+        "id_189"
+      ]
+    }
+  },
+  "true_target_anomalies_test": 354,
+  "no_simulated_satellite_input_or_labels": true,
+  "author_defined_tiers_NOT_physical_health_fault_truth": true,
+  "no_human_health_score_anchors": true,
+  "results": {
+    "original_robust_level": {
+      "test_AP": 0.018679696394077624,
+      "test_AUROC": 0.5729173195539234,
+      "test_anomaly_prevalence": 0.009894071941641745,
+      "alarm_cutoff_from_validation": 2.583552500259693,
+      "alarm_occupancy": {
+        "normal_evaluated": 32172,
+        "normal_alert_windows": 6374,
+        "normal_alert_rate": 0.19812259107298272,
+        "rare_nominal_evaluated": 3253,
+        "rare_nominal_alert_windows": 1550,
+        "rare_nominal_alert_rate": 0.4764832462342453,
+        "true_anomaly_evaluated": 354,
+        "true_anomaly_alert_windows": 145,
+        "false_alarm_episodes": 10,
+        "false_alarm_episodes_per_1000_evaluated_windows": 0.2794935576734956,
+        "metric_denominator": "sampled evaluation windows, not hours or raw timestamps"
+      },
+      "official_ID_metrics": {
+        "official_ID_total_target_anomalies": 10,
+        "official_ID_evaluable_at_stride": 10,
+        "coverage_ID_recall": 0.4,
+        "strict_new_onset_ID_recall": 0.0,
+        "false_alarm_new_onsets": 6,
+        "false_alarm_new_onsets_per_30_elapsed_days": 0.18109284501610412,
+        "calendar_days_in_partition": 993.9652777777778,
+        "mean_strict_onset_delay_grid_steps": null,
+        "event_details": [
+          {
+            "id": "id_156",
+            "evaluable_at_stride": true,
+            "alarm_coverage": false,
+            "new_alarm_onset_inside_event": false,
+            "delay_grid_steps": null
+          },
+          {
+            "id": "id_161",
+            "evaluable_at_stride": true,
+            "alarm_coverage": false,
+            "new_alarm_onset_inside_event": false,
+            "delay_grid_steps": null
+          },
+          {
+            "id": "id_162",
+            "evaluable_at_stride": true,
+            "alarm_coverage": false,
+            "new_alarm_onset_inside_event": false,
+            "delay_grid_steps": null
+          },
+          {
+            "id": "id_171",
+            "evaluable_at_stride": true,
+            "alarm_coverage": false,
+            "new_alarm_onset_inside_event": false,
+            "delay_grid_steps": null
+          },
+          {
+            "id": "id_46",
+            "evaluable_at_stride": true,
+            "alarm_coverage": false,
+            "new_alarm_onset_inside_event": false,
+            "delay_grid_steps": null
+          },
+          {
+            "id": "id_178",
+            "evaluable_at_stride": true,
+            "alarm_coverage": false,
+            "new_alarm_onset_inside_event": false,
+            "delay_grid_steps": null
+          },
+          {
+            "id": "id_179",
+            "evaluable_at_stride": true,
+            "alarm_coverage": true,
+            "new_alarm_onset_inside_event": false,
+            "delay_grid_steps": null
+          },
+          {
+            "id": "id_181",
+            "evaluable_at_stride": true,
+            "alarm_coverage": true,
+            "new_alarm_onset_inside_event": false,
+            "delay_grid_steps": null
+          },
+          {
+            "id": "id_188",
+            "evaluable_at_stride": true,
+            "alarm_coverage": true,
+            "new_alarm_onset_inside_event": false,
+            "delay_grid_steps": null
+          },
+          {
+            "id": "id_189",
+            "evaluable_at_stride": true,
+            "alarm_coverage": true,
+            "new_alarm_onset_inside_event": false,
+            "delay_grid_steps": null
+          }
+        ]
+      },
+      "validation_AP_descriptive": 0.15148295723254837
+    },
+    "forecast_innovation": {
+      "test_AP": 0.011323435162432907,
+      "test_AUROC": 0.5372791247523016,
+      "test_anomaly_prevalence": 0.009894071941641745,
+      "alarm_cutoff_from_validation": 6.200593228302948,
+      "alarm_occupancy": {
+        "normal_evaluated": 32172,
+        "normal_alert_windows": 0,
+        "normal_alert_rate": 0.0,
+        "rare_nominal_evaluated": 3253,
+        "rare_nominal_alert_windows": 2,
+        "rare_nominal_alert_rate": 0.0006148170919151552,
+        "true_anomaly_evaluated": 354,
+        "true_anomaly_alert_windows": 0,
+        "false_alarm_episodes": 2,
+        "false_alarm_episodes_per_1000_evaluated_windows": 0.05589871153469913,
+        "metric_denominator": "sampled evaluation windows, not hours or raw timestamps"
+      },
+      "official_ID_metrics": {
+        "official_ID_total_target_anomalies": 10,
+        "official_ID_evaluable_at_stride": 10,
+        "coverage_ID_recall": 0.0,
+        "strict_new_onset_ID_recall": 0.0,
+        "false_alarm_new_onsets": 2,
+        "false_alarm_new_onsets_per_30_elapsed_days": 0.060364281672034704,
+        "calendar_days_in_partition": 993.9652777777778,
+        "mean_strict_onset_delay_grid_steps": null,
+        "event_details": [
+          {
+            "id": "id_156",
+            "evaluable_at_stride": true,
+            "alarm_coverage": false,
+            "new_alarm_onset_inside_event": false,
+            "delay_grid_steps": null
+          },
+          {
+            "id": "id_161",
+            "evaluable_at_stride": true,
+            "alarm_coverage": false,
+            "new_alarm_onset_inside_event": false,
+            "delay_grid_steps": null
+          },
+          {
+            "id": "id_162",
+            "evaluable_at_stride": true,
+            "alarm_coverage": false,
+            "new_alarm_onset_inside_event": false,
+            "delay_grid_steps": null
+          },
+          {
+            "id": "id_171",
+            "evaluable_at_stride": true,
+            "alarm_coverage": false,
+            "new_alarm_onset_inside_event": false,
+            "delay_grid_steps": null
+          },
+          {
+            "id": "id_46",
+            "evaluable_at_stride": true,
+            "alarm_coverage": false,
+            "new_alarm_onset_inside_event": false,
+            "delay_grid_steps": null
+          },
+          {
+            "id": "id_178",
+            "evaluable_at_stride": true,
+            "alarm_coverage": false,
+            "new_alarm_onset_inside_event": false,
+            "delay_grid_steps": null
+          },
+          {
+            "id": "id_179",
+            "evaluable_at_stride": true,
+            "alarm_coverage": false,
+            "new_alarm_onset_inside_event": false,
+            "delay_grid_steps": null
+          },
+          {
+            "id": "id_181",
+            "evaluable_at_stride": true,
+            "alarm_coverage": false,
+            "new_alarm_onset_inside_event": false,
+            "delay_grid_steps": null
+          },
+          {
+            "id": "id_188",
+            "evaluable_at_stride": true,
+            "alarm_coverage": false,
+            "new_alarm_onset_inside_event": false,
+            "delay_grid_steps": null
+          },
+          {
+            "id": "id_189",
+            "evaluable_at_stride": true,
+            "alarm_coverage": false,
+            "new_alarm_onset_inside_event": false,
+            "delay_grid_steps": null
+          }
+        ]
+      },
+      "validation_AP_descriptive": 0.05672934625154593
+    },
+    "local_change": {
+      "test_AP": 0.012398517930751104,
+      "test_AUROC": 0.5639200347674923,
+      "test_anomaly_prevalence": 0.009894071941641745,
+      "alarm_cutoff_from_validation": 209.6076954012848,
+      "alarm_occupancy": {
+        "normal_evaluated": 32172,
+        "normal_alert_windows": 0,
+        "normal_alert_rate": 0.0,
+        "rare_nominal_evaluated": 3253,
+        "rare_nominal_alert_windows": 0,
+        "rare_nominal_alert_rate": 0.0,
+        "true_anomaly_evaluated": 354,
+        "true_anomaly_alert_windows": 0,
+        "false_alarm_episodes": 0,
+        "false_alarm_episodes_per_1000_evaluated_windows": 0.0,
+        "metric_denominator": "sampled evaluation windows, not hours or raw timestamps"
+      },
+      "official_ID_metrics": {
+        "official_ID_total_target_anomalies": 10,
+        "official_ID_evaluable_at_stride": 10,
+        "coverage_ID_recall": 0.0,
+        "strict_new_onset_ID_recall": 0.0,
+        "false_alarm_new_onsets": 0,
+        "false_alarm_new_onsets_per_30_elapsed_days": 0.0,
+        "calendar_days_in_partition": 993.9652777777778,
+        "mean_strict_onset_delay_grid_steps": null,
+        "event_details": [
+          {
+            "id": "id_156",
+            "evaluable_at_stride": true,
+            "alarm_coverage": false,
+            "new_alarm_onset_inside_event": false,
+            "delay_grid_steps": null
+          },
+          {
+            "id": "id_161",
+            "evaluable_at_stride": true,
+            "alarm_coverage": false,
+            "new_alarm_onset_inside_event": false,
+            "delay_grid_steps": null
+          },
+          {
+            "id": "id_162",
+            "evaluable_at_stride": true,
+            "alarm_coverage": false,
+            "new_alarm_onset_inside_event": false,
+            "delay_grid_steps": null
+          },
+          {
+            "id": "id_171",
+            "evaluable_at_stride": true,
+            "alarm_coverage": false,
+            "new_alarm_onset_inside_event": false,
+            "delay_grid_steps": null
+          },
+          {
+            "id": "id_46",
+            "evaluable_at_stride": true,
+            "alarm_coverage": false,
+            "new_alarm_onset_inside_event": false,
+            "delay_grid_steps": null
+          },
+          {
+            "id": "id_178",
+            "evaluable_at_stride": true,
+            "alarm_coverage": false,
+            "new_alarm_onset_inside_event": false,
+            "delay_grid_steps": null
+          },
+          {
+            "id": "id_179",
+            "evaluable_at_stride": true,
+            "alarm_coverage": false,
+            "new_alarm_onset_inside_event": false,
+            "delay_grid_steps": null
+          },
+          {
+            "id": "id_181",
+            "evaluable_at_stride": true,
+            "alarm_coverage": false,
+            "new_alarm_onset_inside_event": false,
+            "delay_grid_steps": null
+          },
+          {
+            "id": "id_188",
+            "evaluable_at_stride": true,
+            "alarm_coverage": false,
+            "new_alarm_onset_inside_event": false,
+            "delay_grid_steps": null
+          },
+          {
+            "id": "id_189",
+            "evaluable_at_stride": true,
+            "alarm_coverage": false,
+            "new_alarm_onset_inside_event": false,
+            "delay_grid_steps": null
+          }
+        ]
+      },
+      "validation_AP_descriptive": 0.05342839541974148
+    },
+    "fixed_combined_static_risk": {
+      "test_AP": 0.012348226129053372,
+      "test_AUROC": 0.5731469365134425,
+      "test_anomaly_prevalence": 0.009894071941641745,
+      "alarm_cutoff_from_validation": 0.9847007649617519,
+      "alarm_occupancy": {
+        "normal_evaluated": 32172,
+        "normal_alert_windows": 0,
+        "normal_alert_rate": 0.0,
+        "rare_nominal_evaluated": 3253,
+        "rare_nominal_alert_windows": 4,
+        "rare_nominal_alert_rate": 0.0012296341838303104,
+        "true_anomaly_evaluated": 354,
+        "true_anomaly_alert_windows": 0,
+        "false_alarm_episodes": 2,
+        "false_alarm_episodes_per_1000_evaluated_windows": 0.05589871153469913,
+        "metric_denominator": "sampled evaluation windows, not hours or raw timestamps"
+      },
+      "official_ID_metrics": {
+        "official_ID_total_target_anomalies": 10,
+        "official_ID_evaluable_at_stride": 10,
+        "coverage_ID_recall": 0.0,
+        "strict_new_onset_ID_recall": 0.0,
+        "false_alarm_new_onsets": 2,
+        "false_alarm_new_onsets_per_30_elapsed_days": 0.060364281672034704,
+        "calendar_days_in_partition": 993.9652777777778,
+        "mean_strict_onset_delay_grid_steps": null,
+        "event_details": [
+          {
+            "id": "id_156",
+            "evaluable_at_stride": true,
+            "alarm_coverage": false,
+            "new_alarm_onset_inside_event": false,
+            "delay_grid_steps": null
+          },
+          {
+            "id": "id_161",
+            "evaluable_at_stride": true,
+            "alarm_coverage": false,
+            "new_alarm_onset_inside_event": false,
+            "delay_grid_steps": null
+          },
+          {
+            "id": "id_162",
+            "evaluable_at_stride": true,
+            "alarm_coverage": false,
+            "new_alarm_onset_inside_event": false,
+            "delay_grid_steps": null
+          },
+          {
+            "id": "id_171",
+            "evaluable_at_stride": true,
+            "alarm_coverage": false,
+            "new_alarm_onset_inside_event": false,
+            "delay_grid_steps": null
+          },
+          {
+            "id": "id_46",
+            "evaluable_at_stride": true,
+            "alarm_coverage": false,
+            "new_alarm_onset_inside_event": false,
+            "delay_grid_steps": null
+          },
+          {
+            "id": "id_178",
+            "evaluable_at_stride": true,
+            "alarm_coverage": false,
+            "new_alarm_onset_inside_event": false,
+            "delay_grid_steps": null
+          },
+          {
+            "id": "id_179",
+            "evaluable_at_stride": true,
+            "alarm_coverage": false,
+            "new_alarm_onset_inside_event": false,
+            "delay_grid_steps": null
+          },
+          {
+            "id": "id_181",
+            "evaluable_at_stride": true,
+            "alarm_coverage": false,
+            "new_alarm_onset_inside_event": false,
+            "delay_grid_steps": null
+          },
+          {
+            "id": "id_188",
+            "evaluable_at_stride": true,
+            "alarm_coverage": false,
+            "new_alarm_onset_inside_event": false,
+            "delay_grid_steps": null
+          },
+          {
+            "id": "id_189",
+            "evaluable_at_stride": true,
+            "alarm_coverage": false,
+            "new_alarm_onset_inside_event": false,
+            "delay_grid_steps": null
+          }
+        ]
+      },
+      "validation_AP_descriptive": 0.09992335943283856
+    },
+    "fixed_combined_static_3tier": {
+      "test_AP": 0.012348210463947646,
+      "test_AUROC": 0.57314697638442,
+      "test_anomaly_prevalence": 0.009894071941641745,
+      "alarm_cutoff_from_validation": 0.8952434947249884,
+      "alarm_occupancy": {
+        "normal_evaluated": 32172,
+        "normal_alert_windows": 0,
+        "normal_alert_rate": 0.0,
+        "rare_nominal_evaluated": 3253,
+        "rare_nominal_alert_windows": 4,
+        "rare_nominal_alert_rate": 0.0012296341838303104,
+        "true_anomaly_evaluated": 354,
+        "true_anomaly_alert_windows": 0,
+        "false_alarm_episodes": 2,
+        "false_alarm_episodes_per_1000_evaluated_windows": 0.05589871153469913,
+        "metric_denominator": "sampled evaluation windows, not hours or raw timestamps"
+      },
+      "official_ID_metrics": {
+        "official_ID_total_target_anomalies": 10,
+        "official_ID_evaluable_at_stride": 10,
+        "coverage_ID_recall": 0.0,
+        "strict_new_onset_ID_recall": 0.0,
+        "false_alarm_new_onsets": 2,
+        "false_alarm_new_onsets_per_30_elapsed_days": 0.060364281672034704,
+        "calendar_days_in_partition": 993.9652777777778,
+        "mean_strict_onset_delay_grid_steps": null,
+        "event_details": [
+          {
+            "id": "id_156",
+            "evaluable_at_stride": true,
+            "alarm_coverage": false,
+            "new_alarm_onset_inside_event": false,
+            "delay_grid_steps": null
+          },
+          {
+            "id": "id_161",
+            "evaluable_at_stride": true,
+            "alarm_coverage": false,
+            "new_alarm_onset_inside_event": false,
+            "delay_grid_steps": null
+          },
+          {
+            "id": "id_162",
+            "evaluable_at_stride": true,
+            "alarm_coverage": false,
+            "new_alarm_onset_inside_event": false,
+            "delay_grid_steps": null
+          },
+          {
+            "id": "id_171",
+            "evaluable_at_stride": true,
+            "alarm_coverage": false,
+            "new_alarm_onset_inside_event": false,
+            "delay_grid_steps": null
+          },
+          {
+            "id": "id_46",
+            "evaluable_at_stride": true,
+            "alarm_coverage": false,
+            "new_alarm_onset_inside_event": false,
+            "delay_grid_steps": null
+          },
+          {
+            "id": "id_178",
+            "evaluable_at_stride": true,
+            "alarm_coverage": false,
+            "new_alarm_onset_inside_event": false,
+            "delay_grid_steps": null
+          },
+          {
+            "id": "id_179",
+            "evaluable_at_stride": true,
+            "alarm_coverage": false,
+            "new_alarm_onset_inside_event": false,
+            "delay_grid_steps": null
+          },
+          {
+            "id": "id_181",
+            "evaluable_at_stride": true,
+            "alarm_coverage": false,
+            "new_alarm_onset_inside_event": false,
+            "delay_grid_steps": null
+          },
+          {
+            "id": "id_188",
+            "evaluable_at_stride": true,
+            "alarm_coverage": false,
+            "new_alarm_onset_inside_event": false,
+            "delay_grid_steps": null
+          },
+          {
+            "id": "id_189",
+            "evaluable_at_stride": true,
+            "alarm_coverage": false,
+            "new_alarm_onset_inside_event": false,
+            "delay_grid_steps": null
+          }
+        ]
+      },
+      "validation_AP_descriptive": 0.09992326731832972
+    },
+    "fixed_combined_EMA_3tier": {
+      "test_AP": 0.012820408442153713,
+      "test_AUROC": 0.594998345354433,
+      "test_anomaly_prevalence": 0.009894071941641745,
+      "alarm_cutoff_from_validation": 0.8040104343680063,
+      "alarm_occupancy": {
+        "normal_evaluated": 32172,
+        "normal_alert_windows": 185,
+        "normal_alert_rate": 0.005750341912221808,
+        "rare_nominal_evaluated": 3253,
+        "rare_nominal_alert_windows": 856,
+        "rare_nominal_alert_rate": 0.26314171533968644,
+        "true_anomaly_evaluated": 354,
+        "true_anomaly_alert_windows": 7,
+        "false_alarm_episodes": 105,
+        "false_alarm_episodes_per_1000_evaluated_windows": 2.934682355571704,
+        "metric_denominator": "sampled evaluation windows, not hours or raw timestamps"
+      },
+      "official_ID_metrics": {
+        "official_ID_total_target_anomalies": 10,
+        "official_ID_evaluable_at_stride": 10,
+        "coverage_ID_recall": 0.2,
+        "strict_new_onset_ID_recall": 0.2,
+        "false_alarm_new_onsets": 105,
+        "false_alarm_new_onsets_per_30_elapsed_days": 3.169124787781822,
+        "calendar_days_in_partition": 993.9652777777778,
+        "mean_strict_onset_delay_grid_steps": 59.0,
+        "event_details": [
+          {
+            "id": "id_156",
+            "evaluable_at_stride": true,
+            "alarm_coverage": false,
+            "new_alarm_onset_inside_event": false,
+            "delay_grid_steps": null
+          },
+          {
+            "id": "id_161",
+            "evaluable_at_stride": true,
+            "alarm_coverage": false,
+            "new_alarm_onset_inside_event": false,
+            "delay_grid_steps": null
+          },
+          {
+            "id": "id_162",
+            "evaluable_at_stride": true,
+            "alarm_coverage": false,
+            "new_alarm_onset_inside_event": false,
+            "delay_grid_steps": null
+          },
+          {
+            "id": "id_171",
+            "evaluable_at_stride": true,
+            "alarm_coverage": false,
+            "new_alarm_onset_inside_event": false,
+            "delay_grid_steps": null
+          },
+          {
+            "id": "id_46",
+            "evaluable_at_stride": true,
+            "alarm_coverage": false,
+            "new_alarm_onset_inside_event": false,
+            "delay_grid_steps": null
+          },
+          {
+            "id": "id_178",
+            "evaluable_at_stride": true,
+            "alarm_coverage": false,
+            "new_alarm_onset_inside_event": false,
+            "delay_grid_steps": null
+          },
+          {
+            "id": "id_179",
+            "evaluable_at_stride": true,
+            "alarm_coverage": false,
+            "new_alarm_onset_inside_event": false,
+            "delay_grid_steps": null
+          },
+          {
+            "id": "id_181",
+            "evaluable_at_stride": true,
+            "alarm_coverage": true,
+            "new_alarm_onset_inside_event": true,
+            "delay_grid_steps": 118
+          },
+          {
+            "id": "id_188",
+            "evaluable_at_stride": true,
+            "alarm_coverage": false,
+            "new_alarm_onset_inside_event": false,
+            "delay_grid_steps": null
+          },
+          {
+            "id": "id_189",
+            "evaluable_at_stride": true,
+            "alarm_coverage": true,
+            "new_alarm_onset_inside_event": true,
+            "delay_grid_steps": 0
+          }
+        ]
+      },
+      "validation_AP_descriptive": 0.1721174538464249
+    },
+    "fixed_combined_HMM_3tier": {
+      "test_AP": 0.01222563093568509,
+      "test_AUROC": 0.5771738653716573,
+      "test_anomaly_prevalence": 0.009894071941641745,
+      "alarm_cutoff_from_validation": 0.9220780890700777,
+      "alarm_occupancy": {
+        "normal_evaluated": 32172,
+        "normal_alert_windows": 8,
+        "normal_alert_rate": 0.0002486634340420241,
+        "rare_nominal_evaluated": 3253,
+        "rare_nominal_alert_windows": 104,
+        "rare_nominal_alert_rate": 0.03197048877958807,
+        "true_anomaly_evaluated": 354,
+        "true_anomaly_alert_windows": 1,
+        "false_alarm_episodes": 32,
+        "false_alarm_episodes_per_1000_evaluated_windows": 0.8943793845551861,
+        "metric_denominator": "sampled evaluation windows, not hours or raw timestamps"
+      },
+      "official_ID_metrics": {
+        "official_ID_total_target_anomalies": 10,
+        "official_ID_evaluable_at_stride": 10,
+        "coverage_ID_recall": 0.1,
+        "strict_new_onset_ID_recall": 0.1,
+        "false_alarm_new_onsets": 32,
+        "false_alarm_new_onsets_per_30_elapsed_days": 0.9658285067525553,
+        "calendar_days_in_partition": 993.9652777777778,
+        "mean_strict_onset_delay_grid_steps": 290.0,
+        "event_details": [
+          {
+            "id": "id_156",
+            "evaluable_at_stride": true,
+            "alarm_coverage": false,
+            "new_alarm_onset_inside_event": false,
+            "delay_grid_steps": null
+          },
+          {
+            "id": "id_161",
+            "evaluable_at_stride": true,
+            "alarm_coverage": false,
+            "new_alarm_onset_inside_event": false,
+            "delay_grid_steps": null
+          },
+          {
+            "id": "id_162",
+            "evaluable_at_stride": true,
+            "alarm_coverage": false,
+            "new_alarm_onset_inside_event": false,
+            "delay_grid_steps": null
+          },
+          {
+            "id": "id_171",
+            "evaluable_at_stride": true,
+            "alarm_coverage": false,
+            "new_alarm_onset_inside_event": false,
+            "delay_grid_steps": null
+          },
+          {
+            "id": "id_46",
+            "evaluable_at_stride": true,
+            "alarm_coverage": false,
+            "new_alarm_onset_inside_event": false,
+            "delay_grid_steps": null
+          },
+          {
+            "id": "id_178",
+            "evaluable_at_stride": true,
+            "alarm_coverage": false,
+            "new_alarm_onset_inside_event": false,
+            "delay_grid_steps": null
+          },
+          {
+            "id": "id_179",
+            "evaluable_at_stride": true,
+            "alarm_coverage": false,
+            "new_alarm_onset_inside_event": false,
+            "delay_grid_steps": null
+          },
+          {
+            "id": "id_181",
+            "evaluable_at_stride": true,
+            "alarm_coverage": true,
+            "new_alarm_onset_inside_event": true,
+            "delay_grid_steps": 290
+          },
+          {
+            "id": "id_188",
+            "evaluable_at_stride": true,
+            "alarm_coverage": false,
+            "new_alarm_onset_inside_event": false,
+            "delay_grid_steps": null
+          },
+          {
+            "id": "id_189",
+            "evaluable_at_stride": true,
+            "alarm_coverage": false,
+            "new_alarm_onset_inside_event": false,
+            "delay_grid_steps": null
+          }
+        ]
+      },
+      "validation_AP_descriptive": 0.1268368250247764
+    }
+  },
+  "weak_state_HMM": {
+    "training_normal_risk_q70": 0.6278736063196841,
+    "training_normal_risk_q95": 0.8416729163541823,
+    "transition": [
+      [
+        0.7782021629497599,
+        0.18976382965179198,
+        0.03203400739844817
+      ],
+      [
+        0.560409529278967,
+        0.3622195377943244,
+        0.07737093292670852
+      ],
+      [
+        0.30321941555225357,
+        0.5320455671124319,
+        0.1647350173353145
+      ]
+    ],
+    "prior": [
+      0.7000014845532238,
+      0.25000371138305927,
+      0.04999480406371702
+    ],
+    "consecutive_only_nominal_pairs": 100982
+  },
+  "elapsed_seconds": 7.319467887000002,
+  "critical_limitations": [
+    "NEVER select best weights or threshold based on exposed test; NO retuning until new independently frozen event group",
+    "Do not interpret risk H/D/R as verified physical health, degradation, failure; R means request human check",
+    "Do not claim main HMM successful when event onset recall=0, irrespective of lower normal false alert occupancy",
+    "Do not claim this trial is objective calibration of displayed 0-100 health index; expert rated scores are absent",
+    "Not official ESA preprocessing; not a real-operator online labeling deployment",
+    "Do not use telecommand_36 etc as verified actuator context; anonymized relevance has not been demonstrated",
+    "No modification to frozen main or delivery release or original MSF maximum64 budget"
+  ],
+  "interpretation": [
+    "Combined weights PRE-fixed, comparison is exploratory because source ESA test IDs have been previously viewed",
+    "AUC/AP are measured on real ESA target anomaly labels; weak H/D/R values remain author-defined",
+    "Test alarms require 3 consecutive 40-min sampled steps, not 3 original 10-min raw samples",
+    "Anomalies without amplitude deviation are not necessarily innovations; no guarantee of improved classification",
+    "MSF max64 and two-level healthy/degraded classification from previous synthetic/full segment branches are NOT integrated here",
+    "No operator-review updates; real expert health display score labels absent"
+  ]
+}
