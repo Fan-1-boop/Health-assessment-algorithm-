@@ -1,5 +1,5 @@
 name: Real OPS-SAT chronological within-segment HMM main + anomaly assistance
-# Version 2: fair same-data calibrated objective anomaly baseline + score-interface invariants
+# Version 3: add real segment post-fusion score-policy invariance audit (no fake expert ratings)
 on:
   push:
     branches: [research/hitl-quality-gated-update]
@@ -30,6 +30,7 @@ jobs:
       - name: Run real chronological OPS-SAT main/auxiliary ablations
         run: |
           python -u research/real_health_main/benchmark.py --out results/real_health_main
+          python -u research/real_health_main/score_policy_sensitivity.py
       - name: Archive real output and protocol
         if: always()
         uses: actions/upload-artifact@v4
