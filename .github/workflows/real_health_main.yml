@@ -1,5 +1,5 @@
 name: Real OPS-SAT chronological within-segment HMM main + anomaly assistance
-# Version 3: add real segment post-fusion score-policy invariance audit (no fake expert ratings)
+# Version 4: report actual calibration-locked anomaly alarm threshold when score mapping changes
 on:
   push:
     branches: [research/hitl-quality-gated-update]
