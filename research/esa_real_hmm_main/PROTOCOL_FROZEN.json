@@ -1,0 +1,69 @@
+{
+  "protocol": "real_ESA_M1_multichannel_weak_HMM_E1_v1",
+  "research_status": "exploratory retrospective SAME already observed ESA mission and exposed test IDs; NOT novel blind confirmatory evaluation",
+  "real_source": "data/esa_v15_multichannel/three_channels.csv.gz",
+  "source_protocol": "configs/v15_esa_protocol_frozen.json",
+  "official_event_ids": "data/esa_v15_multichannel/mission1_event_catalog.csv",
+  "selected_channels": [
+    "channel_29",
+    "channel_30",
+    "channel_31"
+  ],
+  "target": "channel_29",
+  "event_partition": "exact original V1.5 global-ID event-aware chronological train/validation/test; reuse for matched baseline; no read of test for fitting threshold/transition/selection",
+  "initial_risk_state_semantics": [
+    "normal_reference",
+    "deviating_from_normal_reference",
+    "high_deviation_needs_human_inspection"
+  ],
+  "physical_fault_state_claim": false,
+  "risk_input": "max absolute robust-scale deviation of last real 3-channel readings; RobustLevelDeviation fitted on 20,000 pure nominal training windows; same as prior V1.5 baseline",
+  "weak_tier_q": [
+    "train nominal risk 70th percentile",
+    "train nominal risk 95th percentile"
+  ],
+  "emission": "train-only univariate Gaussian over log(1+risk) for 3 initialized risk tiers, variance floor 0.0036; priors smoothed with 0.5",
+  "transition": "count adjacent pseudo-state pairs only among consecutive stride4 pure nominal training windows; Dirichlet additive 0.5; no transitions over gap/invalid/segment boundaries",
+  "filter": {
+    "HMM_gamma": 0.6,
+    "HMM_memory": 0.5,
+    "EMA_alpha": 0.4,
+    "reset_over_gap": true
+  },
+  "models": [
+    "robust_level_reference",
+    "static_three_tier",
+    "EMA_three_tier",
+    "HMM_three_tier"
+  ],
+  "score": "baseline robust raw deviation; others 1-p(normal reference tier), no probability-of-physical-fault claim",
+  "alarm": {
+    "nominal_validation_false_positive_quantile": 0.998,
+    "persistence": 3,
+    "reset_on_gap": true
+  },
+  "metric_units": [
+    "validation AP only for diagnostic; no model selection",
+    "test point AP/AUROC",
+    "test HMM vs static AP",
+    "normal alert occupancy",
+    "rare nominal alert occupancy",
+    "official-ID coverage rate",
+    "official-ID new alarm onset rate",
+    "false alarm starts per 30 elapsed days"
+  ],
+  "evaluation": "true ESA official target-channel Anomaly positive, rare nominal negative; masked context-only anomaly and invalid windows excluded identically to V1.5",
+  "source_data_untouched": true,
+  "limitations": [
+    "Offline analysis of previously exposed test IDs, not fresh blind test",
+    "Weak risk tiers have human-defined meaning; NO verified healthy/degraded/physical failure labels",
+    "Repeated 10-minute as-of sampling NOT official ESA 30-second preprocessing",
+    "State transition estimated from continuous nominal risk tiers, not independently annotated physical state transition labels",
+    "No new human-reconfirmed abnormal labels nor real expert 0-100 health score anchors",
+    "HMM time inference only in chronological windows; never leak future readings",
+    "Window-level labels refer to true ESA target code at causal end, not physical fault severity",
+    "Core original MSF-MOFS max64 feature-budget remains separately frozen in OPS-SAT branch, not implemented in this lightweight real ESA HMM baseline",
+    "Threshold and persistence do not change after seeing test outcomes",
+    "No automatic update or clinical/flight critical decision"
+  ]
+}
