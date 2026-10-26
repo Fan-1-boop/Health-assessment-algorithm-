@@ -1,0 +1,42 @@
+name: ESA real health-main retrospective failure diagnostic
+on:
+  push:
+    branches: [research/hitl-quality-gated-update]
+    paths: ['.github/workflows/esa_hmm_failure_diagnostics.yml']
+  workflow_dispatch:
+jobs:
+  retrospective_audit:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    timeout-minutes: 12
+    env:
+      OPENBLAS_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: python -m pip install numpy pandas
+      - name: Descriptive source-grounded error analysis only
+        run: python -u research/esa_real_hmm_main/failure_diagnostics.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ESA-real-HMM-predeclared-exposed-test-failure-diagnostics
+          path: results/real_esa_health_hmm/failure_diagnostics.json
+          if-no-files-found: warn
+      - name: Preserve descriptive artifact on research branch
+        if: success()
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add results/real_esa_health_hmm/failure_diagnostics.json
+          git commit -m 'results(research): real ESA HMM static-risk failure diagnostic by published event category' || exit 0
+          git fetch origin research/hitl-quality-gated-update
+          git rebase origin/research/hitl-quality-gated-update
+          for i in 1 2 3; do
+            if git push origin HEAD:research/hitl-quality-gated-update; then exit 0; fi
+            git fetch origin research/hitl-quality-gated-update
+            git rebase origin/research/hitl-quality-gated-update
+          done
+          exit 1
