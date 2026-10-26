@@ -1,0 +1,142 @@
+{
+  "study": "REAL OPS-SAT retrospective causal-within-segment HMM weak-tier health init plus supervised objective anomaly evidence",
+  "source_sha256": "dab2e01e873c93590692b50a7cc312d9cce4d5ba7e69ce8015603c47a8ffb97b",
+  "protocol_sha256": "0e9f78d912266ef19ca74b3077b45caff646a1c260e7b2c75ea7ec16f0181ed2",
+  "original_official_test_0_excluded": true,
+  "all_raw_inputs_genuine": true,
+  "no_synthetic_data": true,
+  "no_true_physical_H_D_R_labels": true,
+  "no_expert_score_anchors": true,
+  "split": {
+    "fit": {
+      "segments": 920,
+      "binary_anomalies": 195
+    },
+    "fusion_fit": {
+      "segments": 286,
+      "binary_anomalies": 64
+    },
+    "calibration": {
+      "segments": 160,
+      "binary_anomalies": 14
+    },
+    "audit": {
+      "segments": 182,
+      "binary_anomalies": 43
+    }
+  },
+  "raw_windows": 27201,
+  "nominal_reference_quantiles": {
+    "q50": 1.1646826688784797,
+    "q70": 1.7301237102059117,
+    "q95": 9.054798776415305
+  },
+  "hmm_initial_state_prior": [
+    0.7499619123068954,
+    0.21374813370303788,
+    0.03628995399006673
+  ],
+  "hmm_weak_state_transition_matrix": [
+    [
+      0.9511060356130778,
+      0.04775197732944212,
+      0.0011419870574800152
+    ],
+    [
+      0.17758484609313338,
+      0.7960536700868193,
+      0.026361483820047354
+    ],
+    [
+      0.03277060575968222,
+      0.16782522343594836,
+      0.7994041708043694
+    ]
+  ],
+  "hmm_state_semantics": "Weak rule-based nominal-reference risk tiers. NOT observed physical state transitions.",
+  "classification_metrics_against_PUBLISHED_REAL_SEGMENT_ANOMALY_LABELS": {
+    "static": {
+      "segments": 182,
+      "anomalies": 43,
+      "AP": 0.2305279317049339,
+      "ROC_AUC": 0.4588422285427472,
+      "F1": 0.36538461538461536,
+      "Recall": 0.8837209302325582,
+      "Precision": 0.23030303030303031,
+      "FPR": 0.9136690647482014,
+      "FP": 127,
+      "FN": 5,
+      "threshold_from_independent_calibration": 0.01499381522681753
+    },
+    "EMA": {
+      "segments": 182,
+      "anomalies": 43,
+      "AP": 0.21918908223224592,
+      "ROC_AUC": 0.4352517985611511,
+      "F1": 0.3673469387755102,
+      "Recall": 0.8372093023255814,
+      "Precision": 0.23529411764705882,
+      "FPR": 0.841726618705036,
+      "FP": 117,
+      "FN": 7,
+      "threshold_from_independent_calibration": 0.014994545463133946
+    },
+    "HMM": {
+      "segments": 182,
+      "anomalies": 43,
+      "AP": 0.23666166812830464,
+      "ROC_AUC": 0.4595951146059896,
+      "F1": 0.37037037037037035,
+      "Recall": 0.813953488372093,
+      "Precision": 0.23972602739726026,
+      "FPR": 0.7985611510791367,
+      "FP": 111,
+      "FN": 8,
+      "threshold_from_independent_calibration": 0.028197021834458935
+    },
+    "aux": {
+      "segments": 182,
+      "anomalies": 43,
+      "AP": 0.47101584316911316,
+      "ROC_AUC": 0.6824493893257486,
+      "F1": 0.2711864406779661,
+      "Recall": 0.18604651162790697,
+      "Precision": 0.5,
+      "FPR": 0.05755395683453238,
+      "FP": 8,
+      "FN": 35,
+      "threshold_from_independent_calibration": 0.5193621608327118,
+      "binary_Brier": 0.2460839456087838,
+      "binary_NLL": 0.6830270132566281
+    },
+    "fusion": {
+      "segments": 182,
+      "anomalies": 43,
+      "AP": 0.4505500749353355,
+      "ROC_AUC": 0.6801070771289945,
+      "F1": 0.3838383838383838,
+      "Recall": 0.4418604651162791,
+      "Precision": 0.3392857142857143,
+      "FPR": 0.26618705035971224,
+      "FP": 37,
+      "FN": 24,
+      "threshold_from_independent_calibration": 0.25671306142252404,
+      "binary_Brier": 0.16539714376374043,
+      "binary_NLL": 0.5081754756745352
+    }
+  },
+  "score": "Initial policy 100 H + 60 D + 0 R minus 15 times fused observed anomaly probability; not tuned to experts.",
+  "elapsed_seconds": 8.005284543999998,
+  "critical_limitations": [
+    "No physical 3-state labels; auxiliary binary class only is genuine expert-published groundtruth",
+    "Entire anomaly truth refers to the original SEGMENT; prefix windows inherit it solely for supervised auxiliary FIT, not for per-point scoring",
+    "Within-segment timesteps are chronological but changing risk pseudo-states cannot be verified as physical transitions",
+    "Data partitions refer to the same earlier-examined source; this result exploratory, not fresh independent blind",
+    "Original test 529 segments NEVER used; source entire CSV loaded then excluded before training/validation",
+    "Risk/nonhealthy output is NOT a calibrated probability of fault and uses nominal-based author-defined thresholds",
+    "No REAL expert score anchors; mapping is initialization only, do not claim human agreement improvement",
+    "The main and auxiliary branch use correlated views of the same signal; fusion must beat auxiliary alone to support incremental value",
+    "This quick risk baseline does not yet contain the frozen MSF 64-budget and two-level logistic classifiers; these are separate existing research modules",
+    "Historic full-segment classification results are not comparable: prefix16 has less information than entire official segment"
+  ]
+}
