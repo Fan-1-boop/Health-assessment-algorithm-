@@ -1,4 +1,5 @@
 name: ESA real observation innovation HMM E2 frozen ablation
+# Rerun qualified old HMM module import; frozen numerical configuration unchanged.
 on:
   push:
     branches: [research/hitl-quality-gated-update]
@@ -26,7 +27,9 @@ jobs:
           python -m pip install -r requirements.txt
           python -m pip install scipy pandas numpy scikit-learn
       - name: Check real-risk protocol constraints, causality and nominal ranks
-        run: python -m pytest -q research/esa_observation_e2/test_benchmark.py research/esa_real_hmm_main/test_benchmark.py
+        run: |
+          python -m pytest -q research/esa_observation_e2/test_benchmark.py
+          python -m pytest -q research/esa_real_hmm_main/test_benchmark.py
       - name: Run 3-channel real E2 innovation and HMM ablation
         run: |
           python -u research/esa_observation_e2/benchmark.py --out results/esa_observation_e2
