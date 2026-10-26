@@ -149,7 +149,7 @@
     "same_fusion_training_segments_for_both": true
   },
   "score": "Initial policy 100 H + 60 D + 0 R minus 15 times fused observed anomaly probability; not tuned to experts.",
-  "elapsed_seconds": 10.497014857000003,
+  "elapsed_seconds": 12.174565505999993,
   "critical_limitations": [
     "No physical 3-state labels; auxiliary binary class only is genuine expert-published groundtruth",
     "Entire anomaly truth refers to the original SEGMENT; prefix windows inherit it solely for supervised auxiliary FIT, not for per-point scoring",
