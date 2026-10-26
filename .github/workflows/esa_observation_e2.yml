@@ -29,10 +29,14 @@ jobs:
       - name: Check real-risk protocol constraints, causality and nominal ranks
         run: |
           python -m pytest -q research/esa_observation_e2/test_benchmark.py
+          python -m pytest -q research/esa_observation_e2/test_failure_diagnostic.py
           python -m pytest -q research/esa_real_hmm_main/test_benchmark.py
       - name: Run 3-channel real E2 innovation and HMM ablation
         run: |
           python -u research/esa_observation_e2/benchmark.py --out results/esa_observation_e2
+      - name: Audit pre-frozen test event non-detection without modifying thresholds or re-fitting
+        run: |
+          python -u research/esa_observation_e2/failure_diagnostic.py --result-dir results/esa_observation_e2
       - name: Archive complete exploratory evidence even if job fails
         if: always()
         uses: actions/upload-artifact@v4
