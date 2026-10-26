@@ -140,9 +140,9 @@ def run(input_csv,catalog_csv,out_dir):
         name=p.name
         measured_risk=model.score(windows[name])
         st,ema,hmm=static_ema_hmm(measured_risk,end[name],state,
-           gamma=float(cfg["filter"]["gamma"]),
-           memory=float(cfg["filter"]["memory"]),
-           ema_alpha=float(cfg["filter"]["ema_alpha"]),stride=4)
+           gamma=float(cfg["filter"]["HMM_gamma"]),
+           memory=float(cfg["filter"]["HMM_memory"]),
+           ema_alpha=float(cfg["filter"]["EMA_alpha"]),stride=4)
         experiments[name]={
           "robust_level_reference":measured_risk,
           "static_three_tier":1-st[:,0],
@@ -157,7 +157,7 @@ def run(input_csv,catalog_csv,out_dir):
     for name in cfg["models"]:
         score_cal=experiments["validation"][name]
         t=validation_nominal_threshold(score_cal,end["validation"],codes,
-                   false_positive_fraction=float(cfg["alarm"]["nominal_validation_false_positive_fraction"]))
+                   false_positive_fraction=1-float(cfg["alarm"]["nominal_validation_false_positive_quantile"]))
         output[name]=evaluate_one(experiments["test"][name],end["test"],
                                   codes,records,part[-1],t,4)
         output[name]["validation_AP_diagnostic_no_model_selection"]=float(
