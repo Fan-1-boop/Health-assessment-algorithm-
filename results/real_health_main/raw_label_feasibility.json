@@ -1,0 +1,51 @@
+{
+  "source": "OPS-SAT-AD official original raw segments.csv, train==1 only",
+  "source_url": "https://zenodo.org/api/records/12588359/files/segments.csv/content",
+  "raw_source_sha256": "dab2e01e873c93590692b50a7cc312d9cce4d5ba7e69ce8015603c47a8ffb97b",
+  "train_only_rows": 225178,
+  "train_only_segments": 1594,
+  "unique_channels": 9,
+  "raw_point_label_hist": {
+    "a3": 80387,
+    "anomaly": 71479,
+    "a2": 56927,
+    "a4": 16385
+  },
+  "official_binary_segment_label_hist": {
+    "0": 153699,
+    "1": 71479
+  },
+  "raw_label_nunique_per_segment": {
+    "1": 1594
+  },
+  "point_annotation_changed_within_segment": 0,
+  "label_by_official_segment_anomaly": {
+    "0": {
+      "a2": 548,
+      "a3": 664,
+      "a4": 61,
+      "anomaly": 0
+    },
+    "1": {
+      "a2": 0,
+      "a3": 0,
+      "a4": 0,
+      "anomaly": 321
+    }
+  },
+  "segment_timestamp_monotonic": 1594,
+  "segment_timestamp_nonmonotonic": 0,
+  "segment_timestamp_duplicate_count": 398,
+  "segments_length_quantiles": {
+    "0.0": 8.0,
+    "0.1": 19.0,
+    "0.25": 41.0,
+    "0.5": 68.5,
+    "0.75": 200.0,
+    "0.9": 356.4000000000001,
+    "1.0": 1040.0
+  },
+  "physical_health_degradation_fault_triple_label_present": false,
+  "human_health_score_groundtruth_present": false,
+  "strong_warning": "Within-segment constant groundtruth does NOT validate HMM transition between physical states or early event onset. Never sequence arbitrary segment IDs for HMM."
+}
