@@ -19,7 +19,7 @@ from v13_protocol import windows_in_partition
 from v13_anomaly import RobustLevelDeviation,ForecastRidge
 from v14_alarm import sustained_alert,validation_nominal_threshold,alert_statistics
 from v15_global_events import CHANNELS,TARGET,get_global_event_records,global_id_partitions,event_alarm_metrics
-from benchmark import nominal_three_tier_fit,static_ema_hmm
+from research.esa_real_hmm_main.benchmark import nominal_three_tier_fit,static_ema_hmm
 
 SPEC=ROOT/"research/esa_observation_e2/PROTOCOL_FROZEN.json"
 SOURCE="data/esa_v15_multichannel/three_channels.csv.gz"
